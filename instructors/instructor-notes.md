@@ -2,4 +2,6 @@
 title: 'Instructor Notes'
 ---
 
-This is a placeholder file. Please add content here. 
+Do good job.
+
+Make people learn.
