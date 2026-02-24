@@ -1,18 +1,34 @@
 ---
-title: "Coduing Up A Proof Of Concept"
-teaching: 15 # teaching time in minutes
-exercises: 0 # exercise time in minutes
+title: "Coding Up A Proof Of Concept"
+teaching: 90 # teaching time in minutes
+exercises: 20 # exercise time in minutes
 ---
 
-# Beginning a new software project
+::::::::::::::::::::::::::::::::::::::: objectives
+
+- Build a minimal working or "proof of concept" project
+that we can build on in this workshop
+
+::::::::::::::::::::::::::::::::::::::::::::::::::
+
+:::::::::::::::::::::::::::::::::::::::: questions
+
+- Where/How do I start a new project?
+- How do I use a function?
+- How do I document and test my code?
+- Can I make a command line interface for my code?
+
+::::::::::::::::::::::::::::::::::::::::::::::::::
+
+## Beginning a new software project
 
 Before we do anything to our project we should talk about:
 
-## Organisation
+### Organisation
 
 Organisation is key to a good project. Every time you start a new project or explore a new idea it is a good idea to create a new space for that project. This means creating a new directory for you to collect all the relevant data, software, and documentation. You will be involved in many projects through your career and often will have to manage multiple projects simultaneously. It is therefore not just a good idea to organise each project, but to have a consistent organisation structure between projects. In this section we will make some recommendations for organising a software project.
 
-### Put each project in its own directory, which is named after the project.
+#### Put each project in its own directory, which is named after the project.
 
 The location of this directory will depend on a higher level organisation scheme. For example you may separate your projects based on funding, based on collaboration, or based on research area.
 
@@ -39,23 +55,23 @@ Within you software project directory we recommend the following structure:
 
 Setting up an empty structure such as the above can be done either by making an template and then copying that every time you start a new project. Additionally there are python packages such as `cookiecutter` ([pypi](https://pypi.org/project/cookiecutter/), [rtfd](https://cookiecutter.readthedocs.io/en/1.7.2/), [github](https://github.com/audreyfeldroy/cookiecutter-pypackage)) that can automate this process for you, and offer a range of templates to work with.
 
-### Name all files to reflect their content or function.
+#### Name all files to reflect their content or function.
 
 It is also convenient to use a consistent and descriptive naming format for all your files and sub-folders. For example, use names such as `galaxy_count_table.csv`, `manuscript.md`, or `light_curve_analysis.py`. Do not using sequential numbers (e.g., `result1.csv`, `result2.csv`) or a location in a final manuscript (e.g., `fig_3_a.png`), since those numbers will almost certainly change as the project evolves (and are meaningless on their own).
 
-## Starting our project
+### Starting our project
 Now we are ready to actually start doing something with our project.
 
-### Project evolution
+#### Project evolution
 
 In the typical project cycle for an astronomer or research software engineer (or RSE, a formal name for people who combine professional software expertise with an understanding of research), you will not sit down and have a detailed discussion about what the project is, where it needs to go, what the user stories and milestones are, and who will be involved. Usually research evolves organically through informal discussions with colleagues, or a sudden thought in the shower. Similarly our software projects evolve in an organic manner, often beginning with a small script of function to do just this one thing, which then over time gets used, reused, augmented, shared, and thus evolves into a software project. This evolution of ideas and code does not fit will with much of the more formal structures that professional software developers adhere to, and so we will not try to fit our projects to such a scheme. Instead we will create a path for our software that will be suited to our work style, but which draws on the knowledge and experience of professional software developers. Thus we will begin with a proof of concept code – a short bit of work that proves that something works using the minimal amount of effort.
 
-### Example project
+#### Example project
 
 The example project that we will work with will involve tasks that are familiar to many astronomers. The work that is being done is mostly for demonstration purposes – existing libraries will be able to do this task faster and easier that we will. The point of this example project is not the content, but the methodology that we use as we pass through various cycles of development.
 
 
-# Example project: an astronomy catalogue simulator
+## Example project: an astronomy catalogue simulator
 The example project that we will be developing will simulate a catalogue of foreground stars in the direction of the Andromeda galaxy. The initial requirements are as follows:
 
 Stars should have randomised sky positions around the Andromeda galaxy
@@ -81,7 +97,7 @@ Which statements in the previous lesson suggest that a good project structure wi
 
 ::::::::::::::::::::::::::::::::::::::::::::::::::::::
 
-# Proof of concept code
+## Proof of concept code
 
 The first iteration of our code is shown below. It was written in a stream-of-conscious mode with a focus on getting a minimum working example that proves that the work can be done.
 
@@ -127,7 +143,7 @@ If we plot the ra/dec locations of the catalog we get the following output:
 
 Sky plot of the catalog that comes from the sim.py program.
 
-# Making code reusable via functions
+## Making code reusable via functions
 
 Now that we have proved to ourselves that it’s possible to generate a catalog, we want to tidy up the code a little so that it can be reused and adapted easily.
 
@@ -214,7 +230,7 @@ As a developer the code is now separated into functional parts, so if something 
 
 Now we have a piece of code that is easier to use. However, this code is only really usable as is, and requires people to read/edit the source code to understand how it works and adapt it for their use. In the next section we’ll see how to further generalise our code by using more function parameters, and adding a command line interface.
 
-# Creating a command line interface
+## Creating a command line interface
 
 In the previous lesson we saw how we could use functions to separate different tasks, and docstrings to describe the behaviour of these functions. In this lesson we’ll generalise our code even further by removing the global variables, adding functions parameters, and adding a command line interface.
 
@@ -346,7 +362,7 @@ Finally, we can connect the user input to the program by using the `options` obj
 
 Since we specified default values for all of the inputs, we can run `python sim.py` and it will run with the default values.
 
-# Creating a simple testing script
+## Creating a simple testing script
 
 We now have a script with a command line interface that allows people to use the code without having to read the source. At this point we are feeling rather professional and are happy to share the code with others. One of the things that is often scary is the thought of others finding bugs in our code and then having to fix these bugs. A good way to alleviate these fears is to do some testing of the code ourselves to catch all the obvious errors before the script is sent to others. In a later lesson we’ll go through some more formal and rigorous testing, but for now we are going to start simple with some of the most basic tests.
 
@@ -379,7 +395,7 @@ We now have a test script that will catch the most egregious issues with our scr
 
 More advanced testing with bash is not explored here as we will move to a python based test environment in a later lesson. The python based testing will make it easier to do things like make sure the right number of entries exist in the catalogue file and that the positions all lie within the specified region.
 
-# Summary
+## Summary
 
 In this first development cycle we have:
 
