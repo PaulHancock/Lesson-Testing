@@ -483,7 +483,356 @@ at first glance does what we need.</p>
 <p>If we plot the ra/dec locations of the catalog we get the following
 output:</p>
 <figure><img src="../fig/poc/catalog_plot.png" alt="catalogue plot" class="figure mx-auto d-block"><div class="figcaption">catalogue plot</div>
-</figure><p>Sky plot of the catalog that comes from the sim.py program. <!--
+</figure><p>Sky plot of the catalog that comes from the sim.py program.</p>
+</div>
+<div class="section level1">
+<h1 id="making-code-reusable-via-functions">Making code reusable via functions<a class="anchor" aria-label="anchor" href="#making-code-reusable-via-functions"></a></h1>
+<p>Now that we have proved to ourselves that it’s possible to generate a
+catalog, we want to tidy up the code a little so that it can be reused
+and adapted easily.</p>
+<p>At the moment our intended audience is ourselves, so we are content
+with keeping all the relevant information within the code itself. As a
+first step we create new variables that record the target location
+(<code>ref_ra/ref_dec</code>), the number of stars to generate
+(<code>nsources</code>), and how far from the central location the new
+positions should be generated (<code>radius</code>). This is done using
+global variables at the top of our file like this:</p>
+<div class="codewrapper sourceCode" id="cb3">
+<h3 class="code-label">PYTHON<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
+</h3>
+<pre class="sourceCode python" tabindex="0"><code class="sourceCode python"><span id="cb3-1"><a href="#cb3-1" tabindex="-1"></a><span class="co">#! /usr/bin/env python</span></span>
+<span id="cb3-2"><a href="#cb3-2" tabindex="-1"></a><span class="co"># Demonstrate that we can simulate a catalogue of stars on the sky</span></span>
+<span id="cb3-3"><a href="#cb3-3" tabindex="-1"></a></span>
+<span id="cb3-4"><a href="#cb3-4" tabindex="-1"></a><span class="co"># Determine Andromeda location in ra/dec degrees</span></span>
+<span id="cb3-5"><a href="#cb3-5" tabindex="-1"></a><span class="im">import</span> numpy <span class="im">as</span> np</span>
+<span id="cb3-6"><a href="#cb3-6" tabindex="-1"></a><span class="im">import</span> math</span>
+<span id="cb3-7"><a href="#cb3-7" tabindex="-1"></a></span>
+<span id="cb3-8"><a href="#cb3-8" tabindex="-1"></a><span class="co"># configuration using global variables</span></span>
+<span id="cb3-9"><a href="#cb3-9" tabindex="-1"></a>nsources <span class="op">=</span> <span class="dv">1000</span></span>
+<span id="cb3-10"><a href="#cb3-10" tabindex="-1"></a><span class="co"># from wikipedia</span></span>
+<span id="cb3-11"><a href="#cb3-11" tabindex="-1"></a>ref_ra <span class="op">=</span> <span class="st">'00:42:44.3'</span></span>
+<span id="cb3-12"><a href="#cb3-12" tabindex="-1"></a>ref_dec <span class="op">=</span> <span class="st">'41:16:09'</span></span>
+<span id="cb3-13"><a href="#cb3-13" tabindex="-1"></a>radius <span class="op">=</span> <span class="dv">1</span></span></code></pre>
+</div>
+<p>From here we need to make a few changes to our code so that these
+variables are now used in place of the previously hard-coded values.</p>
+<p>We then take all the code that is part of the position generation
+stage and bundle it all together into a function which we call
+<code>generate_positions</code>. This allows us to keep that part of the
+code separate from the file writing stage. In fact while we are at it we
+should make a function for doing the file writing. Lets call it
+<code>write_file</code>. While we are writing these functions we can use
+python <a href="https://www.python.org/dev/peps/pep-0257/" class="external-link">docstrings</a> to
+document the intent of each function.</p>
+<div class="codewrapper sourceCode" id="cb4">
+<h3 class="code-label">PYTHON<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
+</h3>
+<pre class="sourceCode python" tabindex="0"><code class="sourceCode python"><span id="cb4-1"><a href="#cb4-1" tabindex="-1"></a><span class="kw">def</span> generate_positions():</span>
+<span id="cb4-2"><a href="#cb4-2" tabindex="-1"></a>    <span class="co">"""</span></span>
+<span id="cb4-3"><a href="#cb4-3" tabindex="-1"></a><span class="co">    Create `nsources` random locations within `radius` degrees of the reference `ref_ra`/`ref_dec`.</span></span>
+<span id="cb4-4"><a href="#cb4-4" tabindex="-1"></a></span>
+<span id="cb4-5"><a href="#cb4-5" tabindex="-1"></a><span class="co">    Returns</span></span>
+<span id="cb4-6"><a href="#cb4-6" tabindex="-1"></a><span class="co">    -------</span></span>
+<span id="cb4-7"><a href="#cb4-7" tabindex="-1"></a><span class="co">    ra, dec : numpy.array</span></span>
+<span id="cb4-8"><a href="#cb4-8" tabindex="-1"></a><span class="co">        Arrays of ra and dec coordinates in degrees.</span></span>
+<span id="cb4-9"><a href="#cb4-9" tabindex="-1"></a><span class="co">    """</span></span>
+<span id="cb4-10"><a href="#cb4-10" tabindex="-1"></a></span>
+<span id="cb4-11"><a href="#cb4-11" tabindex="-1"></a>    <span class="co"># convert DMS -&gt; degrees</span></span>
+<span id="cb4-12"><a href="#cb4-12" tabindex="-1"></a>    d, m, s <span class="op">=</span> ref_dec.split(<span class="st">':'</span>)</span>
+<span id="cb4-13"><a href="#cb4-13" tabindex="-1"></a>    dec <span class="op">=</span> <span class="bu">int</span>(d)<span class="op">+</span><span class="bu">int</span>(m)<span class="op">/</span><span class="dv">60</span><span class="op">+</span><span class="bu">float</span>(s)<span class="op">/</span><span class="dv">3600</span></span>
+<span id="cb4-14"><a href="#cb4-14" tabindex="-1"></a></span>
+<span id="cb4-15"><a href="#cb4-15" tabindex="-1"></a>    <span class="co"># convert HMS -&gt; degrees</span></span>
+<span id="cb4-16"><a href="#cb4-16" tabindex="-1"></a>    h, m, s <span class="op">=</span> ref_ra.split(<span class="st">':'</span>)</span>
+<span id="cb4-17"><a href="#cb4-17" tabindex="-1"></a>    ra <span class="op">=</span> <span class="dv">15</span><span class="op">*</span>(<span class="bu">int</span>(h)<span class="op">+</span><span class="bu">int</span>(m)<span class="op">/</span><span class="dv">60</span><span class="op">+</span><span class="bu">float</span>(s)<span class="op">/</span><span class="dv">3600</span>)</span>
+<span id="cb4-18"><a href="#cb4-18" tabindex="-1"></a>    ra <span class="op">=</span> ra<span class="op">/</span>math.cos(dec<span class="op">*</span>math.pi<span class="op">/</span><span class="dv">180</span>)  <span class="co"># don't forget projection effects</span></span>
+<span id="cb4-19"><a href="#cb4-19" tabindex="-1"></a></span>
+<span id="cb4-20"><a href="#cb4-20" tabindex="-1"></a>    ra_offsets <span class="op">=</span> np.random.uniform(<span class="op">-</span><span class="dv">1</span><span class="op">*</span>radius, radius, size<span class="op">=</span>nsources)</span>
+<span id="cb4-21"><a href="#cb4-21" tabindex="-1"></a>    dec_offsets <span class="op">=</span> np.random.uniform(<span class="op">-</span><span class="dv">1</span><span class="op">*</span>radius, radius, size<span class="op">=</span>nsources)</span>
+<span id="cb4-22"><a href="#cb4-22" tabindex="-1"></a></span>
+<span id="cb4-23"><a href="#cb4-23" tabindex="-1"></a>    ras <span class="op">=</span> ra <span class="op">+</span> ra_offsets</span>
+<span id="cb4-24"><a href="#cb4-24" tabindex="-1"></a>    decs <span class="op">=</span> dec <span class="op">+</span> dec_offsets</span>
+<span id="cb4-25"><a href="#cb4-25" tabindex="-1"></a>    <span class="cf">return</span> ras, decs</span>
+<span id="cb4-26"><a href="#cb4-26" tabindex="-1"></a></span>
+<span id="cb4-27"><a href="#cb4-27" tabindex="-1"></a></span>
+<span id="cb4-28"><a href="#cb4-28" tabindex="-1"></a><span class="kw">def</span> write_file(ras, decs):</span>
+<span id="cb4-29"><a href="#cb4-29" tabindex="-1"></a>    <span class="co">"""</span></span>
+<span id="cb4-30"><a href="#cb4-30" tabindex="-1"></a><span class="co">    Write the ra/dec catalog to a file, and include a header and IDs.</span></span>
+<span id="cb4-31"><a href="#cb4-31" tabindex="-1"></a><span class="co">    """</span></span>
+<span id="cb4-32"><a href="#cb4-32" tabindex="-1"></a>    <span class="cf">with</span> <span class="bu">open</span>(<span class="st">'catalog.csv'</span>, <span class="st">'w'</span>) <span class="im">as</span> f:</span>
+<span id="cb4-33"><a href="#cb4-33" tabindex="-1"></a>        <span class="co"># creat a header row</span></span>
+<span id="cb4-34"><a href="#cb4-34" tabindex="-1"></a>        <span class="bu">print</span>(<span class="st">"id,ra,dec"</span>, <span class="bu">file</span><span class="op">=</span>f)</span>
+<span id="cb4-35"><a href="#cb4-35" tabindex="-1"></a>        <span class="cf">for</span> i <span class="kw">in</span> <span class="bu">range</span>(nsources):</span>
+<span id="cb4-36"><a href="#cb4-36" tabindex="-1"></a>            <span class="co"># use a csv format</span></span>
+<span id="cb4-37"><a href="#cb4-37" tabindex="-1"></a>            <span class="bu">print</span>(<span class="st">"</span><span class="sc">{0}</span><span class="st">, </span><span class="sc">{1:7.4f}</span><span class="st">, </span><span class="sc">{2:7.4f}</span><span class="st">"</span>.<span class="bu">format</span>(i, ras[i], decs[i]), <span class="bu">file</span><span class="op">=</span>f)</span>
+<span id="cb4-38"><a href="#cb4-38" tabindex="-1"></a>    <span class="cf">return</span></span></code></pre>
+</div>
+<p>Note that the first function takes no parameters, while the second is
+designed to take two lists of positions as input. By breaking our code
+into functional blocks we have a number of advantages:</p>
+<p>We can reuse a block of code by calling the function multiple times,
+and don’t have to bother with duplicated code. Duplicated code means
+duplicated bugs! The code within each function will not interfere with
+code in other functions, allowing us to reuse names of variables, and
+for unused variables and memory to be deleted upon exiting the function.
+We can document each function separately using a docstring to describe
+the intent of the code. This is in addition to the inline comments that
+we have used.</p>
+<p>Our script can now be finished with a few more lines of code.</p>
+<div class="codewrapper sourceCode" id="cb5">
+<h3 class="code-label">PYTHON<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
+</h3>
+<pre class="sourceCode python" tabindex="0"><code class="sourceCode python"><span id="cb5-1"><a href="#cb5-1" tabindex="-1"></a><span class="co"># Do the work</span></span>
+<span id="cb5-2"><a href="#cb5-2" tabindex="-1"></a>ras, decs <span class="op">=</span> generate_positions()</span>
+<span id="cb5-3"><a href="#cb5-3" tabindex="-1"></a>write_file(ras, decs)</span></code></pre>
+</div>
+<p>As a developer the code is now separated into functional parts, so if
+something goes wrong or needs changing, we know where to look to make
+those changes. As a user of the code we can open the file and read the
+first few lines to see what the default parameters are, and modify them
+if we choose. Additionally, as a user we can read the names and
+docstrings of the functions to understand what the code is doing rather
+than having to read the code itself.</p>
+<p>Now we have a piece of code that is easier to use. However, this code
+is only really usable as is, and requires people to read/edit the source
+code to understand how it works and adapt it for their use. In the next
+section we’ll see how to further generalise our code by using more
+function parameters, and adding a command line interface.</p>
+</div>
+<div class="section level1">
+<h1 id="creating-a-command-line-interface">Creating a command line interface<a class="anchor" aria-label="anchor" href="#creating-a-command-line-interface"></a></h1>
+<p>In the previous lesson we saw how we could use functions to separate
+different tasks, and docstrings to describe the behaviour of these
+functions. In this lesson we’ll generalise our code even further by
+removing the global variables, adding functions parameters, and adding a
+command line interface.</p>
+<p>The first thing that we will do is remove the global variables, and
+have these values passed to the functions directly. This will mean that
+someone reading the code for a function doesn’t have to hunt through the
+rest of the code to figure out what the global variables are.</p>
+<p>For the <code>generate_positions</code> function we can use
+parameters with the same name as the previously existing global
+variables, and we can set their default values to match. We have also
+taken the opportunity to update the docstring so that we know what types
+of parameters should be passed and what they are for.</p>
+<div class="codewrapper sourceCode" id="cb6">
+<h3 class="code-label">PYTHON<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
+</h3>
+<pre class="sourceCode python" tabindex="0"><code class="sourceCode python"><span id="cb6-1"><a href="#cb6-1" tabindex="-1"></a><span class="kw">def</span> generate_positions(ref_ra<span class="op">=</span><span class="st">'00:42:44.3'</span>,</span>
+<span id="cb6-2"><a href="#cb6-2" tabindex="-1"></a>                       ref_dec<span class="op">=</span><span class="st">'41:16:09'</span>,</span>
+<span id="cb6-3"><a href="#cb6-3" tabindex="-1"></a>                       radius<span class="op">=</span><span class="fl">1.</span>,</span>
+<span id="cb6-4"><a href="#cb6-4" tabindex="-1"></a>                       nsources<span class="op">=</span><span class="dv">1000</span>):</span>
+<span id="cb6-5"><a href="#cb6-5" tabindex="-1"></a>    <span class="co">"""</span></span>
+<span id="cb6-6"><a href="#cb6-6" tabindex="-1"></a><span class="co">    Create nsources random locations within radius of the reference position.</span></span>
+<span id="cb6-7"><a href="#cb6-7" tabindex="-1"></a></span>
+<span id="cb6-8"><a href="#cb6-8" tabindex="-1"></a><span class="co">    Parameters</span></span>
+<span id="cb6-9"><a href="#cb6-9" tabindex="-1"></a><span class="co">    ----------</span></span>
+<span id="cb6-10"><a href="#cb6-10" tabindex="-1"></a><span class="co">    ref_ra, ref_dec : str</span></span>
+<span id="cb6-11"><a href="#cb6-11" tabindex="-1"></a><span class="co">        Reference position in "HH:MM:SS.S"/"DD:MM:SS.S" format.</span></span>
+<span id="cb6-12"><a href="#cb6-12" tabindex="-1"></a><span class="co">        Default position is Andromeda galaxy.</span></span>
+<span id="cb6-13"><a href="#cb6-13" tabindex="-1"></a></span>
+<span id="cb6-14"><a href="#cb6-14" tabindex="-1"></a><span class="co">    radius : float</span></span>
+<span id="cb6-15"><a href="#cb6-15" tabindex="-1"></a><span class="co">        The radius within which to generate positions. Default = 1.</span></span>
+<span id="cb6-16"><a href="#cb6-16" tabindex="-1"></a></span>
+<span id="cb6-17"><a href="#cb6-17" tabindex="-1"></a><span class="co">    nsources : int</span></span>
+<span id="cb6-18"><a href="#cb6-18" tabindex="-1"></a><span class="co">        The number of positions to generate</span></span>
+<span id="cb6-19"><a href="#cb6-19" tabindex="-1"></a></span>
+<span id="cb6-20"><a href="#cb6-20" tabindex="-1"></a><span class="co">    Returns</span></span>
+<span id="cb6-21"><a href="#cb6-21" tabindex="-1"></a><span class="co">    -------</span></span>
+<span id="cb6-22"><a href="#cb6-22" tabindex="-1"></a><span class="co">    ra, dec : numpy.array</span></span>
+<span id="cb6-23"><a href="#cb6-23" tabindex="-1"></a><span class="co">        Arrays of ra and dec coordinates in degrees.</span></span>
+<span id="cb6-24"><a href="#cb6-24" tabindex="-1"></a><span class="co">    """</span></span>
+<span id="cb6-25"><a href="#cb6-25" tabindex="-1"></a>    ...</span>
+<span id="cb6-26"><a href="#cb6-26" tabindex="-1"></a>    <span class="cf">return</span></span></code></pre>
+</div>
+<p>For the <code>write_file</code> function, we already had two
+parameters that needed to be passed, but now we’ll add another which is
+the output file name. This wasn’t part of the global variables, but it
+was a hard coded file that we might want to change as we create multiple
+catalogs. Note that this function used to use the <code>nsources</code>
+global variable to know how many ra/dec values were passed. In this
+revised version we just look at the length of the <code>ras</code> list
+instead.</p>
+<div class="codewrapper sourceCode" id="cb7">
+<h3 class="code-label">PYTHON<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
+</h3>
+<pre class="sourceCode python" tabindex="0"><code class="sourceCode python"><span id="cb7-1"><a href="#cb7-1" tabindex="-1"></a><span class="kw">def</span> write_file(ras, decs,</span>
+<span id="cb7-2"><a href="#cb7-2" tabindex="-1"></a>               outfile<span class="op">=</span><span class="st">'catalog.csv'</span>):</span>
+<span id="cb7-3"><a href="#cb7-3" tabindex="-1"></a>    <span class="co">"""</span></span>
+<span id="cb7-4"><a href="#cb7-4" tabindex="-1"></a><span class="co">    Write the ra/dec catalog to a file, and include a header and IDs.</span></span>
+<span id="cb7-5"><a href="#cb7-5" tabindex="-1"></a></span>
+<span id="cb7-6"><a href="#cb7-6" tabindex="-1"></a><span class="co">    Parameters</span></span>
+<span id="cb7-7"><a href="#cb7-7" tabindex="-1"></a><span class="co">    ----------</span></span>
+<span id="cb7-8"><a href="#cb7-8" tabindex="-1"></a><span class="co">    ras, decs : list, numpy.array, or any iterable</span></span>
+<span id="cb7-9"><a href="#cb7-9" tabindex="-1"></a><span class="co">        Iterable of ra and dec coordinates. The length of these need to match.</span></span>
+<span id="cb7-10"><a href="#cb7-10" tabindex="-1"></a></span>
+<span id="cb7-11"><a href="#cb7-11" tabindex="-1"></a><span class="co">    outfile : str</span></span>
+<span id="cb7-12"><a href="#cb7-12" tabindex="-1"></a><span class="co">        Path/filename for the output file. (Overwite=True)</span></span>
+<span id="cb7-13"><a href="#cb7-13" tabindex="-1"></a><span class="co">    """</span></span>
+<span id="cb7-14"><a href="#cb7-14" tabindex="-1"></a>    <span class="cf">with</span> <span class="bu">open</span>(outfile, <span class="st">'w'</span>) <span class="im">as</span> f:</span>
+<span id="cb7-15"><a href="#cb7-15" tabindex="-1"></a>        <span class="co"># creat a header row</span></span>
+<span id="cb7-16"><a href="#cb7-16" tabindex="-1"></a>        <span class="bu">print</span>(<span class="st">"id,ra,dec"</span>, <span class="bu">file</span><span class="op">=</span>f)</span>
+<span id="cb7-17"><a href="#cb7-17" tabindex="-1"></a>        <span class="cf">for</span> i <span class="kw">in</span> <span class="bu">range</span>(<span class="bu">len</span>(ras)):</span>
+<span id="cb7-18"><a href="#cb7-18" tabindex="-1"></a>            <span class="co"># use a csv format</span></span>
+<span id="cb7-19"><a href="#cb7-19" tabindex="-1"></a>            <span class="bu">print</span>(<span class="st">"</span><span class="sc">{0}</span><span class="st">, </span><span class="sc">{1:7.4f}</span><span class="st">, </span><span class="sc">{2:7.4f}</span><span class="st">"</span>.<span class="bu">format</span>(i, ras[i], decs[i]), <span class="bu">file</span><span class="op">=</span>f)</span>
+<span id="cb7-20"><a href="#cb7-20" tabindex="-1"></a>    <span class="cf">return</span></span></code></pre>
+</div>
+<p>By moving the global variables into the parameters of the functions,
+and making use of the default values we don’t need to make any further
+changes to our code. The following block is unchanged.</p>
+<div class="codewrapper sourceCode" id="cb8">
+<h3 class="code-label">PYTHON<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
+</h3>
+<pre class="sourceCode python" tabindex="0"><code class="sourceCode python"><span id="cb8-1"><a href="#cb8-1" tabindex="-1"></a><span class="co"># Do the work</span></span>
+<span id="cb8-2"><a href="#cb8-2" tabindex="-1"></a>ras, decs <span class="op">=</span> generate_positions()</span>
+<span id="cb8-3"><a href="#cb8-3" tabindex="-1"></a>write_file(ras, decs)</span></code></pre>
+</div>
+<p>One advantage to our changes is that we could now generate a
+different catalog by adjusting these last two lines like this:</p>
+<div class="codewrapper sourceCode" id="cb9">
+<h3 class="code-label">PYTHON<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
+</h3>
+<pre class="sourceCode python" tabindex="0"><code class="sourceCode python"><span id="cb9-1"><a href="#cb9-1" tabindex="-1"></a>ras, decs <span class="op">=</span> generate_positions(radius<span class="op">=</span><span class="fl">2.</span>)</span>
+<span id="cb9-2"><a href="#cb9-2" tabindex="-1"></a>write_file(ras,decs, outfile<span class="op">=</span><span class="st">'catalog_2deg.csv'</span>)</span></code></pre>
+</div>
+<p>We will leverage this ability in order to make a command line
+interface. The recommended way to do this is to use the
+<code>argparse</code> module, and an <code>if __name__</code> clause as
+follows.</p>
+<div class="codewrapper sourceCode" id="cb10">
+<h3 class="code-label">PYTHON<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
+</h3>
+<pre class="sourceCode python" tabindex="0"><code class="sourceCode python"><span id="cb10-1"><a href="#cb10-1" tabindex="-1"></a><span class="cf">if</span> <span class="va">__name__</span> <span class="op">==</span> <span class="st">'__main__'</span>:</span>
+<span id="cb10-2"><a href="#cb10-2" tabindex="-1"></a>    <span class="co"># Set up the parser with all the options that you want</span></span>
+<span id="cb10-3"><a href="#cb10-3" tabindex="-1"></a>    parser <span class="op">=</span> argparse.ArgumentParser(prog<span class="op">=</span><span class="st">'sim'</span>)</span>
+<span id="cb10-4"><a href="#cb10-4" tabindex="-1"></a>    group1 <span class="op">=</span> parser.add_argument_group()</span>
+<span id="cb10-5"><a href="#cb10-5" tabindex="-1"></a>    group1.add_argument(<span class="st">'--ref_ra'</span>, dest<span class="op">=</span><span class="st">'ref_ra'</span>, <span class="bu">type</span><span class="op">=</span><span class="bu">str</span>, default<span class="op">=</span><span class="st">'00:42:44.3'</span>,</span>
+<span id="cb10-6"><a href="#cb10-6" tabindex="-1"></a>                        <span class="bu">help</span><span class="op">=</span><span class="st">'Central/reference RA position HH:MM:SS.S format'</span>)</span>
+<span id="cb10-7"><a href="#cb10-7" tabindex="-1"></a>    group1.add_argument(<span class="st">'--ref_dec'</span>, dest<span class="op">=</span><span class="st">'ref_dec'</span>, <span class="bu">type</span><span class="op">=</span><span class="bu">str</span>, default<span class="op">=</span><span class="st">'41:16:09'</span>,</span>
+<span id="cb10-8"><a href="#cb10-8" tabindex="-1"></a>                        <span class="bu">help</span><span class="op">=</span><span class="st">'Central/reference Dec position DD:MM:SS.S format'</span>)</span>
+<span id="cb10-9"><a href="#cb10-9" tabindex="-1"></a>    group1.add_argument(<span class="st">'--radius'</span>, dest<span class="op">=</span><span class="st">'radius'</span>, <span class="bu">type</span><span class="op">=</span><span class="bu">float</span>, default<span class="op">=</span><span class="fl">1.</span>,</span>
+<span id="cb10-10"><a href="#cb10-10" tabindex="-1"></a>                        <span class="bu">help</span><span class="op">=</span><span class="st">'radius within which the new positions are generated (deg)'</span>)</span>
+<span id="cb10-11"><a href="#cb10-11" tabindex="-1"></a>    group1.add_argument(<span class="st">'--n'</span>, dest<span class="op">=</span><span class="st">'nsources'</span>, <span class="bu">type</span><span class="op">=</span><span class="bu">int</span>, default<span class="op">=</span><span class="dv">1_000</span>,</span>
+<span id="cb10-12"><a href="#cb10-12" tabindex="-1"></a>                        <span class="bu">help</span><span class="op">=</span><span class="st">'Number of positions to generate'</span>)</span>
+<span id="cb10-13"><a href="#cb10-13" tabindex="-1"></a>    group1.add_argument(<span class="st">'--out'</span>, dest<span class="op">=</span><span class="st">'outfile'</span>, <span class="bu">type</span><span class="op">=</span><span class="bu">str</span>, default<span class="op">=</span><span class="st">'catalog.csv'</span>,</span>
+<span id="cb10-14"><a href="#cb10-14" tabindex="-1"></a>                        <span class="bu">help</span><span class="op">=</span><span class="st">'Filename for saving output (csv format)'</span>)</span>
+<span id="cb10-15"><a href="#cb10-15" tabindex="-1"></a></span>
+<span id="cb10-16"><a href="#cb10-16" tabindex="-1"></a>    <span class="co"># parse the command line input</span></span>
+<span id="cb10-17"><a href="#cb10-17" tabindex="-1"></a>    options <span class="op">=</span> parser.parse_args()</span></code></pre>
+</div>
+<p>Here we have created a single group of arguments called
+<code>group1</code>, and then we add five different arguments to that
+group. Note that we provide both a call signature (<code>--out</code>)
+for specifying a parameter, as well as the name/type/default value of
+that parameter (<code>dest/type/default</code>). The <code>help</code>
+is optional but highly recommended. If we were to run the code above
+with the <code>--help</code> option then we would get the following
+output:</p>
+<div class="codewrapper">
+<h3 class="code-label">OUTPUT<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
+</h3>
+<pre class="output" tabindex="0"><code>$&gt; python sim.py --help
+usage: sim [-h] [--ref_ra REF_RA] [--ref_dec REF_DEC] [--radius RADIUS] [--n NSOURCES] [--out OUTFILE]
+
+optional arguments:
+  -h, --help         show this help message and exit
+
+  --ref_ra REF_RA    Central/reference RA position HH:MM:SS.S format
+  --ref_dec REF_DEC  Central/reference Dec position DD:MM:SS.S format
+  --radius RADIUS    radius within which the new positions are generated (deg)
+  --n NSOURCES       Number of positions to generate
+  --out OUTFILE      Filename for saving output (csv format)</code></pre>
+</div>
+<p>Right away we have a way for people to understand how to use the
+program without having to open the source code. This will include you,
+two days from now, when you forgot some of the details of the code.</p>
+<p>Finally, we can connect the user input to the program by using the
+<code>options</code> object. Each of the parameters that were read in
+with a <code>dest=thing</code> can be accessed using
+<code>options.thing</code>. If we specified a type then argparse will
+make sure that users don’t give input that can’t be converted to that
+type. The final part of our code now looks like this:</p>
+<div class="codewrapper sourceCode" id="cb12">
+<h3 class="code-label">PYTHON<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
+</h3>
+<pre class="sourceCode python" tabindex="0"><code class="sourceCode python"><span id="cb12-1"><a href="#cb12-1" tabindex="-1"></a>    <span class="co"># parse the command line input</span></span>
+<span id="cb12-2"><a href="#cb12-2" tabindex="-1"></a>    options <span class="op">=</span> parser.parse_args()</span>
+<span id="cb12-3"><a href="#cb12-3" tabindex="-1"></a></span>
+<span id="cb12-4"><a href="#cb12-4" tabindex="-1"></a>    ras, decs <span class="op">=</span> generate_positions(ref_ra<span class="op">=</span>options.ref_ra,</span>
+<span id="cb12-5"><a href="#cb12-5" tabindex="-1"></a>                                   ref_dec<span class="op">=</span>options.ref_dec,</span>
+<span id="cb12-6"><a href="#cb12-6" tabindex="-1"></a>                                   radius<span class="op">=</span>options.radius,</span>
+<span id="cb12-7"><a href="#cb12-7" tabindex="-1"></a>                                   nsources<span class="op">=</span>options.nsources)</span>
+<span id="cb12-8"><a href="#cb12-8" tabindex="-1"></a>    write_file(ras, decs, outfile<span class="op">=</span>options.outfile)</span></code></pre>
+</div>
+<p>Since we specified default values for all of the inputs, we can run
+<code>python sim.py</code> and it will run with the default values.</p>
+</div>
+<div class="section level1">
+<h1 id="creating-a-simple-testing-script">Creating a simple testing script<a class="anchor" aria-label="anchor" href="#creating-a-simple-testing-script"></a></h1>
+<p>We now have a script with a command line interface that allows people
+to use the code without having to read the source. At this point we are
+feeling rather professional and are happy to share the code with others.
+One of the things that is often scary is the thought of others finding
+bugs in our code and then having to fix these bugs. A good way to
+alleviate these fears is to do some testing of the code ourselves to
+catch all the obvious errors before the script is sent to others. In a
+later lesson we’ll go through some more formal and rigorous testing, but
+for now we are going to start simple with some of the most basic
+tests.</p>
+<p>In our file <code>test_sim.sh</code> we will make three tests. The
+first two tests we are going to do will just ensure that the code will
+not immediately crash when we run it:</p>
+<div class="codewrapper sourceCode" id="cb13">
+<h3 class="code-label">BASH<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
+</h3>
+<pre class="sourceCode bash" tabindex="0"><code class="sourceCode bash"><span id="cb13-1"><a href="#cb13-1" tabindex="-1"></a><span class="co">#! /usr/bin/env bash</span></span>
+<span id="cb13-2"><a href="#cb13-2" tabindex="-1"></a></span>
+<span id="cb13-3"><a href="#cb13-3" tabindex="-1"></a><span class="bu">echo</span> <span class="st">"Testing sim.py"</span></span>
+<span id="cb13-4"><a href="#cb13-4" tabindex="-1"></a><span class="ex">python</span> sim.py <span class="kw">||</span> <span class="kw">{</span> <span class="bu">echo</span> <span class="st">"FAILED to run with default parameters"</span><span class="kw">;</span> <span class="bu">exit</span> 1 <span class="kw">;}</span></span>
+<span id="cb13-5"><a href="#cb13-5" tabindex="-1"></a><span class="ex">python</span> sim.py <span class="at">--help</span> <span class="kw">||</span> <span class="kw">{</span> <span class="bu">echo</span> <span class="st">"FAILED to print help"</span><span class="kw">;</span> <span class="bu">exit</span> 1 <span class="kw">;}</span></span></code></pre>
+</div>
+<p>The next test we do will ensure that when we pass a filename to the
+<code>--out</code> option, we will get a new file with that name. We use
+the bash <code>[ ] test</code> and <code>-f conditional</code> to see
+that the file exists.</p>
+<div class="codewrapper sourceCode" id="cb14">
+<h3 class="code-label">BASH<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
+</h3>
+<pre class="sourceCode bash" tabindex="0"><code class="sourceCode bash"><span id="cb14-1"><a href="#cb14-1" tabindex="-1"></a><span class="ex">python</span> sim.py <span class="at">--out</span> test.csv</span>
+<span id="cb14-2"><a href="#cb14-2" tabindex="-1"></a><span class="cf">if</span> <span class="bu">[</span> <span class="ot">!</span> <span class="ot">-f</span> <span class="st">"test.csv"</span> <span class="bu">]</span><span class="kw">;</span> <span class="cf">then</span></span>
+<span id="cb14-3"><a href="#cb14-3" tabindex="-1"></a>    <span class="bu">echo</span> <span class="st">"FAILED to generate ouput test.csv"</span></span>
+<span id="cb14-4"><a href="#cb14-4" tabindex="-1"></a>    <span class="bu">exit</span> 1</span>
+<span id="cb14-5"><a href="#cb14-5" tabindex="-1"></a><span class="cf">fi</span></span>
+<span id="cb14-6"><a href="#cb14-6" tabindex="-1"></a></span>
+<span id="cb14-7"><a href="#cb14-7" tabindex="-1"></a><span class="bu">echo</span> <span class="st">"all tests PASSED"</span></span>
+<span id="cb14-8"><a href="#cb14-8" tabindex="-1"></a><span class="bu">exit</span> 0</span></code></pre>
+</div>
+<p>The last two lines above then make sure that when the tests all pass
+we get a positive message and return an <a href="https://www.gnu.org/software/bash/manual/html_node/Exit-Status.html" class="external-link">exit
+status</a> of 0.</p>
+<p>We now have a test script that will catch the most egregious issues
+with our script. Any time we make changes to our script we should run
+the test script just to make sure that we haven’t seriously broken
+anything.</p>
+<p>More advanced testing with bash is not explored here as we will move
+to a python based test environment in a later lesson. The python based
+testing will make it easier to do things like make sure the right number
+of entries exist in the catalogue file and that the positions all lie
+within the specified region.</p>
+</div>
+<div class="section level1">
+<h1 id="summary">Summary<a class="anchor" aria-label="anchor" href="#summary"></a></h1>
+<p>In this first development cycle we have:</p>
+<ul><li>Demonstrated that we can simulate a catalogue of positions on the
+sky;</li>
+<li>Written a function to do the simulation, and another to write the
+results to a file;</li>
+<li>Created a command line interface to make the script easy to use and
+re-use; and</li>
+<li>Made a simple test script to alert us when our changes break the
+code.</li>
+</ul><p>If you would like to see the status of the project at the end of this
+cycle you can look at the cycle1 branch on GitHub (<a href="https://github.com/ADACS-Australia/MAP21B-Training-BPindor/tree/cycle1" class="external-link">at
+this link</a>). <!--
 Place links that you need to refer to multiple times across pages here. Delete
 any links that you are not going to use.
  --></p>
