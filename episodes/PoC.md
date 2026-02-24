@@ -18,23 +18,24 @@ The location of this directory will depend on a higher level organisation scheme
 
 Within you software project directory we recommend the following structure:
 
-> .
-> ├── README.md          <- Description of this project
-> ├── bin                <- Your compiled code can be stored here (not tracked by git)
-> ├── config             <- Configuration files, e.g., for doxygen or for your model if needed
-> ├── data
-> │   ├── external       <- Data from third party sources.
-> │   ├── interim        <- Intermediate data that has been transformed.
-> │   ├── processed      <- The final data sets for analysis.
-> │   └── raw            <- The original, immutable data dump.
-> ├── docs               <- Documentation, e.g., doxygen or reference papers (not tracked by git)
-> ├── notebooks          <- Jupyter or R notebooks
-> ├── reports            <- For a manuscript source, e.g., LaTeX, Markdown, etc., or any project reports
-> │   └── figures        <- Figures for the manuscript or reports
-> └── src                <- Source code for this project
->     ├── external       <- Any external source code, e.g., pull other git projects libraries
->     └── tools          <- Any helper scripts go here
-
+```output
+ .
+ ├── README.md          <- Description of this project
+ ├── bin                <- Your compiled code can be stored here (not tracked by git)
+ ├── config             <- Configuration files, e.g., for doxygen or for your model if needed
+ ├── data
+ │   ├── external       <- Data from third party sources.
+ │   ├── interim        <- Intermediate data that has been transformed.
+ │   ├── processed      <- The final data sets for analysis.
+ │   └── raw            <- The original, immutable data dump.
+ ├── docs               <- Documentation, e.g., doxygen or reference papers (not tracked by git)
+ ├── notebooks          <- Jupyter or R notebooks
+ ├── reports            <- For a manuscript source, e.g., LaTeX, Markdown, etc., or any project reports
+ │   └── figures        <- Figures for the manuscript or reports
+ └── src                <- Source code for this project
+     ├── external       <- Any external source code, e.g., pull other git projects libraries
+     └── tools          <- Any helper scripts go here
+```
 
 Setting up an empty structure such as the above can be done either by making an template and then copying that every time you start a new project. Additionally there are python packages such as `cookiecutter` ([pypi](https://pypi.org/project/cookiecutter/), [rtfd](https://cookiecutter.readthedocs.io/en/1.7.2/), [github](https://github.com/audreyfeldroy/cookiecutter-pypackage)) that can automate this process for you, and offer a range of templates to work with.
 
@@ -69,6 +70,7 @@ With this in mind we move to the first stage of our software project – the pro
 
 
 :::::::::::::::::::::::::::::::::::::::::::: challenge
+
 ## SOLO Activity: Project structure
 Consider the astronomy catalogue simulator project mentioned in the previous lesson.
 
@@ -83,7 +85,7 @@ Which statements in the previous lesson suggest that a good project structure wi
 
 The first iteration of our code is shown below. It was written in a stream-of-conscious mode with a focus on getting a minimum working example that proves that the work can be done.
 
-:::::::::: language-python
+```python
 
 #! /usr/bin/env python
 # Demonstrate that we can simulate a catalogue of stars on the sky
@@ -115,7 +117,7 @@ with open('catalog.csv', 'w') as f:
     for i in range(1000):
         print("{0}, {1:7.4f}, {2:7.4f}".format(i, ras[i], decs[i]), file=f)
 
-::::::::::::::::::::::::::
+```
 
 The above code was saved as `sim.py`. When run from the command line it produces a file (`catalog.csv`) with a header, one thousand rows, and columns showing the id/ra/dec of the simulated points on the sky. Right now the code runs without error and at first glance does what we need.
 
