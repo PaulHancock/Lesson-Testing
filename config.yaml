@@ -67,6 +67,13 @@ contact: 'paul.hancock@curtin.edu.au' # FIXME
 # Order of episodes in your lesson
 episodes: 
 - introduction.md
+- PoC.md
+- DevInATeam.md
+- ReusableCode.md
+- TestAndDoc.md
+- AutomationAndCI.md
+- SharingCode.md
+- Recap.md
 
 # Information for Learners
 learners: 
