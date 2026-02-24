@@ -244,7 +244,7 @@
 <div class="accordion accordion-flush" id="accordionFlush2">
   <div class="accordion-item">
     <div class="accordion-header" id="flush-heading2">
-        <a href="introduction.html">1. Using Markdown</a>
+        <a href="introduction.html">1. Introduction</a>
     </div>
 <!--/div.accordion-header-->
 
@@ -252,6 +252,13 @@
 <!--/div.accordion-item-->
 </div>
 <!--/div.accordion-flush-->
+
+
+
+
+
+
+
 
                 </div>
               </div>
@@ -307,178 +314,73 @@
     <main id="main-content" class="main-content"><div class="container lesson-content">
         
         
-<section id="aio-introduction"><p>Content from <a href="introduction.html">Using Markdown</a></p>
+<section id="aio-introduction"><p>Content from <a href="introduction.html">Introduction</a></p>
 <hr>
-<p>Last updated on 2026-02-23 |
+<p>Last updated on 2026-02-24 |
 
         <a href="https://github.com/PaulHancock/Lesson-Testing/edit/main/episodes/introduction.md" class="external-link">Edit this page <i aria-hidden="true" data-feather="edit"></i></a></p>
 <div class="text-end">
           <button role="button" aria-pressed="false" tabindex="0" id="expand-code" class="pull-right" data-expand="Expand All Solutions " data-collapse="Collapse All Solutions "> Expand All Solutions <i aria-hidden="true" data-feather="plus"></i></button>
         </div>
-<div class="overview card">
-<h2 class="card-header">Overview</h2>
-<div class="row g-0">
-<div class="col-md-4">
-<div class="card-body">
-<div class="inner">
-<h3 class="card-title">Questions</h3>
-<ul>
-<li>How do you write a lesson using Markdown and
-<a href="https://carpentries.github.io/sandpaper/" class="external-link">sandpaper</a>?</li>
-</ul>
-</div>
-</div>
-</div>
-<div class="col-md-8">
-<div class="card-body">
-<div class="inner bordered">
-<h3 class="card-title">Objectives</h3>
-<ul>
-<li>Explain how to use markdown with The Carpentries Workbench</li>
-<li>Demonstrate how to include pieces of code, figures, and nested
-challenge blocks</li>
-</ul>
-</div>
-</div>
-</div>
-</div>
-</div>
-<section><h2 class="section-heading" id="introduction">Introduction<a class="anchor" aria-label="anchor" href="#introduction"></a>
+<section><h2 class="section-heading" id="background">Background<a class="anchor" aria-label="anchor" href="#background"></a>
 </h2>
 <hr class="half-width">
-<p>This is a lesson created via The Carpentries Workbench. It is written
-in <a href="https://pandoc.org/MANUAL.html" class="external-link">Pandoc-flavored Markdown</a>
-for static files and <a href="https://rmarkdown.rstudio.com/" class="external-link">R
-Markdown</a> for dynamic files that can render code into output. Please
-refer to the <a href="https://carpentries.github.io/sandpaper-docs/" class="external-link">Introduction to The
-Carpentries Workbench</a> for full documentation.</p>
-<p>What you need to know is that there are three sections required for a
-valid Carpentries lesson:</p>
-<ol style="list-style-type: decimal">
-<li>
-<code>questions</code> are displayed at the beginning of the episode
-to prime the learner for the content.</li>
-<li>
-<code>objectives</code> are the learning objectives for an episode
-displayed with the questions.</li>
-<li>
-<code>keypoints</code> are displayed at the end of the episode to
-reinforce the objectives.</li>
-</ol>
-<div id="challenge-1-can-you-do-it" class="callout challenge">
-<div class="callout-square">
-<i class="callout-icon" data-feather="zap"></i>
-</div>
-<span class="callout-header">Challenge</span>
-<div id="challenge-1-can-you-do-it" class="callout-inner">
-<h3 class="callout-title">Challenge 1: Can you do it?</h3>
-<div class="callout-content">
-<p>What is the output of this command?</p>
-<div class="codewrapper sourceCode" id="cb1">
-<h3 class="code-label">R<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
-</h3>
-<pre class="downlit sourceCode r">
-<code class="sourceCode R"><span><span class="fu">paste</span><span class="op">(</span><span class="st">"This"</span>, <span class="st">"new"</span>, <span class="st">"lesson"</span>, <span class="st">"looks"</span>, <span class="st">"good"</span><span class="op">)</span></span></code></pre>
-</div>
-</div>
-</div>
-</div>
-<div id="accordionSolution1" class="accordion challenge-accordion accordion-flush">
-<div class="accordion-item">
-<button class="accordion-button solution-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseSolution1" aria-expanded="false" aria-controls="collapseSolution1">
-  <h4 class="accordion-header" id="headingSolution1"> Output </h4>
-</button>
-<div id="collapseSolution1" class="accordion-collapse collapse" aria-labelledby="headingSolution1" data-bs-parent="#accordionSolution1">
-<div class="accordion-body">
-<div class="codewrapper">
-<h3 class="code-label">OUTPUT<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
-</h3>
-<pre class="output" tabindex="0"><code>[1] "This new lesson looks good"</code></pre>
-</div>
-</div>
-</div>
-</div>
-</div>
-<div id="challenge-2-how-do-you-nest-solutions-within-challenge-blocks" class="callout challenge">
-<div class="callout-square">
-<i class="callout-icon" data-feather="zap"></i>
-</div>
-<span class="callout-header">Challenge</span>
-<div id="challenge-2-how-do-you-nest-solutions-within-challenge-blocks" class="callout-inner">
-<h3 class="callout-title">Challenge 2: how do you nest solutions within
-challenge blocks?</h3>
-<div class="callout-content">
-
-</div>
-</div>
-</div>
-<div id="accordionSolution2" class="accordion challenge-accordion accordion-flush">
-<div class="accordion-item">
-<button class="accordion-button solution-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseSolution2" aria-expanded="false" aria-controls="collapseSolution2">
-  <h4 class="accordion-header" id="headingSolution2"> Show me the solution </h4>
-</button>
-<div id="collapseSolution2" class="accordion-collapse collapse" aria-labelledby="headingSolution2" data-bs-parent="#accordionSolution2">
-<div class="accordion-body">
-<p>You can add a line with at least three colons and a
-<code>solution</code> tag.</p>
-</div>
-</div>
-</div>
-</div>
-</section><section><h2 class="section-heading" id="figures">Figures<a class="anchor" aria-label="anchor" href="#figures"></a>
+<p>Writing software is an integral component of the research activities
+of many astronomers. Increasingly, such software is written in
+collaborative efforts involving multiple researchers across multiple
+institutions. Despite this, training for astronomy students and early
+career researchers in best practices for collaborative software
+development is often informal and fails to make use of software industry
+knowledge. The goal of this course is to fill this training gap.</p>
+<p>In this course you will be guided through the development of a
+software package, beginning at proof of concept, and finishing with a
+project that is findable, accessible, interoperable, reusable (FAIR),
+and citable by others. This course is presented in lessons which
+represent development <strong>cycles</strong>. Each cycle will be
+another step along the path of making code that you are proud of and can
+be recognised for.</p>
+<p>You can engage with this course as a reading assignment but we
+recommend that you follow along at home by applying all the lessons
+learned to your own software project. This course is designed with
+<strong>collaborative</strong> software development in mind. Throughout
+the course there will be self paced ungraded activities to complete that
+will be marked as either SOLO or GROUP activities. If you are joining
+this course as part of a group wishing to improve your collaborative
+software development skills then you should aim to complete all the
+activities. If you are joining this course on your own then some of the
+group activities will not be relevant to you and you can skip them as
+appropriate.</p>
+<p>At the beginning of this course you will be taken through a typical
+research driven development phase. In this phase we will create a proof
+of concept code which we then build on throughout the course. This
+project is extremely simple in scope as it intended to be a minimum
+working example that we can use to demonstrate various development
+techniques. Many of the examples in this course will refer to the
+example code. If you have an existing software project we recommend that
+you use that project when doing the various activities as you will
+encounter more issues, learn more techniques, and the solutions to the
+activities will be directly usable and beneficial to you.</p>
+</section><section><h2 class="section-heading" id="assumed-knowledge-and-software-requirements">Assumed knowledge and software requirements<a class="anchor" aria-label="anchor" href="#assumed-knowledge-and-software-requirements"></a>
 </h2>
 <hr class="half-width">
-<p>You can use standard markdown for static figures with the following
-syntax:</p>
-<p><code>![optional caption that appears below the figure](figure url){alt='alt text for accessibility purposes'}</code></p>
-<figure><img src="https://raw.githubusercontent.com/carpentries/logo/master/Badge_Carpentries.svg" alt="Blue Carpentries hex person logo with no text." class="figure mx-auto d-block"><div class="figcaption">You belong in The Carpentries!</div>
-</figure><div id="callout1" class="callout">
-<div class="callout-square">
-<i class="callout-icon" data-feather="bell"></i>
-</div>
-<span class="callout-header">Callout</span>
-<div class="callout-inner">
-<div class="callout-content">
-<p>Callout sections can highlight information.</p>
-<p>They are sometimes used to emphasise particularly important points
-but are also used in some lessons to present “asides”: content that is
-not central to the narrative of the lesson, e.g. by providing the answer
-to a commonly-asked question.</p>
-</div>
-</div>
-</div>
-</section><section><h2 class="section-heading" id="math">Math<a class="anchor" aria-label="anchor" href="#math"></a>
-</h2>
-<hr class="half-width">
-<p>One of our episodes contains <span class="math inline">\(\LaTeX\)</span> equations when describing how to
-create dynamic reports with {knitr}, so we now use mathjax to describe
-this:</p>
-<p><code>$\alpha = \dfrac{1}{(1 - \beta)^2}$</code> becomes: <span class="math inline">\(\alpha = \dfrac{1}{(1 - \beta)^2}\)</span></p>
-<p>Cool, right?</p>
-<div id="keypoints1" class="callout keypoints">
-<div class="callout-square">
-<i class="callout-icon" data-feather="key"></i>
-</div>
-<span class="callout-header">Key Points</span>
-<div class="callout-inner">
-<div class="callout-content">
-<ul>
-<li>Use <code>.md</code> files for episodes when you want static
-content</li>
-<li>Use <code>.Rmd</code> files for episodes when you need to generate
-output</li>
-<li>Run <code>sandpaper::check_lesson()</code> to identify any issues
-with your lesson</li>
-<li>Run <code>sandpaper::build_lesson()</code> to preview your lesson
-locally</li>
-</ul>
-</div>
-</div>
-</div>
-<!--
+<p>This course assumes that you have basic proficiency in python. While
+python is the language that we’ll be working with primarily, most of the
+lessons are applicable to any language.</p>
+<p>A large part of working in a group will involve keeping track of
+changes to a shared code base. For this we will be using the git version
+control system, and in particular we will be using GitHub as the remote
+repository.</p>
+<p>Software requirements: - Python 3.8 + - A integrated development
+environment (IDE) or text editor of choice - We recommend <a href="https://www.jetbrains.com/pycharm/" class="external-link">PyCharm</a> or <a href="https://code.visualstudio.com/" class="external-link">Visual Studio Code</a> - An
+operating system which gives you a proper command line - For windows
+this means using something like <a href="https://gitforwindows.org/" class="external-link">gitbash</a>, <a href="https://docs.microsoft.com/en-us/windows/wsl/install" class="external-link">WSL</a>, or
+the <a href="https://www.anaconda.com/" class="external-link">Anaconda</a> prompt - For OSX or
+Linux the regular terminal will be fine - git, either from the command
+line, using a git desktop app, or as an add on to PyCharm or VSCode. -
+An account on GitHub is required for some of the activities. <!--
 Place links that you need to refer to multiple times across pages here. Delete
 any links that you are not going to use.
- -->
+ --></p>
 </section></section>
 </div>
     </main>
