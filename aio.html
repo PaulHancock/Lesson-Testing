@@ -256,7 +256,7 @@
 <div class="accordion accordion-flush" id="accordionFlush3">
   <div class="accordion-item">
     <div class="accordion-header" id="flush-heading3">
-        <a href="PoC.html">2. Coduing Up A Proof Of Concept</a>
+        <a href="PoC.html">2. Coding Up A Proof Of Concept</a>
     </div>
 <!--/div.accordion-header-->
 
@@ -401,7 +401,7 @@ Place links that you need to refer to multiple times across pages here. Delete
 any links that you are not going to use.
  -->
 </li>
-</ul></section></section><section id="aio-PoC"><p>Content from <a href="PoC.html">Coduing Up A Proof Of Concept</a></p>
+</ul></section></section><section id="aio-PoC"><p>Content from <a href="PoC.html">Coding Up A Proof Of Concept</a></p>
 <hr>
 <p>Last updated on 2026-02-24 |
 
@@ -409,13 +409,42 @@ any links that you are not going to use.
 <div class="text-end">
           <button role="button" aria-pressed="false" tabindex="0" id="expand-code" class="pull-right" data-expand="Expand All Solutions " data-collapse="Collapse All Solutions "> Expand All Solutions <i aria-hidden="true" data-feather="plus"></i></button>
         </div>
-<div class="section level1">
-<h1 id="beginning-a-new-software-project">Beginning a new software project<a class="anchor" aria-label="anchor" href="#beginning-a-new-software-project"></a>
-</h1>
-<p>Before we do anything to our project we should talk about:</p>
-<div class="section level2">
-<h2 id="organisation">Organisation<a class="anchor" aria-label="anchor" href="#organisation"></a>
+<div class="overview card">
+<h2 class="card-header">Overview</h2>
+<div class="row g-0">
+<div class="col-md-4">
+<div class="card-body">
+<div class="inner">
+<h3 class="card-title">Questions</h3>
+<ul>
+<li>Where/How do I start a new project?</li>
+<li>How do I use a function?</li>
+<li>How do I document and test my code?</li>
+<li>Can I make a command line interface for my code?</li>
+</ul>
+</div>
+</div>
+</div>
+<div class="col-md-8">
+<div class="card-body">
+<div class="inner bordered">
+<h3 class="card-title">Objectives</h3>
+<ul>
+<li>Build a minimal working or “proof of concept” project that we can
+build on in this workshop</li>
+</ul>
+</div>
+</div>
+</div>
+</div>
+</div>
+<section><h2 class="section-heading" id="beginning-a-new-software-project">Beginning a new software project<a class="anchor" aria-label="anchor" href="#beginning-a-new-software-project"></a>
 </h2>
+<hr class="half-width">
+<p>Before we do anything to our project we should talk about:</p>
+<div class="section level3">
+<h3 id="organisation">Organisation<a class="anchor" aria-label="anchor" href="#organisation"></a>
+</h3>
 <p>Organisation is key to a good project. Every time you start a new
 project or explore a new idea it is a good idea to create a new space
 for that project. This means creating a new directory for you to collect
@@ -425,10 +454,10 @@ multiple projects simultaneously. It is therefore not just a good idea
 to organise each project, but to have a consistent organisation
 structure between projects. In this section we will make some
 recommendations for organising a software project.</p>
-<div class="section level3">
-<h3 id="put-each-project-in-its-own-directory-which-is-named-after-the-project-">Put each project in its own directory, which is named after the
+<div class="section level4">
+<h4 id="put-each-project-in-its-own-directory-which-is-named-after-the-project-">Put each project in its own directory, which is named after the
 project.<a class="anchor" aria-label="anchor" href="#put-each-project-in-its-own-directory-which-is-named-after-the-project-"></a>
-</h3>
+</h4>
 <p>The location of this directory will depend on a higher level
 organisation scheme. For example you may separate your projects based on
 funding, based on collaboration, or based on research area.</p>
@@ -461,9 +490,9 @@ project. Additionally there are python packages such as
 that can automate this process for you, and offer a range of templates
 to work with.</p>
 </div>
-<div class="section level3">
-<h3 id="name-all-files-to-reflect-their-content-or-function-">Name all files to reflect their content or function.<a class="anchor" aria-label="anchor" href="#name-all-files-to-reflect-their-content-or-function-"></a>
-</h3>
+<div class="section level4">
+<h4 id="name-all-files-to-reflect-their-content-or-function-">Name all files to reflect their content or function.<a class="anchor" aria-label="anchor" href="#name-all-files-to-reflect-their-content-or-function-"></a>
+</h4>
 <p>It is also convenient to use a consistent and descriptive naming
 format for all your files and sub-folders. For example, use names such
 as <code>galaxy_count_table.csv</code>, <code>manuscript.md</code>, or
@@ -474,14 +503,14 @@ numbers will almost certainly change as the project evolves (and are
 meaningless on their own).</p>
 </div>
 </div>
-<div class="section level2">
-<h2 id="starting-our-project">Starting our project<a class="anchor" aria-label="anchor" href="#starting-our-project"></a>
-</h2>
+<div class="section level3">
+<h3 id="starting-our-project">Starting our project<a class="anchor" aria-label="anchor" href="#starting-our-project"></a>
+</h3>
 <p>Now we are ready to actually start doing something with our
 project.</p>
-<div class="section level3">
-<h3 id="project-evolution">Project evolution<a class="anchor" aria-label="anchor" href="#project-evolution"></a>
-</h3>
+<div class="section level4">
+<h4 id="project-evolution">Project evolution<a class="anchor" aria-label="anchor" href="#project-evolution"></a>
+</h4>
 <p>In the typical project cycle for an astronomer or research software
 engineer (or RSE, a formal name for people who combine professional
 software expertise with an understanding of research), you will not sit
@@ -501,9 +530,9 @@ knowledge and experience of professional software developers. Thus we
 will begin with a proof of concept code – a short bit of work that
 proves that something works using the minimal amount of effort.</p>
 </div>
-<div class="section level3">
-<h3 id="example-project">Example project<a class="anchor" aria-label="anchor" href="#example-project"></a>
-</h3>
+<div class="section level4">
+<h4 id="example-project">Example project<a class="anchor" aria-label="anchor" href="#example-project"></a>
+</h4>
 <p>The example project that we will work with will involve tasks that
 are familiar to many astronomers. The work that is being done is mostly
 for demonstration purposes – existing libraries will be able to do this
@@ -512,10 +541,9 @@ is not the content, but the methodology that we use as we pass through
 various cycles of development.</p>
 </div>
 </div>
-</div>
-<div class="section level1">
-<h1 id="example-project-an-astronomy-catalogue-simulator">Example project: an astronomy catalogue simulator<a class="anchor" aria-label="anchor" href="#example-project-an-astronomy-catalogue-simulator"></a>
-</h1>
+</section><section><h2 class="section-heading" id="example-project-an-astronomy-catalogue-simulator">Example project: an astronomy catalogue simulator<a class="anchor" aria-label="anchor" href="#example-project-an-astronomy-catalogue-simulator"></a>
+</h2>
+<hr class="half-width">
 <p>The example project that we will be developing will simulate a
 catalogue of foreground stars in the direction of the Andromeda galaxy.
 The initial requirements are as follows:</p>
@@ -548,10 +576,9 @@ project structure will be beneficial to future work?</p>
 </div>
 </div>
 </div>
-</div>
-<div class="section level1">
-<h1 id="proof-of-concept-code">Proof of concept code<a class="anchor" aria-label="anchor" href="#proof-of-concept-code"></a>
-</h1>
+</section><section><h2 class="section-heading" id="proof-of-concept-code">Proof of concept code<a class="anchor" aria-label="anchor" href="#proof-of-concept-code"></a>
+</h2>
+<hr class="half-width">
 <p>The first iteration of our code is shown below. It was written in a
 stream-of-conscious mode with a focus on getting a minimum working
 example that proves that the work can be done.</p>
@@ -598,10 +625,9 @@ at first glance does what we need.</p>
 output:</p>
 <figure><img src="fig/poc/catalog_plot.png" alt="catalogue plot" class="figure mx-auto d-block"><div class="figcaption">catalogue plot</div>
 </figure><p>Sky plot of the catalog that comes from the sim.py program.</p>
-</div>
-<div class="section level1">
-<h1 id="making-code-reusable-via-functions">Making code reusable via functions<a class="anchor" aria-label="anchor" href="#making-code-reusable-via-functions"></a>
-</h1>
+</section><section><h2 class="section-heading" id="making-code-reusable-via-functions">Making code reusable via functions<a class="anchor" aria-label="anchor" href="#making-code-reusable-via-functions"></a>
+</h2>
+<hr class="half-width">
 <p>Now that we have proved to ourselves that it’s possible to generate a
 catalog, we want to tidy up the code a little so that it can be reused
 and adapted easily.</p>
@@ -712,10 +738,9 @@ is only really usable as is, and requires people to read/edit the source
 code to understand how it works and adapt it for their use. In the next
 section we’ll see how to further generalise our code by using more
 function parameters, and adding a command line interface.</p>
-</div>
-<div class="section level1">
-<h1 id="creating-a-command-line-interface">Creating a command line interface<a class="anchor" aria-label="anchor" href="#creating-a-command-line-interface"></a>
-</h1>
+</section><section><h2 class="section-heading" id="creating-a-command-line-interface">Creating a command line interface<a class="anchor" aria-label="anchor" href="#creating-a-command-line-interface"></a>
+</h2>
+<hr class="half-width">
 <p>In the previous lesson we saw how we could use functions to separate
 different tasks, and docstrings to describe the behaviour of these
 functions. In this lesson we’ll generalise our code even further by
@@ -881,10 +906,9 @@ type. The final part of our code now looks like this:</p>
 </div>
 <p>Since we specified default values for all of the inputs, we can run
 <code>python sim.py</code> and it will run with the default values.</p>
-</div>
-<div class="section level1">
-<h1 id="creating-a-simple-testing-script">Creating a simple testing script<a class="anchor" aria-label="anchor" href="#creating-a-simple-testing-script"></a>
-</h1>
+</section><section><h2 class="section-heading" id="creating-a-simple-testing-script">Creating a simple testing script<a class="anchor" aria-label="anchor" href="#creating-a-simple-testing-script"></a>
+</h2>
+<hr class="half-width">
 <p>We now have a script with a command line interface that allows people
 to use the code without having to read the source. At this point we are
 feeling rather professional and are happy to share the code with others.
@@ -935,10 +959,9 @@ to a python based test environment in a later lesson. The python based
 testing will make it easier to do things like make sure the right number
 of entries exist in the catalogue file and that the positions all lie
 within the specified region.</p>
-</div>
-<div class="section level1">
-<h1 id="summary">Summary<a class="anchor" aria-label="anchor" href="#summary"></a>
-</h1>
+</section><section><h2 class="section-heading" id="summary">Summary<a class="anchor" aria-label="anchor" href="#summary"></a>
+</h2>
+<hr class="half-width">
 <p>In this first development cycle we have:</p>
 <ul>
 <li>Demonstrated that we can simulate a catalogue of positions on the
@@ -956,7 +979,7 @@ this link</a>). <!--
 Place links that you need to refer to multiple times across pages here. Delete
 any links that you are not going to use.
  --></p>
-</div></section>
+</section></section>
 </div>
     </main>
 </div>
