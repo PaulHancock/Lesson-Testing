@@ -434,21 +434,26 @@ organisation scheme. For example you may separate your projects based on
 funding, based on collaboration, or based on research area.</p>
 <p>Within you software project directory we recommend the following
 structure:</p>
-<blockquote>
-<p>. ├── README.md &lt;- Description of this project ├── bin &lt;- Your
-compiled code can be stored here (not tracked by git) ├── config &lt;-
-Configuration files, e.g., for doxygen or for your model if needed ├──
-data │ ├── external &lt;- Data from third party sources. │ ├── interim
-&lt;- Intermediate data that has been transformed. │ ├── processed &lt;-
-The final data sets for analysis. │ └── raw &lt;- The original,
-immutable data dump. ├── docs &lt;- Documentation, e.g., doxygen or
-reference papers (not tracked by git) ├── notebooks &lt;- Jupyter or R
-notebooks ├── reports &lt;- For a manuscript source, e.g., LaTeX,
-Markdown, etc., or any project reports │ └── figures &lt;- Figures for
-the manuscript or reports └── src &lt;- Source code for this project ├──
-external &lt;- Any external source code, e.g., pull other git projects
-libraries └── tools &lt;- Any helper scripts go here</p>
-</blockquote>
+<div class="codewrapper">
+<h3 class="code-label">OUTPUT<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
+</h3>
+<pre class="output" tabindex="0"><code> .
+ ├── README.md          &lt;- Description of this project
+ ├── bin                &lt;- Your compiled code can be stored here (not tracked by git)
+ ├── config             &lt;- Configuration files, e.g., for doxygen or for your model if needed
+ ├── data
+ │   ├── external       &lt;- Data from third party sources.
+ │   ├── interim        &lt;- Intermediate data that has been transformed.
+ │   ├── processed      &lt;- The final data sets for analysis.
+ │   └── raw            &lt;- The original, immutable data dump.
+ ├── docs               &lt;- Documentation, e.g., doxygen or reference papers (not tracked by git)
+ ├── notebooks          &lt;- Jupyter or R notebooks
+ ├── reports            &lt;- For a manuscript source, e.g., LaTeX, Markdown, etc., or any project reports
+ │   └── figures        &lt;- Figures for the manuscript or reports
+ └── src                &lt;- Source code for this project
+     ├── external       &lt;- Any external source code, e.g., pull other git projects libraries
+     └── tools          &lt;- Any helper scripts go here</code></pre>
+</div>
 <p>Setting up an empty structure such as the above can be done either by
 making an template and then copying that every time you start a new
 project. Additionally there are python packages such as
@@ -550,32 +555,39 @@ project structure will be beneficial to future work?</p>
 <p>The first iteration of our code is shown below. It was written in a
 stream-of-conscious mode with a focus on getting a minimum working
 example that proves that the work can be done.</p>
-<div class="language-python">
-<p>#! /usr/bin/env python # Demonstrate that we can simulate a catalogue
-of stars on the sky</p>
-<div class="section level1">
-<h1 id="determine-andromeda-location-in-radec-degrees">Determine Andromeda location in ra/dec degrees<a class="anchor" aria-label="anchor" href="#determine-andromeda-location-in-radec-degrees"></a>
-</h1>
-<p>import numpy as np import math # from wikipedia ra = ‘00:42:44.3’ dec
-= ‘41:16:09’</p>
-<p>d, m, s = dec.split(‘:’) dec = int(d)+int(m)/60+float(s)/3600</p>
-<p>h, m, s = ra.split(‘:’) ra = 15<em>(int(h)+int(m)/60+float(s)/3600)
-ra = ra/math.cos(dec</em>math.pi/180)</p>
-</div>
-<div class="section level1">
-<h1 id="make-1000-stars-within-1-degree-of-andromeda">make 1000 stars within 1 degree of Andromeda<a class="anchor" aria-label="anchor" href="#make-1000-stars-within-1-degree-of-andromeda"></a>
-</h1>
-<p>ra_offsets = np.random.uniform(-1, 1, size=1000) dec_offsets =
-np.random.uniform(-1, 1, size=1000)</p>
-<p>ras = ra + ra_offsets decs = dec + dec_offsets</p>
-</div>
-<div class="section level1">
-<h1 id="now-write-these-to-a-csv-file-for-use-by-my-other-program">now write these to a csv file for use by my other program<a class="anchor" aria-label="anchor" href="#now-write-these-to-a-csv-file-for-use-by-my-other-program"></a>
-</h1>
-<p>with open(‘catalog.csv’, ‘w’) as f: print(“id,ra,dec”, file=f) for i
-in range(1000): print(“{0}, {1:7.4f}, {2:7.4f}”.format(i, ras[i],
-decs[i]), file=f)</p>
-</div>
+<div class="codewrapper sourceCode" id="cb2">
+<h3 class="code-label">PYTHON<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
+</h3>
+<pre class="sourceCode python" tabindex="0"><code class="sourceCode python"><span id="cb2-1"><a href="#cb2-1" tabindex="-1"></a></span>
+<span id="cb2-2"><a href="#cb2-2" tabindex="-1"></a><span class="co">#! /usr/bin/env python</span></span>
+<span id="cb2-3"><a href="#cb2-3" tabindex="-1"></a><span class="co"># Demonstrate that we can simulate a catalogue of stars on the sky</span></span>
+<span id="cb2-4"><a href="#cb2-4" tabindex="-1"></a></span>
+<span id="cb2-5"><a href="#cb2-5" tabindex="-1"></a><span class="co"># Determine Andromeda location in ra/dec degrees</span></span>
+<span id="cb2-6"><a href="#cb2-6" tabindex="-1"></a><span class="im">import</span> numpy <span class="im">as</span> np</span>
+<span id="cb2-7"><a href="#cb2-7" tabindex="-1"></a><span class="im">import</span> math</span>
+<span id="cb2-8"><a href="#cb2-8" tabindex="-1"></a><span class="co"># from wikipedia</span></span>
+<span id="cb2-9"><a href="#cb2-9" tabindex="-1"></a>ra <span class="op">=</span> <span class="st">'00:42:44.3'</span></span>
+<span id="cb2-10"><a href="#cb2-10" tabindex="-1"></a>dec <span class="op">=</span> <span class="st">'41:16:09'</span></span>
+<span id="cb2-11"><a href="#cb2-11" tabindex="-1"></a></span>
+<span id="cb2-12"><a href="#cb2-12" tabindex="-1"></a>d, m, s <span class="op">=</span> dec.split(<span class="st">':'</span>)</span>
+<span id="cb2-13"><a href="#cb2-13" tabindex="-1"></a>dec <span class="op">=</span> <span class="bu">int</span>(d)<span class="op">+</span><span class="bu">int</span>(m)<span class="op">/</span><span class="dv">60</span><span class="op">+</span><span class="bu">float</span>(s)<span class="op">/</span><span class="dv">3600</span></span>
+<span id="cb2-14"><a href="#cb2-14" tabindex="-1"></a></span>
+<span id="cb2-15"><a href="#cb2-15" tabindex="-1"></a>h, m, s <span class="op">=</span> ra.split(<span class="st">':'</span>)</span>
+<span id="cb2-16"><a href="#cb2-16" tabindex="-1"></a>ra <span class="op">=</span> <span class="dv">15</span><span class="op">*</span>(<span class="bu">int</span>(h)<span class="op">+</span><span class="bu">int</span>(m)<span class="op">/</span><span class="dv">60</span><span class="op">+</span><span class="bu">float</span>(s)<span class="op">/</span><span class="dv">3600</span>)</span>
+<span id="cb2-17"><a href="#cb2-17" tabindex="-1"></a>ra <span class="op">=</span> ra<span class="op">/</span>math.cos(dec<span class="op">*</span>math.pi<span class="op">/</span><span class="dv">180</span>)</span>
+<span id="cb2-18"><a href="#cb2-18" tabindex="-1"></a></span>
+<span id="cb2-19"><a href="#cb2-19" tabindex="-1"></a><span class="co"># make 1000 stars within 1 degree of Andromeda</span></span>
+<span id="cb2-20"><a href="#cb2-20" tabindex="-1"></a>ra_offsets <span class="op">=</span> np.random.uniform(<span class="op">-</span><span class="dv">1</span>, <span class="dv">1</span>, size<span class="op">=</span><span class="dv">1000</span>)</span>
+<span id="cb2-21"><a href="#cb2-21" tabindex="-1"></a>dec_offsets <span class="op">=</span> np.random.uniform(<span class="op">-</span><span class="dv">1</span>, <span class="dv">1</span>, size<span class="op">=</span><span class="dv">1000</span>)</span>
+<span id="cb2-22"><a href="#cb2-22" tabindex="-1"></a></span>
+<span id="cb2-23"><a href="#cb2-23" tabindex="-1"></a>ras <span class="op">=</span> ra <span class="op">+</span> ra_offsets</span>
+<span id="cb2-24"><a href="#cb2-24" tabindex="-1"></a>decs <span class="op">=</span> dec <span class="op">+</span> dec_offsets</span>
+<span id="cb2-25"><a href="#cb2-25" tabindex="-1"></a></span>
+<span id="cb2-26"><a href="#cb2-26" tabindex="-1"></a><span class="co"># now write these to a csv file for use by my other program</span></span>
+<span id="cb2-27"><a href="#cb2-27" tabindex="-1"></a><span class="cf">with</span> <span class="bu">open</span>(<span class="st">'catalog.csv'</span>, <span class="st">'w'</span>) <span class="im">as</span> f:</span>
+<span id="cb2-28"><a href="#cb2-28" tabindex="-1"></a>    <span class="bu">print</span>(<span class="st">"id,ra,dec"</span>, <span class="bu">file</span><span class="op">=</span>f)</span>
+<span id="cb2-29"><a href="#cb2-29" tabindex="-1"></a>    <span class="cf">for</span> i <span class="kw">in</span> <span class="bu">range</span>(<span class="dv">1000</span>):</span>
+<span id="cb2-30"><a href="#cb2-30" tabindex="-1"></a>        <span class="bu">print</span>(<span class="st">"</span><span class="sc">{0}</span><span class="st">, </span><span class="sc">{1:7.4f}</span><span class="st">, </span><span class="sc">{2:7.4f}</span><span class="st">"</span>.<span class="bu">format</span>(i, ras[i], decs[i]), <span class="bu">file</span><span class="op">=</span>f)</span></code></pre>
 </div>
 <p>The above code was saved as <code>sim.py</code>. When run from the
 command line it produces a file (<code>catalog.csv</code>) with a
