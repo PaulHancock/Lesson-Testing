@@ -35,6 +35,7 @@ A large part of working in a group will involve keeping track of changes to a sh
 For this we will be using the git version control system, and in particular we will be using GitHub as the remote repository.
 
 Software requirements:
+
 - Python 3.8 +
 - A integrated development environment (IDE) or text editor of choice
    - We recommend [PyCharm](https://www.jetbrains.com/pycharm/) or [Visual Studio Code](https://code.visualstudio.com/)
