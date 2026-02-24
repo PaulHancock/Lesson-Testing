@@ -265,6 +265,17 @@
 </div>
 <!--/div.accordion-flush-->
 
+<div class="accordion accordion-flush" id="accordionFlush4">
+  <div class="accordion-item">
+    <div class="accordion-header" id="flush-heading4">
+        <a href="DevInATeam.html">3. Developing Software In A Team</a>
+    </div>
+<!--/div.accordion-header-->
+
+  </div>
+<!--/div.accordion-item-->
+</div>
+<!--/div.accordion-flush-->
 
 
 
@@ -979,6 +990,647 @@ this link</a>). <!--
 Place links that you need to refer to multiple times across pages here. Delete
 any links that you are not going to use.
  --></p>
+</section></section><section id="aio-DevInATeam"><p>Content from <a href="DevInATeam.html">Developing Software In A Team</a></p>
+<hr>
+<p>Last updated on 2026-02-24 |
+
+        <a href="https://github.com/PaulHancock/Lesson-Testing/edit/main/episodes/DevInATeam.md" class="external-link">Edit this page <i aria-hidden="true" data-feather="edit"></i></a></p>
+<div class="text-end">
+          <button role="button" aria-pressed="false" tabindex="0" id="expand-code" class="pull-right" data-expand="Expand All Solutions " data-collapse="Collapse All Solutions "> Expand All Solutions <i aria-hidden="true" data-feather="plus"></i></button>
+        </div>
+<div class="overview card">
+<h2 class="card-header">Overview</h2>
+<div class="row g-0">
+<div class="col-md-4">
+<div class="card-body">
+<div class="inner">
+<h3 class="card-title">Questions</h3>
+<ul>
+<li>Where/How do I start a new project?</li>
+<li>How do I use a function?</li>
+<li>How do I document and test my code?</li>
+<li>Can I make a command line interface for my code?</li>
+</ul>
+</div>
+</div>
+</div>
+<div class="col-md-8">
+<div class="card-body">
+<div class="inner bordered">
+<h3 class="card-title">Objectives</h3>
+<ul>
+<li>Build a minimal working or “proof of concept” project that we can
+build on in this workshop</li>
+</ul>
+</div>
+</div>
+</div>
+</div>
+</div>
+<section><h2 class="section-heading" id="benefits-and-pit-falls">Benefits and pit-falls<a class="anchor" aria-label="anchor" href="#benefits-and-pit-falls"></a>
+</h2>
+<hr class="half-width">
+<p>Working on a software project as part of a team is a very different
+experience from working on a solo project. There are of course great
+advantages to having multiple people working on a problem, but there are
+also some pit-falls that need to be avoided, and overheads that cannot
+be avoided.</p>
+<div class="section level3">
+<h3 id="benefits-of-working-in-a-team">Benefits of working in a team<a class="anchor" aria-label="anchor" href="#benefits-of-working-in-a-team"></a>
+</h3>
+<ul>
+<li>Each person has different areas of expertise</li>
+<li>More person-hours available</li>
+<li>Group discussion leads to better decision making</li>
+<li>Group members can learn from each other faster than they can learn
+from a book/website</li>
+<li>Seeing how others work and solve problems can help you learn new
+skills that you didn’t know you needed</li>
+<li>Bug-fixing is easier when you have an informed buddy to talk to</li>
+<li>Work can be assigned to people with the most relevant skills
+increasing efficiency</li>
+<li>Dividing the development and testing of a work item between two
+people can make for better code and more complete tests</li>
+</ul>
+</div>
+<div class="section level3">
+<h3 id="pit-falls-to-avoid">Pit-falls to avoid<a class="anchor" aria-label="anchor" href="#pit-falls-to-avoid"></a>
+</h3>
+<ul>
+<li>Siloing work:
+<ul>
+<li>Separating work items can be a good idea but there needs to be
+frequent check-ins to ensure that the software being developed by two
+people is not diverging or conflicting</li>
+</ul>
+</li>
+<li>Inconsistent standards:
+<ul>
+<li>Even though people may have personal preferences or styles,
+documentation, commenting, and testing should be consistent across a
+code base.</li>
+</ul>
+</li>
+<li>Non-constructive criticism:
+<ul>
+<li>When things work they just work and no one talks about it</li>
+<li>When things break everyone talks about it</li>
+<li>Given that issues result from negative experiences, it is important
+for team moral to always try and keep feedback as constructive as
+possible</li>
+</ul>
+</li>
+<li>Platform / dependency conflicts:
+<ul>
+<li>There is no guarantee that all developers will be using the same
+operating system or development tools.</li>
+<li>Allowing people the freedom to choose is important but the
+differences need to be managed via an agreement on how/when/where
+testing takes place, what acceptance looks like, and the use of a style
+guide.</li>
+<li>Having some files with windows style end of line and others with
+linux style end of line can make it tedious to track changes</li>
+</ul>
+</li>
+</ul>
+</div>
+<div class="section level3">
+<h3 id="overheads-that-cannot-should-not-be-avoided">Overheads that cannot (should not) be avoided<a class="anchor" aria-label="anchor" href="#overheads-that-cannot-should-not-be-avoided"></a>
+</h3>
+<p>Project management will take time, and may not be a skill that you
+have. Invest time in training. Communication and coordination take time
+but are vital to success Commit conflicts will arise even if everything
+is done right, these need to be discussed and handled properly rather
+than ignored The moral of the team is important to success and will take
+time and effort to maintain, but it is worth doing so that your project
+can see the benefits listed above.</p>
+</div>
+<div class="section level3">
+<h3 id="summary">Summary<a class="anchor" aria-label="anchor" href="#summary"></a>
+</h3>
+<p>Working in a team can be a hugely beneficial experience for all
+involved, however there are some negative features that need to be
+avoided or managed. In the next section we’ll explore how we can create
+and document project standards that will make working in a team much
+easier.</p>
+</div>
+</section><section><h2 class="section-heading" id="communication-and-project-management">Communication and project management<a class="anchor" aria-label="anchor" href="#communication-and-project-management"></a>
+</h2>
+<hr class="half-width">
+<div class="section level3">
+<h3 id="communication">Communication<a class="anchor" aria-label="anchor" href="#communication"></a>
+</h3>
+<p>Team work requires effective communication between team members. This
+helps to keep everyone up to date on the status of the project, the
+current and future direction of the work, and avoids duplication of
+effort. Email, slack, messenger, GitHub issues, chats over a coffee, or
+a formal weekly meeting, are all valid ways of keeping the teem
+together. A formal meeting once a month complimented by a weekly email
+to status check, and real time slack messaging for immediate questions
+may be a good solution for a 5 person team working on a year long
+project. An informal weekly chat over lunch with intermittent emails may
+be good for a 2 person team working on a project that lasts a few
+months. The most important thing is that the chosen method is effective
+and that it includes all team members.</p>
+<p>If an informal or ephemeral communication medium is involved when
+coming to an agreement or making a decision, it is good practice to have
+a follow up communication to reiterate the decision and reasoning using
+a medium that can be archived. For example, if the team meets over a
+coffee, discusses a current issue, and decides on a way forward, it is a
+good idea for someone to follow this up with an email so that the
+details of the decision are not lost.</p>
+</div>
+<div class="section level3">
+<h3 id="project-management-styles">Project management styles<a class="anchor" aria-label="anchor" href="#project-management-styles"></a>
+</h3>
+<p>The two main project management styles that are applied to software
+development are <strong>waterfall</strong> and <strong>agile</strong>.
+Neither of these are a project management methodology but are more like
+umbrella terms that group a set of methodologies that share a common
+mindset. In the waterfall mindset there is a very linear approach to the
+design and execution and delivery of the project with the main focus
+being on the process. In the agile mindset the main focus is on outcomes
+and deliverables, with the design and execution and delivery occurring
+in cycles.</p>
+<div class="section level4">
+<h4 id="waterfall">Waterfall<a class="anchor" aria-label="anchor" href="#waterfall"></a>
+</h4>
+<p>In a waterfall project the whole life cycle of a project is mapped
+onto distinct, sequential work items, with each item relying on those
+that occur before, and blocking those that come after. Waterfall project
+management therefore represents a very rigid and linear approach. The
+waterfall system is a very traditional method for managing a project
+with participants being assigned clear roles and expectations.</p>
+<p><img src="fig/team/waterfall.png" alt="Waterfall Methodology" class="figure">
+Image credit: <a href="https://startinfinity.com/project-management-methodologies/waterfall" class="external-link uri">https://startinfinity.com/project-management-methodologies/waterfall</a></p>
+<p>The name waterfall comes from the fact that each work item will
+cascade onto the next. In a waterfall project there is a lot of
+attention paid to defining the entirety of the project up front, and
+then a close adherence to the project plan and timeline. It is therefore
+difficult to incorporate changes into the project plan, and therefore it
+is hard to respond to setbacks, opportunities, or changes in
+requirements.</p>
+<p>The waterfall project management style was initially designed in the
+1970’s for use in software development projects. It was taken on by many
+other industries to great success, but is now seen as an outdated
+methodology for software projects.</p>
+</div>
+<div class="section level4">
+<h4 id="agile">Agile<a class="anchor" aria-label="anchor" href="#agile"></a>
+</h4>
+<p>In 2001 the Manifesto for Agile Software Development was published.
+The agile manifesto can be summed up as:</p>
+<blockquote>
+<p>We are uncovering better ways of developing software by doing it and
+helping others do it. Through this work we have come to value:</p>
+<p>Individuals and interactions over processes and tools Working
+software over comprehensive documentation Customer collaboration over
+contract negotiation Responding to change over following a plan</p>
+<p>That is, while there is value in the items on the right, we value the
+items on the left more.</p>
+<p><a href="https://agilemanifesto.org/" class="external-link uri">https://agilemanifesto.org/</a></p>
+</blockquote>
+<p>The agile manifesto is based on the following principles:</p>
+<ol style="list-style-type: decimal">
+<li>The highest priority is to satisfy the customer through early and
+continuous delivery of valuable software.</li>
+<li>Welcome changing requirements, even late in development. Agile
+processes harness change for the customer’s competitive advantage.</li>
+<li>Deliver working software frequently, from a couple of weeks to a
+couple of months, with a preference to the shorter timescale.</li>
+<li>Business people and developers must work together daily throughout
+the project.</li>
+<li>Build projects around motivated individuals. Give them the
+environment and support they need, and trust them to get the job
+done.</li>
+<li>The most efficient and effective method of conveying information to
+and within a development team is face-to-face conversation.</li>
+<li>Working software is the primary measure of progress.</li>
+<li>Agile processes promote sustainable development. The sponsors,
+developers, and users should be able to maintain a constant pace
+indefinitely.</li>
+<li>Continuous attention to technical excellence and good design
+enhances agility.</li>
+<li>Simplicity–the art of maximising the amount of work not done–is
+essential.</li>
+<li>The best architectures, requirements, and designs emerge from
+self-organising teams.</li>
+<li>At regular intervals, the team reflects on how to become more
+effective, then tunes and adjusts its behaviour accordingly.</li>
+<li>The agile mentality is designed to be able to be flexible, respond
+to change, deliver a working product early and have it improve
+incrementally over time.</li>
+</ol>
+<p>Advantages of the agile mentality include:</p>
+<ul>
+<li>faster deployment of working solutions</li>
+<li>better quality of work</li>
+<li>increased client satisfaction</li>
+<li>reduced risk thanks to frequent testing and deployment</li>
+<li>increased team moral</li>
+<li>a project that finishes early is still able to deliver a working
+result</li>
+</ul>
+<p>Some potential drawbacks include:</p>
+<ul>
+<li>potential for scope creep from continuous client feedback</li>
+<li>workload management can be difficult when duties and requirements
+are not known far in advance</li>
+<li>short development cycles can mean that skills gaps are not
+identified early leading to delays in delivery</li>
+</ul>
+<p>You will likely see that the Agile development mentality fits much
+better with research project management including both traditional
+research work and software development projects. Additionally you may
+note that your organisation may employ a mix of different management
+methodologies for different projects, or at different levels of the
+organisation. Understanding the benefits and drawbacks of each will help
+you choose a project management style that works best for your
+project.</p>
+</div>
+</div>
+<div class="section level3">
+<h3 id="popular-agile-methodologies">Popular Agile methodologies<a class="anchor" aria-label="anchor" href="#popular-agile-methodologies"></a>
+</h3>
+<div class="section level4">
+<h4 id="scrum">Scrum<a class="anchor" aria-label="anchor" href="#scrum"></a>
+</h4>
+<p>Scrum is mainly focused on the idea of sprints. Sprints are where the
+bulk of the “work” gets done, although there is a significant amount of
+effort put into the preparation and planning of each sprint, and then
+the post-sprint review and retrospective. Sprints are typically 1-2
+weeks in duration and will focus on a particular set of goals. During a
+sprint there is usually a daily scrum at the start of the day in which
+people talk about what they did the day before, what their plans are for
+today, and what problems they might foresee. The sprint review is about
+reviewing the work that was completed, reporting related to said work,
+and identification of incomplete work. The retrospective is a more
+meta-level reflection on how the sprint went, meant to identify how the
+team worked together, what organisation or communication worked well or
+not, and what changes could be made to make the next sprint more
+productive.</p>
+<p><img src="fig/team/scrum.webp" alt="scrum" class="figure"> Image credit: <a href="https://jordanjob.me/blog/scrum-diagram/" class="external-link uri">https://jordanjob.me/blog/scrum-diagram/</a></p>
+<p>The scrum methodology is based on team work and has well defined
+roles. The benefits of scrum include the ability to react to changes in
+requirements or resourcing, continuous testing/integration is
+effectively built in, prioritisation of tasks can be adjusted throughout
+the process. The disadvantages of scrum are that you need very good
+organisation before each sprint to maximise productivity. Additionally
+it requires that team members are able to block out a 1-2 week period in
+which they focus solely on the sprint and maintain a high focus.
+Clearly, scrum requires a medium to large team (5+) in order to be
+effective.</p>
+</div>
+<div class="section level4">
+<h4 id="kanban">Kanban<a class="anchor" aria-label="anchor" href="#kanban"></a>
+</h4>
+<p>In the Kanban methodology the main focus is on the visualisation that
+is used during the development process – the Kanban board. One goal of
+the board is to identify potential bottlenecks in the process. An
+example board is shown below with the following features:</p>
+<p><strong>Tasks</strong> that are represented as squares. Sticky notes
+or cards are often used on a physical wall, or their digital
+representation online.</p>
+<p><strong>Columns</strong> that represent the state of each task. A
+task is expected to migrate from the left most column (Ready/Backlog)
+through the central columns and into the final (Done/Complete) column,
+as the related work is being done.</p>
+<p><strong>Work in progress limits</strong>. In order to maintain focus
+and productivity, there are often limits on the number of cards that can
+be placed into some of the columns. In particular the “in progress” and
+“testing” columns are limited by the available people time allocated to
+the project.</p>
+<p><strong>Swim lanes</strong> (not shown), are rows that separate tasks
+based on categories of work such as documentation, testing, or
+reporting. Alternatively, colour coding of cards can be used to identify
+these categories.</p>
+<p><img src="fig/team/kanban.png" alt="Kanban Methodology" class="figure"> Image
+credit: <a href="https://startinfinity.com/project-management-methodologies/kanban" class="external-link uri">https://startinfinity.com/project-management-methodologies/kanban</a></p>
+<p>Even when the Kanban methodology is not being explicitly used, the
+visualisation process is so powerful that it often used in many other
+project management strategies. It’s not uncommon to see a Kanban board
+on the wall during a two week sprint.</p>
+<p>The advantage of Kanban is that you have a single place to track the
+progress of all the tasks, and bottle necks can be quickly identified.
+One of the main disadvantages of Kanban come from people failing to
+update the Kanban board as a task is being worked on (poor
+communication), or updating too often (high overhead). Many project
+management software tools incorporate a Kanban board and tools like JIRA
+even have a way of migrating and updating tasks based on activity in a
+linked GitHub repository so that people can keep the Kanban up to date
+without having to visit the board itself.</p>
+</div>
+</div>
+<div class="section level3">
+<h3 id="summary-1">Summary<a class="anchor" aria-label="anchor" href="#summary-1"></a>
+</h3>
+<p>Communication and effective project management are critical to the
+success of any collaborative project. There is no one-size-fits-all
+solution, and you will need to consider the project requirements, and
+the size and expertise of your team when deciding on a communication and
+management strategy. Thankfully there are many project management tools
+online that are free that will support whatever choice you make.</p>
+</div>
+</section><section><h2 class="section-heading" id="member-roles">Member roles<a class="anchor" aria-label="anchor" href="#member-roles"></a>
+</h2>
+<hr class="half-width">
+<p>Depending on the scope of your project, the size of the team, and the
+management strategy that is being used, you will have a number of roles
+that need to be filled within the team. Below is a list of some common
+roles that may be applicable to your project along with a short
+description. It should be noted that not all roles are required for all
+projects, and that the roles do not need to map to people on a 1:1
+basis. It is normal to have multiple people per role and to have some
+people acting in multiple roles. The most important thing is that you
+consider the different roles and responsibilities, and have at least an
+implicit agreement on who is going to be filling each of the roles. This
+will help people to understand their responsibilities and who they
+should be handing work over to or working with during the project
+development.</p>
+<div class="section level3">
+<h3 id="roles">Roles<a class="anchor" aria-label="anchor" href="#roles"></a>
+</h3>
+<ul>
+<li>Software Developer
+<ul>
+<li>Primarily focused on writing the software, fixing bugs, implementing
+new features.</li>
+<li>Should be responsive to issues, and provide implementation advice to
+the team.</li>
+<li>Documentation and Test Developer</li>
+<li>Primarily focused on the creation of documentation and developing
+tests.</li>
+<li>Test cases and docstrings should be consistent.</li>
+<li>Typically also will be responsible for automating the testing
+process and reporting issues.</li>
+<li>Documentation can be focused on docstrings but can also include
+online documentation, help files, tutorials, and examples.</li>
+</ul>
+</li>
+<li>Product Owner
+<ul>
+<li>The person who takes responsibility for setting the software project
+goals.</li>
+<li>This person is tasked with understanding the client/user needs and
+translating them into user stories, milestones, and tasks.</li>
+</ul>
+</li>
+<li>Domain Expert
+<ul>
+<li>Someone who has a good understanding of the context in which the
+software will be deployed or used.</li>
+<li>When developing software for astronomers, it is not essential for
+all the development team to have a good understanding of the general or
+specific field of application.</li>
+<li>A domain expert can be an internal point of contact for the
+development team when they have questions about the correctness or
+utility of an aspect of theproject.</li>
+</ul>
+</li>
+<li>Project Manager
+<ul>
+<li>Primarily focused on the organisation of the team, ensuring that
+team members have tasks matched to their skills, and that the required
+skills are available within the team.</li>
+<li>The project manager will be responsible for the timing and
+scheduling of work and deadlines.</li>
+</ul>
+</li>
+<li>Reviewer
+<ul>
+<li>Any piece of work that is completed should be assigned to a reviewer
+to ensure that the work is up to standard.</li>
+<li>The reviewer should have a good understanding of the goals of a
+piece of work and be able to give feedback on areas that need
+improvement.</li>
+<li>The reviewer should ideally not be involved in the development of
+the piece of work they are reviewing.</li>
+</ul>
+</li>
+<li>Approver
+<ul>
+<li>Similar to a reviewer, except that there is no requirement for an
+approver to understand the implementation of the work being done.</li>
+<li>An approver is focused on ensuring that the proper procedures have
+been followed.</li>
+</ul>
+</li>
+<li>User Acceptance Tester
+<ul>
+<li>Someone who is able to perform the necessary tests to ensure that
+each of the user stories have been met.</li>
+<li>Acceptance testing is typically not able to be automated and will
+require manual interaction to ensure that the end user can perform the
+tasks outline in the user stories.</li>
+</ul>
+</li>
+</ul>
+<p>The following workflow describes the interaction of the above roles
+within a generic software project:</p>
+<figure><img src="fig/team/workflow.png" alt="Project workflow with roles" class="figure mx-auto d-block"><div class="figcaption">Project workflow with roles</div>
+</figure><p>Solid lines indicate the flow of content for action, approval, or
+feedback. Dashed lines indicate input in the form of advice or
+oversight.</p>
+<div id="group-activity-who-does-what-and-when" class="callout discussion">
+<div class="callout-square">
+<i class="callout-icon" data-feather="message-circle"></i>
+</div>
+<span class="callout-header">Discussion</span>
+<div id="group-activity-who-does-what-and-when" class="callout-inner">
+<h3 class="callout-title">GROUP Activity: Who does what and when?</h3>
+<div class="callout-content">
+<p>Within your software project group review the past three lessons and
+discuss the following:</p>
+<ul>
+<li>What software development roles are required for your project?</li>
+<li>What project management roles are required for your project?</li>
+<li>Are there any roles that would be beneficial to your project that
+are not listed?</li>
+<li>How are these roles distributed among the team?</li>
+<li>Are there people with multiple roles or roles shared among multiple
+people?</li>
+<li>Who determines the timeline and deliverables for this project?</li>
+<li>Is the timeline flexible?</li>
+<li>Can you classify the deliverables as one of
+required/desired/optional?</li>
+<li>How often and in what format should communication be managed?</li>
+</ul>
+<p><em>If</em> you have been involved in a previous software development
+project, please share the following with your teammates:</p>
+<ul>
+<li>What practices worked well and could be brought into this and future
+projects?</li>
+<li>What practices didn’t work well and should be avoided in the
+future?</li>
+<li>Was the previous project larger or smaller than the current one and
+how would that affect your choice of management/communication?</li>
+</ul>
+</div>
+</div>
+</div>
+</div>
+</section><section><h2 class="section-heading" id="create-project-standards-and-expectations">Create project standards and expectations<a class="anchor" aria-label="anchor" href="#create-project-standards-and-expectations"></a>
+</h2>
+<hr class="half-width">
+<p>When a single person is working on a project there will typically be
+a consistency imposed simply by the fact that the developer has ‘their
+way’ of doing things (though this consistency may not exist through
+time). When multiple developers are working on a project it is good
+practice to have an agreed up on set of standards that will be followed
+to ensure that the project has a consistent style and that common
+practices are followed. These practices can include how/when to test,
+the branch/develop/merge cycle, documentation formats, as well as code
+style. A common place to note these standards and expectations is in the
+<code>CONTRIBUTING.md</code> file in the root of your software project.
+This file should be considered to be supplementary to the
+<code>README.md</code> file, and for a slightly different audience.
+Whilst the README.md file is aimed at users of the software, the
+<code>CONTRIBUTING.md</code> file is aimed at people who might develop
+the software, give feedback, or submit bug/feature requests.</p>
+<div class="section level3">
+<h3 id="sections-to-consider-for-contributing-md">Sections to consider for <code>CONTRIBUTING.md</code>
+<a class="anchor" aria-label="anchor" href="#sections-to-consider-for-contributing-md"></a>
+</h3>
+<ul>
+<li>Welcome and encourage people to contribute to the project</li>
+<li>Table of Contents (especially if the file is long)</li>
+<li>Style guide
+<ul>
+<li>List standards for code style</li>
+<li>Consider using a linter and listing it here (with settings)</li>
+<li>Note the docstring format and guidelines</li>
+</ul>
+</li>
+<li>Testing
+<ul>
+<li>Where the tests are located</li>
+<li>How the test are run</li>
+<li>The machine/environment on which the tests are expected to pass</li>
+</ul>
+</li>
+<li>How to submit changes</li>
+<li>Who can submit changes</li>
+<li>Expectations for what changes will be accepted</li>
+<li>The pull request approval process</li>
+<li>How to report a bug
+<ul>
+<li>What is expected for a good bug report</li>
+<li>What tags/categories should be used when submitting a report</li>
+<li>How to request an “enhancement”</li>
+<li>What enhancements are likely to be support and which are not</li>
+</ul>
+</li>
+<li>Templates</li>
+<li>Examples for enhancement / bug report / change requests.</li>
+<li>Code of Conduct
+<ul>
+<li>Expectations for behaviour when contributing to the project</li>
+<li>Consequences for breaching the code of conduct</li>
+</ul>
+</li>
+<li>Email/web address for reporting breaches</li>
+<li>Recognition model
+<ul>
+<li>Let people know how their contributions will be recognised.</li>
+<li>The following may be appropriate:
+<ul>
+<li>An acknowledgement section on the wiki</li>
+<li>Co-authorship or acknowledgements in a published paper</li>
+<li>Invitation to join as github contributor</li>
+<li>A shout out on social media</li>
+<li>A beverage of choice</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<p>The <code>CONTRIBUTING.md</code> file can become quite long if all of
+the above are included. The key is to have a record of how people should
+interact with others and with the project and that the project
+maintainers adhere to these guide lines.</p>
+</div>
+</section><section><h2 class="section-heading" id="creating-a-github-repository">Creating a GitHub repository<a class="anchor" aria-label="anchor" href="#creating-a-github-repository"></a>
+</h2>
+<hr class="half-width">
+<p>At the moment we have a bunch of code, documentation, and associated
+files. We wish to make these available to others in the easiest way
+possible. We could just zip them all up and email to collaborators.
+However this means that collaborators no longer benefit from any future
+development that you do, and even worse, will start asking questions
+about code that may have diverged from the version you are working on. A
+solution to this problem is to keep all your code under <a href="https://swcarpentry.github.io/git-novice/" class="external-link">version control</a>,
+and to make use of one of the many free, online repositories to host a
+copy of the code. For this lesson we’ll focus on <a href="http://github.com/" class="external-link">GitHub</a>, but <a href="http://gitlab.com/" class="external-link">gitlab</a> and <a href="https://bitbucket.org/product" class="external-link">bitbucket</a> are also good
+alternatives.</p>
+<div class="section level4">
+<h4 id="create-an-account-on-github">Create an account on Github<a class="anchor" aria-label="anchor" href="#create-an-account-on-github"></a>
+</h4>
+<p>Github accounts are free, you just need an email address to sign up.
+Since some academic institutions shut off your email address promptly
+when your contract ends, it may be a good idea to use a
+non-institutional or personal email to sign up to github or other
+services that will outlast your current contract.</p>
+</div>
+<div class="section level4">
+<h4 id="create-a-new-repository-on-github">Create a new repository on Github<a class="anchor" aria-label="anchor" href="#create-a-new-repository-on-github"></a>
+</h4>
+<p>Go to Github and sign in. You should be taken to a page which has a
+listing of your repositories and a green button to create a new one.
+Click the button and you should see a screen similar to the
+following.</p>
+<figure><img src="fig/team/github_create_repo.png" alt="Create a github repo" class="figure mx-auto d-block"><div class="figcaption">Create a github repo</div>
+</figure><p>For now, lets create a truly empty repository so don’t select any of
+the last three boxes. Just give the repo a name (your project name is a
+good choice if available). You can change the description later or fill
+it in now.</p>
+<p>Once you create the repository you’ll see a set of instructions about
+what to do next.</p>
+<figure><img src="fig/team/github_empty_repo.png" alt="Empty github repo" class="figure mx-auto d-block"><div class="figcaption">Empty github repo</div>
+</figure><p>Now we are going to go with “create a new repository from the command
+line”.</p>
+<p>The first part is to make a new local git repository using init / add
+/ commit and to name the branch to be main (<a href="https://sfconservancy.org/news/2020/jun/23/gitbranchname/" class="external-link">instead
+of master</a>).</p>
+<div class="codewrapper sourceCode" id="cb1">
+<h3 class="code-label">BASH<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
+</h3>
+<pre class="sourceCode bash" tabindex="0"><code class="sourceCode bash"><span id="cb1-1"><a href="#cb1-1" tabindex="-1"></a><span class="fu">git</span> init</span>
+<span id="cb1-2"><a href="#cb1-2" tabindex="-1"></a><span class="fu">git</span> add README.md</span>
+<span id="cb1-3"><a href="#cb1-3" tabindex="-1"></a><span class="fu">git</span> add requirements.txt encironment.yml</span>
+<span id="cb1-4"><a href="#cb1-4" tabindex="-1"></a><span class="fu">git</span> add sim_catalog skysim/<span class="pp">*</span>.py</span>
+<span id="cb1-5"><a href="#cb1-5" tabindex="-1"></a><span class="fu">git</span> commit <span class="at">-m</span> <span class="st">"first commit"</span></span>
+<span id="cb1-6"><a href="#cb1-6" tabindex="-1"></a><span class="fu">git</span> branch <span class="at">-M</span> main</span></code></pre>
+</div>
+<p>The next step is to link your local repository with the one that you
+just created on Github. Replace <code>PaulHancock/sky_sim.git</code>
+with your username and the name of the repo that you chose.</p>
+<div class="codewrapper sourceCode" id="cb2">
+<h3 class="code-label">BASH<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
+</h3>
+<pre class="sourceCode bash" tabindex="0"><code class="sourceCode bash"><span id="cb2-1"><a href="#cb2-1" tabindex="-1"></a><span class="fu">git</span> remote add origin git@github.com:PaulHancock/sky_sim.git</span>
+<span id="cb2-2"><a href="#cb2-2" tabindex="-1"></a><span class="fu">git</span> push <span class="at">-u</span> origin main</span></code></pre>
+</div>
+<p>After you have done the <code>git push</code> you’ll have added all
+your local changes to the remote repository and you can view the new
+state of the project on Github. Note how your <code>README.md</code>
+file gets rendered into a nice splash page.</p>
+<p>When you push to <code>origin main</code> you’ll have to authenticate
+with Github, see <a href="https://docs.github.com/en/authentication/connecting-to-github-with-ssh" class="external-link">here</a>
+for instructions on how to set that up for ssh.</p>
+<p>If you set your repository to be public then anyone on the internet
+can see and download your code, they can make a fork (copy) of it to
+work on themselves, and can even send feature requests or bug reports
+via the issue tracker. We will get into those features later, but for
+now all you need to do is let your collaborators know that your code is
+available on Github, send them the link, and then they can
+download/clone it as needed. An added bonus is that as you make changes
+to your code, and then <code>add/commit/push</code> these changes, your
+collaborators can then pull those changes and get the updates without
+having to bug you about it. <!--
+Place links that you need to refer to multiple times across pages here. Delete
+any links that you are not going to use.
+ --></p>
+</div>
 </section></section>
 </div>
     </main>
