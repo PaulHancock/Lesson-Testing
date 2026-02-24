@@ -254,6 +254,17 @@
 </div>
 <!--/div.accordion-flush-->
 
+<div class="accordion accordion-flush" id="accordionFlush3">
+  <div class="accordion-item">
+    <div class="accordion-header" id="flush-heading3">
+        <a href="PoC.html">2. Coduing Up A Proof Of Concept</a>
+    </div>
+<!--/div.accordion-header-->
+
+  </div>
+<!--/div.accordion-item-->
+</div>
+<!--/div.accordion-flush-->
 
 
 
@@ -373,18 +384,216 @@ lessons are applicable to any language.</p>
 changes to a shared code base. For this we will be using the git version
 control system, and in particular we will be using GitHub as the remote
 repository.</p>
-<p>Software requirements: - Python 3.8 + - A integrated development
-environment (IDE) or text editor of choice - We recommend <a href="https://www.jetbrains.com/pycharm/" class="external-link">PyCharm</a> or <a href="https://code.visualstudio.com/" class="external-link">Visual Studio Code</a> - An
-operating system which gives you a proper command line - For windows
-this means using something like <a href="https://gitforwindows.org/" class="external-link">gitbash</a>, <a href="https://docs.microsoft.com/en-us/windows/wsl/install" class="external-link">WSL</a>, or
-the <a href="https://www.anaconda.com/" class="external-link">Anaconda</a> prompt - For OSX or
-Linux the regular terminal will be fine - git, either from the command
-line, using a git desktop app, or as an add on to PyCharm or VSCode. -
-An account on GitHub is required for some of the activities. <!--
+<p>Software requirements:</p>
+<ul>
+<li>Python 3.8 +</li>
+<li>A integrated development environment (IDE) or text editor of choice
+<ul>
+<li>We recommend <a href="https://www.jetbrains.com/pycharm/" class="external-link">PyCharm</a> or <a href="https://code.visualstudio.com/" class="external-link">Visual Studio Code</a>
+</li>
+</ul>
+</li>
+<li>An operating system which gives you a proper command line</li>
+<li>For windows this means using something like <a href="https://gitforwindows.org/" class="external-link">gitbash</a>, <a href="https://docs.microsoft.com/en-us/windows/wsl/install" class="external-link">WSL</a>, or
+the <a href="https://www.anaconda.com/" class="external-link">Anaconda</a> prompt</li>
+<li>For OSX or Linux the regular terminal will be fine</li>
+<li>git, either from the command line, using a git desktop app, or as an
+add on to PyCharm or VSCode.</li>
+<li>An account on GitHub is required for some of the activities. <!--
+Place links that you need to refer to multiple times across pages here. Delete
+any links that you are not going to use.
+ -->
+</li>
+</ul></section></section><section id="aio-PoC"><p>Content from <a href="PoC.html">Coduing Up A Proof Of Concept</a></p>
+<hr>
+<p>Last updated on 2026-02-24 |
+
+        <a href="https://github.com/PaulHancock/Lesson-Testing/edit/main/episodes/PoC.md" class="external-link">Edit this page <i aria-hidden="true" data-feather="edit"></i></a></p>
+<p>Estimated time: <i aria-hidden="true" data-feather="clock"></i> 15 minutes</p>
+<div class="text-end">
+          <button role="button" aria-pressed="false" tabindex="0" id="expand-code" class="pull-right" data-expand="Expand All Solutions " data-collapse="Collapse All Solutions "> Expand All Solutions <i aria-hidden="true" data-feather="plus"></i></button>
+        </div>
+<div class="section level1">
+<h1 id="beginning-a-new-software-project">Beginning a new software project<a class="anchor" aria-label="anchor" href="#beginning-a-new-software-project"></a>
+</h1>
+<p>Before we do anything to our project we should talk about:</p>
+<div class="section level2">
+<h2 id="organisation">Organisation<a class="anchor" aria-label="anchor" href="#organisation"></a>
+</h2>
+<p>Organisation is key to a good project. Every time you start a new
+project or explore a new idea it is a good idea to create a new space
+for that project. This means creating a new directory for you to collect
+all the relevant data, software, and documentation. You will be involved
+in many projects through your career and often will have to manage
+multiple projects simultaneously. It is therefore not just a good idea
+to organise each project, but to have a consistent organisation
+structure between projects. In this section we will make some
+recommendations for organising a software project.</p>
+<div class="section level3">
+<h3 id="put-each-project-in-its-own-directory-which-is-named-after-the-project-">Put each project in its own directory, which is named after the
+project.<a class="anchor" aria-label="anchor" href="#put-each-project-in-its-own-directory-which-is-named-after-the-project-"></a>
+</h3>
+<p>The location of this directory will depend on a higher level
+organisation scheme. For example you may separate your projects based on
+funding, based on collaboration, or based on research area.</p>
+<p>Within you software project directory we recommend the following
+structure:</p>
+<blockquote>
+<p>. ├── README.md &lt;- Description of this project ├── bin &lt;- Your
+compiled code can be stored here (not tracked by git) ├── config &lt;-
+Configuration files, e.g., for doxygen or for your model if needed ├──
+data │ ├── external &lt;- Data from third party sources. │ ├── interim
+&lt;- Intermediate data that has been transformed. │ ├── processed &lt;-
+The final data sets for analysis. │ └── raw &lt;- The original,
+immutable data dump. ├── docs &lt;- Documentation, e.g., doxygen or
+reference papers (not tracked by git) ├── notebooks &lt;- Jupyter or R
+notebooks ├── reports &lt;- For a manuscript source, e.g., LaTeX,
+Markdown, etc., or any project reports │ └── figures &lt;- Figures for
+the manuscript or reports └── src &lt;- Source code for this project ├──
+external &lt;- Any external source code, e.g., pull other git projects
+libraries └── tools &lt;- Any helper scripts go here</p>
+</blockquote>
+<p>Setting up an empty structure such as the above can be done either by
+making an template and then copying that every time you start a new
+project. Additionally there are python packages such as
+<code>cookiecutter</code> (<a href="https://pypi.org/project/cookiecutter/" class="external-link">pypi</a>, <a href="https://cookiecutter.readthedocs.io/en/1.7.2/" class="external-link">rtfd</a>, <a href="https://github.com/audreyfeldroy/cookiecutter-pypackage" class="external-link">github</a>)
+that can automate this process for you, and offer a range of templates
+to work with.</p>
+</div>
+<div class="section level3">
+<h3 id="name-all-files-to-reflect-their-content-or-function-">Name all files to reflect their content or function.<a class="anchor" aria-label="anchor" href="#name-all-files-to-reflect-their-content-or-function-"></a>
+</h3>
+<p>It is also convenient to use a consistent and descriptive naming
+format for all your files and sub-folders. For example, use names such
+as <code>galaxy_count_table.csv</code>, <code>manuscript.md</code>, or
+<code>light_curve_analysis.py</code>. Do not using sequential numbers
+(e.g., <code>result1.csv</code>, <code>result2.csv</code>) or a location
+in a final manuscript (e.g., <code>fig_3_a.png</code>), since those
+numbers will almost certainly change as the project evolves (and are
+meaningless on their own).</p>
+</div>
+</div>
+<div class="section level2">
+<h2 id="starting-our-project">Starting our project<a class="anchor" aria-label="anchor" href="#starting-our-project"></a>
+</h2>
+<p>Now we are ready to actually start doing something with our
+project.</p>
+<div class="section level3">
+<h3 id="project-evolution">Project evolution<a class="anchor" aria-label="anchor" href="#project-evolution"></a>
+</h3>
+<p>In the typical project cycle for an astronomer or research software
+engineer (or RSE, a formal name for people who combine professional
+software expertise with an understanding of research), you will not sit
+down and have a detailed discussion about what the project is, where it
+needs to go, what the user stories and milestones are, and who will be
+involved. Usually research evolves organically through informal
+discussions with colleagues, or a sudden thought in the shower.
+Similarly our software projects evolve in an organic manner, often
+beginning with a small script of function to do just this one thing,
+which then over time gets used, reused, augmented, shared, and thus
+evolves into a software project. This evolution of ideas and code does
+not fit will with much of the more formal structures that professional
+software developers adhere to, and so we will not try to fit our
+projects to such a scheme. Instead we will create a path for our
+software that will be suited to our work style, but which draws on the
+knowledge and experience of professional software developers. Thus we
+will begin with a proof of concept code – a short bit of work that
+proves that something works using the minimal amount of effort.</p>
+</div>
+<div class="section level3">
+<h3 id="example-project">Example project<a class="anchor" aria-label="anchor" href="#example-project"></a>
+</h3>
+<p>The example project that we will work with will involve tasks that
+are familiar to many astronomers. The work that is being done is mostly
+for demonstration purposes – existing libraries will be able to do this
+task faster and easier that we will. The point of this example project
+is not the content, but the methodology that we use as we pass through
+various cycles of development.</p>
+</div>
+</div>
+</div>
+<div class="section level1">
+<h1 id="example-project-an-astronomy-catalogue-simulator">Example project: an astronomy catalogue simulator<a class="anchor" aria-label="anchor" href="#example-project-an-astronomy-catalogue-simulator"></a>
+</h1>
+<p>The example project that we will be developing will simulate a
+catalogue of foreground stars in the direction of the Andromeda galaxy.
+The initial requirements are as follows:</p>
+<p>Stars should have randomised sky positions around the Andromeda
+galaxy Positions should fall within 1 degree of the central location
+Each star should have a unique ID The star ID and position should be
+saved in a csv file to be analysed by other programs This program is
+intended to be used by the developer and their research group which
+includes people who are not proficient python programmers.</p>
+<p>It is intended that the software will grow in capability and
+complexity only as needed to support a current research project.</p>
+<p>With this in mind we move to the first stage of our software project
+– the proof of concept.</p>
+<div id="solo-activity-project-structure" class="callout discussion">
+<div class="callout-square">
+<i class="callout-icon" data-feather="message-circle"></i>
+</div>
+<span class="callout-header">Discussion</span>
+<div id="solo-activity-project-structure" class="callout-inner">
+<h3 class="callout-title">SOLO Activity: Project structure</h3>
+<div class="callout-content">
+<p>Consider the astronomy catalogue simulator project mentioned in the
+previous lesson.</p>
+<p>Come up with a planned project structure that would be appropriate
+for this project. How much of the structure would change if you were to
+use a different language (e.g. Python vs C)? The scope of work is quite
+modest and could be achieved with a flat file structure or a single
+file. Which statements in the previous lesson suggest that a good
+project structure will be beneficial to future work?</p>
+</div>
+</div>
+</div>
+</div>
+<div class="section level1">
+<h1 id="proof-of-concept-code">Proof of concept code<a class="anchor" aria-label="anchor" href="#proof-of-concept-code"></a>
+</h1>
+<p>The first iteration of our code is shown below. It was written in a
+stream-of-conscious mode with a focus on getting a minimum working
+example that proves that the work can be done.</p>
+<div class="language-python">
+<p>#! /usr/bin/env python # Demonstrate that we can simulate a catalogue
+of stars on the sky</p>
+<div class="section level1">
+<h1 id="determine-andromeda-location-in-radec-degrees">Determine Andromeda location in ra/dec degrees<a class="anchor" aria-label="anchor" href="#determine-andromeda-location-in-radec-degrees"></a>
+</h1>
+<p>import numpy as np import math # from wikipedia ra = ‘00:42:44.3’ dec
+= ‘41:16:09’</p>
+<p>d, m, s = dec.split(‘:’) dec = int(d)+int(m)/60+float(s)/3600</p>
+<p>h, m, s = ra.split(‘:’) ra = 15<em>(int(h)+int(m)/60+float(s)/3600)
+ra = ra/math.cos(dec</em>math.pi/180)</p>
+</div>
+<div class="section level1">
+<h1 id="make-1000-stars-within-1-degree-of-andromeda">make 1000 stars within 1 degree of Andromeda<a class="anchor" aria-label="anchor" href="#make-1000-stars-within-1-degree-of-andromeda"></a>
+</h1>
+<p>ra_offsets = np.random.uniform(-1, 1, size=1000) dec_offsets =
+np.random.uniform(-1, 1, size=1000)</p>
+<p>ras = ra + ra_offsets decs = dec + dec_offsets</p>
+</div>
+<div class="section level1">
+<h1 id="now-write-these-to-a-csv-file-for-use-by-my-other-program">now write these to a csv file for use by my other program<a class="anchor" aria-label="anchor" href="#now-write-these-to-a-csv-file-for-use-by-my-other-program"></a>
+</h1>
+<p>with open(‘catalog.csv’, ‘w’) as f: print(“id,ra,dec”, file=f) for i
+in range(1000): print(“{0}, {1:7.4f}, {2:7.4f}”.format(i, ras[i],
+decs[i]), file=f)</p>
+</div>
+</div>
+<p>The above code was saved as <code>sim.py</code>. When run from the
+command line it produces a file (<code>catalog.csv</code>) with a
+header, one thousand rows, and columns showing the id/ra/dec of the
+simulated points on the sky. Right now the code runs without error and
+at first glance does what we need.</p>
+<p>If we plot the ra/dec locations of the catalog we get the following
+output:</p>
+<figure><img src="../fig/poc/catalog_plot.png" alt="catalogue plot" class="figure mx-auto d-block"><div class="figcaption">catalogue plot</div>
+</figure><p>Sky plot of the catalog that comes from the sim.py program. <!--
 Place links that you need to refer to multiple times across pages here. Delete
 any links that you are not going to use.
  --></p>
-</section></section>
+</div></section>
 </div>
     </main>
 </div>
