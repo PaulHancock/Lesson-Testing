@@ -416,7 +416,7 @@ At the core of the feature branching workflow is the idea that all development s
 
 The diagram below shows the basic feature branch workflow.
 
-![feature branching](episodes/fig/Feature-Branching-Workflow.png)
+![feature branching](episodes/fig/team/Feature-Branching-Workflow.png)
 
 In the above case a feature has been requested in the issue with ticket number 123. A developer is assigned the task of developing this feature and begins by creating a new branch with `git branch` using a branch name appropriate for the task. The development proceeds on the feature branch, occasionally breaking the code, fixing the bugs, updating tests and documentation, until finally a new version of the code has been created which implements the new feature. At this point the developer responsible for this branch ensures all their changes are pushed to Github and the opens a pull request. During the pull request other developers, and maybe the person who submitted the initial feature request, will review and discuss the changes, ensure that the code meets the repository standards for style and quality. Once everyone is happy with the changes in the feature branch it is merged into main by accepting the pull request on Github. Once the feature branch has been merged into main it is deleted.
 
@@ -424,7 +424,7 @@ In this scheme many features branches can be created, developed, and then delete
 
 A common variation on the feature branch workflow is to include a development branch as an intermediary between the main and feature branches. Feature branches are created off the develop branch and then merged back when complete. The develop branch therefore contains all of the latest features and if new features interact with each other in unexpected ways, this can be discovered on the develop branch rather than the main branch. The main branch is used for tagging and releasing new versions of the software, and these new versions can each include a number of developments.
 
-![more feature branching](episodes/fig/Feature-Branching-Workflow-1.png)
+![more feature branching](episodes/fig/team/Feature-Branching-Workflow-1.png)
 
 ### Setting up branches
 
@@ -577,7 +577,7 @@ git push --set-upstream origin Paulhancock/Issue#1
 
 If we look on the original issue page, we can see the link to the commit.
 
-![issue referenced in commit](episodes/fit/team/issue-reference.png)
+![issue referenced in commit](episodes/fig/team/issue-reference.png)
 
 ### Creating a pull request
 
