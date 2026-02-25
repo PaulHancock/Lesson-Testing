@@ -1,22 +1,23 @@
 ---
 title: "Developing Software In A Team"
-teaching: 90 # teaching time in minutes
-exercises: 20 # exercise time in minutes
+teaching: 120 # teaching time in minutes
+exercises: 60 # exercise time in minutes
 ---
 
 ::::::::::::::::::::::::::::::::::::::: objectives
 
-- Build a minimal working or "proof of concept" project
-that we can build on in this workshop
+- Gain experience developing software in a team environment
+- Understand some common project management styles
+- Create a new GitHub repo and push our project
+- Experience a full development cycle with our test project
 
 ::::::::::::::::::::::::::::::::::::::::::::::::::
 
 :::::::::::::::::::::::::::::::::::::::: questions
 
-- Where/How do I start a new project?
-- How do I use a function?
-- How do I document and test my code?
-- Can I make a command line interface for my code?
+- What are some pro/con of developing in a team?
+- What are some common team roles?
+- How can GitHub help managing tasks in a group project?
 
 ::::::::::::::::::::::::::::::::::::::::::::::::::
 
@@ -318,3 +319,334 @@ After you have done the `git push` you’ll have added all your local changes to
 When you push to `origin main` you’ll have to authenticate with Github, see [here](https://docs.github.com/en/authentication/connecting-to-github-with-ssh) for instructions on how to set that up for ssh.
 
 If you set your repository to be public then anyone on the internet can see and download your code, they can make a fork (copy) of it to work on themselves, and can even send feature requests or bug reports via the issue tracker. We will get into those features later, but for now all you need to do is let your collaborators know that your code is available on Github, send them the link, and then they can download/clone it as needed. An added bonus is that as you make changes to your code, and then `add/commit/push` these changes, your collaborators can then pull those changes and get the updates without having to bug you about it.
+
+## Issue tracking on GitHub
+
+Once your code is in the wild hopefully people will find it, use it, and give feedback. Positive feedback in person or by email is always nice, however there is also the issue of bugs, new feature requests, and people wanting clarification. Dealing with these last three points requires some organisation, and so we will learn how to use an issue tracker for this.
+
+Github, gitlab, and bitbucket all offer an form of issue tracking that is attached to each of your software repositories. In this lesson we’ll focus on the Github issue tracker, but the lessons learned here are applicable to any issue tracker system.
+
+The issue tracker is a way of engaging with your co-developers and end-users to discuss any problems that people may be having when using the software. The issue tracker is available for all Github repositories, and enabled by default. However, publishing code on Github does not mean that you are obligated to provide any support at all. If you don’t intend on providing support for your software, it would be a good idea to mention this in the `README.md` file that is shown on the landing page so that people have clear expectations. If you do intend to provide support and receive feedback then the issue tracker is for you.
+
+### Overview
+
+We will cover four of the most common issues that you are likely to see or use on the issue tracker, and give some guidance and advice about how to approach them. We’ll cover general questions, bug reports, feature requests, and pull requests.
+
+Github issues has become a full featured work planning and project management system (see link), most of which is beyond the scope of this course. We will be focusing on the basic capabilities of the issue tracker to get you and your group started. Once you are up and running you should explore the other features.
+
+To begin, let’s navigate to the github repository for our project of choice. On the front page you should see a set of tabs. By default you’ll be seeing the `<> code` tab, but we want to select the `⊙ Issues` tab.
+
+![Repo no issues](episodes/fig/team/repo-tabs-issues.png)
+Initially this will be blank for your project because there are no issues (yay).
+
+### Creating an issue
+
+Navigate to the `Issues` tab of a repository on Github and you’ll see a “New issue” button in green. Press this and we’ll explore some of the options.
+
+An issue has a title (or short description) and a comment (long description). When creating an issue you can add some labels to it so that others can easily understand what kind of issue you are reporting. Github has a range of built in labels, and the repository owner/admins can create more if needed.
+
+![Label and issue](episodes/fig/team/issue-labels.png)
+
+Once an issue has been created, the author or repository owner/admins can adjust the issue by assigning people to work on it, updating the labels. This is a helpful piece of organisational work. Others can can also comment on the issue so that there is a back and forth between the developers, the person reporting the issue, and anyone else experiencing the same/similar issues. When an issue is resolved it can be marked as closed. Closed issues are not shown by default, but can be seen by removing the `is:open` or add the `is:closed` filter.
+
+We will now go through some of the different types of issues that are typically reported and in the next lesson we’ll have a go at creating/resolving these issues.
+
+#### Questions
+
+This tag is usually used by people asking for clarification. There is not necessarily any issue with the code, it is just that the user doesn’t understand something. The threaded structure of the issue tracker makes this a useful place to have a discussion about the question. Questions usually lead to additional documentation being created – for example an FAQ section on the wiki for the repository. Questions can also be escalated into bugs or feature requests.
+
+If someone sends you a question via email that does not involve personal/private information, then it is often a good idea to ask them to post the question on the issue tracker and then discuss it there. If the person isn’t that interested in using Github then I often just ask for their permission to replicate the email discussion on the issue tracker (with/without naming them depending on their preference). The mentality is the same with people asking questions in a classroom – if one person has a question, often there are others with the same question who are too shy to ask. By answering the question publicly you reduce the number of duplicate email chains that you have.
+
+#### Bug reports
+
+Bug reports are for when people find an error in your code. The common errors are code crashing, or code giving unexpected or wrong output. Best practice for reporting a bug is to give as much information as is required to reproduce the error. This is the minimum working example (MWE), or rather the minimum example that produces the error. It is at this point where code versions and environments can be super helpful. Asking people to run `mycode --version` and paste the output in the bug report can help a lot. Sometimes people work with old versions of code and simply updating to a new version can fix the issue. For a program crash, a copy/paste of the output/error is useful.
+
+Github allows you to add files and images to the issue tracker so that people have the option of supplying a small amount of real data to reproduce the error. Similarly they can screenshot a problem (particularly useful for graphic interfaces or code that produces plots).
+
+Keep in mind that when someone posts a bug report it is because they are having a problem. That problem is real. It may not be due to your code. It may be due to them misusing or misunderstanding your code. It may be due to issues with code that you are dependent on. It may be your fault. Just remember that people are not looking to place blame, but are looking to find a solution. Have a conversation with them in the issue tracker to figure out what is going on and how you could help solve the problem. If you don’t consider the bug to be a problem (it’s a feature not a bug) then note this in the issue tracker.
+
+#### Feature requests
+
+Sometimes a user will have an idea about how to improve or expand the capability of the software they are using. A feature request is a way for the user to suggest these improvements. Feature requests are not an indication that something is wrong, but that there is an opportunity to be better. Some example feature requests are:
+
+- support additional input/output formats, or
+- support additional operating systems, or
+- provide some sanity checking before users made silly mistakes, or
+- improve a users quality of life by combining multiple often used functions into one, or
+- provide documentation in an alternative format (html, pdf, online wiki etc).
+
+Feature requests are typically a user’s wish list, which if fulfilled, will save the user time or allow them to expand the scope of their work.
+
+#### Pull requests
+
+For a collaborative software development project you’ll typically have multiple people contributing code to a range of branches. When the development of the branch is complete the developer will submit a pull request to have their changes/updates incorporated into a reference branch (usually dev or main). A pull request is essentially a moderated `git merge` (or `git rebase`) that allows you to see any conflicts, see/discuss/approve changes, and make any final changes required before the merge actually takes place.
+
+People have the option of forking (copying) your public repository and making their own changes. If you are lucky, people will make useful changes to your code and then offer these changes back to you via a pull request. If these changes are aligned with the goals of your project and meet the various style and testing conditions that you set, then the pull request should be accepted.
+
+A pull request is a request. There is no necessity for all pull requests to be accepted, however it is good practice (and polite) to give feedback on any pull requests that are not going to be accepted.
+
+If you would like to capture the style, testing, and documentation expectations for your project then a file called `CONTRIBUTING.md` in the root of the repository is a common place to define this. You can ask that people making pull requests obey these expectations, and it is possible to create automated ways of ensuring these standards are obeyed.
+
+### Summary
+
+Whether your development group is just you, or three, or ten people, the issue tracker is a free and convenient workflow management platform.
+
+:::: challenge
+
+## GROUP Activity: Create, discuss, and resolve an issue on GitHub
+
+Given the previous lessons, you should consider creating or updating the `CONTRIBUTING.md` file for your project.
+
+1. Have one member of your team create a new issue in the GitHub issue tracker to create/update the file and assign the issue to at least one other member of the team.
+1. Tag the issue with a tag such as `documentation`, or create a new tag that is more relevant.
+1. Within your group, use the issue tracker to discuss what sections are required for the `CONTRIBUTING.md` file.
+1. Once there is a consensus on the content, have someone make the required changes and push the file to GitHub (or edit directly online using the GitHub editor).
+  1. Try using the `#<IssueNumber>` format within the git commit to link the commit to the issue discussion.
+1. When an acceptable file has been created/modified mark the issue as resolved (closed).
+
+::::
+
+## Branching and development
+
+In this lesson we’ll focus on one of the most popular git workflows: [Feature Branching](https://www.atlassian.com/git/tutorials/comparing-workflows/feature-branch-workflow). Many other workflows exist, but the most important feature of any workflow is that it provides benefit to the project. See the Atlassian tutorials on [workflows](https://www.atlassian.com/git/tutorials/comparing-workflows) for more information.
+
+### Feature branching
+
+At the core of the feature branching workflow is the idea that all development should be done in a branch separate from the main branch. The rational for this is to ensure that the main branch of the project is always in a not-broken state. When people find your software repository and want to try it out, they will most likely check out the main branch and start their evaluation or usage journey from there. Having a broken main branch is a good way to turn people away from your software, and generate a lot of bug reports.
+
+The diagram below shows the basic feature branch workflow.
+
+![feature branching](episodes/fig/Feature-Branching-Workflow.png)
+
+In the above case a feature has been requested in the issue with ticket number 123. A developer is assigned the task of developing this feature and begins by creating a new branch with `git branch` using a branch name appropriate for the task. The development proceeds on the feature branch, occasionally breaking the code, fixing the bugs, updating tests and documentation, until finally a new version of the code has been created which implements the new feature. At this point the developer responsible for this branch ensures all their changes are pushed to Github and the opens a pull request. During the pull request other developers, and maybe the person who submitted the initial feature request, will review and discuss the changes, ensure that the code meets the repository standards for style and quality. Once everyone is happy with the changes in the feature branch it is merged into main by accepting the pull request on Github. Once the feature branch has been merged into main it is deleted.
+
+In this scheme many features branches can be created, developed, and then deleted over the life-cycle of the project.
+
+A common variation on the feature branch workflow is to include a development branch as an intermediary between the main and feature branches. Feature branches are created off the develop branch and then merged back when complete. The develop branch therefore contains all of the latest features and if new features interact with each other in unexpected ways, this can be discovered on the develop branch rather than the main branch. The main branch is used for tagging and releasing new versions of the software, and these new versions can each include a number of developments.
+
+![more feature branching](episodes/fig/Feature-Branching-Workflow-1.png)
+
+### Setting up branches
+
+Git does not see any branch as being special. We assign “specialness” to a branch based on the name, but we can rename branches or change our idea of special as we like. Regardless of how a git repository has been set up, you can move from one branching scheme to another at any time. Creating a new `develop` branch and then making a habit of branching features from that instead of `main` can be done at any time. The key thing is to make sure that the branching/development workflow that you decide on is serving a purpose for your project. Early on in the development of some software you may have a single developer who is hashing out a proof of concept. In this case you may do all your development right on the main branch. As you start to share your code with others you may decide to move development into the develop branch, and merge back to main only when the code-base is in a working state. Finally, as you bring more developers into the project you may decide that a feature-develop-main workflow is a better way to keep the various developments from interfering with each other.
+
+The point is that you should make a choice, write it down some place (`CONTRIBUTING.md`), stick to that choice for as long as it is useful, and revise it when needed.
+
+## An example development cycle for fixing a bug
+
+As I’m using my own code for various tasks I notice that
+
+`./scripts/sim_catalog --ref_ra=00:42:44.3 --ref_dec=-00:30:19 --radius 1 --n 1000`
+
+produces some unexpected output. A plot of the sky locations is shown below. Note that the points have been generated around a central declination of `00:30:19` instead of `-00:30:19`. It seems that there is an issue with a negative reference declination.
+
+![diagnostic plot](episodes/fig/team/diagnostic-plot.png)
+
+### Reporting the issue
+
+As a user, once I have identified an issue I should go to github and make a bug report on the issue tracker. In the example project I’m the only on the developer team so I’ll assign myself to the issue. I’ll also label it as being a bug.
+
+![new issue](episodes/fig/team/new-issue.png)
+
+### Confirming the issue
+
+Now that the issue has been submitted I’ll tackle this problem from the developer point of view.
+
+The first thing to do is read and understand the issue. In this case I’ll just run the script exactly as shown in the issue tracker, and see that I get the same problem.
+
+### Create a feature branch for this issue
+
+At this point I should create a new branch in my repository with some relevant name. Since the names of issues are not guaranteed to be unique I will instead use the issue number (#1 in this case) as part of the branch name. For a project with multiple developers it is also a good idea to identify who is the ‘owner’ of each branch. An example branch choice would be:
+
+`git branch Paulhancock/Issue#1`
+
+After some trial and error I find that the cause of the bug is in the following code:
+
+```python
+def generate_positions(ref_ra='00:42:44.3',
+                       ref_dec='41:16:09',
+                       radius=1.,
+                       nsources=1000):
+...
+    # convert DMS -> degrees
+    d, m, s = ref_dec.split(':')
+    dec = int(d)+int(m)/60+float(s)/3600
+...
+    return ras, decs
+```
+
+The first thing that I do is to make a new test that will expose this bug.
+
+### Writing a test
+
+We will now write our first formal test for our code. We’ll use a format that will make future automated testing easier. All the tests that we wish to run are python scripts, and we’ll place them in the `tests/` directory. Each script will test a different sub-module, and for the `sim` sub-module of our `skysim` module, we’ll collect all the tests into `tests/test_sim.py`.
+
+The first thing that we need to do is import the module/code that will be tested. In this case that will be the `generate_positions` function within the `skysim.sim` module.
+
+```python
+#! /usr/bin/env python3
+"""
+Tests for the skysim.sim module
+"""
+import numpy as np
+from skysim.sim import generate_positions
+```
+
+Each test that we write will be contained within a separate function whose name begins with `test_`, and which returns `None` when the test passes, and raises an `AssertionError` if the test fails. While we could home-brew our own set of standards for what pass/fail looks like, we will instead use standards set out by one of the common python testing frameworks called `pytest`.
+
+We craft a piece of code that will detect the mistake in our original function. In this case the mistake is that the negative sign at the start of the declination is being ignored so we get the wrong positions. To test for this we’ll run `generate_positions` with a declination that is negative, and small radius, so that the expected output should consist entirely of negative declinations if the function works properly, and probably all positive declinations if it’s broken.
+
+Our test function looks like this:
+
+```python
+def test_negative_dec():
+    """
+    Test for the negative dec bug noted in issue #1
+    """
+    _, decs = generate_positions(ref_ra='00:00:00',
+                                 ref_dec='-00:30:19',
+                                 radius=0.1, nsources=10)
+    if not np.all(decs < 0):
+        raise AssertionError("Declinations should be <0, but are >0")
+    return
+```
+
+In order to run the tests we can add the following snippet to the end of our script. The snippet essentially looks at all the global variables (including function names), selects those that start with `test_`, assumes that they are a function and calls that function. When the function is called there is a try/except for an `AssertionError` which reports failure if it’s caught, or reports success if no error was raised.
+
+```python
+if __name__ == "__main__":
+    # introspect and run all the functions starting with 'test'
+    for f in dir():
+        if f.startswith('test'):
+            try:
+                globals()[f]()
+            except AssertionError as e:
+                print("{0} FAILED with error: {1}".format(f, e))
+            else:
+                print("{0} PASSED".format(f))
+```
+
+When we run our test code we get the following result:
+
+```bash
+$ python tests/test_sim.py 
+test_negative_dec FAILED with error Declinations should be <0, but are >0
+```
+
+This failure is not a bad thing, it means that we have successfully written a test function that will identify the bug. Now we can begin the process of fixing the bug.
+
+### Fixing the bug
+
+Finally, once I have the test code in place, it’s time to fix the bug. I make some modifications to account for the leading minus sign on the declination as follows:
+
+```python
+    # convert DMS -> degrees
+    d, m, s = ref_dec.split(':')
+    sign = 1
+    if d[0] == '-':
+        sign = -1
+    dec = sign*(abs(int(d))+int(m)/60+float(s)/3600)
+```
+
+And I then re-run the code to make sure that the bug has been resolved, and then run my tests:
+
+```bash
+$ python tests/test_sim.py 
+test_negative_dec PASSED
+```
+
+As I develop more and more tests the list of functions run will grow. Once the new bug has been solved I will re-run **all** my tests to ensure that fixing this bug has not caused a new bug some other place.
+
+### Checking in my work
+
+I now check in my new test code, and updated version of sim.py:
+
+```bash
+git add tests/test_sim.py
+git commit -m 'expose bug from issue#1'
+git commit -m 'resolve #1' skysim/sim.py
+```
+
+Note that I have used `#1` to refer to the issue from within my commit message. When viewed on Github these commit messages will automatically generate a link to the issue, and when viewing the issue I should be able to see the reverse link.
+
+I now push the bug fix (and my new branch) to the Github repo.
+
+```bash
+git push --set-upstream origin Paulhancock/Issue#1
+```
+
+If we look on the original issue page, we can see the link to the commit.
+
+![issue referenced in commit](episodes/fit/team/issue-reference.png)
+
+### Creating a pull request
+
+When we navigate to the landing page for our repository we will see a new yellow banner appear as below:
+
+![github issue with recent updates on branch](episodes/fig/team/repo-with-updates-on-branch.png)
+
+We can click the green “Compare & pull request” button to start a new pull request. Alternatively we can go to the “Pull requests” tab. Either way we enter a title and description for the pull request.
+
+Note that the assign/label/project/milestone options that we see on the pull request form are mostly the same as on the Issues form. This is because pull requests are just special types of issues. They share a numbering scheme. This is the first pull request for this repository but it will be labelled `#2` because there is an existing issue `#1`. One difference between a pull request and an issue is that a pull request can have a reviewer assigned to it. Here I have selected myself as the assignee (the person looking after the pull request), and `SkyWa7ch3r` as the reviewer (the person who will review my code and sign off when they are happy).
+
+![new pull request](episodes/fig/team/new-PR.png)
+
+Github does some work in the background to let me know that there will be no conflicts between this branch and the main branch, so that it is ‘safe’ to do the merge. Currently there is no indication that the code works or passes our tests. For now we let the reviwer do this work. The reviewer would pull the `Paulhancock/Issue#1` branch, run the tests and see that they pass, then come back to github and make a note of it in the discussion. (In a later lesson we’ll see how we can make Github do most of this work for us using Github actions.)
+
+![pull request with a reviewer comment](episodes/fig/team/PR-with-reviewer-comment.png)
+
+Once our reviewer(s) are happy with the changes we can merge our branch back into main by pressing the green button. This will create a new commit on the main branch in order to do the merge, so we’ll be asked for a title/description for the commit. It is pre-filled for us. Once the merge is complete Github will let us know that all is good, and suggest that we delete the branch. Since the feature is merged we no longer need this branch and will delete it.
+
+![pull request merged](episodes/fig/team/PR-merged.png)
+
+### Closing the issue
+
+If we navigate back to the issues tab, we’ll see that the issue related to the pull request has also been closed for us. This is because we wrote `resolve #1` as a comment for our commit. When that commit is merged into the main branch git will automatically resolve (close) the linked issue. If we didn’t use this smart linking capability we can still go back to the open issue and close it. Either way it would be good to leave a note about the issue being fixed.
+
+### Summary
+
+The development cycle for fixing a bug is as follows:
+
+- identify bug
+- report bug on the Gihub issue tracker
+- confirm that the bug exists
+- create a feature branch
+- write a test to expose the bug/error
+- fix the bug
+- run all tests
+- commit changes
+- create a pull request
+- merge the branch into main and delete the feature branch
+
+In this example we had one person doing the reporting/fixing. Usually you’ll have an end user doing the finding/report part, and then one or more developers doing the remainder.
+
+:::: challenge
+
+## GROUP Activity: Working on the same problem
+
+In this activity you will practice working in a team as you go through a simple development cycle.
+
+1. As a group, identify a minor issue with your current project. (Don’t feel bad, the only projects that don’t have issues are the ones that no one is using).
+  1. Since the focus here is on the life-cycle of a bug, choose a small thing that is easy to identify and fix.
+  1. A function without a docstring would be ideal (and probably easy to find).
+1. Have one team member create an issue that describes the problem and explains what a solution would look like.
+  1. eg “myFunc(4) should return a filename”, or “myFunc should have a docstring in <format>”.
+1. Create a new branch for development work called <Feature> or Issue<number>.
+1. Assign **at least two team members** to work on this issue.
+1. Have **one team member** create a solution for the issue and then:
+  1. Push the changes to the remote repository,
+  1. Open a pull request to merge this branch into main,
+  1. Set the assignees to be all the members working on the issue,
+  1. Set the reviewer to be a team member who is not working on the code (if you have enough people, otherwise choose someone other than the pull  request creator), and
+  1. Add whatever labels look appropriate.
+1. Have **the other team members**:
+  1. View the changes via the “files changed” tab of the pull request,
+  1. Comment on what is good and what needs improving,
+  1. Pull the active branch to their local machine,
+  1. Make an improvement and commit the change, and
+  1. Push the change back to the active branch.
+1. Everyone should have an opportunity to make comments and changes, but you’ll need to coordinate who is doing what and when to minimise the number   of merge conflicts that occur.
+1. Once everyone has had a chance to view/comment/change, have the reviewer sign off on the pull request and merge the changes into the main branch.
+
+
+::::
