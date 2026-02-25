@@ -6,18 +6,17 @@ exercises: 60 # exercise time in minutes
 
 ::::::::::::::::::::::::::::::::::::::: objectives
 
-- Gain experience developing software in a team environment
-- Understand some common project management styles
-- Create a new GitHub repo and push our project
-- Experience a full development cycle with our test project
+- Package your code into a module.
+- Create a command line interface for your code.
+- Identify and include meta-data in your module.
 
 ::::::::::::::::::::::::::::::::::::::::::::::::::
 
 :::::::::::::::::::::::::::::::::::::::: questions
 
-- What are some pro/con of developing in a team?
-- What are some common team roles?
-- How can GitHub help managing tasks in a group project?
+- How do I easily share or re-use my code?
+- When sharing, what information should I provide?
+- Where and how can I easily share code?
 
 ::::::::::::::::::::::::::::::::::::::::::::::::::
 
