@@ -197,20 +197,24 @@ You now have a way of preserving and sharing your python environment with others
 
 Anaconda uses a slightly different file format to capture essentially the same information. For the above example our file would look like:
 
-> dependencies:
->   - numpy>=1.19
+```
+dependencies:
+  - numpy>=1.19
+```
 
 Anaconda is able to reproduce not just the python modules, but the entire virtual environment including the versions of python and anaconda and also other non-python based codes. You can generate a good starting point using `conda list --export`.
 
 In order to 1) not dictate your users’ virtual environment management choices, and 2) not duplicate information, the following method will link your `environment.yml` and `requirements.txt` files:
 
-> name: my-env
-> dependencies:
->   - python>=3.8
->   - anaconda
->   - pip
->   - pip:
->     - -r requirements.txt
+```
+name: my-env
+dependencies:
+  - python>=3.8
+  - anaconda
+  - pip
+  - pip:
+    - -r requirements.txt
+```
 
 Conda understands pip formatted requirements, but pip doesn’t understand conda environment files, so there is no inverse version of the above linking.
 
