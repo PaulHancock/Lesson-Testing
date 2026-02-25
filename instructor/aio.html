@@ -2570,9 +2570,11 @@ and conda have different ways of capturing dependencies.</p>
 module: <code>numpy</code>. To specify that this is module is required
 we can create a file called <code>requirements.txt</code> and add the
 following:</p>
-<blockquote>
-<p>numpy&gt;=1.19</p>
-</blockquote>
+<div class="codewrapper sourceCode" id="cb8">
+<h3 class="code-label">BASH<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
+</h3>
+<pre class="sourceCode bash" tabindex="0"><code class="sourceCode bash"><span id="cb8-1"><a href="#cb8-1" tabindex="-1"></a><span class="ex">numpy</span><span class="op">&gt;</span>=1.19</span></code></pre>
+</div>
 <p>where the <code>&gt;=1.19</code> indicates that version 1.19 or
 greater will be fine. See the <a href="https://pip.pypa.io/en/stable/reference/requirements-file-format/#example" class="external-link">pip
 documentation</a> for examples on how you can specify different version
@@ -2590,10 +2592,10 @@ software will run, then run
 <code>pip freeze &gt;&gt; requirements.txt</code>.</p>
 <p>To install all the modules within a <code>requirements.txt</code>
 file you run pip:</p>
-<div class="codewrapper sourceCode" id="cb8">
+<div class="codewrapper sourceCode" id="cb9">
 <h3 class="code-label">BASH<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
 </h3>
-<pre class="sourceCode bash" tabindex="0"><code class="sourceCode bash"><span id="cb8-1"><a href="#cb8-1" tabindex="-1"></a><span class="ex">pip</span> install <span class="at">-r</span> requirements.txt</span></code></pre>
+<pre class="sourceCode bash" tabindex="0"><code class="sourceCode bash"><span id="cb9-1"><a href="#cb9-1" tabindex="-1"></a><span class="ex">pip</span> install <span class="at">-r</span> requirements.txt</span></code></pre>
 </div>
 <p>You now have a way of preserving and sharing your python environment
 with others. It is good practice to keep a <code>requirements.txt</code>
@@ -2606,8 +2608,12 @@ control repository.</p>
 <p>Anaconda uses a slightly different file format to capture essentially
 the same information. For the above example our file would look
 like:</p>
-<pre><code><span><span class="va">dependencies</span><span class="op">:</span></span>
-<span>  <span class="op">-</span> <span class="va">numpy</span><span class="op">&gt;=</span><span class="fl">1.19</span></span></code></pre>
+<div class="codewrapper sourceCode" id="cb10">
+<h3 class="code-label">BASH<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
+</h3>
+<pre class="sourceCode bash" tabindex="0"><code class="sourceCode bash"><span id="cb10-1"><a href="#cb10-1" tabindex="-1"></a><span class="ex">dependencies:</span></span>
+<span id="cb10-2"><a href="#cb10-2" tabindex="-1"></a>  <span class="ex">-</span> numpy<span class="op">&gt;</span>=1.19</span></code></pre>
+</div>
 <p>Anaconda is able to reproduce not just the python modules, but the
 entire virtual environment including the versions of python and anaconda
 and also other non-python based codes. You can generate a good starting
@@ -2616,13 +2622,17 @@ point using <code>conda list --export</code>.</p>
 choices, and 2) not duplicate information, the following method will
 link your <code>environment.yml</code> and <code>requirements.txt</code>
 files:</p>
-<pre><code>name: my-env
-dependencies:
-  - python&gt;=3.8
-  - anaconda
-  - pip
-  - pip:
-    - -r requirements.txt</code></pre>
+<div class="codewrapper sourceCode" id="cb11">
+<h3 class="code-label">BASH<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
+</h3>
+<pre class="sourceCode bash" tabindex="0"><code class="sourceCode bash"><span id="cb11-1"><a href="#cb11-1" tabindex="-1"></a><span class="ex">name:</span> my-env</span>
+<span id="cb11-2"><a href="#cb11-2" tabindex="-1"></a><span class="ex">dependencies:</span></span>
+<span id="cb11-3"><a href="#cb11-3" tabindex="-1"></a>  <span class="ex">-</span> python<span class="op">&gt;</span>=3.8</span>
+<span id="cb11-4"><a href="#cb11-4" tabindex="-1"></a>  <span class="ex">-</span> anaconda</span>
+<span id="cb11-5"><a href="#cb11-5" tabindex="-1"></a>  <span class="ex">-</span> pip</span>
+<span id="cb11-6"><a href="#cb11-6" tabindex="-1"></a>  <span class="ex">-</span> pip:</span>
+<span id="cb11-7"><a href="#cb11-7" tabindex="-1"></a>    <span class="ex">-</span> <span class="at">-r</span> requirements.txt</span></code></pre>
+</div>
 <p>Conda understands pip formatted requirements, but pip doesn’t
 understand conda environment files, so there is no inverse version of
 the above linking.</p>
@@ -2720,33 +2730,33 @@ into their LaTeX document.</p>
 to include the above recommendations. Note the format of the
 <code>__citation__</code> string being multi line, and including LaTeX
 formatting.</p>
-<div class="codewrapper sourceCode" id="cb11">
+<div class="codewrapper sourceCode" id="cb12">
 <h3 class="code-label">PYTHON<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
 </h3>
-<pre class="sourceCode python" tabindex="0"><code class="sourceCode python"><span id="cb11-1"><a href="#cb11-1" tabindex="-1"></a><span class="co"># /usr/bin/env python</span></span>
-<span id="cb11-2"><a href="#cb11-2" tabindex="-1"></a></span>
-<span id="cb11-3"><a href="#cb11-3" tabindex="-1"></a>__author__ <span class="op">=</span> [<span class="st">'Dev One'</span>, <span class="st">'Contrib Two'</span>]</span>
-<span id="cb11-4"><a href="#cb11-4" tabindex="-1"></a>__version__ <span class="op">=</span> <span class="st">'0.9'</span></span>
-<span id="cb11-5"><a href="#cb11-5" tabindex="-1"></a>__date__ <span class="op">=</span> <span class="st">'2021-12-02'</span></span>
-<span id="cb11-6"><a href="#cb11-6" tabindex="-1"></a>__citation__ <span class="op">=</span> <span class="st">"""</span></span>
-<span id="cb11-7"><a href="#cb11-7" tabindex="-1"></a><span class="st">% If this work is used to support a publication please</span></span>
-<span id="cb11-8"><a href="#cb11-8" tabindex="-1"></a><span class="sc">% c</span><span class="st">ite the following publication:</span></span>
-<span id="cb11-9"><a href="#cb11-9" tabindex="-1"></a><span class="st">% Description of This code</span></span>
-<span id="cb11-10"><a href="#cb11-10" tabindex="-1"></a><span class="st">@ARTICLE{ExcellentCode_2022,</span></span>
-<span id="cb11-11"><a href="#cb11-11" tabindex="-1"></a><span class="st">   author = </span><span class="sc">{{</span><span class="st">One}, D. and </span><span class="sc">{Two}</span><span class="st">, C. and </span><span class="sc">{People}</span><span class="st">, O},</span></span>
-<span id="cb11-12"><a href="#cb11-12" tabindex="-1"></a><span class="st">    title = "{Awesome sauce code for astronomy projects}",</span></span>
-<span id="cb11-13"><a href="#cb11-13" tabindex="-1"></a><span class="st">  journal = </span><span class="sc">{Nature}</span><span class="st">,</span></span>
-<span id="cb11-14"><a href="#cb11-14" tabindex="-1"></a><span class="st"> keywords = {techniques: image processing, catalogues, surveys},</span></span>
-<span id="cb11-15"><a href="#cb11-15" tabindex="-1"></a><span class="st">     year = 2021,</span></span>
-<span id="cb11-16"><a href="#cb11-16" tabindex="-1"></a><span class="st">    month = may,</span></span>
-<span id="cb11-17"><a href="#cb11-17" tabindex="-1"></a><span class="st">   volume = 1337,</span></span>
-<span id="cb11-18"><a href="#cb11-18" tabindex="-1"></a><span class="st">    pages = {11-15},</span></span>
-<span id="cb11-19"><a href="#cb11-19" tabindex="-1"></a><span class="st">      doi = {some.doi/link.in.here}</span></span>
-<span id="cb11-20"><a href="#cb11-20" tabindex="-1"></a><span class="st">}</span></span>
-<span id="cb11-21"><a href="#cb11-21" tabindex="-1"></a></span>
-<span id="cb11-22"><a href="#cb11-22" tabindex="-1"></a><span class="st">% It is also appropriate to link to the following repository:</span></span>
-<span id="cb11-23"><a href="#cb11-23" tabindex="-1"></a><span class="st">https://github.com/devone/AwesomeSauce</span></span>
-<span id="cb11-24"><a href="#cb11-24" tabindex="-1"></a><span class="st">"""</span></span></code></pre>
+<pre class="sourceCode python" tabindex="0"><code class="sourceCode python"><span id="cb12-1"><a href="#cb12-1" tabindex="-1"></a><span class="co"># /usr/bin/env python</span></span>
+<span id="cb12-2"><a href="#cb12-2" tabindex="-1"></a></span>
+<span id="cb12-3"><a href="#cb12-3" tabindex="-1"></a>__author__ <span class="op">=</span> [<span class="st">'Dev One'</span>, <span class="st">'Contrib Two'</span>]</span>
+<span id="cb12-4"><a href="#cb12-4" tabindex="-1"></a>__version__ <span class="op">=</span> <span class="st">'0.9'</span></span>
+<span id="cb12-5"><a href="#cb12-5" tabindex="-1"></a>__date__ <span class="op">=</span> <span class="st">'2021-12-02'</span></span>
+<span id="cb12-6"><a href="#cb12-6" tabindex="-1"></a>__citation__ <span class="op">=</span> <span class="st">"""</span></span>
+<span id="cb12-7"><a href="#cb12-7" tabindex="-1"></a><span class="st">% If this work is used to support a publication please</span></span>
+<span id="cb12-8"><a href="#cb12-8" tabindex="-1"></a><span class="sc">% c</span><span class="st">ite the following publication:</span></span>
+<span id="cb12-9"><a href="#cb12-9" tabindex="-1"></a><span class="st">% Description of This code</span></span>
+<span id="cb12-10"><a href="#cb12-10" tabindex="-1"></a><span class="st">@ARTICLE{ExcellentCode_2022,</span></span>
+<span id="cb12-11"><a href="#cb12-11" tabindex="-1"></a><span class="st">   author = </span><span class="sc">{{</span><span class="st">One}, D. and </span><span class="sc">{Two}</span><span class="st">, C. and </span><span class="sc">{People}</span><span class="st">, O},</span></span>
+<span id="cb12-12"><a href="#cb12-12" tabindex="-1"></a><span class="st">    title = "{Awesome sauce code for astronomy projects}",</span></span>
+<span id="cb12-13"><a href="#cb12-13" tabindex="-1"></a><span class="st">  journal = </span><span class="sc">{Nature}</span><span class="st">,</span></span>
+<span id="cb12-14"><a href="#cb12-14" tabindex="-1"></a><span class="st"> keywords = {techniques: image processing, catalogues, surveys},</span></span>
+<span id="cb12-15"><a href="#cb12-15" tabindex="-1"></a><span class="st">     year = 2021,</span></span>
+<span id="cb12-16"><a href="#cb12-16" tabindex="-1"></a><span class="st">    month = may,</span></span>
+<span id="cb12-17"><a href="#cb12-17" tabindex="-1"></a><span class="st">   volume = 1337,</span></span>
+<span id="cb12-18"><a href="#cb12-18" tabindex="-1"></a><span class="st">    pages = {11-15},</span></span>
+<span id="cb12-19"><a href="#cb12-19" tabindex="-1"></a><span class="st">      doi = {some.doi/link.in.here}</span></span>
+<span id="cb12-20"><a href="#cb12-20" tabindex="-1"></a><span class="st">}</span></span>
+<span id="cb12-21"><a href="#cb12-21" tabindex="-1"></a></span>
+<span id="cb12-22"><a href="#cb12-22" tabindex="-1"></a><span class="st">% It is also appropriate to link to the following repository:</span></span>
+<span id="cb12-23"><a href="#cb12-23" tabindex="-1"></a><span class="st">https://github.com/devone/AwesomeSauce</span></span>
+<span id="cb12-24"><a href="#cb12-24" tabindex="-1"></a><span class="st">"""</span></span></code></pre>
 </div>
 <div id="group-activity-metadata" class="callout discussion">
 <div class="callout-square">
@@ -2880,40 +2890,43 @@ github issues)</li>
 <div class="section level4">
 <h4 id="readme-md-for-our-example-project">README.md for our example project<a class="anchor" aria-label="anchor" href="#readme-md-for-our-example-project"></a>
 </h4>
-<blockquote>
-<h1 id="skysim">SkySim</h1>
-<p>This project was built in order to simulate source
-(star/galaxy/other) positions over an area of sky.</p>
-<h2 id="installing">Installing</h2>
-<p>This project relies only on python built-ins and the numpy library.
-Use <code>pip install -r requirements.txt</code> if you don’t yet meet
-these requirements.</p>
-<h2 id="usage">Usage</h2>
-<p>The main entry point for this project is
-<code>sim_catalog</code>:</p>
-<pre><code>./sim_catalog --help
-usage: sim [-h] [--ref_ra REF_RA] [--ref_dec REF_DEC] [--radius RADIUS] [--n NSOURCES] [--out OUTFILE]
-
-optional arguments:
-  -h, --help         show this help message and exit
-
-  --ref_ra REF_RA    Central/reference RA position HH:MM:SS.S format
-  --ref_dec REF_DEC  Central/reference Dec position DD:MM:SS.S format
-  --radius RADIUS    radius within which the new positions are generated (deg)
-  --n NSOURCES       Number of positions to generate
-  --out OUTFILE      Filename for saving output (csv format)</code></pre>
-<h2 id="documentation">Documentation</h2>
-<p>Documentation is currently just this file, and associated python
-docstrings.</p>
-<h2 id="author-contribution">Author / Contribution</h2>
-<p>This project is developed by Dev One. If you want to contribute to
-this project please create a fork and issue pull requests for new
-features or bug fixes.</p>
-<h2 id="credit">Credit</h2>
-<p>If you find this project to be useful in your academic work please
-cite the following paper: <a href="https://nature.com" class="external-link">One, D. et
-al. Nature, 2021</a></p>
-</blockquote>
+<div class="codewrapper sourceCode" id="cb13">
+<h3 class="code-label">BASH<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
+</h3>
+<pre class="sourceCode bash" tabindex="0"><code class="sourceCode bash"><span id="cb13-1"><a href="#cb13-1" tabindex="-1"></a><span class="co"># SkySim</span></span>
+<span id="cb13-2"><a href="#cb13-2" tabindex="-1"></a><span class="ex">This</span> project was built in order to simulate source <span class="er">(</span><span class="ex">star/galaxy/other</span><span class="kw">)</span> <span class="ex">positions</span> over an area of sky.</span>
+<span id="cb13-3"><a href="#cb13-3" tabindex="-1"></a></span>
+<span id="cb13-4"><a href="#cb13-4" tabindex="-1"></a><span class="co">## Installing</span></span>
+<span id="cb13-5"><a href="#cb13-5" tabindex="-1"></a><span class="ex">This</span> project relies only on python built-ins and the numpy library.</span>
+<span id="cb13-6"><a href="#cb13-6" tabindex="-1"></a><span class="ex">Use</span> <span class="kw">`</span><span class="ex">pip</span> install <span class="at">-r</span> requirements.txt<span class="kw">`</span> if you don<span class="st">'t yet meet these requirements.</span></span>
+<span id="cb13-7"><a href="#cb13-7" tabindex="-1"></a></span>
+<span id="cb13-8"><a href="#cb13-8" tabindex="-1"></a><span class="st">## Usage</span></span>
+<span id="cb13-9"><a href="#cb13-9" tabindex="-1"></a><span class="st">The main entry point for this project is `sim_catalog`:</span></span>
+<span id="cb13-10"><a href="#cb13-10" tabindex="-1"></a></span>
+<span id="cb13-11"><a href="#cb13-11" tabindex="-1"></a><span class="st">./sim_catalog --help</span></span>
+<span id="cb13-12"><a href="#cb13-12" tabindex="-1"></a><span class="st">usage: sim [-h] [--ref_ra REF_RA] [--ref_dec REF_DEC] [--radius RADIUS] [--n NSOURCES] [--out OUTFILE]</span></span>
+<span id="cb13-13"><a href="#cb13-13" tabindex="-1"></a></span>
+<span id="cb13-14"><a href="#cb13-14" tabindex="-1"></a><span class="st">optional arguments:</span></span>
+<span id="cb13-15"><a href="#cb13-15" tabindex="-1"></a><span class="st">  -h, --help         show this help message and exit</span></span>
+<span id="cb13-16"><a href="#cb13-16" tabindex="-1"></a></span>
+<span id="cb13-17"><a href="#cb13-17" tabindex="-1"></a><span class="st">  --ref_ra REF_RA    Central/reference RA position HH:MM:SS.S format</span></span>
+<span id="cb13-18"><a href="#cb13-18" tabindex="-1"></a><span class="st">  --ref_dec REF_DEC  Central/reference Dec position DD:MM:SS.S format</span></span>
+<span id="cb13-19"><a href="#cb13-19" tabindex="-1"></a><span class="st">  --radius RADIUS    radius within which the new positions are generated (deg)</span></span>
+<span id="cb13-20"><a href="#cb13-20" tabindex="-1"></a><span class="st">  --n NSOURCES       Number of positions to generate</span></span>
+<span id="cb13-21"><a href="#cb13-21" tabindex="-1"></a><span class="st">  --out OUTFILE      Filename for saving output (csv format)</span></span>
+<span id="cb13-22"><a href="#cb13-22" tabindex="-1"></a></span>
+<span id="cb13-23"><a href="#cb13-23" tabindex="-1"></a></span>
+<span id="cb13-24"><a href="#cb13-24" tabindex="-1"></a><span class="st">## Documentation</span></span>
+<span id="cb13-25"><a href="#cb13-25" tabindex="-1"></a><span class="st">Documentation is currently just this file, and associated python docstrings.</span></span>
+<span id="cb13-26"><a href="#cb13-26" tabindex="-1"></a></span>
+<span id="cb13-27"><a href="#cb13-27" tabindex="-1"></a><span class="st">## Author / Contribution</span></span>
+<span id="cb13-28"><a href="#cb13-28" tabindex="-1"></a><span class="st">This project is developed by Dev One.</span></span>
+<span id="cb13-29"><a href="#cb13-29" tabindex="-1"></a><span class="st">If you want to contribute to this project please create a fork and issue pull requests for new features or bug fixes.</span></span>
+<span id="cb13-30"><a href="#cb13-30" tabindex="-1"></a></span>
+<span id="cb13-31"><a href="#cb13-31" tabindex="-1"></a><span class="st">## Credit</span></span>
+<span id="cb13-32"><a href="#cb13-32" tabindex="-1"></a><span class="st">If you find this project to be useful in your academic work please cite the following paper:</span></span>
+<span id="cb13-33"><a href="#cb13-33" tabindex="-1"></a><span class="st">&gt; [One, D. et al. Nature, 2021](https://nature.com)</span></span></code></pre>
+</div>
 <p>The above <code>README.md</code> file will render on <a href="https://github.com/ADACS-Australia/MAP21B-Training-BPindor/tree/cycle2" class="external-link">github</a>
 as below.</p>
 <figure><img src="../fig/reuse/readme.png" alt="Rendered README.md on GitHub" class="figure mx-auto d-block"><div class="figcaption">Rendered README.md on GitHub</div>
