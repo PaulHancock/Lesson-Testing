@@ -996,10 +996,10 @@ any links that you are not going to use.
  --></p>
 </section></section><section id="aio-DevInATeam"><p>Content from <a href="DevInATeam.html">Developing Software In A Team</a></p>
 <hr>
-<p>Last updated on 2026-02-24 |
+<p>Last updated on 2026-02-25 |
 
         <a href="https://github.com/PaulHancock/Lesson-Testing/edit/main/episodes/DevInATeam.md" class="external-link">Edit this page <i aria-hidden="true" data-feather="edit"></i></a></p>
-<p>Estimated time: <i aria-hidden="true" data-feather="clock"></i> 110 minutes</p>
+<p>Estimated time: <i aria-hidden="true" data-feather="clock"></i> 180 minutes</p>
 <div class="text-end">
           <button role="button" aria-pressed="false" tabindex="0" id="expand-code" class="pull-right" data-expand="Expand All Solutions " data-collapse="Collapse All Solutions "> Expand All Solutions <i aria-hidden="true" data-feather="plus"></i></button>
         </div>
@@ -1011,10 +1011,9 @@ any links that you are not going to use.
 <div class="inner">
 <h3 class="card-title">Questions</h3>
 <ul>
-<li>Where/How do I start a new project?</li>
-<li>How do I use a function?</li>
-<li>How do I document and test my code?</li>
-<li>Can I make a command line interface for my code?</li>
+<li>What are some pro/con of developing in a team?</li>
+<li>What are some common team roles?</li>
+<li>How can GitHub help managing tasks in a group project?</li>
 </ul>
 </div>
 </div>
@@ -1024,8 +1023,10 @@ any links that you are not going to use.
 <div class="inner bordered">
 <h3 class="card-title">Objectives</h3>
 <ul>
-<li>Build a minimal working or “proof of concept” project that we can
-build on in this workshop</li>
+<li>Gain experience developing software in a team environment</li>
+<li>Understand some common project management styles</li>
+<li>Create a new GitHub repo and push our project</li>
+<li>Experience a full development cycle with our test project</li>
 </ul>
 </div>
 </div>
@@ -1631,10 +1632,615 @@ available on Github, send them the link, and then they can
 download/clone it as needed. An added bonus is that as you make changes
 to your code, and then <code>add/commit/push</code> these changes, your
 collaborators can then pull those changes and get the updates without
-having to bug you about it. <!--
+having to bug you about it.</p>
+</div>
+</section><section><h2 class="section-heading" id="issue-tracking-on-github">Issue tracking on GitHub<a class="anchor" aria-label="anchor" href="#issue-tracking-on-github"></a>
+</h2>
+<hr class="half-width">
+<p>Once your code is in the wild hopefully people will find it, use it,
+and give feedback. Positive feedback in person or by email is always
+nice, however there is also the issue of bugs, new feature requests, and
+people wanting clarification. Dealing with these last three points
+requires some organisation, and so we will learn how to use an issue
+tracker for this.</p>
+<p>Github, gitlab, and bitbucket all offer an form of issue tracking
+that is attached to each of your software repositories. In this lesson
+we’ll focus on the Github issue tracker, but the lessons learned here
+are applicable to any issue tracker system.</p>
+<p>The issue tracker is a way of engaging with your co-developers and
+end-users to discuss any problems that people may be having when using
+the software. The issue tracker is available for all Github
+repositories, and enabled by default. However, publishing code on Github
+does not mean that you are obligated to provide any support at all. If
+you don’t intend on providing support for your software, it would be a
+good idea to mention this in the <code>README.md</code> file that is
+shown on the landing page so that people have clear expectations. If you
+do intend to provide support and receive feedback then the issue tracker
+is for you.</p>
+<div class="section level3">
+<h3 id="overview">Overview<a class="anchor" aria-label="anchor" href="#overview"></a>
+</h3>
+<p>We will cover four of the most common issues that you are likely to
+see or use on the issue tracker, and give some guidance and advice about
+how to approach them. We’ll cover general questions, bug reports,
+feature requests, and pull requests.</p>
+<p>Github issues has become a full featured work planning and project
+management system (see link), most of which is beyond the scope of this
+course. We will be focusing on the basic capabilities of the issue
+tracker to get you and your group started. Once you are up and running
+you should explore the other features.</p>
+<p>To begin, let’s navigate to the github repository for our project of
+choice. On the front page you should see a set of tabs. By default
+you’ll be seeing the <code>&lt;&gt; code</code> tab, but we want to
+select the <code>⊙ Issues</code> tab.</p>
+<p><img src="../fig/team/repo-tabs-issues.png" alt="Repo no issues" class="figure">
+Initially this will be blank for your project because there are no
+issues (yay).</p>
+</div>
+<div class="section level3">
+<h3 id="creating-an-issue">Creating an issue<a class="anchor" aria-label="anchor" href="#creating-an-issue"></a>
+</h3>
+<p>Navigate to the <code>Issues</code> tab of a repository on Github and
+you’ll see a “New issue” button in green. Press this and we’ll explore
+some of the options.</p>
+<p>An issue has a title (or short description) and a comment (long
+description). When creating an issue you can add some labels to it so
+that others can easily understand what kind of issue you are reporting.
+Github has a range of built in labels, and the repository owner/admins
+can create more if needed.</p>
+<figure><img src="../fig/team/issue-labels.png" alt="Label and issue" class="figure mx-auto d-block"><div class="figcaption">Label and issue</div>
+</figure><p>Once an issue has been created, the author or repository owner/admins
+can adjust the issue by assigning people to work on it, updating the
+labels. This is a helpful piece of organisational work. Others can can
+also comment on the issue so that there is a back and forth between the
+developers, the person reporting the issue, and anyone else experiencing
+the same/similar issues. When an issue is resolved it can be marked as
+closed. Closed issues are not shown by default, but can be seen by
+removing the <code>is:open</code> or add the <code>is:closed</code>
+filter.</p>
+<p>We will now go through some of the different types of issues that are
+typically reported and in the next lesson we’ll have a go at
+creating/resolving these issues.</p>
+<div class="section level4">
+<h4 id="questions">Questions<a class="anchor" aria-label="anchor" href="#questions"></a>
+</h4>
+<p>This tag is usually used by people asking for clarification. There is
+not necessarily any issue with the code, it is just that the user
+doesn’t understand something. The threaded structure of the issue
+tracker makes this a useful place to have a discussion about the
+question. Questions usually lead to additional documentation being
+created – for example an FAQ section on the wiki for the repository.
+Questions can also be escalated into bugs or feature requests.</p>
+<p>If someone sends you a question via email that does not involve
+personal/private information, then it is often a good idea to ask them
+to post the question on the issue tracker and then discuss it there. If
+the person isn’t that interested in using Github then I often just ask
+for their permission to replicate the email discussion on the issue
+tracker (with/without naming them depending on their preference). The
+mentality is the same with people asking questions in a classroom – if
+one person has a question, often there are others with the same question
+who are too shy to ask. By answering the question publicly you reduce
+the number of duplicate email chains that you have.</p>
+</div>
+<div class="section level4">
+<h4 id="bug-reports">Bug reports<a class="anchor" aria-label="anchor" href="#bug-reports"></a>
+</h4>
+<p>Bug reports are for when people find an error in your code. The
+common errors are code crashing, or code giving unexpected or wrong
+output. Best practice for reporting a bug is to give as much information
+as is required to reproduce the error. This is the minimum working
+example (MWE), or rather the minimum example that produces the error. It
+is at this point where code versions and environments can be super
+helpful. Asking people to run <code>mycode --version</code> and paste
+the output in the bug report can help a lot. Sometimes people work with
+old versions of code and simply updating to a new version can fix the
+issue. For a program crash, a copy/paste of the output/error is
+useful.</p>
+<p>Github allows you to add files and images to the issue tracker so
+that people have the option of supplying a small amount of real data to
+reproduce the error. Similarly they can screenshot a problem
+(particularly useful for graphic interfaces or code that produces
+plots).</p>
+<p>Keep in mind that when someone posts a bug report it is because they
+are having a problem. That problem is real. It may not be due to your
+code. It may be due to them misusing or misunderstanding your code. It
+may be due to issues with code that you are dependent on. It may be your
+fault. Just remember that people are not looking to place blame, but are
+looking to find a solution. Have a conversation with them in the issue
+tracker to figure out what is going on and how you could help solve the
+problem. If you don’t consider the bug to be a problem (it’s a feature
+not a bug) then note this in the issue tracker.</p>
+</div>
+<div class="section level4">
+<h4 id="feature-requests">Feature requests<a class="anchor" aria-label="anchor" href="#feature-requests"></a>
+</h4>
+<p>Sometimes a user will have an idea about how to improve or expand the
+capability of the software they are using. A feature request is a way
+for the user to suggest these improvements. Feature requests are not an
+indication that something is wrong, but that there is an opportunity to
+be better. Some example feature requests are:</p>
+<ul>
+<li>support additional input/output formats, or</li>
+<li>support additional operating systems, or</li>
+<li>provide some sanity checking before users made silly mistakes,
+or</li>
+<li>improve a users quality of life by combining multiple often used
+functions into one, or</li>
+<li>provide documentation in an alternative format (html, pdf, online
+wiki etc).</li>
+</ul>
+<p>Feature requests are typically a user’s wish list, which if
+fulfilled, will save the user time or allow them to expand the scope of
+their work.</p>
+</div>
+<div class="section level4">
+<h4 id="pull-requests">Pull requests<a class="anchor" aria-label="anchor" href="#pull-requests"></a>
+</h4>
+<p>For a collaborative software development project you’ll typically
+have multiple people contributing code to a range of branches. When the
+development of the branch is complete the developer will submit a pull
+request to have their changes/updates incorporated into a reference
+branch (usually dev or main). A pull request is essentially a moderated
+<code>git merge</code> (or <code>git rebase</code>) that allows you to
+see any conflicts, see/discuss/approve changes, and make any final
+changes required before the merge actually takes place.</p>
+<p>People have the option of forking (copying) your public repository
+and making their own changes. If you are lucky, people will make useful
+changes to your code and then offer these changes back to you via a pull
+request. If these changes are aligned with the goals of your project and
+meet the various style and testing conditions that you set, then the
+pull request should be accepted.</p>
+<p>A pull request is a request. There is no necessity for all pull
+requests to be accepted, however it is good practice (and polite) to
+give feedback on any pull requests that are not going to be
+accepted.</p>
+<p>If you would like to capture the style, testing, and documentation
+expectations for your project then a file called
+<code>CONTRIBUTING.md</code> in the root of the repository is a common
+place to define this. You can ask that people making pull requests obey
+these expectations, and it is possible to create automated ways of
+ensuring these standards are obeyed.</p>
+</div>
+</div>
+<div class="section level3">
+<h3 id="summary-2">Summary<a class="anchor" aria-label="anchor" href="#summary-2"></a>
+</h3>
+<p>Whether your development group is just you, or three, or ten people,
+the issue tracker is a free and convenient workflow management
+platform.</p>
+<div id="group-activity-create-discuss-and-resolve-an-issue-on-github" class="callout discussion">
+<div class="callout-square">
+<i class="callout-icon" data-feather="message-circle"></i>
+</div>
+<span class="callout-header">Discussion</span>
+<div id="group-activity-create-discuss-and-resolve-an-issue-on-github" class="callout-inner">
+<h3 class="callout-title">GROUP Activity: Create, discuss, and resolve
+an issue on GitHub</h3>
+<div class="callout-content">
+<p>Given the previous lessons, you should consider creating or updating
+the <code>CONTRIBUTING.md</code> file for your project.</p>
+<ol style="list-style-type: decimal">
+<li>Have one member of your team create a new issue in the GitHub issue
+tracker to create/update the file and assign the issue to at least one
+other member of the team.</li>
+<li>Tag the issue with a tag such as <code>documentation</code>, or
+create a new tag that is more relevant.</li>
+<li>Within your group, use the issue tracker to discuss what sections
+are required for the <code>CONTRIBUTING.md</code> file.</li>
+<li>Once there is a consensus on the content, have someone make the
+required changes and push the file to GitHub (or edit directly online
+using the GitHub editor).</li>
+<li>Try using the <code>#&lt;IssueNumber&gt;</code> format within the
+git commit to link the commit to the issue discussion.</li>
+<li>When an acceptable file has been created/modified mark the issue as
+resolved (closed).</li>
+</ol>
+</div>
+</div>
+</div>
+</div>
+</section><section><h2 class="section-heading" id="branching-and-development">Branching and development<a class="anchor" aria-label="anchor" href="#branching-and-development"></a>
+</h2>
+<hr class="half-width">
+<p>In this lesson we’ll focus on one of the most popular git workflows:
+<a href="https://www.atlassian.com/git/tutorials/comparing-workflows/feature-branch-workflow" class="external-link">Feature
+Branching</a>. Many other workflows exist, but the most important
+feature of any workflow is that it provides benefit to the project. See
+the Atlassian tutorials on <a href="https://www.atlassian.com/git/tutorials/comparing-workflows" class="external-link">workflows</a>
+for more information.</p>
+<div class="section level3">
+<h3 id="feature-branching">Feature branching<a class="anchor" aria-label="anchor" href="#feature-branching"></a>
+</h3>
+<p>At the core of the feature branching workflow is the idea that all
+development should be done in a branch separate from the main branch.
+The rational for this is to ensure that the main branch of the project
+is always in a not-broken state. When people find your software
+repository and want to try it out, they will most likely check out the
+main branch and start their evaluation or usage journey from there.
+Having a broken main branch is a good way to turn people away from your
+software, and generate a lot of bug reports.</p>
+<p>The diagram below shows the basic feature branch workflow.</p>
+<figure><img src="../fig/Feature-Branching-Workflow.png" alt="feature branching" class="figure mx-auto d-block"><div class="figcaption">feature branching</div>
+</figure><p>In the above case a feature has been requested in the issue with
+ticket number 123. A developer is assigned the task of developing this
+feature and begins by creating a new branch with <code>git branch</code>
+using a branch name appropriate for the task. The development proceeds
+on the feature branch, occasionally breaking the code, fixing the bugs,
+updating tests and documentation, until finally a new version of the
+code has been created which implements the new feature. At this point
+the developer responsible for this branch ensures all their changes are
+pushed to Github and the opens a pull request. During the pull request
+other developers, and maybe the person who submitted the initial feature
+request, will review and discuss the changes, ensure that the code meets
+the repository standards for style and quality. Once everyone is happy
+with the changes in the feature branch it is merged into main by
+accepting the pull request on Github. Once the feature branch has been
+merged into main it is deleted.</p>
+<p>In this scheme many features branches can be created, developed, and
+then deleted over the life-cycle of the project.</p>
+<p>A common variation on the feature branch workflow is to include a
+development branch as an intermediary between the main and feature
+branches. Feature branches are created off the develop branch and then
+merged back when complete. The develop branch therefore contains all of
+the latest features and if new features interact with each other in
+unexpected ways, this can be discovered on the develop branch rather
+than the main branch. The main branch is used for tagging and releasing
+new versions of the software, and these new versions can each include a
+number of developments.</p>
+<figure><img src="../fig/Feature-Branching-Workflow-1.png" alt="more feature branching" class="figure mx-auto d-block"><div class="figcaption">more feature branching</div>
+</figure>
+</div>
+<div class="section level3">
+<h3 id="setting-up-branches">Setting up branches<a class="anchor" aria-label="anchor" href="#setting-up-branches"></a>
+</h3>
+<p>Git does not see any branch as being special. We assign “specialness”
+to a branch based on the name, but we can rename branches or change our
+idea of special as we like. Regardless of how a git repository has been
+set up, you can move from one branching scheme to another at any time.
+Creating a new <code>develop</code> branch and then making a habit of
+branching features from that instead of <code>main</code> can be done at
+any time. The key thing is to make sure that the branching/development
+workflow that you decide on is serving a purpose for your project. Early
+on in the development of some software you may have a single developer
+who is hashing out a proof of concept. In this case you may do all your
+development right on the main branch. As you start to share your code
+with others you may decide to move development into the develop branch,
+and merge back to main only when the code-base is in a working state.
+Finally, as you bring more developers into the project you may decide
+that a feature-develop-main workflow is a better way to keep the various
+developments from interfering with each other.</p>
+<p>The point is that you should make a choice, write it down some place
+(<code>CONTRIBUTING.md</code>), stick to that choice for as long as it
+is useful, and revise it when needed.</p>
+</div>
+</section><section><h2 class="section-heading" id="an-example-development-cycle-for-fixing-a-bug">An example development cycle for fixing a bug<a class="anchor" aria-label="anchor" href="#an-example-development-cycle-for-fixing-a-bug"></a>
+</h2>
+<hr class="half-width">
+<p>As I’m using my own code for various tasks I notice that</p>
+<p><code>./scripts/sim_catalog --ref_ra=00:42:44.3 --ref_dec=-00:30:19 --radius 1 --n 1000</code></p>
+<p>produces some unexpected output. A plot of the sky locations is shown
+below. Note that the points have been generated around a central
+declination of <code>00:30:19</code> instead of <code>-00:30:19</code>.
+It seems that there is an issue with a negative reference
+declination.</p>
+<figure><img src="../fig/team/diagnostic-plot.png" alt="diagnostic plot" class="figure mx-auto d-block"><div class="figcaption">diagnostic plot</div>
+</figure><div class="section level3">
+<h3 id="reporting-the-issue">Reporting the issue<a class="anchor" aria-label="anchor" href="#reporting-the-issue"></a>
+</h3>
+<p>As a user, once I have identified an issue I should go to github and
+make a bug report on the issue tracker. In the example project I’m the
+only on the developer team so I’ll assign myself to the issue. I’ll also
+label it as being a bug.</p>
+<figure><img src="../fig/team/new-issue.png" alt="new issue" class="figure mx-auto d-block"><div class="figcaption">new issue</div>
+</figure>
+</div>
+<div class="section level3">
+<h3 id="confirming-the-issue">Confirming the issue<a class="anchor" aria-label="anchor" href="#confirming-the-issue"></a>
+</h3>
+<p>Now that the issue has been submitted I’ll tackle this problem from
+the developer point of view.</p>
+<p>The first thing to do is read and understand the issue. In this case
+I’ll just run the script exactly as shown in the issue tracker, and see
+that I get the same problem.</p>
+</div>
+<div class="section level3">
+<h3 id="create-a-feature-branch-for-this-issue">Create a feature branch for this issue<a class="anchor" aria-label="anchor" href="#create-a-feature-branch-for-this-issue"></a>
+</h3>
+<p>At this point I should create a new branch in my repository with some
+relevant name. Since the names of issues are not guaranteed to be unique
+I will instead use the issue number (#1 in this case) as part of the
+branch name. For a project with multiple developers it is also a good
+idea to identify who is the ‘owner’ of each branch. An example branch
+choice would be:</p>
+<p><code>git branch Paulhancock/Issue#1</code></p>
+<p>After some trial and error I find that the cause of the bug is in the
+following code:</p>
+<div class="codewrapper sourceCode" id="cb3">
+<h3 class="code-label">PYTHON<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
+</h3>
+<pre class="sourceCode python" tabindex="0"><code class="sourceCode python"><span id="cb3-1"><a href="#cb3-1" tabindex="-1"></a><span class="kw">def</span> generate_positions(ref_ra<span class="op">=</span><span class="st">'00:42:44.3'</span>,</span>
+<span id="cb3-2"><a href="#cb3-2" tabindex="-1"></a>                       ref_dec<span class="op">=</span><span class="st">'41:16:09'</span>,</span>
+<span id="cb3-3"><a href="#cb3-3" tabindex="-1"></a>                       radius<span class="op">=</span><span class="fl">1.</span>,</span>
+<span id="cb3-4"><a href="#cb3-4" tabindex="-1"></a>                       nsources<span class="op">=</span><span class="dv">1000</span>):</span>
+<span id="cb3-5"><a href="#cb3-5" tabindex="-1"></a>...</span>
+<span id="cb3-6"><a href="#cb3-6" tabindex="-1"></a>    <span class="co"># convert DMS -&gt; degrees</span></span>
+<span id="cb3-7"><a href="#cb3-7" tabindex="-1"></a>    d, m, s <span class="op">=</span> ref_dec.split(<span class="st">':'</span>)</span>
+<span id="cb3-8"><a href="#cb3-8" tabindex="-1"></a>    dec <span class="op">=</span> <span class="bu">int</span>(d)<span class="op">+</span><span class="bu">int</span>(m)<span class="op">/</span><span class="dv">60</span><span class="op">+</span><span class="bu">float</span>(s)<span class="op">/</span><span class="dv">3600</span></span>
+<span id="cb3-9"><a href="#cb3-9" tabindex="-1"></a>...</span>
+<span id="cb3-10"><a href="#cb3-10" tabindex="-1"></a>    <span class="cf">return</span> ras, decs</span></code></pre>
+</div>
+<p>The first thing that I do is to make a new test that will expose this
+bug.</p>
+</div>
+<div class="section level3">
+<h3 id="writing-a-test">Writing a test<a class="anchor" aria-label="anchor" href="#writing-a-test"></a>
+</h3>
+<p>We will now write our first formal test for our code. We’ll use a
+format that will make future automated testing easier. All the tests
+that we wish to run are python scripts, and we’ll place them in the
+<code>tests/</code> directory. Each script will test a different
+sub-module, and for the <code>sim</code> sub-module of our
+<code>skysim</code> module, we’ll collect all the tests into
+<code>tests/test_sim.py</code>.</p>
+<p>The first thing that we need to do is import the module/code that
+will be tested. In this case that will be the
+<code>generate_positions</code> function within the
+<code>skysim.sim</code> module.</p>
+<div class="codewrapper sourceCode" id="cb4">
+<h3 class="code-label">PYTHON<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
+</h3>
+<pre class="sourceCode python" tabindex="0"><code class="sourceCode python"><span id="cb4-1"><a href="#cb4-1" tabindex="-1"></a><span class="co">#! /usr/bin/env python3</span></span>
+<span id="cb4-2"><a href="#cb4-2" tabindex="-1"></a><span class="co">"""</span></span>
+<span id="cb4-3"><a href="#cb4-3" tabindex="-1"></a><span class="co">Tests for the skysim.sim module</span></span>
+<span id="cb4-4"><a href="#cb4-4" tabindex="-1"></a><span class="co">"""</span></span>
+<span id="cb4-5"><a href="#cb4-5" tabindex="-1"></a><span class="im">import</span> numpy <span class="im">as</span> np</span>
+<span id="cb4-6"><a href="#cb4-6" tabindex="-1"></a><span class="im">from</span> skysim.sim <span class="im">import</span> generate_positions</span></code></pre>
+</div>
+<p>Each test that we write will be contained within a separate function
+whose name begins with <code>test_</code>, and which returns
+<code>None</code> when the test passes, and raises an
+<code>AssertionError</code> if the test fails. While we could home-brew
+our own set of standards for what pass/fail looks like, we will instead
+use standards set out by one of the common python testing frameworks
+called <code>pytest</code>.</p>
+<p>We craft a piece of code that will detect the mistake in our original
+function. In this case the mistake is that the negative sign at the
+start of the declination is being ignored so we get the wrong positions.
+To test for this we’ll run <code>generate_positions</code> with a
+declination that is negative, and small radius, so that the expected
+output should consist entirely of negative declinations if the function
+works properly, and probably all positive declinations if it’s
+broken.</p>
+<p>Our test function looks like this:</p>
+<div class="codewrapper sourceCode" id="cb5">
+<h3 class="code-label">PYTHON<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
+</h3>
+<pre class="sourceCode python" tabindex="0"><code class="sourceCode python"><span id="cb5-1"><a href="#cb5-1" tabindex="-1"></a><span class="kw">def</span> test_negative_dec():</span>
+<span id="cb5-2"><a href="#cb5-2" tabindex="-1"></a>    <span class="co">"""</span></span>
+<span id="cb5-3"><a href="#cb5-3" tabindex="-1"></a><span class="co">    Test for the negative dec bug noted in issue #1</span></span>
+<span id="cb5-4"><a href="#cb5-4" tabindex="-1"></a><span class="co">    """</span></span>
+<span id="cb5-5"><a href="#cb5-5" tabindex="-1"></a>    _, decs <span class="op">=</span> generate_positions(ref_ra<span class="op">=</span><span class="st">'00:00:00'</span>,</span>
+<span id="cb5-6"><a href="#cb5-6" tabindex="-1"></a>                                 ref_dec<span class="op">=</span><span class="st">'-00:30:19'</span>,</span>
+<span id="cb5-7"><a href="#cb5-7" tabindex="-1"></a>                                 radius<span class="op">=</span><span class="fl">0.1</span>, nsources<span class="op">=</span><span class="dv">10</span>)</span>
+<span id="cb5-8"><a href="#cb5-8" tabindex="-1"></a>    <span class="cf">if</span> <span class="kw">not</span> np.<span class="bu">all</span>(decs <span class="op">&lt;</span> <span class="dv">0</span>):</span>
+<span id="cb5-9"><a href="#cb5-9" tabindex="-1"></a>        <span class="cf">raise</span> <span class="pp">AssertionError</span>(<span class="st">"Declinations should be &lt;0, but are &gt;0"</span>)</span>
+<span id="cb5-10"><a href="#cb5-10" tabindex="-1"></a>    <span class="cf">return</span></span></code></pre>
+</div>
+<p>In order to run the tests we can add the following snippet to the end
+of our script. The snippet essentially looks at all the global variables
+(including function names), selects those that start with
+<code>test_</code>, assumes that they are a function and calls that
+function. When the function is called there is a try/except for an
+<code>AssertionError</code> which reports failure if it’s caught, or
+reports success if no error was raised.</p>
+<div class="codewrapper sourceCode" id="cb6">
+<h3 class="code-label">PYTHON<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
+</h3>
+<pre class="sourceCode python" tabindex="0"><code class="sourceCode python"><span id="cb6-1"><a href="#cb6-1" tabindex="-1"></a><span class="cf">if</span> <span class="va">__name__</span> <span class="op">==</span> <span class="st">"__main__"</span>:</span>
+<span id="cb6-2"><a href="#cb6-2" tabindex="-1"></a>    <span class="co"># introspect and run all the functions starting with 'test'</span></span>
+<span id="cb6-3"><a href="#cb6-3" tabindex="-1"></a>    <span class="cf">for</span> f <span class="kw">in</span> <span class="bu">dir</span>():</span>
+<span id="cb6-4"><a href="#cb6-4" tabindex="-1"></a>        <span class="cf">if</span> f.startswith(<span class="st">'test'</span>):</span>
+<span id="cb6-5"><a href="#cb6-5" tabindex="-1"></a>            <span class="cf">try</span>:</span>
+<span id="cb6-6"><a href="#cb6-6" tabindex="-1"></a>                <span class="bu">globals</span>()[f]()</span>
+<span id="cb6-7"><a href="#cb6-7" tabindex="-1"></a>            <span class="cf">except</span> <span class="pp">AssertionError</span> <span class="im">as</span> e:</span>
+<span id="cb6-8"><a href="#cb6-8" tabindex="-1"></a>                <span class="bu">print</span>(<span class="st">"</span><span class="sc">{0}</span><span class="st"> FAILED with error: </span><span class="sc">{1}</span><span class="st">"</span>.<span class="bu">format</span>(f, e))</span>
+<span id="cb6-9"><a href="#cb6-9" tabindex="-1"></a>            <span class="cf">else</span>:</span>
+<span id="cb6-10"><a href="#cb6-10" tabindex="-1"></a>                <span class="bu">print</span>(<span class="st">"</span><span class="sc">{0}</span><span class="st"> PASSED"</span>.<span class="bu">format</span>(f))</span></code></pre>
+</div>
+<p>When we run our test code we get the following result:</p>
+<div class="codewrapper sourceCode" id="cb7">
+<h3 class="code-label">BASH<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
+</h3>
+<pre class="sourceCode bash" tabindex="0"><code class="sourceCode bash"><span id="cb7-1"><a href="#cb7-1" tabindex="-1"></a><span class="ex">$</span> python tests/test_sim.py </span>
+<span id="cb7-2"><a href="#cb7-2" tabindex="-1"></a><span class="ex">test_negative_dec</span> FAILED with error Declinations should be <span class="op">&lt;</span>0, but are <span class="op">&gt;</span>0</span></code></pre>
+</div>
+<p>This failure is not a bad thing, it means that we have successfully
+written a test function that will identify the bug. Now we can begin the
+process of fixing the bug.</p>
+</div>
+<div class="section level3">
+<h3 id="fixing-the-bug">Fixing the bug<a class="anchor" aria-label="anchor" href="#fixing-the-bug"></a>
+</h3>
+<p>Finally, once I have the test code in place, it’s time to fix the
+bug. I make some modifications to account for the leading minus sign on
+the declination as follows:</p>
+<div class="codewrapper sourceCode" id="cb8">
+<h3 class="code-label">PYTHON<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
+</h3>
+<pre class="sourceCode python" tabindex="0"><code class="sourceCode python"><span id="cb8-1"><a href="#cb8-1" tabindex="-1"></a>    <span class="co"># convert DMS -&gt; degrees</span></span>
+<span id="cb8-2"><a href="#cb8-2" tabindex="-1"></a>    d, m, s <span class="op">=</span> ref_dec.split(<span class="st">':'</span>)</span>
+<span id="cb8-3"><a href="#cb8-3" tabindex="-1"></a>    sign <span class="op">=</span> <span class="dv">1</span></span>
+<span id="cb8-4"><a href="#cb8-4" tabindex="-1"></a>    <span class="cf">if</span> d[<span class="dv">0</span>] <span class="op">==</span> <span class="st">'-'</span>:</span>
+<span id="cb8-5"><a href="#cb8-5" tabindex="-1"></a>        sign <span class="op">=</span> <span class="op">-</span><span class="dv">1</span></span>
+<span id="cb8-6"><a href="#cb8-6" tabindex="-1"></a>    dec <span class="op">=</span> sign<span class="op">*</span>(<span class="bu">abs</span>(<span class="bu">int</span>(d))<span class="op">+</span><span class="bu">int</span>(m)<span class="op">/</span><span class="dv">60</span><span class="op">+</span><span class="bu">float</span>(s)<span class="op">/</span><span class="dv">3600</span>)</span></code></pre>
+</div>
+<p>And I then re-run the code to make sure that the bug has been
+resolved, and then run my tests:</p>
+<div class="codewrapper sourceCode" id="cb9">
+<h3 class="code-label">BASH<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
+</h3>
+<pre class="sourceCode bash" tabindex="0"><code class="sourceCode bash"><span id="cb9-1"><a href="#cb9-1" tabindex="-1"></a><span class="ex">$</span> python tests/test_sim.py </span>
+<span id="cb9-2"><a href="#cb9-2" tabindex="-1"></a><span class="ex">test_negative_dec</span> PASSED</span></code></pre>
+</div>
+<p>As I develop more and more tests the list of functions run will grow.
+Once the new bug has been solved I will re-run <strong>all</strong> my
+tests to ensure that fixing this bug has not caused a new bug some other
+place.</p>
+</div>
+<div class="section level3">
+<h3 id="checking-in-my-work">Checking in my work<a class="anchor" aria-label="anchor" href="#checking-in-my-work"></a>
+</h3>
+<p>I now check in my new test code, and updated version of sim.py:</p>
+<div class="codewrapper sourceCode" id="cb10">
+<h3 class="code-label">BASH<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
+</h3>
+<pre class="sourceCode bash" tabindex="0"><code class="sourceCode bash"><span id="cb10-1"><a href="#cb10-1" tabindex="-1"></a><span class="fu">git</span> add tests/test_sim.py</span>
+<span id="cb10-2"><a href="#cb10-2" tabindex="-1"></a><span class="fu">git</span> commit <span class="at">-m</span> <span class="st">'expose bug from issue#1'</span></span>
+<span id="cb10-3"><a href="#cb10-3" tabindex="-1"></a><span class="fu">git</span> commit <span class="at">-m</span> <span class="st">'resolve #1'</span> skysim/sim.py</span></code></pre>
+</div>
+<p>Note that I have used <code>#1</code> to refer to the issue from
+within my commit message. When viewed on Github these commit messages
+will automatically generate a link to the issue, and when viewing the
+issue I should be able to see the reverse link.</p>
+<p>I now push the bug fix (and my new branch) to the Github repo.</p>
+<div class="codewrapper sourceCode" id="cb11">
+<h3 class="code-label">BASH<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
+</h3>
+<pre class="sourceCode bash" tabindex="0"><code class="sourceCode bash"><span id="cb11-1"><a href="#cb11-1" tabindex="-1"></a><span class="fu">git</span> push <span class="at">--set-upstream</span> origin Paulhancock/Issue#1</span></code></pre>
+</div>
+<p>If we look on the original issue page, we can see the link to the
+commit.</p>
+<figure><img src="../fit/team/issue-reference.png" alt="issue referenced in commit" class="figure mx-auto d-block"><div class="figcaption">issue referenced in commit</div>
+</figure>
+</div>
+<div class="section level3">
+<h3 id="creating-a-pull-request">Creating a pull request<a class="anchor" aria-label="anchor" href="#creating-a-pull-request"></a>
+</h3>
+<p>When we navigate to the landing page for our repository we will see a
+new yellow banner appear as below:</p>
+<figure><img src="../fig/team/repo-with-updates-on-branch.png" alt="github issue with recent updates on branch" class="figure mx-auto d-block"><div class="figcaption">github issue with recent updates on branch</div>
+</figure><p>We can click the green “Compare &amp; pull request” button to start a
+new pull request. Alternatively we can go to the “Pull requests” tab.
+Either way we enter a title and description for the pull request.</p>
+<p>Note that the assign/label/project/milestone options that we see on
+the pull request form are mostly the same as on the Issues form. This is
+because pull requests are just special types of issues. They share a
+numbering scheme. This is the first pull request for this repository but
+it will be labelled <code>#2</code> because there is an existing issue
+<code>#1</code>. One difference between a pull request and an issue is
+that a pull request can have a reviewer assigned to it. Here I have
+selected myself as the assignee (the person looking after the pull
+request), and <code>SkyWa7ch3r</code> as the reviewer (the person who
+will review my code and sign off when they are happy).</p>
+<figure><img src="../fig/team/new-PR.png" alt="new pull request" class="figure mx-auto d-block"><div class="figcaption">new pull request</div>
+</figure><p>Github does some work in the background to let me know that there
+will be no conflicts between this branch and the main branch, so that it
+is ‘safe’ to do the merge. Currently there is no indication that the
+code works or passes our tests. For now we let the reviwer do this work.
+The reviewer would pull the <code>Paulhancock/Issue#1</code> branch, run
+the tests and see that they pass, then come back to github and make a
+note of it in the discussion. (In a later lesson we’ll see how we can
+make Github do most of this work for us using Github actions.)</p>
+<figure><img src="../fig/team/PR-with-reviewer-comment.png" alt="pull request with a reviewer comment" class="figure mx-auto d-block"><div class="figcaption">pull request with a reviewer comment</div>
+</figure><p>Once our reviewer(s) are happy with the changes we can merge our
+branch back into main by pressing the green button. This will create a
+new commit on the main branch in order to do the merge, so we’ll be
+asked for a title/description for the commit. It is pre-filled for us.
+Once the merge is complete Github will let us know that all is good, and
+suggest that we delete the branch. Since the feature is merged we no
+longer need this branch and will delete it.</p>
+<figure><img src="../fig/team/PR-merged.png" alt="pull request merged" class="figure mx-auto d-block"><div class="figcaption">pull request merged</div>
+</figure>
+</div>
+<div class="section level3">
+<h3 id="closing-the-issue">Closing the issue<a class="anchor" aria-label="anchor" href="#closing-the-issue"></a>
+</h3>
+<p>If we navigate back to the issues tab, we’ll see that the issue
+related to the pull request has also been closed for us. This is because
+we wrote <code>resolve #1</code> as a comment for our commit. When that
+commit is merged into the main branch git will automatically resolve
+(close) the linked issue. If we didn’t use this smart linking capability
+we can still go back to the open issue and close it. Either way it would
+be good to leave a note about the issue being fixed.</p>
+</div>
+<div class="section level3">
+<h3 id="summary-3">Summary<a class="anchor" aria-label="anchor" href="#summary-3"></a>
+</h3>
+<p>The development cycle for fixing a bug is as follows:</p>
+<ul>
+<li>identify bug</li>
+<li>report bug on the Gihub issue tracker</li>
+<li>confirm that the bug exists</li>
+<li>create a feature branch</li>
+<li>write a test to expose the bug/error</li>
+<li>fix the bug</li>
+<li>run all tests</li>
+<li>commit changes</li>
+<li>create a pull request</li>
+<li>merge the branch into main and delete the feature branch</li>
+</ul>
+<p>In this example we had one person doing the reporting/fixing. Usually
+you’ll have an end user doing the finding/report part, and then one or
+more developers doing the remainder.</p>
+<div id="group-activity-working-on-the-same-problem" class="callout discussion">
+<div class="callout-square">
+<i class="callout-icon" data-feather="message-circle"></i>
+</div>
+<span class="callout-header">Discussion</span>
+<div id="group-activity-working-on-the-same-problem" class="callout-inner">
+<h3 class="callout-title">GROUP Activity: Working on the same
+problem</h3>
+<div class="callout-content">
+<p>In this activity you will practice working in a team as you go
+through a simple development cycle.</p>
+<ol style="list-style-type: decimal">
+<li>As a group, identify a minor issue with your current project. (Don’t
+feel bad, the only projects that don’t have issues are the ones that no
+one is using).</li>
+<li>Since the focus here is on the life-cycle of a bug, choose a small
+thing that is easy to identify and fix.</li>
+<li>A function without a docstring would be ideal (and probably easy to
+find).</li>
+<li>Have one team member create an issue that describes the problem and
+explains what a solution would look like.</li>
+<li>eg “myFunc(4) should return a filename”, or “myFunc should have a
+docstring in <format>”.</format>
+</li>
+<li>Create a new branch for development work called <feature> or
+Issue<number>.</number></feature>
+</li>
+<li>Assign <strong>at least two team members</strong> to work on this
+issue.</li>
+<li>Have <strong>one team member</strong> create a solution for the
+issue and then:</li>
+<li>Push the changes to the remote repository,</li>
+<li>Open a pull request to merge this branch into main,</li>
+<li>Set the assignees to be all the members working on the issue,</li>
+<li>Set the reviewer to be a team member who is not working on the code
+(if you have enough people, otherwise choose someone other than the pull
+request creator), and</li>
+<li>Add whatever labels look appropriate.</li>
+<li>Have <strong>the other team members</strong>:</li>
+<li>View the changes via the “files changed” tab of the pull
+request,</li>
+<li>Comment on what is good and what needs improving,</li>
+<li>Pull the active branch to their local machine,</li>
+<li>Make an improvement and commit the change, and</li>
+<li>Push the change back to the active branch.</li>
+<li>Everyone should have an opportunity to make comments and changes,
+but you’ll need to coordinate who is doing what and when to minimise the
+number of merge conflicts that occur.</li>
+<li>Once everyone has had a chance to view/comment/change, have the
+reviewer sign off on the pull request and merge the changes into the
+main branch.</li>
+</ol>
+</div>
+</div>
+</div>
+<!--
 Place links that you need to refer to multiple times across pages here. Delete
 any links that you are not going to use.
- --></p>
+ -->
 </div>
 </section></section>
 </div>
@@ -1686,8 +2292,8 @@ any links that you are not going to use.
   "url": "https://PaulHancock.github.io/Lesson-Testing/instructor/aio.html",
   "identifier": "https://PaulHancock.github.io/Lesson-Testing/instructor/aio.html",
   "dateCreated": "2026-02-23",
-  "dateModified": "2026-02-24",
-  "datePublished": "2026-02-24"
+  "dateModified": "2026-02-25",
+  "datePublished": "2026-02-25"
 }
 
   </script><script>
