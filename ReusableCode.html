@@ -654,9 +654,8 @@ control repository.</p>
 <p>Anaconda uses a slightly different file format to capture essentially
 the same information. For the above example our file would look
 like:</p>
-<blockquote>
-<p>dependencies: - numpy&gt;=1.19</p>
-</blockquote>
+<pre><code><span><span class="va">dependencies</span><span class="op">:</span></span>
+<span>  <span class="op">-</span> <span class="va">numpy</span><span class="op">&gt;=</span><span class="fl">1.19</span></span></code></pre>
 <p>Anaconda is able to reproduce not just the python modules, but the
 entire virtual environment including the versions of python and anaconda
 and also other non-python based codes. You can generate a good starting
@@ -665,10 +664,13 @@ point using <code>conda list --export</code>.</p>
 choices, and 2) not duplicate information, the following method will
 link your <code>environment.yml</code> and <code>requirements.txt</code>
 files:</p>
-<blockquote>
-<p>name: my-env dependencies: - python&gt;=3.8 - anaconda - pip - pip: -
--r requirements.txt</p>
-</blockquote>
+<pre><code>name: my-env
+dependencies:
+  - python&gt;=3.8
+  - anaconda
+  - pip
+  - pip:
+    - -r requirements.txt</code></pre>
 <p>Conda understands pip formatted requirements, but pip doesn’t
 understand conda environment files, so there is no inverse version of
 the above linking.</p>
@@ -758,33 +760,33 @@ into their LaTeX document.</p>
 to include the above recommendations. Note the format of the
 <code>__citation__</code> string being multi line, and including LaTeX
 formatting.</p>
-<div class="codewrapper sourceCode" id="cb9">
+<div class="codewrapper sourceCode" id="cb11">
 <h3 class="code-label">PYTHON<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
 </h3>
-<pre class="sourceCode python" tabindex="0"><code class="sourceCode python"><span id="cb9-1"><a href="#cb9-1" tabindex="-1"></a><span class="co"># /usr/bin/env python</span></span>
-<span id="cb9-2"><a href="#cb9-2" tabindex="-1"></a></span>
-<span id="cb9-3"><a href="#cb9-3" tabindex="-1"></a>__author__ <span class="op">=</span> [<span class="st">'Dev One'</span>, <span class="st">'Contrib Two'</span>]</span>
-<span id="cb9-4"><a href="#cb9-4" tabindex="-1"></a>__version__ <span class="op">=</span> <span class="st">'0.9'</span></span>
-<span id="cb9-5"><a href="#cb9-5" tabindex="-1"></a>__date__ <span class="op">=</span> <span class="st">'2021-12-02'</span></span>
-<span id="cb9-6"><a href="#cb9-6" tabindex="-1"></a>__citation__ <span class="op">=</span> <span class="st">"""</span></span>
-<span id="cb9-7"><a href="#cb9-7" tabindex="-1"></a><span class="st">% If this work is used to support a publication please</span></span>
-<span id="cb9-8"><a href="#cb9-8" tabindex="-1"></a><span class="sc">% c</span><span class="st">ite the following publication:</span></span>
-<span id="cb9-9"><a href="#cb9-9" tabindex="-1"></a><span class="st">% Description of This code</span></span>
-<span id="cb9-10"><a href="#cb9-10" tabindex="-1"></a><span class="st">@ARTICLE{ExcellentCode_2022,</span></span>
-<span id="cb9-11"><a href="#cb9-11" tabindex="-1"></a><span class="st">   author = </span><span class="sc">{{</span><span class="st">One}, D. and </span><span class="sc">{Two}</span><span class="st">, C. and </span><span class="sc">{People}</span><span class="st">, O},</span></span>
-<span id="cb9-12"><a href="#cb9-12" tabindex="-1"></a><span class="st">    title = "{Awesome sauce code for astronomy projects}",</span></span>
-<span id="cb9-13"><a href="#cb9-13" tabindex="-1"></a><span class="st">  journal = </span><span class="sc">{Nature}</span><span class="st">,</span></span>
-<span id="cb9-14"><a href="#cb9-14" tabindex="-1"></a><span class="st"> keywords = {techniques: image processing, catalogues, surveys},</span></span>
-<span id="cb9-15"><a href="#cb9-15" tabindex="-1"></a><span class="st">     year = 2021,</span></span>
-<span id="cb9-16"><a href="#cb9-16" tabindex="-1"></a><span class="st">    month = may,</span></span>
-<span id="cb9-17"><a href="#cb9-17" tabindex="-1"></a><span class="st">   volume = 1337,</span></span>
-<span id="cb9-18"><a href="#cb9-18" tabindex="-1"></a><span class="st">    pages = {11-15},</span></span>
-<span id="cb9-19"><a href="#cb9-19" tabindex="-1"></a><span class="st">      doi = {some.doi/link.in.here}</span></span>
-<span id="cb9-20"><a href="#cb9-20" tabindex="-1"></a><span class="st">}</span></span>
-<span id="cb9-21"><a href="#cb9-21" tabindex="-1"></a></span>
-<span id="cb9-22"><a href="#cb9-22" tabindex="-1"></a><span class="st">% It is also appropriate to link to the following repository:</span></span>
-<span id="cb9-23"><a href="#cb9-23" tabindex="-1"></a><span class="st">https://github.com/devone/AwesomeSauce</span></span>
-<span id="cb9-24"><a href="#cb9-24" tabindex="-1"></a><span class="st">"""</span></span></code></pre>
+<pre class="sourceCode python" tabindex="0"><code class="sourceCode python"><span id="cb11-1"><a href="#cb11-1" tabindex="-1"></a><span class="co"># /usr/bin/env python</span></span>
+<span id="cb11-2"><a href="#cb11-2" tabindex="-1"></a></span>
+<span id="cb11-3"><a href="#cb11-3" tabindex="-1"></a>__author__ <span class="op">=</span> [<span class="st">'Dev One'</span>, <span class="st">'Contrib Two'</span>]</span>
+<span id="cb11-4"><a href="#cb11-4" tabindex="-1"></a>__version__ <span class="op">=</span> <span class="st">'0.9'</span></span>
+<span id="cb11-5"><a href="#cb11-5" tabindex="-1"></a>__date__ <span class="op">=</span> <span class="st">'2021-12-02'</span></span>
+<span id="cb11-6"><a href="#cb11-6" tabindex="-1"></a>__citation__ <span class="op">=</span> <span class="st">"""</span></span>
+<span id="cb11-7"><a href="#cb11-7" tabindex="-1"></a><span class="st">% If this work is used to support a publication please</span></span>
+<span id="cb11-8"><a href="#cb11-8" tabindex="-1"></a><span class="sc">% c</span><span class="st">ite the following publication:</span></span>
+<span id="cb11-9"><a href="#cb11-9" tabindex="-1"></a><span class="st">% Description of This code</span></span>
+<span id="cb11-10"><a href="#cb11-10" tabindex="-1"></a><span class="st">@ARTICLE{ExcellentCode_2022,</span></span>
+<span id="cb11-11"><a href="#cb11-11" tabindex="-1"></a><span class="st">   author = </span><span class="sc">{{</span><span class="st">One}, D. and </span><span class="sc">{Two}</span><span class="st">, C. and </span><span class="sc">{People}</span><span class="st">, O},</span></span>
+<span id="cb11-12"><a href="#cb11-12" tabindex="-1"></a><span class="st">    title = "{Awesome sauce code for astronomy projects}",</span></span>
+<span id="cb11-13"><a href="#cb11-13" tabindex="-1"></a><span class="st">  journal = </span><span class="sc">{Nature}</span><span class="st">,</span></span>
+<span id="cb11-14"><a href="#cb11-14" tabindex="-1"></a><span class="st"> keywords = {techniques: image processing, catalogues, surveys},</span></span>
+<span id="cb11-15"><a href="#cb11-15" tabindex="-1"></a><span class="st">     year = 2021,</span></span>
+<span id="cb11-16"><a href="#cb11-16" tabindex="-1"></a><span class="st">    month = may,</span></span>
+<span id="cb11-17"><a href="#cb11-17" tabindex="-1"></a><span class="st">   volume = 1337,</span></span>
+<span id="cb11-18"><a href="#cb11-18" tabindex="-1"></a><span class="st">    pages = {11-15},</span></span>
+<span id="cb11-19"><a href="#cb11-19" tabindex="-1"></a><span class="st">      doi = {some.doi/link.in.here}</span></span>
+<span id="cb11-20"><a href="#cb11-20" tabindex="-1"></a><span class="st">}</span></span>
+<span id="cb11-21"><a href="#cb11-21" tabindex="-1"></a></span>
+<span id="cb11-22"><a href="#cb11-22" tabindex="-1"></a><span class="st">% It is also appropriate to link to the following repository:</span></span>
+<span id="cb11-23"><a href="#cb11-23" tabindex="-1"></a><span class="st">https://github.com/devone/AwesomeSauce</span></span>
+<span id="cb11-24"><a href="#cb11-24" tabindex="-1"></a><span class="st">"""</span></span></code></pre>
 </div>
 <div id="group-activity-metadata" class="callout discussion">
 <div class="callout-square">
