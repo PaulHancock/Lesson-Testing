@@ -44,8 +44,3 @@ Software requirements:
 - For OSX or Linux the regular terminal will be fine
 - git, either from the command line, using a git desktop app, or as an add on to PyCharm or VSCode.
 - An account on GitHub is required for some of the activities.
-
-<div class="col-md-4" align="center">
-   <a title="GDPR-compliant Web Analytics" href="https://clicky.com/101447658"><img alt="Clicky" src="//static.getclicky.com/media/links/badge.gif" border="0" /></a>
-      <script async data-id="101447658" src="//static.getclicky.com/js"></script>
-</div>
