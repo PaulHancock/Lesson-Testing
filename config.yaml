@@ -15,10 +15,10 @@
 carpentry: 'swc'
 
 # Alt-text description of the lesson.
-carpentry_description: 'AI/ML for Astronomers'
+carpentry_description: 'Collaborative software development'
 
 # Overall title for pages.
-title: 'Introduction to AI and Machine Learning for Astronomers' # FIXME
+title: 'Introduction to developing software in a team for Astronomers' # FIXME
 
 # Date the lesson was created (YYYY-MM-DD, this is empty by default)
 created: 2026-02-23 # FIXME
