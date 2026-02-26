@@ -246,7 +246,7 @@ To use the above template we make a new step called “Sphinx Build” and copy 
 
 If we commit this file it will trigger all our `on:push` workflows to trigger – both the build/test workflow that we created earlier, and this documentation workflow. For my example I used the name “Documentation with Sphinx” for the workflow, and when it completes I see the following output.
 
-![Successfully run documentation workflow](episodes/fit/automation/workflow-docs-successful.png)
+![Successfully run documentation workflow](episodes/fig/automation/workflow-docs-successful.png)
 ￼
 The good news is that the documentation built without error. The bad news is that I can’t see the documentation to ensure that it’s actually useful. Note in the above image that there are three notes following our job: Status, Total duration, and Artifacts. Artifacts are files that are retained after a job completes. By default there are no artifacts, but we could modify our workflow so that the documentation is part of the artifacts.
 
@@ -312,7 +312,7 @@ jobs:
 
 If we save and wait for the triggered workflow to complete we should see that the artifacts field is now 1, and that there is a new section on our page which shows all the artifacts that were produced.
 
-![A successful workflow which has produced and artifact](episodese/fig/automation/worfklow-docs-with-artifact.png)
+![A successful workflow which has produced and artifact](episodes/fig/automation/worfklow-docs-with-artifact.png)
 ￼
 We can click on the `documentation-html` link to get a zip of the `docs/build/` directory which contains all our documentation.
 
