@@ -301,6 +301,17 @@
 </div>
 <!--/div.accordion-flush-->
 
+<div class="accordion accordion-flush" id="accordionFlush7">
+  <div class="accordion-item">
+    <div class="accordion-header" id="flush-heading7">
+        <a href="AutomationAndCI.html">6. Automation and Continuous Integration (on GitHub)</a>
+    </div>
+<!--/div.accordion-header-->
+
+  </div>
+<!--/div.accordion-item-->
+</div>
+<!--/div.accordion-flush-->
 
 
 
@@ -3835,7 +3846,419 @@ Place links that you need to refer to multiple times across pages here. Delete
 any links that you are not going to use.
  --></p>
 </div>
-</section></section>
+</section></section><section id="aio-AutomationAndCI"><p>Content from <a href="AutomationAndCI.html">Automation and Continuous Integration (on GitHub)</a></p>
+<hr>
+<p>Last updated on 2026-02-26 |
+
+        <a href="https://github.com/PaulHancock/Lesson-Testing/edit/main/episodes/AutomationAndCI.md" class="external-link">Edit this page <i aria-hidden="true" data-feather="edit"></i></a></p>
+<div class="text-end">
+          <button role="button" aria-pressed="false" tabindex="0" id="expand-code" class="pull-right" data-expand="Expand All Solutions " data-collapse="Collapse All Solutions "> Expand All Solutions <i aria-hidden="true" data-feather="plus"></i></button>
+        </div>
+<div class="overview card">
+<h2 class="card-header">Overview</h2>
+<div class="row g-0">
+<div class="col-md-4">
+<div class="card-body">
+<div class="inner">
+<h3 class="card-title">Questions</h3>
+<ul>
+<li>What is CI?</li>
+<li>How can I use GitHub to test my code?</li>
+<li>How do automatically build documentation?</li>
+</ul>
+</div>
+</div>
+</div>
+<div class="col-md-8">
+<div class="card-body">
+<div class="inner bordered">
+<h3 class="card-title">Objectives</h3>
+<ul>
+<li>Become familiar with GitHub actions</li>
+<li>Use a github action to test your code</li>
+<li>Use a github action to build documentation</li>
+</ul>
+</div>
+</div>
+</div>
+</div>
+</div>
+<section><h2 class="section-heading" id="using-github-to-run-your-tests">Using GitHub to run your tests<a class="anchor" aria-label="anchor" href="#using-github-to-run-your-tests"></a>
+</h2>
+<hr class="half-width">
+<p>In this lesson we’ll learn how to have all our tests run every time
+we push changes to GitHub. This is an example of a continuous
+integration (CI) workflow. CI workflows are available via third party
+services such as <a href="https://app.travis-ci.com/" class="external-link">Travis-CI</a>,
+which you can link to your GitHub, GitLab, or Bitbucket repositories to
+build, test, and report on your projects. For this lesson we’ll use
+GitHub actions to perform the testing.</p>
+<div class="section level3">
+<h3 id="github-actions">GitHub actions<a class="anchor" aria-label="anchor" href="#github-actions"></a>
+</h3>
+<blockquote>
+<p>GitHub Actions makes it easy to automate all your software workflows,
+now with world-class CI/CD. Build, test, and deploy your code right from
+GitHub. Make code reviews, branch management, and issue triaging work
+the way you want. GitHub.com</p>
+</blockquote>
+<p>GitHub actions can perform a large variety of automation of tasks,
+but for this lesson we will focus only on the ability to install our
+module and run the tests. All of the actions that are associated with
+your project are stored in text files within your project. This means
+that you can edit the actions locally and then push them like any other
+file.</p>
+<p>The actions are stored in a special directory called
+<code>./github/workflows/</code>, and the files are stored in the
+<code>.yml</code> format.</p>
+</div>
+<div class="section level3">
+<h3 id="creating-a-new-action">Creating a new action<a class="anchor" aria-label="anchor" href="#creating-a-new-action"></a>
+</h3>
+<p>To create a new action the easiest way is to use the Actions tab of
+your GitHub repo, and select the <code>New Workflow</code> button.</p>
+<figure><img src="fig/automation/new-workflow.jpg" alt="The new workflow button on the actions page of your github repository" class="figure mx-auto d-block"><div class="figcaption">The new workflow button on the actions page of
+your github repository</div>
+</figure><p>The <code>New workflow</code> button will take you to a page to
+choose a template from a long list. This list is semi-smart in that it
+will look at the files that you have in your repository and suggest a
+templates based on the language(s) that you are using. The first
+template that shows up for our example repository is “<strong>Python
+Package using Anaconda</strong>” which sounds like what we want so we’ll
+start with that. Note that you can “set up a workflow yourself” using
+the small link (this will begin with a blank workflow). Also note that
+the templates are hosted in GitHub repositories so that you can browse
+them and copy ideas from one to another. For the “<strong>Python Package
+using Anaconda</strong>” the template is in the
+<code>actions/starter-workflows</code> repository.</p>
+<figure><img src="fig/automation/workflow-templates.png" alt="Python workflow templates available on Github" class="figure mx-auto d-block"><div class="figcaption">Python workflow templates available on
+Github</div>
+</figure><p>After selecting a template we’ll go to the online editor for
+committing a new file on GitHub. The file
+(<code>./github/workflows/python-package-conda.yml</code>) is currently
+as follows:</p>
+<div class="codewrapper sourceCode" id="cb1">
+<h3 class="code-label">YML<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
+</h3>
+<pre class="sourceCode yml" tabindex="0"><code class="sourceCode yaml"><span id="cb1-1"><a href="#cb1-1" tabindex="-1"></a><span class="fu">name</span><span class="kw">:</span><span class="at"> Python Package using Conda</span></span>
+<span id="cb1-2"><a href="#cb1-2" tabindex="-1"></a></span>
+<span id="cb1-3"><a href="#cb1-3" tabindex="-1"></a><span class="fu">on</span><span class="kw">:</span><span class="at"> </span><span class="kw">[</span><span class="at">push</span><span class="kw">]</span></span>
+<span id="cb1-4"><a href="#cb1-4" tabindex="-1"></a></span>
+<span id="cb1-5"><a href="#cb1-5" tabindex="-1"></a><span class="fu">jobs</span><span class="kw">:</span></span>
+<span id="cb1-6"><a href="#cb1-6" tabindex="-1"></a><span class="at">  </span><span class="fu">build-linux</span><span class="kw">:</span></span>
+<span id="cb1-7"><a href="#cb1-7" tabindex="-1"></a><span class="at">    </span><span class="fu">runs-on</span><span class="kw">:</span><span class="at"> ubuntu-latest</span></span>
+<span id="cb1-8"><a href="#cb1-8" tabindex="-1"></a><span class="at">    </span><span class="fu">strategy</span><span class="kw">:</span></span>
+<span id="cb1-9"><a href="#cb1-9" tabindex="-1"></a><span class="at">      </span><span class="fu">max-parallel</span><span class="kw">:</span><span class="at"> </span><span class="dv">5</span></span>
+<span id="cb1-10"><a href="#cb1-10" tabindex="-1"></a></span>
+<span id="cb1-11"><a href="#cb1-11" tabindex="-1"></a><span class="at">    </span><span class="fu">steps</span><span class="kw">:</span></span>
+<span id="cb1-12"><a href="#cb1-12" tabindex="-1"></a><span class="at">    </span><span class="kw">-</span><span class="at"> </span><span class="fu">uses</span><span class="kw">:</span><span class="at"> actions/checkout@v2</span></span>
+<span id="cb1-13"><a href="#cb1-13" tabindex="-1"></a><span class="at">    </span><span class="kw">-</span><span class="at"> </span><span class="fu">name</span><span class="kw">:</span><span class="at"> Set up Python 3.10</span></span>
+<span id="cb1-14"><a href="#cb1-14" tabindex="-1"></a><span class="at">      </span><span class="fu">uses</span><span class="kw">:</span><span class="at"> actions/setup-python@v2</span></span>
+<span id="cb1-15"><a href="#cb1-15" tabindex="-1"></a><span class="at">      </span><span class="fu">with</span><span class="kw">:</span></span>
+<span id="cb1-16"><a href="#cb1-16" tabindex="-1"></a><span class="at">        </span><span class="fu">python-version</span><span class="kw">:</span><span class="at"> </span><span class="fl">3.10</span></span>
+<span id="cb1-17"><a href="#cb1-17" tabindex="-1"></a><span class="at">    </span><span class="kw">-</span><span class="at"> </span><span class="fu">name</span><span class="kw">:</span><span class="at"> Add conda to system path</span></span>
+<span id="cb1-18"><a href="#cb1-18" tabindex="-1"></a><span class="fu">      run</span><span class="kw">: </span><span class="ch">|</span></span>
+<span id="cb1-19"><a href="#cb1-19" tabindex="-1"></a>        # $CONDA is an environment variable pointing to the root of the miniconda directory</span>
+<span id="cb1-20"><a href="#cb1-20" tabindex="-1"></a>        echo $CONDA/bin &gt;&gt; $GITHUB_PATH</span>
+<span id="cb1-21"><a href="#cb1-21" tabindex="-1"></a><span class="at">    </span><span class="kw">-</span><span class="at"> </span><span class="fu">name</span><span class="kw">:</span><span class="at"> Install dependencies</span></span>
+<span id="cb1-22"><a href="#cb1-22" tabindex="-1"></a><span class="fu">      run</span><span class="kw">: </span><span class="ch">|</span></span>
+<span id="cb1-23"><a href="#cb1-23" tabindex="-1"></a>        conda env update --file environment.yml --name base</span>
+<span id="cb1-24"><a href="#cb1-24" tabindex="-1"></a><span class="at">    </span><span class="kw">-</span><span class="at"> </span><span class="fu">name</span><span class="kw">:</span><span class="at"> Lint with flake8</span></span>
+<span id="cb1-25"><a href="#cb1-25" tabindex="-1"></a><span class="fu">      run</span><span class="kw">: </span><span class="ch">|</span></span>
+<span id="cb1-26"><a href="#cb1-26" tabindex="-1"></a>        conda install flake8</span>
+<span id="cb1-27"><a href="#cb1-27" tabindex="-1"></a>        # stop the build if there are Python syntax errors or undefined names</span>
+<span id="cb1-28"><a href="#cb1-28" tabindex="-1"></a>        flake8 . --count --select=E9,F63,F7,F82 --show-source --statistics</span>
+<span id="cb1-29"><a href="#cb1-29" tabindex="-1"></a>        # exit-zero treats all errors as warnings. The GitHub editor is 127 chars wide</span>
+<span id="cb1-30"><a href="#cb1-30" tabindex="-1"></a>        flake8 . --count --exit-zero --max-complexity=10 --max-line-length=127 --statistics</span>
+<span id="cb1-31"><a href="#cb1-31" tabindex="-1"></a><span class="at">    </span><span class="kw">-</span><span class="at"> </span><span class="fu">name</span><span class="kw">:</span><span class="at"> Test with pytest</span></span>
+<span id="cb1-32"><a href="#cb1-32" tabindex="-1"></a><span class="fu">      run</span><span class="kw">: </span><span class="ch">|</span></span>
+<span id="cb1-33"><a href="#cb1-33" tabindex="-1"></a>        conda install pytest</span>
+<span id="cb1-34"><a href="#cb1-34" tabindex="-1"></a>        pytest</span></code></pre>
+</div>
+<p>The first two lines give the <code>name</code> of the action which is
+just for your own reference, and an <code>on</code> directive. The
+<code>on</code> directive will trigger this action when
+<code>[push]</code> happens. This is what we want.</p>
+<p>The main part of the action is the <code>jobs:</code> section, which
+can specify multiple jobs. Currently there is just one job with the name
+<code>build-linux</code>. Within this job there are multiple
+<code>steps</code> that are run.</p>
+<p>The template is mostly good however:</p>
+<ul>
+<li>since this is the Anaconda template it uses conda for all the
+build/test. However Anaconda is slow to create new environments and
+install software;</li>
+<li>there is a bug in this template: the <code>python-version</code>
+should be a string, not a float;</li>
+<li>we don’t want to run the lint step.</li>
+</ul>
+<p>We will replace conda with pip and can fix the other issues by
+updating the script to be as follows:</p>
+<div class="codewrapper sourceCode" id="cb2">
+<h3 class="code-label">YML<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
+</h3>
+<pre class="sourceCode yml" tabindex="0"><code class="sourceCode yaml"><span id="cb2-1"><a href="#cb2-1" tabindex="-1"></a><span class="fu">name</span><span class="kw">:</span><span class="at"> Build and Test Python package using pip</span></span>
+<span id="cb2-2"><a href="#cb2-2" tabindex="-1"></a></span>
+<span id="cb2-3"><a href="#cb2-3" tabindex="-1"></a><span class="fu">on</span><span class="kw">:</span><span class="at"> </span><span class="kw">[</span><span class="at">push</span><span class="kw">]</span></span>
+<span id="cb2-4"><a href="#cb2-4" tabindex="-1"></a></span>
+<span id="cb2-5"><a href="#cb2-5" tabindex="-1"></a><span class="fu">jobs</span><span class="kw">:</span></span>
+<span id="cb2-6"><a href="#cb2-6" tabindex="-1"></a><span class="at">  </span><span class="fu">build-linux</span><span class="kw">:</span></span>
+<span id="cb2-7"><a href="#cb2-7" tabindex="-1"></a><span class="at">    </span><span class="fu">runs-on</span><span class="kw">:</span><span class="at"> ubuntu-latest</span></span>
+<span id="cb2-8"><a href="#cb2-8" tabindex="-1"></a><span class="at">    </span><span class="fu">strategy</span><span class="kw">:</span></span>
+<span id="cb2-9"><a href="#cb2-9" tabindex="-1"></a><span class="at">      </span><span class="fu">max-parallel</span><span class="kw">:</span><span class="at"> </span><span class="dv">5</span></span>
+<span id="cb2-10"><a href="#cb2-10" tabindex="-1"></a></span>
+<span id="cb2-11"><a href="#cb2-11" tabindex="-1"></a><span class="at">    </span><span class="fu">steps</span><span class="kw">:</span></span>
+<span id="cb2-12"><a href="#cb2-12" tabindex="-1"></a><span class="at">    </span><span class="kw">-</span><span class="at"> </span><span class="fu">uses</span><span class="kw">:</span><span class="at"> actions/checkout@v2</span></span>
+<span id="cb2-13"><a href="#cb2-13" tabindex="-1"></a><span class="at">    </span><span class="kw">-</span><span class="at"> </span><span class="fu">name</span><span class="kw">:</span><span class="at"> Set up Python "3.6"</span></span>
+<span id="cb2-14"><a href="#cb2-14" tabindex="-1"></a><span class="at">      </span><span class="fu">uses</span><span class="kw">:</span><span class="at"> actions/setup-python@v2</span></span>
+<span id="cb2-15"><a href="#cb2-15" tabindex="-1"></a><span class="at">      </span><span class="fu">with</span><span class="kw">:</span></span>
+<span id="cb2-16"><a href="#cb2-16" tabindex="-1"></a><span class="at">        </span><span class="fu">python-version</span><span class="kw">:</span><span class="at"> </span><span class="st">"3.6"</span></span>
+<span id="cb2-17"><a href="#cb2-17" tabindex="-1"></a><span class="at">    </span><span class="kw">-</span><span class="at"> </span><span class="fu">name</span><span class="kw">:</span><span class="at"> Install dependencies</span></span>
+<span id="cb2-18"><a href="#cb2-18" tabindex="-1"></a><span class="fu">      run</span><span class="kw">: </span><span class="ch">|</span></span>
+<span id="cb2-19"><a href="#cb2-19" tabindex="-1"></a>        # upgrade pip</span>
+<span id="cb2-20"><a href="#cb2-20" tabindex="-1"></a>        python -m pip install --upgrade pip</span>
+<span id="cb2-21"><a href="#cb2-21" tabindex="-1"></a>        # install the testing requirements</span>
+<span id="cb2-22"><a href="#cb2-22" tabindex="-1"></a>        python -m pip install pytest pytest-cov</span>
+<span id="cb2-23"><a href="#cb2-23" tabindex="-1"></a>        # install the dependencies for this</span>
+<span id="cb2-24"><a href="#cb2-24" tabindex="-1"></a>        pip install -r requirements.txt</span>
+<span id="cb2-25"><a href="#cb2-25" tabindex="-1"></a><span class="at">    </span><span class="kw">-</span><span class="at"> </span><span class="fu">name</span><span class="kw">:</span><span class="at"> Install module</span></span>
+<span id="cb2-26"><a href="#cb2-26" tabindex="-1"></a><span class="fu">      run</span><span class="kw">: </span><span class="ch">|</span></span>
+<span id="cb2-27"><a href="#cb2-27" tabindex="-1"></a>        python -m pip install -e .</span>
+<span id="cb2-28"><a href="#cb2-28" tabindex="-1"></a><span class="at">    </span><span class="kw">-</span><span class="at"> </span><span class="fu">name</span><span class="kw">:</span><span class="at"> Test with pytest</span></span>
+<span id="cb2-29"><a href="#cb2-29" tabindex="-1"></a><span class="fu">      run</span><span class="kw">: </span><span class="ch">|</span></span>
+<span id="cb2-30"><a href="#cb2-30" tabindex="-1"></a>        pytest --cov=skysim --cov-report=term</span></code></pre>
+</div>
+<p>Since we are now not using conda we should also change the name of
+the script to be
+<code>./github/workflows/python-build-test-pip.yml</code> before we save
+it. Once we have made these changes and are happy we can press the green
+“Start commit” button where we’ll be asked for a commit message, and
+whether we want to commit to the <code>main</code> branch or to a new
+branch. Lets commit directly to the <code>main</code> branch.</p>
+<p>Once we make the commit the action will run. This is because
+adding/changing a file via the GitHub webpage is considered the same as
+a <code>push</code> action, which will trigger our workflow.</p>
+</div>
+<div class="section level3">
+<h3 id="viewing-the-progressresult-of-an-action">Viewing the progress/result of an action<a class="anchor" aria-label="anchor" href="#viewing-the-progressresult-of-an-action"></a>
+</h3>
+<p>To see what actions have been run and why, we navigate to the
+“Actions” tab. Here you’ll see all the actions that have ever been
+triggered for your repository, how they were triggered, what the status
+is, how long it took to run, and what artifacts (if any) were produced.
+Below is an example showing the completed action that we just created
+above.</p>
+<figure><img src="fig/automation/workflow-progress.png" alt="A completed workflow on the actions page" class="figure mx-auto d-block"><div class="figcaption">A completed workflow on the actions page</div>
+</figure><p>On the left, we see all the jobs that were part of this action, and
+on the right we have a summary for each. We want to see green ticks as
+this means that everything is ok. A red X will mean there was a problem
+somewhere. Either way we can click on one of the jobs to see the
+different steps of the job, and clicking the “&gt;” next to a step will
+show all the details of that step. Below we can see the output of the
+“test with pytest” step.</p>
+<figure><img src="fig/automation/workflow-details.png" alt="Details of the workflow" class="figure mx-auto d-block"><div class="figcaption">Details of the workflow</div>
+</figure><p>If an action fails then the repository owner, and anyone watching the
+repository, will get a notification of the failure. When the action
+succeeds for the first time after a failure a notification will be sent,
+but if the action is a success following a success no further
+notifications will be sent. This means that you can push changes to your
+repo and you wont be bothered unless there is a problem.</p>
+</div>
+<div class="section level3">
+<h3 id="summary">Summary<a class="anchor" aria-label="anchor" href="#summary"></a>
+</h3>
+<p>We have seen how to setup a basic install-test workflow for a python
+project using a GitHub action. Once you have a working action you can
+extend it, create additional actions, or change how it triggers. See the
+<a href="https://docs.github.com/en/actions" class="external-link">documentation</a> for more
+details and some examples.</p>
+</div>
+</section><section><h2 class="section-heading" id="using-github-to-compile-your-documentation">Using GitHub to compile your documentation<a class="anchor" aria-label="anchor" href="#using-github-to-compile-your-documentation"></a>
+</h2>
+<hr class="half-width">
+<p>In the previous lesson we learned how to use GitHub actions to build
+and test our python module. In this lesson we’ll learn how to compile
+our documentation with another GitHub action.</p>
+<p>Creating a new workflow To create a new action the easiest way is to
+use the Actions tab of your GitHub repo, and select the New Workflow
+button.</p>
+<p>￼ The New workflow button will take you to a page to choose a
+template from a long list. Last time we started with a pre-made template
+for building and testing python code. This time we are going to start
+with a generic template so we should click on the “set up a workflow
+yourself -&gt;” link.</p>
+<p>We should see the following template appear under the file name of
+.github/workflows/main.yml:</p>
+</section><div class="section level1">
+<h1 id="this-is-a-basic-workflow-to-help-you-get-started-with-actions">This is a basic workflow to help you get started with Actions<a class="anchor" aria-label="anchor" href="#this-is-a-basic-workflow-to-help-you-get-started-with-actions"></a>
+</h1>
+<p>name: CI</p>
+</div>
+<div class="section level1">
+<h1 id="controls-when-the-workflow-will-run">Controls when the workflow will run<a class="anchor" aria-label="anchor" href="#controls-when-the-workflow-will-run"></a>
+</h1>
+<p>on: # Triggers the workflow on push or pull request events but only
+for the main branch push: branches: [ main ] pull_request: branches: [
+main ]</p>
+<p># Allows you to run this workflow manually from the Actions tab
+workflow_dispatch:</p>
+</div>
+<div class="section level1">
+<h1 id="a-workflow-run-is-made-up-of-one-or-more-jobs-that-can-run-sequentially-or-in-parallel">A workflow run is made up of one or more jobs that can run
+sequentially or in parallel<a class="anchor" aria-label="anchor" href="#a-workflow-run-is-made-up-of-one-or-more-jobs-that-can-run-sequentially-or-in-parallel"></a>
+</h1>
+<p>jobs: # This workflow contains a single job called “build” build: #
+The type of runner that the job will run on runs-on: ubuntu-latest</p>
+<div class="codewrapper sourceCode" id="cb3">
+<h3 class="code-label">SH<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
+</h3>
+<pre class="sourceCode sh" tabindex="0"><code class="sourceCode bash"><span id="cb3-1"><a href="#cb3-1" tabindex="-1"></a><span class="co"># Steps represent a sequence of tasks that will be executed as part of the job</span></span>
+<span id="cb3-2"><a href="#cb3-2" tabindex="-1"></a><span class="ex">steps:</span></span>
+<span id="cb3-3"><a href="#cb3-3" tabindex="-1"></a>  <span class="co"># Checks-out your repository under $GITHUB_WORKSPACE, so your job can access it</span></span>
+<span id="cb3-4"><a href="#cb3-4" tabindex="-1"></a>  <span class="ex">-</span> uses: actions/checkout@v2</span>
+<span id="cb3-5"><a href="#cb3-5" tabindex="-1"></a></span>
+<span id="cb3-6"><a href="#cb3-6" tabindex="-1"></a>  <span class="co"># Runs a single command using the runners shell</span></span>
+<span id="cb3-7"><a href="#cb3-7" tabindex="-1"></a>  <span class="ex">-</span> name: Run a one-line script</span>
+<span id="cb3-8"><a href="#cb3-8" tabindex="-1"></a>    <span class="ex">run:</span> echo Hello, world!</span>
+<span id="cb3-9"><a href="#cb3-9" tabindex="-1"></a></span>
+<span id="cb3-10"><a href="#cb3-10" tabindex="-1"></a>  <span class="co"># Runs a set of commands using the runners shell</span></span>
+<span id="cb3-11"><a href="#cb3-11" tabindex="-1"></a>  <span class="ex">-</span> name: Run a multi-line script</span>
+<span id="cb3-12"><a href="#cb3-12" tabindex="-1"></a>    <span class="ex">run:</span> <span class="kw">|</span></span>
+<span id="cb3-13"><a href="#cb3-13" tabindex="-1"></a>      <span class="bu">echo</span> Add other actions to build,</span>
+<span id="cb3-14"><a href="#cb3-14" tabindex="-1"></a>      <span class="bu">echo</span> test, and deploy your project.</span></code></pre>
+</div>
+<p>First up we should change the filename to something other than
+main.py and the name field to something other than CI. The section that
+controls when the workflow is run is maybe a little over-zealous but we
+can leave it for now. Finally, the first step which uses <a href="mailto:actions/checkout@v2" class="email">actions/checkout@v2</a>
+is always useful as it will check out our repository into the build
+environment. The named steps after this are not currently useful so we
+should delete them. We’ll replace these with a new step which does the
+documentation build for us.</p>
+<p>Using a template from the market place Since we want to build our
+documentation using Sphinx, we can find a ready made solution in the
+GitHub marketplace. On the right panel we select the marketplace and
+search for Sphinx. The first result “Sphinx Build” looks like it does
+what we want so we’ll select that.</p>
+<p>￼ When we click the “Sphinx Build” result we get the following
+snippet of code. Which we can include in our workflow file.</p>
+<ul>
+<li>
+<p>name: Sphinx Build # You may pin to the exact commit or the
+version. # uses: <a href="mailto:ammaraskar/sphinx-action@8b4f60114d7fd1faeba1a712269168508d4750d2" class="email">ammaraskar/sphinx-action@8b4f60114d7fd1faeba1a712269168508d4750d2</a>
+uses: <a href="mailto:ammaraskar/sphinx-action@0.4" class="email">ammaraskar/sphinx-action@0.4</a> with: # The folder
+containing your sphinx docs. docs-folder: # default is docs/ # The
+command used to build your documentation. build-command: # optional,
+default is make html # Run before the build command, you can use this to
+install system level dependencies, for example with “apt-get update -y
+&amp;&amp; apt-get install -y perl” pre-build-command: # optional To use
+the above template we make a new step called “Sphinx Build” and copy the
+template into that step. As we do this we need to fill in values for
+docs-folder and build-command. The pre-build-command is optional and we
+wont use it so we can either delete it or comment it out. Our step
+section now looks like this:</p>
+<p># Steps represent a sequence of tasks that will be executed as part
+of the job steps: # Checks-out your repository under $GITHUB_WORKSPACE,
+so your job can access it - uses: <a href="mailto:actions/checkout@v2" class="email">actions/checkout@v2</a></p>
+<div class="codewrapper sourceCode" id="cb4">
+<h3 class="code-label">SH<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
+</h3>
+<pre class="sourceCode sh" tabindex="0"><code class="sourceCode bash"><span id="cb4-1"><a href="#cb4-1" tabindex="-1"></a><span class="ex">-</span> name: Sphinx Build</span>
+<span id="cb4-2"><a href="#cb4-2" tabindex="-1"></a>  <span class="co"># You may pin to the exact commit or the version.</span></span>
+<span id="cb4-3"><a href="#cb4-3" tabindex="-1"></a>  <span class="ex">uses:</span> ammaraskar/sphinx-action@0.4</span>
+<span id="cb4-4"><a href="#cb4-4" tabindex="-1"></a>  <span class="ex">with:</span></span>
+<span id="cb4-5"><a href="#cb4-5" tabindex="-1"></a>    <span class="co"># The folder containing your sphinx docs.</span></span>
+<span id="cb4-6"><a href="#cb4-6" tabindex="-1"></a>    <span class="ex">docs-folder:</span> docs/</span>
+<span id="cb4-7"><a href="#cb4-7" tabindex="-1"></a>    <span class="co"># The command used to build your documentation.</span></span>
+<span id="cb4-8"><a href="#cb4-8" tabindex="-1"></a>    <span class="ex">build-command:</span> make html</span></code></pre>
+</div>
+<p>If we commit this file it will trigger all our on:push workflows to
+trigger – both the build/test workflow that we created earlier, and this
+documentation workflow. For my example I used the name “Documentation
+with Sphinx” for the workflow, and when it completes I see the following
+output.</p>
+</li>
+</ul>
+<p>￼ The good news is that the documentation built without error. The
+bad news is that I can’t see the documentation to ensure that it’s
+actually useful. Note in the above image that there are three notes
+following our job: Status, Total duration, and Artifacts. Artifacts are
+files that are retained after a job completes. By default there are no
+artifacts, but we could modify our workflow so that the documentation is
+part of the artifacts.</p>
+<p>Saving the documentation To save the documentation that was built we
+need to let the GitHub workflow know that the documentation should be
+considered an artefact of the build. The advanced guide for GitHub
+actions demonstrates how to do this using another pre-made recipe which
+is as follows:</p>
+<ul>
+<li>name: ‘Upload Artifact’ uses: <a href="mailto:actions/upload-artifact@v2" class="email">actions/upload-artifact@v2</a> with: name: my-artifact
+path: my_file.txt For us we want the artifact to be a directory
+docs/build/ and we’ll give it a name of documentation-html.</li>
+</ul>
+<p>Our full workflow for this lesson now looks like this:</p>
+</div>
+<div class="section level1">
+<h1 id="this-is-a-basic-workflow-to-help-you-get-started-with-actions-1">This is a basic workflow to help you get started with Actions<a class="anchor" aria-label="anchor" href="#this-is-a-basic-workflow-to-help-you-get-started-with-actions-1"></a>
+</h1>
+<p>name: Build Documentation with Sphinx</p>
+</div>
+<div class="section level1">
+<h1 id="controls-when-the-workflow-will-run-1">Controls when the workflow will run<a class="anchor" aria-label="anchor" href="#controls-when-the-workflow-will-run-1"></a>
+</h1>
+<p>on: # Triggers the workflow on push or pull request events but only
+for the main branch push: branches: [ main ] pull_request: branches: [
+main ]</p>
+<p># Allows you to run this workflow manually from the Actions tab
+workflow_dispatch:</p>
+</div>
+<div class="section level1">
+<h1 id="a-workflow-run-is-made-up-of-one-or-more-jobs-that-can-run-sequentially-or-in-parallel-1">A workflow run is made up of one or more jobs that can run
+sequentially or in parallel<a class="anchor" aria-label="anchor" href="#a-workflow-run-is-made-up-of-one-or-more-jobs-that-can-run-sequentially-or-in-parallel-1"></a>
+</h1>
+<p>jobs: # This workflow contains a single job called “build”
+build-docs: # The type of runner that the job will run on runs-on:
+ubuntu-latest</p>
+<div class="codewrapper sourceCode" id="cb5">
+<h3 class="code-label">SH<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
+</h3>
+<pre class="sourceCode sh" tabindex="0"><code class="sourceCode bash"><span id="cb5-1"><a href="#cb5-1" tabindex="-1"></a><span class="co"># Steps represent a sequence of tasks that will be executed as part of the job</span></span>
+<span id="cb5-2"><a href="#cb5-2" tabindex="-1"></a><span class="ex">steps:</span></span>
+<span id="cb5-3"><a href="#cb5-3" tabindex="-1"></a>  <span class="co"># Checks-out your repository under $GITHUB_WORKSPACE, so your job can access it</span></span>
+<span id="cb5-4"><a href="#cb5-4" tabindex="-1"></a>  <span class="ex">-</span> uses: actions/checkout@v2</span>
+<span id="cb5-5"><a href="#cb5-5" tabindex="-1"></a></span>
+<span id="cb5-6"><a href="#cb5-6" tabindex="-1"></a>  <span class="ex">-</span> name: Sphinx Build</span>
+<span id="cb5-7"><a href="#cb5-7" tabindex="-1"></a>    <span class="co"># You may pin to the exact commit or the version.</span></span>
+<span id="cb5-8"><a href="#cb5-8" tabindex="-1"></a>    <span class="ex">uses:</span> ammaraskar/sphinx-action@0.4</span>
+<span id="cb5-9"><a href="#cb5-9" tabindex="-1"></a>    <span class="ex">with:</span></span>
+<span id="cb5-10"><a href="#cb5-10" tabindex="-1"></a>      <span class="co"># The folder containing your sphinx docs.</span></span>
+<span id="cb5-11"><a href="#cb5-11" tabindex="-1"></a>      <span class="ex">docs-folder:</span> docs/</span>
+<span id="cb5-12"><a href="#cb5-12" tabindex="-1"></a>      <span class="co"># The command used to build your documentation.</span></span>
+<span id="cb5-13"><a href="#cb5-13" tabindex="-1"></a>      <span class="ex">build-command:</span> make html</span>
+<span id="cb5-14"><a href="#cb5-14" tabindex="-1"></a></span>
+<span id="cb5-15"><a href="#cb5-15" tabindex="-1"></a>  <span class="ex">-</span> name: Archive documentation</span>
+<span id="cb5-16"><a href="#cb5-16" tabindex="-1"></a>    <span class="ex">uses:</span> actions/upload-artifact@v2</span>
+<span id="cb5-17"><a href="#cb5-17" tabindex="-1"></a>    <span class="ex">with:</span></span>
+<span id="cb5-18"><a href="#cb5-18" tabindex="-1"></a>      <span class="ex">name:</span> documentation-html</span>
+<span id="cb5-19"><a href="#cb5-19" tabindex="-1"></a>      <span class="ex">path:</span> docs/build/</span></code></pre>
+</div>
+<p>If we save and wait for the triggered workflow to complete we should
+see that the artifacts field is now 1, and that there is a new section
+on our page which shows all the artifacts that were produced.</p>
+<p>￼ We can click on the documentation-html link to get a zip of the
+docs/build/ directory which contains all our documentation.</p>
+<p>Summary Building documentation requires a similar workflow to
+building and testing code.</p>
+<p>The GitHub marketplace offers a variety of pre-made ‘steps’ to
+include in your workflow. There are many that will let you build
+documentation with Sphinx.</p>
+<p>When building documentation we need to ensure that the documentation
+that was built is considered part of the workflow ‘artifact’ so that we
+can download and view it after the workflow completes. <!--
+Place links that you need to refer to multiple times across pages here. Delete
+any links that you are not going to use.
+ --></p>
+</div></section>
 </div>
     </main>
 </div>
@@ -3889,8 +4312,8 @@ any links that you are not going to use.
   "url": "https://PaulHancock.github.io/Lesson-Testing/aio.html",
   "identifier": "https://PaulHancock.github.io/Lesson-Testing/aio.html",
   "dateCreated": "2026-02-23",
-  "dateModified": "2026-02-25",
-  "datePublished": "2026-02-25"
+  "dateModified": "2026-02-26",
+  "datePublished": "2026-02-26"
 }
 
   </script><script>
