@@ -272,6 +272,9 @@
     <div id="flush-collapsecurrent" class="accordion-collapse collapse show" aria-labelledby="flush-headingcurrent" data-bs-parent="#accordionFlushcurrent">
       <div class="accordion-body">
         <ul><li><a href="#publishing-code">‘Publishing’ code</a></li>
+<li><a href="#obtaining-a-doi-from-zenodo.org">Obtaining a doi from Zenodo.org</a></li>
+<li><a href="#registering-your-code-on-ascl.net">Registering your code on ascl.net</a></li>
+<li><a href="#installing-your-module-via-setup.py">Installing your module via setup.py</a></li>
         </ul></div><!--/div.accordion-body-->
     </div><!--/div.accordion-collapse-->
 
@@ -459,10 +462,226 @@ computer dies and you need to recover your work.</td>
 <td>Good argument! Keep it secure some place. Many of the steps that you
 would take to prepare your data for publication are still worth doing to
 make your code usable within your trusted network.</td>
-</tr></tbody></table><!--
+</tr></tbody></table></div>
+</section><section><h2 class="section-heading" id="obtaining-a-doi-from-zenodo-org">Obtaining a doi from Zenodo.org<a class="anchor" aria-label="anchor" href="#obtaining-a-doi-from-zenodo-org"></a></h2>
+<hr class="half-width"><p>You have a piece of code on github, but it is changing over time, and
+you would like to provide a link to a particular version of the code.
+This is important for reproducibility of your research work, both for
+yourself and others.</p>
+<p>The Zenodo repository provides a safe, trusted, and citable place to
+host your code. Zenodo is primarily focused on the storage of data, but
+this includes: documentation, papers, posters, raw or processed data,
+source code, and compiled binaries. Zenodo will allow you to version
+your data but does not provide a version control system such as git.
+However, Zenodo and Github are friends so you can link them together to
+get the best of both worlds.</p>
+<div class="section level3">
+<h3 id="sign-up-to-zenodo">Sign up to Zenodo<a class="anchor" aria-label="anchor" href="#sign-up-to-zenodo"></a></h3>
+<p>You can create a new Zenodo account using an email address and
+password, or you can use your <a href="https://github.com/" class="external-link">Github</a>
+or <a href="https://orcid.org/" class="external-link">ORCID</a> accounts to login. Whatever
+you choose, you can still link your github/ORCID later and use them to
+sign in.</p>
+</div>
+<div class="section level3">
+<h3 id="create-a-new-repository">Create a new repository<a class="anchor" aria-label="anchor" href="#create-a-new-repository"></a></h3>
+<p>Once signed in click on the upload button at the top of the page, and
+then on the next page click “New Upload”</p>
+<figure><img src="fig/sharing/zenodo-banner.png" alt="The zenodo header with and upload link" class="figure mx-auto d-block"><div class="figcaption">The zenodo header with and upload link</div>
+</figure><p>The following page will have a lot of details, some of which are
+mandatory, but most of which are either recommended or optional. Begin
+by downloading a .zip of your files from Github, and then uploading it
+to Zenodo. Press the green “start upload” button and then start filling
+out the rest of the form.</p>
+<figure><img src="fig/sharing/uploading-to-zenodo.png" alt="Uploading your files to zenodo" class="figure mx-auto d-block"><div class="figcaption">Uploading your files to zenodo</div>
+</figure><p>As the upload is progressing you can fill in the upload type
+(Software) and basic information.</p>
+<p>Leave the DOI blank, but click the “reserve DOI” button so that you
+can know what the final DOI will be.</p>
+<p>Fill in the remainder of the form and then press “save” at the top of
+the page, this will make a draft of your repository that you can come
+back to later and update. When you are finally happy with all the
+details you can press ‘publish’.</p>
+<p>Once your upload has been published you should navigate to the
+published repository in your uploads list, and select it.</p>
+<figure><img src="fig/sharing/example-zenodo-doi.png" alt="An example doi for published software on zenodo" class="figure mx-auto d-block"><div class="figcaption">An example doi for published software on
+zenodo</div>
+</figure><p>The above example is for the Aegean source finding software that I
+developed. You can see the DOI badge with the full DOI, a link to
+supplementary material, and the licence. If you click the DOI badge
+you’ll get a new pane that shows you how to embed this information into
+a markdown file such as your README.md that you have on your github
+page!</p>
+<p>Below this panel you can also see a box that allows people to cite
+your code. There is even a box that allows people to get the citation in
+any format that they need it.</p>
+<figure><img src="fig/sharing/zenodo-citing.png" alt="How to cite from zenodo" class="figure mx-auto d-block"><div class="figcaption">How to cite from zenodo</div>
+</figure><p>You now have a version of your code which is archived on zenodo and
+will not change. If you want to update the archive with new versions of
+the code, Zenodo has the capacity to do this, and will mint a new doi
+for each version. It is recommended that you don’t make a new doi for
+every small change you make to your code. A new version for each major
+or minor version change would be appropriate, or when you have published
+work that used a particular major/minor/patch version of the code.</p>
+<p>Sadly Zenodo is not indexed by <a href="https://ui.adsabs.harvard.edu/" class="external-link">ADS</a> so you can’t track
+citations very well from here.</p>
+</div>
+</section><section><h2 class="section-heading" id="registering-your-code-on-ascl-net">Registering your code on ascl.net<a class="anchor" aria-label="anchor" href="#registering-your-code-on-ascl-net"></a></h2>
+<hr class="half-width"><p>In the last lesson we saw how to obtain a DOI by uploading a software
+project to Zenodo. In this lesson we’ll make an entry in the
+Astrophysics Source Code Library (<a href="https://ascl.net/" class="external-link">ASCL.net</a>), which is indexed by ADS, and can
+help you gain an audience, and track citations.</p>
+<div class="section level3">
+<h3 id="submit-a-code-to-ascl">Submit a code to ASCL<a class="anchor" aria-label="anchor" href="#submit-a-code-to-ascl"></a></h3>
+<p>Go to the “submit a code” page <a href="https://ascl.net/code/submit" class="external-link">here</a>.</p>
+<p>The page asks for a title, credit (authors/contributors), abstract,
+and a site list for the code.</p>
+<p>The site list should be a list of links to places where people can
+obtain the code. I highly recommend that you put a link to both your
+Github and Zenodo repositories. If the code was described in a paper you
+can put that in the “Preferred Citation Method” section.</p>
+<figure><img src="fig/sharing/ascl-submit.png" alt="Submitting to ASCL.net" class="figure mx-auto d-block"><div class="figcaption">Submitting to ASCL.net</div>
+</figure><p>ASCL.net does not store your code. No one will vet the quality of
+your code. ASCL.net is simply a place to register that some code exists
+and that you’d like to be acknowledged for creating/contributing.
+ASCL.net is indexed by ADS so it will get a bibcode in ADS, which can
+then be used to generate a bibtex entry for people to use when citing
+your code. Another goal of ASCL.net is to make it easier for people to
+find your code in the first place. If you haven’t explored the code
+available here I recommend that you do so now – there are some gems.</p>
+<p>You can also get a nice little badge from ASCL to add to your
+<code>README.md</code> file!</p>
+</div>
+</section><section><h2 class="section-heading" id="installing-your-module-via-setup-py">Installing your module via setup.py<a class="anchor" aria-label="anchor" href="#installing-your-module-via-setup-py"></a></h2>
+<hr class="half-width"><p>In our code directory we specified a <code>requirements.txt</code>
+file that allowed users to easily installed the dependencies for our
+code. However, if someone wants to run our main script
+(<code>sim_catalog</code>) then they have to be in the code directory.
+If we want to run the code from some other location on our system then
+it won’t work. The reason is that we haven’t installed our code as a
+python module.</p>
+<p>Installing a python module will do the following:</p>
+<ul><li>Copy the module directory and files (eg <code>skysim/*</code>) to a
+central location so that python can access them no matter where it’s run
+from,
+<ul><li>something like
+<code>/home/${USER}/.py3/lib/python3.8/site-packages/</code>;</li>
+</ul></li>
+<li>Copy and scripts (eg <code>sim_sky</code>) to a similar location so
+that they can be invoked from anywhere,
+<ul><li>something like <code>/home/${USER}/.py3/bin/</code>;</li>
+</ul></li>
+<li>Make a note that the module is installed,
+<ul><li>so that <code>pip freeze</code> will report the name/version of the
+software.</li>
+</ul></li>
+</ul><p>In order to install a python module you need a special file called
+<code>setup.py</code>.</p>
+<div class="section level3">
+<h3 id="template-for-setup-py">Template for <code>setup.py</code>
+<a class="anchor" aria-label="anchor" href="#template-for-setup-py"></a></h3>
+<p>The <a href="https://docs.python.org/3/distutils/setupscript.html" class="external-link">python
+documentation</a> covers all the gory details of the how and why of
+using a <code>setup.py</code> file. However, a great place to start is
+to use a template so we’ll provide one here to get started.</p>
+<div class="codewrapper sourceCode" id="cb1">
+<h3 class="code-label">PYTHON<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
+</h3>
+<pre class="sourceCode python" tabindex="0"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" tabindex="-1"></a><span class="im">import</span> setuptools</span>
+<span id="cb1-2"><a href="#cb1-2" tabindex="-1"></a><span class="im">import</span> skysim</span>
+<span id="cb1-3"><a href="#cb1-3" tabindex="-1"></a></span>
+<span id="cb1-4"><a href="#cb1-4" tabindex="-1"></a><span class="cf">with</span> <span class="bu">open</span>(<span class="st">"README.md"</span>, <span class="st">"r"</span>, encoding<span class="op">=</span><span class="st">"utf-8"</span>) <span class="im">as</span> fh:</span>
+<span id="cb1-5"><a href="#cb1-5" tabindex="-1"></a>    long_description <span class="op">=</span> fh.read()</span>
+<span id="cb1-6"><a href="#cb1-6" tabindex="-1"></a></span>
+<span id="cb1-7"><a href="#cb1-7" tabindex="-1"></a><span class="cf">with</span> <span class="bu">open</span>(<span class="st">'requirements.txt'</span>, <span class="st">'r'</span>) <span class="im">as</span> fh:</span>
+<span id="cb1-8"><a href="#cb1-8" tabindex="-1"></a>    reqs <span class="op">=</span> [line <span class="cf">for</span> line <span class="kw">in</span> fh.readlines() <span class="cf">if</span> <span class="kw">not</span> line.startswith(<span class="st">'#'</span>)]</span>
+<span id="cb1-9"><a href="#cb1-9" tabindex="-1"></a></span>
+<span id="cb1-10"><a href="#cb1-10" tabindex="-1"></a>setuptools.setup(</span>
+<span id="cb1-11"><a href="#cb1-11" tabindex="-1"></a>    name<span class="op">=</span><span class="st">"SkySim"</span>,</span>
+<span id="cb1-12"><a href="#cb1-12" tabindex="-1"></a>    version<span class="op">=</span>skysim.__version__,</span>
+<span id="cb1-13"><a href="#cb1-13" tabindex="-1"></a>    author<span class="op">=</span>skysim.__author__,</span>
+<span id="cb1-14"><a href="#cb1-14" tabindex="-1"></a>    author_email<span class="op">=</span><span class="st">"author@example.com"</span>,</span>
+<span id="cb1-15"><a href="#cb1-15" tabindex="-1"></a>    description<span class="op">=</span><span class="st">"Simulate sky locations"</span>,</span>
+<span id="cb1-16"><a href="#cb1-16" tabindex="-1"></a>    long_description<span class="op">=</span>long_description,</span>
+<span id="cb1-17"><a href="#cb1-17" tabindex="-1"></a>    long_description_content_type<span class="op">=</span><span class="st">"text/markdown"</span>,</span>
+<span id="cb1-18"><a href="#cb1-18" tabindex="-1"></a>    url<span class="op">=</span><span class="st">"https://github.com/DevOne/sky_sim"</span>,</span>
+<span id="cb1-19"><a href="#cb1-19" tabindex="-1"></a>    scripts<span class="op">=</span>[<span class="st">'scripts/sim_catalog'</span>],</span>
+<span id="cb1-20"><a href="#cb1-20" tabindex="-1"></a>    python_requires<span class="op">=</span><span class="st">"&gt;=3.6"</span>,</span>
+<span id="cb1-21"><a href="#cb1-21" tabindex="-1"></a>)</span></code></pre>
+</div>
+<p>Note the following:</p>
+<ul><li>we import the <code>skysim</code> module so that we can read the
+<code>__version__</code> and <code>__author__</code> information
+directly,</li>
+<li>we populate the <code>long_description</code> by reading the
+<code>README.md</code> file,</li>
+<li>we read the requirements from the <code>requirements.txt</code>
+file,</li>
+<li>we have set a minimum python version for this program, something
+that we can’t do with a <code>requirements.txt</code> file,</li>
+<li>we have moved the script sim_catalog from the root directory into
+the <code>scripts/</code> directory.</li>
+</ul><p>The above notes are in keeping with the good coding practice of not
+repeating ourselves. All the information is stored in a single location
+and duplication is minimised.</p>
+</div>
+<div class="section level3">
+<h3 id="installing-the-module">Installing the module<a class="anchor" aria-label="anchor" href="#installing-the-module"></a></h3>
+<p>For someone to install our software they should do one of the
+following:</p>
+<div class="codewrapper sourceCode" id="cb2">
+<h3 class="code-label">BASH<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
+</h3>
+<pre class="sourceCode bash" tabindex="0"><code class="sourceCode bash"><span id="cb2-1"><a href="#cb2-1" tabindex="-1"></a><span class="fu">git</span> clone git@github.com:<span class="op">&lt;</span>gituser<span class="op">&gt;</span>/<span class="op">&lt;</span>projectname<span class="op">&gt;</span>.git</span>
+<span id="cb2-2"><a href="#cb2-2" tabindex="-1"></a><span class="ex">pip</span> install .</span></code></pre>
+</div>
+<p>or just download a <code>.zip</code> file from github, unzip it, and
+then run <code>pip install .</code> in the same directory.</p>
+<p>The final ‘<code>.</code>’ indicates that pip should install the
+module defined in this directory. Pip will search for a
+<code>setup.py</code> file for the required information.</p>
+</div>
+<div class="section level3">
+<h3 id="uninstall-the-module">Uninstall the module<a class="anchor" aria-label="anchor" href="#uninstall-the-module"></a></h3>
+<p>A user can uninstall the module from anywhere by running:</p>
+<div class="codewrapper sourceCode" id="cb3">
+<h3 class="code-label">BASH<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
+</h3>
+<pre class="sourceCode bash" tabindex="0"><code class="sourceCode bash"><span id="cb3-1"><a href="#cb3-1" tabindex="-1"></a><span class="ex">pip</span> uninstall SkySim</span></code></pre>
+</div>
+</div>
+<div class="section level3">
+<h3 id="developer-mode">Developer mode<a class="anchor" aria-label="anchor" href="#developer-mode"></a></h3>
+<p>As a developer it is annoying to have to uninstall/install your
+module every time you make a change and want to check that things are
+working. Pip has a nice solution to this which is a developer mode
+install. Unlike a regular install, the developer mode will not copy
+files to some python directory, but make symlinks instead. This means
+that your changes to the files will be immediately used in the installed
+version of the code. If you move or add files however, you’ll need to
+uninstall/install the code again.</p>
+<p>A developer mode install can be done using the <code>-e</code> flag
+for pip:</p>
+<div class="codewrapper sourceCode" id="cb4">
+<h3 class="code-label">BASH<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
+</h3>
+<pre class="sourceCode bash" tabindex="0"><code class="sourceCode bash"><span id="cb4-1"><a href="#cb4-1" tabindex="-1"></a><span class="ex">pip</span> install <span class="at">-e</span> .</span></code></pre>
+</div>
+</div>
+<div class="section level3">
+<h3 id="upgrading">Upgrading<a class="anchor" aria-label="anchor" href="#upgrading"></a></h3>
+<p>If users want to upgrade the module they have to download or pull the
+new version, uninstall the old one, and then install the new one. It can
+be a little tedious and easy to forget. Luckily there is a python
+package index pypi.org which pip can look to in order to find different
+versions of your software. It is thanks to pypi.org that pip knows how
+to install all the modules that we listed in our
+<code>requirements.txt</code> file. We’ll explore the python package
+index in the next lesson. <!--
 Place links that you need to refer to multiple times across pages here. Delete
 any links that you are not going to use.
- --></div>
+ --></p>
+</div>
 </section></div> <!-- / div.lesson-content -->
     </main><!-- / main#main-content.main-content --><nav class="bottom-pagination mx-md-4" aria-label="Previous and Next Chapter"><div class="d-block d-sm-block d-md-none">
         <a class="chapter-link" href="AutomationAndCI.html"><i aria-hidden="true" class="small-arrow" data-feather="arrow-left"></i>Previous</a>
