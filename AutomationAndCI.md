@@ -153,14 +153,17 @@ We have seen how to setup a basic install-test workflow for a python project usi
 
 In the previous lesson we learned how to use GitHub actions to build and test our python module. In this lesson we’ll learn how to compile our documentation with another GitHub action.
 
-Creating a new workflow
-To create a new action the easiest way is to use the Actions tab of your GitHub repo, and select the New Workflow button.
+### Creating a new workflow
 
+To create a new action the easiest way is to use the `Actions` tab of your GitHub repo, and select the `New Workflow` button.
+
+![The new workflow button on the actions page of your github repository](episodes/fig/automation/new-workflow.jpg)
 ￼
-The New workflow button will take you to a page to choose a template from a long list. Last time we started with a pre-made template for building and testing python code. This time we are going to start with a generic template so we should click on the “set up a workflow yourself ->” link.
+The `New workflow` button will take you to a page to choose a template from a long list. Last time we started with a pre-made template for building and testing python code. This time we are going to start with a generic template so we should click on the “set up a workflow yourself ->” link.
 
-We should see the following template appear under the file name of .github/workflows/main.yml:
+We should see the following template appear under the file name of `.github/workflows/main.yml`:
 
+```yml
 # This is a basic workflow to help you get started with Actions
 
 name: CI
@@ -197,14 +200,19 @@ jobs:
         run: |
           echo Add other actions to build,
           echo test, and deploy your project.
-First up we should change the filename to something other than main.py and the name field to something other than CI. The section that controls when the workflow is run is maybe a little over-zealous but we can leave it for now. Finally, the first step which uses actions/checkout@v2 is always useful as it will check out our repository into the build environment. The named steps after this are not currently useful so we should delete them. We’ll replace these with a new step which does the documentation build for us.
+```
 
-Using a template from the market place
+First up we should change the filename to something other than `main.yml` and the name field to something other than `CI`. The section that controls when the workflow is run is maybe a little over-zealous but we can leave it for now. Finally, the first step which uses `actions/checkout@v2` is always useful as it will check out our repository into the build environment. The named steps after this are not currently useful so we should delete them. We’ll replace these with a new step which does the documentation build for us.
+
+### Using a template from the market place
+
 Since we want to build our documentation using Sphinx, we can find a ready made solution in the GitHub marketplace. On the right panel we select the marketplace and search for Sphinx. The first result “Sphinx Build” looks like it does what we want so we’ll select that.
 
+![Choosing the sphinx build workflow from the marketplace](episodes/fig/automation/workflow-sphinx.png)
 ￼
 When we click the “Sphinx Build” result we get the following snippet of code. Which we can include in our workflow file.
 
+```yml
 - name: Sphinx Build
   # You may pin to the exact commit or the version.
   # uses: ammaraskar/sphinx-action@8b4f60114d7fd1faeba1a712269168508d4750d2
@@ -216,8 +224,11 @@ When we click the “Sphinx Build” result we get the following snippet of code
     build-command: # optional, default is make html
     # Run before the build command, you can use this to install system level dependencies, for example with "apt-get update -y && apt-get install -y perl"
     pre-build-command: # optional
-To use the above template we make a new step called “Sphinx Build” and copy the template into that step. As we do this we need to fill in values for docs-folder and build-command. The pre-build-command is optional and we wont use it so we can either delete it or comment it out. Our step section now looks like this:
+```
 
+To use the above template we make a new step called “Sphinx Build” and copy the template into that step. As we do this we need to fill in values for `docs-folder` and `build-command`. The `pre-build-command` is optional and we wont use it so we can either delete it or comment it out. Our step section now looks like this:
+
+```yml
     # Steps represent a sequence of tasks that will be executed as part of the job
     steps:
       # Checks-out your repository under $GITHUB_WORKSPACE, so your job can access it
@@ -231,23 +242,31 @@ To use the above template we make a new step called “Sphinx Build” and copy 
           docs-folder: docs/
           # The command used to build your documentation.
           build-command: make html
-If we commit this file it will trigger all our on:push workflows to trigger – both the build/test workflow that we created earlier, and this documentation workflow. For my example I used the name “Documentation with Sphinx” for the workflow, and when it completes I see the following output.
+```
 
+If we commit this file it will trigger all our `on:push` workflows to trigger – both the build/test workflow that we created earlier, and this documentation workflow. For my example I used the name “Documentation with Sphinx” for the workflow, and when it completes I see the following output.
+
+![Successfully run documentation workflow](episodes/fit/automation/workflow-docs-successful.png)
 ￼
 The good news is that the documentation built without error. The bad news is that I can’t see the documentation to ensure that it’s actually useful. Note in the above image that there are three notes following our job: Status, Total duration, and Artifacts. Artifacts are files that are retained after a job completes. By default there are no artifacts, but we could modify our workflow so that the documentation is part of the artifacts.
 
-Saving the documentation
+### Saving the documentation
+
 To save the documentation that was built we need to let the GitHub workflow know that the documentation should be considered an artefact of the build. The advanced guide for GitHub actions demonstrates how to do this using another pre-made recipe which is as follows:
 
+```yml
   - name: 'Upload Artifact'
     uses: actions/upload-artifact@v2
     with:
       name: my-artifact
       path: my_file.txt
+```
+
 For us we want the artifact to be a directory docs/build/ and we’ll give it a name of documentation-html.
 
 Our full workflow for this lesson now looks like this:
 
+```yml
 # This is a basic workflow to help you get started with Actions
 
 name: Build Documentation with Sphinx
@@ -289,14 +308,35 @@ jobs:
         with:
           name: documentation-html
           path: docs/build/
+```
+
 If we save and wait for the triggered workflow to complete we should see that the artifacts field is now 1, and that there is a new section on our page which shows all the artifacts that were produced.
 
+![A successful workflow which has produced and artifact](episodese/fig/automation/worfklow-docs-with-artifact.png)
 ￼
-We can click on the documentation-html link to get a zip of the docs/build/ directory which contains all our documentation.
+We can click on the `documentation-html` link to get a zip of the `docs/build/` directory which contains all our documentation.
 
-Summary
+### Summary
 Building documentation requires a similar workflow to building and testing code.
 
 The GitHub marketplace offers a variety of pre-made ‘steps’ to include in your workflow. There are many that will let you build documentation with Sphinx.
 
 When building documentation we need to ensure that the documentation that was built is considered part of the workflow ‘artifact’ so that we can download and view it after the workflow completes.
+
+
+:::: challenge
+
+## SOLO Activity: GitHub actions
+
+In this activity you will apply the previous lessons to automate the documentation and testing using GitHub actions. This activity can be completed on your own solo project, or as part of a group project. The requirements are that the project has a python module that can be installed, has at least one function with a docstring, and at least one test function.
+
+1. For your software project create a GitHub action that will build and test your python module.
+    1. “Build” in this case means install the required dependencies and then install your module using pip install -e .
+    1. The test phase can be carried out using either a test suite such as pytest, or by running your test script directly. If you are using a personal test script then you should ensure that it will exit with status != 0 when the tests fail, so that the build/test workflow will also report a failure.
+1. Use the GitHub online editor to create/modify the relevant .yml files and set on status to be push so that the workflow will run each time that you make changes to the .yml file.
+1. Once you have a working build/test workflow, create a documentation workflow.
+1. Use the build/test workflow as a template and remove the test phase and replace it with a documentation build.
+1. Modify the documentation step such that it will produce an artefact which is the contents of the documentation directory.
+1. Verify that your documentation has completed properly by downloading and viewing the workflow artefact.
+
+::::
