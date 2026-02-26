@@ -553,180 +553,254 @@ details and some examples.</p>
 <hr class="half-width"><p>In the previous lesson we learned how to use GitHub actions to build
 and test our python module. In this lesson we’ll learn how to compile
 our documentation with another GitHub action.</p>
-<p>Creating a new workflow To create a new action the easiest way is to
-use the Actions tab of your GitHub repo, and select the New Workflow
-button.</p>
-<p>￼ The New workflow button will take you to a page to choose a
-template from a long list. Last time we started with a pre-made template
-for building and testing python code. This time we are going to start
-with a generic template so we should click on the “set up a workflow
-yourself -&gt;” link.</p>
+<div class="section level3">
+<h3 id="creating-a-new-workflow">Creating a new workflow<a class="anchor" aria-label="anchor" href="#creating-a-new-workflow"></a></h3>
+<p>To create a new action the easiest way is to use the
+<code>Actions</code> tab of your GitHub repo, and select the
+<code>New Workflow</code> button.</p>
+<p><img src="fig/automation/new-workflow.jpg" alt="The new workflow button on the actions page of your github repository" class="figure">
+￼ The <code>New workflow</code> button will take you to a page to choose
+a template from a long list. Last time we started with a pre-made
+template for building and testing python code. This time we are going to
+start with a generic template so we should click on the “set up a
+workflow yourself -&gt;” link.</p>
 <p>We should see the following template appear under the file name of
-.github/workflows/main.yml:</p>
-</section><div class="section level1">
-<h1 id="this-is-a-basic-workflow-to-help-you-get-started-with-actions">This is a basic workflow to help you get started with Actions<a class="anchor" aria-label="anchor" href="#this-is-a-basic-workflow-to-help-you-get-started-with-actions"></a></h1>
-<p>name: CI</p>
-</div>
-<div class="section level1">
-<h1 id="controls-when-the-workflow-will-run">Controls when the workflow will run<a class="anchor" aria-label="anchor" href="#controls-when-the-workflow-will-run"></a></h1>
-<p>on: # Triggers the workflow on push or pull request events but only
-for the main branch push: branches: [ main ] pull_request: branches: [
-main ]</p>
-<p># Allows you to run this workflow manually from the Actions tab
-workflow_dispatch:</p>
-</div>
-<div class="section level1">
-<h1 id="a-workflow-run-is-made-up-of-one-or-more-jobs-that-can-run-sequentially-or-in-parallel">A workflow run is made up of one or more jobs that can run
-sequentially or in parallel<a class="anchor" aria-label="anchor" href="#a-workflow-run-is-made-up-of-one-or-more-jobs-that-can-run-sequentially-or-in-parallel"></a></h1>
-<p>jobs: # This workflow contains a single job called “build” build: #
-The type of runner that the job will run on runs-on: ubuntu-latest</p>
+<code>.github/workflows/main.yml</code>:</p>
 <div class="codewrapper sourceCode" id="cb3">
-<h3 class="code-label">SH<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
+<h3 class="code-label">YML<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
 </h3>
-<pre class="sourceCode sh" tabindex="0"><code class="sourceCode bash"><span id="cb3-1"><a href="#cb3-1" tabindex="-1"></a><span class="co"># Steps represent a sequence of tasks that will be executed as part of the job</span></span>
-<span id="cb3-2"><a href="#cb3-2" tabindex="-1"></a><span class="ex">steps:</span></span>
-<span id="cb3-3"><a href="#cb3-3" tabindex="-1"></a>  <span class="co"># Checks-out your repository under $GITHUB_WORKSPACE, so your job can access it</span></span>
-<span id="cb3-4"><a href="#cb3-4" tabindex="-1"></a>  <span class="ex">-</span> uses: actions/checkout@v2</span>
-<span id="cb3-5"><a href="#cb3-5" tabindex="-1"></a></span>
-<span id="cb3-6"><a href="#cb3-6" tabindex="-1"></a>  <span class="co"># Runs a single command using the runners shell</span></span>
-<span id="cb3-7"><a href="#cb3-7" tabindex="-1"></a>  <span class="ex">-</span> name: Run a one-line script</span>
-<span id="cb3-8"><a href="#cb3-8" tabindex="-1"></a>    <span class="ex">run:</span> echo Hello, world!</span>
-<span id="cb3-9"><a href="#cb3-9" tabindex="-1"></a></span>
-<span id="cb3-10"><a href="#cb3-10" tabindex="-1"></a>  <span class="co"># Runs a set of commands using the runners shell</span></span>
-<span id="cb3-11"><a href="#cb3-11" tabindex="-1"></a>  <span class="ex">-</span> name: Run a multi-line script</span>
-<span id="cb3-12"><a href="#cb3-12" tabindex="-1"></a>    <span class="ex">run:</span> <span class="kw">|</span></span>
-<span id="cb3-13"><a href="#cb3-13" tabindex="-1"></a>      <span class="bu">echo</span> Add other actions to build,</span>
-<span id="cb3-14"><a href="#cb3-14" tabindex="-1"></a>      <span class="bu">echo</span> test, and deploy your project.</span></code></pre>
+<pre class="sourceCode yml" tabindex="0"><code class="sourceCode yaml"><span id="cb3-1"><a href="#cb3-1" tabindex="-1"></a><span class="co"># This is a basic workflow to help you get started with Actions</span></span>
+<span id="cb3-2"><a href="#cb3-2" tabindex="-1"></a></span>
+<span id="cb3-3"><a href="#cb3-3" tabindex="-1"></a><span class="fu">name</span><span class="kw">:</span><span class="at"> CI</span></span>
+<span id="cb3-4"><a href="#cb3-4" tabindex="-1"></a></span>
+<span id="cb3-5"><a href="#cb3-5" tabindex="-1"></a><span class="co"># Controls when the workflow will run</span></span>
+<span id="cb3-6"><a href="#cb3-6" tabindex="-1"></a><span class="fu">on</span><span class="kw">:</span></span>
+<span id="cb3-7"><a href="#cb3-7" tabindex="-1"></a><span class="co">  # Triggers the workflow on push or pull request events but only for the main branch</span></span>
+<span id="cb3-8"><a href="#cb3-8" tabindex="-1"></a><span class="at">  </span><span class="fu">push</span><span class="kw">:</span></span>
+<span id="cb3-9"><a href="#cb3-9" tabindex="-1"></a><span class="at">    </span><span class="fu">branches</span><span class="kw">:</span><span class="at"> </span><span class="kw">[</span><span class="at"> main </span><span class="kw">]</span></span>
+<span id="cb3-10"><a href="#cb3-10" tabindex="-1"></a><span class="at">  </span><span class="fu">pull_request</span><span class="kw">:</span></span>
+<span id="cb3-11"><a href="#cb3-11" tabindex="-1"></a><span class="at">    </span><span class="fu">branches</span><span class="kw">:</span><span class="at"> </span><span class="kw">[</span><span class="at"> main </span><span class="kw">]</span></span>
+<span id="cb3-12"><a href="#cb3-12" tabindex="-1"></a></span>
+<span id="cb3-13"><a href="#cb3-13" tabindex="-1"></a><span class="co">  # Allows you to run this workflow manually from the Actions tab</span></span>
+<span id="cb3-14"><a href="#cb3-14" tabindex="-1"></a><span class="at">  </span><span class="fu">workflow_dispatch</span><span class="kw">:</span></span>
+<span id="cb3-15"><a href="#cb3-15" tabindex="-1"></a></span>
+<span id="cb3-16"><a href="#cb3-16" tabindex="-1"></a><span class="co"># A workflow run is made up of one or more jobs that can run sequentially or in parallel</span></span>
+<span id="cb3-17"><a href="#cb3-17" tabindex="-1"></a><span class="fu">jobs</span><span class="kw">:</span></span>
+<span id="cb3-18"><a href="#cb3-18" tabindex="-1"></a><span class="co">  # This workflow contains a single job called "build"</span></span>
+<span id="cb3-19"><a href="#cb3-19" tabindex="-1"></a><span class="at">  </span><span class="fu">build</span><span class="kw">:</span></span>
+<span id="cb3-20"><a href="#cb3-20" tabindex="-1"></a><span class="co">    # The type of runner that the job will run on</span></span>
+<span id="cb3-21"><a href="#cb3-21" tabindex="-1"></a><span class="at">    </span><span class="fu">runs-on</span><span class="kw">:</span><span class="at"> ubuntu-latest</span></span>
+<span id="cb3-22"><a href="#cb3-22" tabindex="-1"></a></span>
+<span id="cb3-23"><a href="#cb3-23" tabindex="-1"></a><span class="co">    # Steps represent a sequence of tasks that will be executed as part of the job</span></span>
+<span id="cb3-24"><a href="#cb3-24" tabindex="-1"></a><span class="at">    </span><span class="fu">steps</span><span class="kw">:</span></span>
+<span id="cb3-25"><a href="#cb3-25" tabindex="-1"></a><span class="co">      # Checks-out your repository under $GITHUB_WORKSPACE, so your job can access it</span></span>
+<span id="cb3-26"><a href="#cb3-26" tabindex="-1"></a><span class="at">      </span><span class="kw">-</span><span class="at"> </span><span class="fu">uses</span><span class="kw">:</span><span class="at"> actions/checkout@v2</span></span>
+<span id="cb3-27"><a href="#cb3-27" tabindex="-1"></a></span>
+<span id="cb3-28"><a href="#cb3-28" tabindex="-1"></a><span class="co">      # Runs a single command using the runners shell</span></span>
+<span id="cb3-29"><a href="#cb3-29" tabindex="-1"></a><span class="at">      </span><span class="kw">-</span><span class="at"> </span><span class="fu">name</span><span class="kw">:</span><span class="at"> Run a one-line script</span></span>
+<span id="cb3-30"><a href="#cb3-30" tabindex="-1"></a><span class="at">        </span><span class="fu">run</span><span class="kw">:</span><span class="at"> echo Hello, world!</span></span>
+<span id="cb3-31"><a href="#cb3-31" tabindex="-1"></a></span>
+<span id="cb3-32"><a href="#cb3-32" tabindex="-1"></a><span class="co">      # Runs a set of commands using the runners shell</span></span>
+<span id="cb3-33"><a href="#cb3-33" tabindex="-1"></a><span class="at">      </span><span class="kw">-</span><span class="at"> </span><span class="fu">name</span><span class="kw">:</span><span class="at"> Run a multi-line script</span></span>
+<span id="cb3-34"><a href="#cb3-34" tabindex="-1"></a><span class="fu">        run</span><span class="kw">: </span><span class="ch">|</span></span>
+<span id="cb3-35"><a href="#cb3-35" tabindex="-1"></a>          echo Add other actions to build,</span>
+<span id="cb3-36"><a href="#cb3-36" tabindex="-1"></a>          echo test, and deploy your project.</span></code></pre>
 </div>
 <p>First up we should change the filename to something other than
-main.py and the name field to something other than CI. The section that
-controls when the workflow is run is maybe a little over-zealous but we
-can leave it for now. Finally, the first step which uses <a href="mailto:actions/checkout@v2" class="email">actions/checkout@v2</a>
-is always useful as it will check out our repository into the build
-environment. The named steps after this are not currently useful so we
-should delete them. We’ll replace these with a new step which does the
-documentation build for us.</p>
-<p>Using a template from the market place Since we want to build our
-documentation using Sphinx, we can find a ready made solution in the
-GitHub marketplace. On the right panel we select the marketplace and
-search for Sphinx. The first result “Sphinx Build” looks like it does
-what we want so we’ll select that.</p>
-<p>￼ When we click the “Sphinx Build” result we get the following
-snippet of code. Which we can include in our workflow file.</p>
-<ul><li>
-<p>name: Sphinx Build # You may pin to the exact commit or the
-version. # uses: <a href="mailto:ammaraskar/sphinx-action@8b4f60114d7fd1faeba1a712269168508d4750d2" class="email">ammaraskar/sphinx-action@8b4f60114d7fd1faeba1a712269168508d4750d2</a>
-uses: <a href="mailto:ammaraskar/sphinx-action@0.4" class="email">ammaraskar/sphinx-action@0.4</a> with: # The folder
-containing your sphinx docs. docs-folder: # default is docs/ # The
-command used to build your documentation. build-command: # optional,
-default is make html # Run before the build command, you can use this to
-install system level dependencies, for example with “apt-get update -y
-&amp;&amp; apt-get install -y perl” pre-build-command: # optional To use
-the above template we make a new step called “Sphinx Build” and copy the
-template into that step. As we do this we need to fill in values for
-docs-folder and build-command. The pre-build-command is optional and we
-wont use it so we can either delete it or comment it out. Our step
-section now looks like this:</p>
-<p># Steps represent a sequence of tasks that will be executed as part
-of the job steps: # Checks-out your repository under $GITHUB_WORKSPACE,
-so your job can access it - uses: <a href="mailto:actions/checkout@v2" class="email">actions/checkout@v2</a></p>
+<code>main.yml</code> and the name field to something other than
+<code>CI</code>. The section that controls when the workflow is run is
+maybe a little over-zealous but we can leave it for now. Finally, the
+first step which uses <code>actions/checkout@v2</code> is always useful
+as it will check out our repository into the build environment. The
+named steps after this are not currently useful so we should delete
+them. We’ll replace these with a new step which does the documentation
+build for us.</p>
+</div>
+<div class="section level3">
+<h3 id="using-a-template-from-the-market-place">Using a template from the market place<a class="anchor" aria-label="anchor" href="#using-a-template-from-the-market-place"></a></h3>
+<p>Since we want to build our documentation using Sphinx, we can find a
+ready made solution in the GitHub marketplace. On the right panel we
+select the marketplace and search for Sphinx. The first result “Sphinx
+Build” looks like it does what we want so we’ll select that.</p>
+<p><img src="fig/automation/workflow-sphinx.png" alt="Choosing the sphinx build workflow from the marketplace" class="figure"> ￼ When
+we click the “Sphinx Build” result we get the following snippet of code.
+Which we can include in our workflow file.</p>
 <div class="codewrapper sourceCode" id="cb4">
-<h3 class="code-label">SH<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
+<h3 class="code-label">YML<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
 </h3>
-<pre class="sourceCode sh" tabindex="0"><code class="sourceCode bash"><span id="cb4-1"><a href="#cb4-1" tabindex="-1"></a><span class="ex">-</span> name: Sphinx Build</span>
-<span id="cb4-2"><a href="#cb4-2" tabindex="-1"></a>  <span class="co"># You may pin to the exact commit or the version.</span></span>
-<span id="cb4-3"><a href="#cb4-3" tabindex="-1"></a>  <span class="ex">uses:</span> ammaraskar/sphinx-action@0.4</span>
-<span id="cb4-4"><a href="#cb4-4" tabindex="-1"></a>  <span class="ex">with:</span></span>
-<span id="cb4-5"><a href="#cb4-5" tabindex="-1"></a>    <span class="co"># The folder containing your sphinx docs.</span></span>
-<span id="cb4-6"><a href="#cb4-6" tabindex="-1"></a>    <span class="ex">docs-folder:</span> docs/</span>
-<span id="cb4-7"><a href="#cb4-7" tabindex="-1"></a>    <span class="co"># The command used to build your documentation.</span></span>
-<span id="cb4-8"><a href="#cb4-8" tabindex="-1"></a>    <span class="ex">build-command:</span> make html</span></code></pre>
+<pre class="sourceCode yml" tabindex="0"><code class="sourceCode yaml"><span id="cb4-1"><a href="#cb4-1" tabindex="-1"></a><span class="kw">-</span><span class="at"> </span><span class="fu">name</span><span class="kw">:</span><span class="at"> Sphinx Build</span></span>
+<span id="cb4-2"><a href="#cb4-2" tabindex="-1"></a><span class="co">  # You may pin to the exact commit or the version.</span></span>
+<span id="cb4-3"><a href="#cb4-3" tabindex="-1"></a><span class="co">  # uses: ammaraskar/sphinx-action@8b4f60114d7fd1faeba1a712269168508d4750d2</span></span>
+<span id="cb4-4"><a href="#cb4-4" tabindex="-1"></a><span class="at">  </span><span class="fu">uses</span><span class="kw">:</span><span class="at"> ammaraskar/sphinx-action@0.4</span></span>
+<span id="cb4-5"><a href="#cb4-5" tabindex="-1"></a><span class="at">  </span><span class="fu">with</span><span class="kw">:</span></span>
+<span id="cb4-6"><a href="#cb4-6" tabindex="-1"></a><span class="co">    # The folder containing your sphinx docs.</span></span>
+<span id="cb4-7"><a href="#cb4-7" tabindex="-1"></a><span class="at">    </span><span class="fu">docs-folder</span><span class="kw">:</span><span class="co"> # default is docs/</span></span>
+<span id="cb4-8"><a href="#cb4-8" tabindex="-1"></a><span class="co">    # The command used to build your documentation.</span></span>
+<span id="cb4-9"><a href="#cb4-9" tabindex="-1"></a><span class="at">    </span><span class="fu">build-command</span><span class="kw">:</span><span class="co"> # optional, default is make html</span></span>
+<span id="cb4-10"><a href="#cb4-10" tabindex="-1"></a><span class="co">    # Run before the build command, you can use this to install system level dependencies, for example with "apt-get update -y &amp;&amp; apt-get install -y perl"</span></span>
+<span id="cb4-11"><a href="#cb4-11" tabindex="-1"></a><span class="at">    </span><span class="fu">pre-build-command</span><span class="kw">:</span><span class="co"> # optional</span></span></code></pre>
 </div>
-<p>If we commit this file it will trigger all our on:push workflows to
-trigger – both the build/test workflow that we created earlier, and this
-documentation workflow. For my example I used the name “Documentation
-with Sphinx” for the workflow, and when it completes I see the following
-output.</p>
-</li>
-</ul><p>￼ The good news is that the documentation built without error. The
-bad news is that I can’t see the documentation to ensure that it’s
-actually useful. Note in the above image that there are three notes
-following our job: Status, Total duration, and Artifacts. Artifacts are
-files that are retained after a job completes. By default there are no
-artifacts, but we could modify our workflow so that the documentation is
-part of the artifacts.</p>
-<p>Saving the documentation To save the documentation that was built we
-need to let the GitHub workflow know that the documentation should be
-considered an artefact of the build. The advanced guide for GitHub
-actions demonstrates how to do this using another pre-made recipe which
-is as follows:</p>
-<ul><li>name: ‘Upload Artifact’ uses: <a href="mailto:actions/upload-artifact@v2" class="email">actions/upload-artifact@v2</a> with: name: my-artifact
-path: my_file.txt For us we want the artifact to be a directory
-docs/build/ and we’ll give it a name of documentation-html.</li>
-</ul><p>Our full workflow for this lesson now looks like this:</p>
-</div>
-<div class="section level1">
-<h1 id="this-is-a-basic-workflow-to-help-you-get-started-with-actions-1">This is a basic workflow to help you get started with Actions<a class="anchor" aria-label="anchor" href="#this-is-a-basic-workflow-to-help-you-get-started-with-actions-1"></a></h1>
-<p>name: Build Documentation with Sphinx</p>
-</div>
-<div class="section level1">
-<h1 id="controls-when-the-workflow-will-run-1">Controls when the workflow will run<a class="anchor" aria-label="anchor" href="#controls-when-the-workflow-will-run-1"></a></h1>
-<p>on: # Triggers the workflow on push or pull request events but only
-for the main branch push: branches: [ main ] pull_request: branches: [
-main ]</p>
-<p># Allows you to run this workflow manually from the Actions tab
-workflow_dispatch:</p>
-</div>
-<div class="section level1">
-<h1 id="a-workflow-run-is-made-up-of-one-or-more-jobs-that-can-run-sequentially-or-in-parallel-1">A workflow run is made up of one or more jobs that can run
-sequentially or in parallel<a class="anchor" aria-label="anchor" href="#a-workflow-run-is-made-up-of-one-or-more-jobs-that-can-run-sequentially-or-in-parallel-1"></a></h1>
-<p>jobs: # This workflow contains a single job called “build”
-build-docs: # The type of runner that the job will run on runs-on:
-ubuntu-latest</p>
+<p>To use the above template we make a new step called “Sphinx Build”
+and copy the template into that step. As we do this we need to fill in
+values for <code>docs-folder</code> and <code>build-command</code>. The
+<code>pre-build-command</code> is optional and we wont use it so we can
+either delete it or comment it out. Our step section now looks like
+this:</p>
 <div class="codewrapper sourceCode" id="cb5">
-<h3 class="code-label">SH<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
+<h3 class="code-label">YML<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
 </h3>
-<pre class="sourceCode sh" tabindex="0"><code class="sourceCode bash"><span id="cb5-1"><a href="#cb5-1" tabindex="-1"></a><span class="co"># Steps represent a sequence of tasks that will be executed as part of the job</span></span>
-<span id="cb5-2"><a href="#cb5-2" tabindex="-1"></a><span class="ex">steps:</span></span>
-<span id="cb5-3"><a href="#cb5-3" tabindex="-1"></a>  <span class="co"># Checks-out your repository under $GITHUB_WORKSPACE, so your job can access it</span></span>
-<span id="cb5-4"><a href="#cb5-4" tabindex="-1"></a>  <span class="ex">-</span> uses: actions/checkout@v2</span>
+<pre class="sourceCode yml" tabindex="0"><code class="sourceCode yaml"><span id="cb5-1"><a href="#cb5-1" tabindex="-1"></a><span class="co">    # Steps represent a sequence of tasks that will be executed as part of the job</span></span>
+<span id="cb5-2"><a href="#cb5-2" tabindex="-1"></a><span class="at">    </span><span class="fu">steps</span><span class="kw">:</span></span>
+<span id="cb5-3"><a href="#cb5-3" tabindex="-1"></a><span class="co">      # Checks-out your repository under $GITHUB_WORKSPACE, so your job can access it</span></span>
+<span id="cb5-4"><a href="#cb5-4" tabindex="-1"></a><span class="at">      </span><span class="kw">-</span><span class="at"> </span><span class="fu">uses</span><span class="kw">:</span><span class="at"> actions/checkout@v2</span></span>
 <span id="cb5-5"><a href="#cb5-5" tabindex="-1"></a></span>
-<span id="cb5-6"><a href="#cb5-6" tabindex="-1"></a>  <span class="ex">-</span> name: Sphinx Build</span>
-<span id="cb5-7"><a href="#cb5-7" tabindex="-1"></a>    <span class="co"># You may pin to the exact commit or the version.</span></span>
-<span id="cb5-8"><a href="#cb5-8" tabindex="-1"></a>    <span class="ex">uses:</span> ammaraskar/sphinx-action@0.4</span>
-<span id="cb5-9"><a href="#cb5-9" tabindex="-1"></a>    <span class="ex">with:</span></span>
-<span id="cb5-10"><a href="#cb5-10" tabindex="-1"></a>      <span class="co"># The folder containing your sphinx docs.</span></span>
-<span id="cb5-11"><a href="#cb5-11" tabindex="-1"></a>      <span class="ex">docs-folder:</span> docs/</span>
-<span id="cb5-12"><a href="#cb5-12" tabindex="-1"></a>      <span class="co"># The command used to build your documentation.</span></span>
-<span id="cb5-13"><a href="#cb5-13" tabindex="-1"></a>      <span class="ex">build-command:</span> make html</span>
-<span id="cb5-14"><a href="#cb5-14" tabindex="-1"></a></span>
-<span id="cb5-15"><a href="#cb5-15" tabindex="-1"></a>  <span class="ex">-</span> name: Archive documentation</span>
-<span id="cb5-16"><a href="#cb5-16" tabindex="-1"></a>    <span class="ex">uses:</span> actions/upload-artifact@v2</span>
-<span id="cb5-17"><a href="#cb5-17" tabindex="-1"></a>    <span class="ex">with:</span></span>
-<span id="cb5-18"><a href="#cb5-18" tabindex="-1"></a>      <span class="ex">name:</span> documentation-html</span>
-<span id="cb5-19"><a href="#cb5-19" tabindex="-1"></a>      <span class="ex">path:</span> docs/build/</span></code></pre>
+<span id="cb5-6"><a href="#cb5-6" tabindex="-1"></a><span class="at">      </span><span class="kw">-</span><span class="at"> </span><span class="fu">name</span><span class="kw">:</span><span class="at"> Sphinx Build</span></span>
+<span id="cb5-7"><a href="#cb5-7" tabindex="-1"></a><span class="co">        # You may pin to the exact commit or the version.</span></span>
+<span id="cb5-8"><a href="#cb5-8" tabindex="-1"></a><span class="at">        </span><span class="fu">uses</span><span class="kw">:</span><span class="at"> ammaraskar/sphinx-action@0.4</span></span>
+<span id="cb5-9"><a href="#cb5-9" tabindex="-1"></a><span class="at">        </span><span class="fu">with</span><span class="kw">:</span></span>
+<span id="cb5-10"><a href="#cb5-10" tabindex="-1"></a><span class="co">          # The folder containing your sphinx docs.</span></span>
+<span id="cb5-11"><a href="#cb5-11" tabindex="-1"></a><span class="at">          </span><span class="fu">docs-folder</span><span class="kw">:</span><span class="at"> docs/</span></span>
+<span id="cb5-12"><a href="#cb5-12" tabindex="-1"></a><span class="co">          # The command used to build your documentation.</span></span>
+<span id="cb5-13"><a href="#cb5-13" tabindex="-1"></a><span class="at">          </span><span class="fu">build-command</span><span class="kw">:</span><span class="at"> make html</span></span></code></pre>
+</div>
+<p>If we commit this file it will trigger all our <code>on:push</code>
+workflows to trigger – both the build/test workflow that we created
+earlier, and this documentation workflow. For my example I used the name
+“Documentation with Sphinx” for the workflow, and when it completes I
+see the following output.</p>
+<p><img src="fit/automation/workflow-docs-successful.png" alt="Successfully run documentation workflow" class="figure"> ￼ The good news is that
+the documentation built without error. The bad news is that I can’t see
+the documentation to ensure that it’s actually useful. Note in the above
+image that there are three notes following our job: Status, Total
+duration, and Artifacts. Artifacts are files that are retained after a
+job completes. By default there are no artifacts, but we could modify
+our workflow so that the documentation is part of the artifacts.</p>
+</div>
+<div class="section level3">
+<h3 id="saving-the-documentation">Saving the documentation<a class="anchor" aria-label="anchor" href="#saving-the-documentation"></a></h3>
+<p>To save the documentation that was built we need to let the GitHub
+workflow know that the documentation should be considered an artefact of
+the build. The advanced guide for GitHub actions demonstrates how to do
+this using another pre-made recipe which is as follows:</p>
+<div class="codewrapper sourceCode" id="cb6">
+<h3 class="code-label">YML<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
+</h3>
+<pre class="sourceCode yml" tabindex="0"><code class="sourceCode yaml"><span id="cb6-1"><a href="#cb6-1" tabindex="-1"></a><span class="at">  </span><span class="kw">-</span><span class="at"> </span><span class="fu">name</span><span class="kw">:</span><span class="at"> </span><span class="st">'Upload Artifact'</span></span>
+<span id="cb6-2"><a href="#cb6-2" tabindex="-1"></a><span class="at">    </span><span class="fu">uses</span><span class="kw">:</span><span class="at"> actions/upload-artifact@v2</span></span>
+<span id="cb6-3"><a href="#cb6-3" tabindex="-1"></a><span class="at">    </span><span class="fu">with</span><span class="kw">:</span></span>
+<span id="cb6-4"><a href="#cb6-4" tabindex="-1"></a><span class="at">      </span><span class="fu">name</span><span class="kw">:</span><span class="at"> my-artifact</span></span>
+<span id="cb6-5"><a href="#cb6-5" tabindex="-1"></a><span class="at">      </span><span class="fu">path</span><span class="kw">:</span><span class="at"> my_file.txt</span></span></code></pre>
+</div>
+<p>For us we want the artifact to be a directory docs/build/ and we’ll
+give it a name of documentation-html.</p>
+<p>Our full workflow for this lesson now looks like this:</p>
+<div class="codewrapper sourceCode" id="cb7">
+<h3 class="code-label">YML<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
+</h3>
+<pre class="sourceCode yml" tabindex="0"><code class="sourceCode yaml"><span id="cb7-1"><a href="#cb7-1" tabindex="-1"></a><span class="co"># This is a basic workflow to help you get started with Actions</span></span>
+<span id="cb7-2"><a href="#cb7-2" tabindex="-1"></a></span>
+<span id="cb7-3"><a href="#cb7-3" tabindex="-1"></a><span class="fu">name</span><span class="kw">:</span><span class="at"> Build Documentation with Sphinx</span></span>
+<span id="cb7-4"><a href="#cb7-4" tabindex="-1"></a></span>
+<span id="cb7-5"><a href="#cb7-5" tabindex="-1"></a><span class="co"># Controls when the workflow will run</span></span>
+<span id="cb7-6"><a href="#cb7-6" tabindex="-1"></a><span class="fu">on</span><span class="kw">:</span></span>
+<span id="cb7-7"><a href="#cb7-7" tabindex="-1"></a><span class="co">  # Triggers the workflow on push or pull request events but only for the main branch</span></span>
+<span id="cb7-8"><a href="#cb7-8" tabindex="-1"></a><span class="at">  </span><span class="fu">push</span><span class="kw">:</span></span>
+<span id="cb7-9"><a href="#cb7-9" tabindex="-1"></a><span class="at">    </span><span class="fu">branches</span><span class="kw">:</span><span class="at"> </span><span class="kw">[</span><span class="at"> main </span><span class="kw">]</span></span>
+<span id="cb7-10"><a href="#cb7-10" tabindex="-1"></a><span class="at">  </span><span class="fu">pull_request</span><span class="kw">:</span></span>
+<span id="cb7-11"><a href="#cb7-11" tabindex="-1"></a><span class="at">    </span><span class="fu">branches</span><span class="kw">:</span><span class="at"> </span><span class="kw">[</span><span class="at"> main </span><span class="kw">]</span></span>
+<span id="cb7-12"><a href="#cb7-12" tabindex="-1"></a></span>
+<span id="cb7-13"><a href="#cb7-13" tabindex="-1"></a><span class="co">  # Allows you to run this workflow manually from the Actions tab</span></span>
+<span id="cb7-14"><a href="#cb7-14" tabindex="-1"></a><span class="at">  </span><span class="fu">workflow_dispatch</span><span class="kw">:</span></span>
+<span id="cb7-15"><a href="#cb7-15" tabindex="-1"></a></span>
+<span id="cb7-16"><a href="#cb7-16" tabindex="-1"></a><span class="co"># A workflow run is made up of one or more jobs that can run sequentially or in parallel</span></span>
+<span id="cb7-17"><a href="#cb7-17" tabindex="-1"></a><span class="fu">jobs</span><span class="kw">:</span></span>
+<span id="cb7-18"><a href="#cb7-18" tabindex="-1"></a><span class="co">  # This workflow contains a single job called "build"</span></span>
+<span id="cb7-19"><a href="#cb7-19" tabindex="-1"></a><span class="at">  </span><span class="fu">build-docs</span><span class="kw">:</span></span>
+<span id="cb7-20"><a href="#cb7-20" tabindex="-1"></a><span class="co">    # The type of runner that the job will run on</span></span>
+<span id="cb7-21"><a href="#cb7-21" tabindex="-1"></a><span class="at">    </span><span class="fu">runs-on</span><span class="kw">:</span><span class="at"> ubuntu-latest</span></span>
+<span id="cb7-22"><a href="#cb7-22" tabindex="-1"></a></span>
+<span id="cb7-23"><a href="#cb7-23" tabindex="-1"></a><span class="co">    # Steps represent a sequence of tasks that will be executed as part of the job</span></span>
+<span id="cb7-24"><a href="#cb7-24" tabindex="-1"></a><span class="at">    </span><span class="fu">steps</span><span class="kw">:</span></span>
+<span id="cb7-25"><a href="#cb7-25" tabindex="-1"></a><span class="co">      # Checks-out your repository under $GITHUB_WORKSPACE, so your job can access it</span></span>
+<span id="cb7-26"><a href="#cb7-26" tabindex="-1"></a><span class="at">      </span><span class="kw">-</span><span class="at"> </span><span class="fu">uses</span><span class="kw">:</span><span class="at"> actions/checkout@v2</span></span>
+<span id="cb7-27"><a href="#cb7-27" tabindex="-1"></a></span>
+<span id="cb7-28"><a href="#cb7-28" tabindex="-1"></a><span class="at">      </span><span class="kw">-</span><span class="at"> </span><span class="fu">name</span><span class="kw">:</span><span class="at"> Sphinx Build</span></span>
+<span id="cb7-29"><a href="#cb7-29" tabindex="-1"></a><span class="co">        # You may pin to the exact commit or the version.</span></span>
+<span id="cb7-30"><a href="#cb7-30" tabindex="-1"></a><span class="at">        </span><span class="fu">uses</span><span class="kw">:</span><span class="at"> ammaraskar/sphinx-action@0.4</span></span>
+<span id="cb7-31"><a href="#cb7-31" tabindex="-1"></a><span class="at">        </span><span class="fu">with</span><span class="kw">:</span></span>
+<span id="cb7-32"><a href="#cb7-32" tabindex="-1"></a><span class="co">          # The folder containing your sphinx docs.</span></span>
+<span id="cb7-33"><a href="#cb7-33" tabindex="-1"></a><span class="at">          </span><span class="fu">docs-folder</span><span class="kw">:</span><span class="at"> docs/</span></span>
+<span id="cb7-34"><a href="#cb7-34" tabindex="-1"></a><span class="co">          # The command used to build your documentation.</span></span>
+<span id="cb7-35"><a href="#cb7-35" tabindex="-1"></a><span class="at">          </span><span class="fu">build-command</span><span class="kw">:</span><span class="at"> make html</span></span>
+<span id="cb7-36"><a href="#cb7-36" tabindex="-1"></a></span>
+<span id="cb7-37"><a href="#cb7-37" tabindex="-1"></a><span class="at">      </span><span class="kw">-</span><span class="at"> </span><span class="fu">name</span><span class="kw">:</span><span class="at"> Archive documentation</span></span>
+<span id="cb7-38"><a href="#cb7-38" tabindex="-1"></a><span class="at">        </span><span class="fu">uses</span><span class="kw">:</span><span class="at"> actions/upload-artifact@v2</span></span>
+<span id="cb7-39"><a href="#cb7-39" tabindex="-1"></a><span class="at">        </span><span class="fu">with</span><span class="kw">:</span></span>
+<span id="cb7-40"><a href="#cb7-40" tabindex="-1"></a><span class="at">          </span><span class="fu">name</span><span class="kw">:</span><span class="at"> documentation-html</span></span>
+<span id="cb7-41"><a href="#cb7-41" tabindex="-1"></a><span class="at">          </span><span class="fu">path</span><span class="kw">:</span><span class="at"> docs/build/</span></span></code></pre>
 </div>
 <p>If we save and wait for the triggered workflow to complete we should
 see that the artifacts field is now 1, and that there is a new section
 on our page which shows all the artifacts that were produced.</p>
-<p>￼ We can click on the documentation-html link to get a zip of the
-docs/build/ directory which contains all our documentation.</p>
-<p>Summary Building documentation requires a similar workflow to
-building and testing code.</p>
+<p><img src="episodese/fig/automation/worfklow-docs-with-artifact.png" alt="A successful workflow which has produced and artifact" class="figure"> ￼ We can
+click on the <code>documentation-html</code> link to get a zip of the
+<code>docs/build/</code> directory which contains all our
+documentation.</p>
+</div>
+<div class="section level3">
+<h3 id="summary-1">Summary<a class="anchor" aria-label="anchor" href="#summary-1"></a></h3>
+<p>Building documentation requires a similar workflow to building and
+testing code.</p>
 <p>The GitHub marketplace offers a variety of pre-made ‘steps’ to
 include in your workflow. There are many that will let you build
 documentation with Sphinx.</p>
 <p>When building documentation we need to ensure that the documentation
 that was built is considered part of the workflow ‘artifact’ so that we
-can download and view it after the workflow completes. <!--
+can download and view it after the workflow completes.</p>
+<div id="solo-activity-github-actions" class="callout discussion">
+<div class="callout-square">
+<i class="callout-icon" data-feather="message-circle"></i>
+</div>
+<span class="callout-header">Discussion</span>
+<div id="solo-activity-github-actions" class="callout-inner">
+<h3 class="callout-title">SOLO Activity: GitHub actions</h3>
+<div class="callout-content">
+<p>In this activity you will apply the previous lessons to automate the
+documentation and testing using GitHub actions. This activity can be
+completed on your own solo project, or as part of a group project. The
+requirements are that the project has a python module that can be
+installed, has at least one function with a docstring, and at least one
+test function.</p>
+<ol style="list-style-type: decimal"><li>For your software project create a GitHub action that will build and
+test your python module.
+<ol style="list-style-type: decimal"><li>“Build” in this case means install the required dependencies and
+then install your module using pip install -e .</li>
+<li>The test phase can be carried out using either a test suite such as
+pytest, or by running your test script directly. If you are using a
+personal test script then you should ensure that it will exit with
+status != 0 when the tests fail, so that the build/test workflow will
+also report a failure.</li>
+</ol></li>
+<li>Use the GitHub online editor to create/modify the relevant .yml
+files and set on status to be push so that the workflow will run each
+time that you make changes to the .yml file.</li>
+<li>Once you have a working build/test workflow, create a documentation
+workflow.</li>
+<li>Use the build/test workflow as a template and remove the test phase
+and replace it with a documentation build.</li>
+<li>Modify the documentation step such that it will produce an artefact
+which is the contents of the documentation directory.</li>
+<li>Verify that your documentation has completed properly by downloading
+and viewing the workflow artefact.</li>
+</ol></div>
+</div>
+</div>
+<!--
 Place links that you need to refer to multiple times across pages here. Delete
 any links that you are not going to use.
- --></p>
+ -->
 </div>
-
-
-
-      </div> <!-- / div.lesson-content -->
+</section></div> <!-- / div.lesson-content -->
     </main><!-- / main#main-content.main-content --><nav class="bottom-pagination mx-md-4" aria-label="Previous and Next Chapter"><div class="d-block d-sm-block d-md-none">
         <a class="chapter-link" href="TestAndDoc.html"><i aria-hidden="true" class="small-arrow" data-feather="arrow-left"></i>Previous</a>
         <a class="chapter-link float-end" href="SharingCode.html">Next<i aria-hidden="true" class="small-arrow" data-feather="arrow-right"></i></a>

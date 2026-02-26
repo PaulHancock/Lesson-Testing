@@ -485,9 +485,7 @@ skysim.sim module</div>
 <h3 id="TestAndDoc-figure-3">Figure 3</h3>
 <p aria-hidden="true">Image 1 of 1: ‘Documentation made with sphinx’</p>
 <figure><img src="fig/test/Sphinx-docs.png" alt="Documentation made with sphinx" class="figure mx-auto d-block"><div class="figcaption">Documentation made with sphinx</div>
-</figure><hr></section><section id="AutomationAndCI"><h2 class="section-heading"><a href="AutomationAndCI.html">Automation and Continuous Integration (on GitHub)This is a basic workflow to help you get started with Actions<a class="anchor" aria-label="anchor" href="#this-is-a-basic-workflow-to-help-you-get-started-with-actions"></a>Controls when the workflow will run<a class="anchor" aria-label="anchor" href="#controls-when-the-workflow-will-run"></a>A workflow run is made up of one or more jobs that can run
-sequentially or in parallel<a class="anchor" aria-label="anchor" href="#a-workflow-run-is-made-up-of-one-or-more-jobs-that-can-run-sequentially-or-in-parallel"></a>This is a basic workflow to help you get started with Actions<a class="anchor" aria-label="anchor" href="#this-is-a-basic-workflow-to-help-you-get-started-with-actions-1"></a>Controls when the workflow will run<a class="anchor" aria-label="anchor" href="#controls-when-the-workflow-will-run-1"></a>A workflow run is made up of one or more jobs that can run
-sequentially or in parallel<a class="anchor" aria-label="anchor" href="#a-workflow-run-is-made-up-of-one-or-more-jobs-that-can-run-sequentially-or-in-parallel-1"></a></a></h2>
+</figure><hr></section><section id="AutomationAndCI"><h2 class="section-heading"><a href="AutomationAndCI.html">Automation and Continuous Integration (on GitHub)</a></h2>
 <hr class="half-width">
 <h3 id="AutomationAndCI-figure-1">Figure 1</h3>
 <p aria-hidden="true">Image 1 of 1: ‘The new workflow button on the actions page of your github repository’</p>
@@ -506,7 +504,39 @@ Github</div>
 <h3 id="AutomationAndCI-figure-4">Figure 4</h3>
 <p aria-hidden="true">Image 1 of 1: ‘Details of the workflow’</p>
 <figure><img src="fig/automation/workflow-details.png" alt="Details of the workflow" class="figure mx-auto d-block"><div class="figcaption">Details of the workflow</div>
-</figure><hr></section>
+</figure><hr>
+<h3 id="AutomationAndCI-figure-5">Figure 5</h3>
+<p aria-hidden="true">Image 1 of 1: ‘The new workflow button on the actions page of your github repository’</p>
+<p><img src="fig/automation/new-workflow.jpg" alt="The new workflow button on the actions page of your github repository" class="figure">
+￼ The <code>New workflow</code> button will take you to a page to choose
+a template from a long list. Last time we started with a pre-made
+template for building and testing python code. This time we are going to
+start with a generic template so we should click on the “set up a
+workflow yourself -&gt;” link.</p>
+<hr>
+<h3 id="AutomationAndCI-figure-6">Figure 6</h3>
+<p aria-hidden="true">Image 1 of 1: ‘Choosing the sphinx build workflow from the marketplace’</p>
+<p><img src="fig/automation/workflow-sphinx.png" alt="Choosing the sphinx build workflow from the marketplace" class="figure"> ￼ When
+we click the “Sphinx Build” result we get the following snippet of code.
+Which we can include in our workflow file.</p>
+<hr>
+<h3 id="AutomationAndCI-figure-7">Figure 7</h3>
+<p aria-hidden="true">Image 1 of 1: ‘Successfully run documentation workflow’</p>
+<p><img src="fit/automation/workflow-docs-successful.png" alt="Successfully run documentation workflow" class="figure"> ￼ The good news is that
+the documentation built without error. The bad news is that I can’t see
+the documentation to ensure that it’s actually useful. Note in the above
+image that there are three notes following our job: Status, Total
+duration, and Artifacts. Artifacts are files that are retained after a
+job completes. By default there are no artifacts, but we could modify
+our workflow so that the documentation is part of the artifacts.</p>
+<hr>
+<h3 id="AutomationAndCI-figure-8">Figure 8</h3>
+<p aria-hidden="true">Image 1 of 1: ‘A successful workflow which has produced and artifact’</p>
+<p><img src="episodese/fig/automation/worfklow-docs-with-artifact.png" alt="A successful workflow which has produced and artifact" class="figure"> ￼ We can
+click on the <code>documentation-html</code> link to get a zip of the
+<code>docs/build/</code> directory which contains all our
+documentation.</p>
+<hr></section>
 </div>
     </main>
 </div>
