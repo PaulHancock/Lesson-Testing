@@ -4355,7 +4355,7 @@ any links that you are not going to use.
 </div>
 </section></section><section id="aio-SharingCode"><p>Content from <a href="SharingCode.html">Sharing Code To The Wider Community</a></p>
 <hr>
-<p>Last updated on 2026-02-26 |
+<p>Last updated on 2026-02-27 |
 
         <a href="https://github.com/PaulHancock/Lesson-Testing/edit/main/episodes/SharingCode.md" class="external-link">Edit this page <i aria-hidden="true" data-feather="edit"></i></a></p>
 <p>Estimated time: <i aria-hidden="true" data-feather="clock"></i> 180 minutes</p>
@@ -4740,14 +4740,140 @@ for pip:</p>
 <p>If users want to upgrade the module they have to download or pull the
 new version, uninstall the old one, and then install the new one. It can
 be a little tedious and easy to forget. Luckily there is a python
-package index pypi.org which pip can look to in order to find different
-versions of your software. It is thanks to pypi.org that pip knows how
-to install all the modules that we listed in our
-<code>requirements.txt</code> file. We’ll explore the python package
-index in the next lesson. <!--
+package index <a href="http://pypi.org/" class="external-link">pypi.org</a> which pip can look
+to in order to find different versions of your software. It is thanks to
+pypi.org that pip knows how to install all the modules that we listed in
+our <code>requirements.txt</code> file. We’ll explore the python package
+index in the next lesson.</p>
+</div>
+</section><section><h2 class="section-heading" id="hosting-your-code-on-pypi-org">Hosting your code on pypi.org<a class="anchor" aria-label="anchor" href="#hosting-your-code-on-pypi-org"></a>
+</h2>
+<hr class="half-width">
+<p>The python package index at <a href="http://pypi.org/" class="external-link">pypi.org</a>
+is the first place that pip will look when asked to install a package.
+If your package is avaialble via pypi.org then your users can install
+your software simply by typing <code>pip install &lt;package&gt;</code>.
+Installing from other locations is still possible and sometimes easy. In
+this lesson we’ll go through the process of preparing your code and
+uploading it to pypi.org. This content is based on the instructions at
+<a href="https://packaging.python.org/en/latest/tutorials/packaging-projects/" class="external-link">Packaging
+Python Projects</a> (PyPA), which you should also refer to.</p>
+<div class="section level3">
+<h3 id="name-check">Name check<a class="anchor" aria-label="anchor" href="#name-check"></a>
+</h3>
+<p>Unlike GitHub where the project name is disambiguated based on the
+project owner, pypi requires that each package have it’s own unique
+name. So before you think about uploading your package to pypi.org you
+should do a search to see if your package name is already in use, and
+choose a new one if this is the case.</p>
+<p>Once you have a name you like you should google it. This is what many
+people will do when looking for your code and if the results that come
+back are for a different software project (e.g. same name different
+language), or are NSFW then people will be less likely to keep
+looking.</p>
+<p>You can choose nearly anything you like as the package name, however
+<a href="https://www.python.org/dev/peps/pep-0423/" class="external-link">PEP423</a> has some
+advice about how you might choose and structure your package name.</p>
+</div>
+<div class="section level3">
+<h3 id="project-structure">Project structure<a class="anchor" aria-label="anchor" href="#project-structure"></a>
+</h3>
+<p>If you use the structure outline in <a href="PoC.html">Beginning a
+new software project</a>, and have created a <code>setup.py</code> file
+as described in <a href="SharingCode.html">Installing your module via
+setup.py</a>, then you are good to go. The project structure recommended
+in these lessons differs from that which is given on the PyPA site but
+will still work.</p>
+</div>
+<div class="section level3">
+<h3 id="project-metadata">Project metadata<a class="anchor" aria-label="anchor" href="#project-metadata"></a>
+</h3>
+<p>In addition to the meta data that we have already included in the
+<code>setup.py</code> file we can include information that has special
+meaning on the pypi site. This information is used to populate many of
+the links on the landing page for a package. An example for the
+<code>numpy</code> package is shown below:</p>
+<figure><img src="../fig/sharing/pypi-numpy.png" alt="Numpy package entry on pypi.org" class="figure mx-auto d-block"><div class="figcaption">Numpy package entry on pypi.org</div>
+</figure><p>The information in the <strong>project description</strong> is
+rendered from the <code>long_description</code> metadata using the
+<code>long_description_content_type</code> to inform how the rendering
+should be done. Many projects choose to copy their
+<code>README.md</code> file into this field (as we did in a previous
+lesson), however you can of course create a custom description for a
+pypi audience.</p>
+<p>The information in the <strong>project links</strong> section is
+drawn from the <code>project_urls</code> dictionary. You can have any
+description/links you like here. Some of the obvious ones get
+appropriate icons but these cannot be customised.</p>
+<p>Another sectionson the pypi landing page that you may want to
+populate is “Classifiers”. For numpy they are shown below.</p>
+<figure><img src="../fig/sharing/pypi-numpy-classifiers.png" alt="The classifiers for numpy as shown on pypi.org" class="figure mx-auto d-block"><div class="figcaption">The classifiers for numpy as shown on
+pypi.org</div>
+</figure><p>The classifiers section helps people see additional metadata in a
+regular format, and also allows people to search for other projects with
+similar classifiers. Classifiers are specified as a list of strings in
+the <code>classifiers</code> parameter within <code>setup.py</code>.
+These classifiers can be changed for each release of a project. A list
+of classifiers can be found at <a href="https://pypi.org/classifiers/" class="external-link">pypi.org/classifiers/</a>. It is a
+long list, so maybe the first point of call would be to look at a
+package like numpy or astropy that you think would have similar
+classifiers and copy the relevant ones into your package.</p>
+</div>
+<div class="section level3">
+<h3 id="building-a-distribution-package">Building a distribution package<a class="anchor" aria-label="anchor" href="#building-a-distribution-package"></a>
+</h3>
+<p>PyPA provides a package simply called <code>build</code> that will
+create a package from your project. Install it using
+<code>python3 -m pip install --upgrade build</code>, and then run it
+using <code>python3 -m build</code>. It will create a directory called
+<code>dist/</code> which contains a <code>.tar.gz</code> file (your
+source archive) and a <code>.whl</code> file which is the build
+distribution. Congratulations, you now have a package that can be served
+by pypi – you just need a way to upload it.</p>
+</div>
+<div class="section level3">
+<h3 id="uploading-to-pypi">Uploading to pypi<a class="anchor" aria-label="anchor" href="#uploading-to-pypi"></a>
+</h3>
+<p>The first thing that you need is to create an account on pypi.org.
+Accounts are free and easy to make so go sign up <a href="https://pypi.org/account/register/" class="external-link">here</a>.</p>
+<p>The second thing you’ll need is an API token. As noted on PyPA:</p>
+<blockquote>
+<p>To securely upload your project, you’ll need a PyPI API token. Create
+one at <a href="https://test.pypi.org/manage/account/#api-tokens" class="external-link uri">https://test.pypi.org/manage/account/#api-tokens</a>,
+setting the “Scope” to “Entire account”. Don’t close the page until you
+have copied and saved the token — you won’t see that token again.</p>
+<p><a href="https://packaging.python.org/en/latest/tutorials/packaging-projects/" class="external-link uri">https://packaging.python.org/en/latest/tutorials/packaging-projects/</a></p>
+</blockquote>
+<p>Uploading to pypi is handled by the <code>twine</code> module which
+can be installed using
+<code>python3 -m pip install --upgrade twine</code>.</p>
+<p>To upload your package use:</p>
+<div class="codewrapper sourceCode" id="cb5">
+<h3 class="code-label">BASH<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
+</h3>
+<pre class="sourceCode bash" tabindex="0"><code class="sourceCode bash"><span id="cb5-1"><a href="#cb5-1" tabindex="-1"></a><span class="ex">python3</span> <span class="at">-m</span> twine upload dist/<span class="pp">*</span></span></code></pre>
+</div>
+<p>When prompted for a username you should use <code>__token__</code>
+and for your password you should use
+<code>pypi-&lt;API_Token_Value&gt;</code>.</p>
+<p>If you want to test that your upload will work and see what the page
+would look like without placing it on the main package index you can use
+the test repository. To do this just add
+<code>--repository testpypi</code> after <code>twine</code> in the above
+command. When you upload to the test repository you can see the results
+at
+<code>https://test.pypi.org/project/example-pkg-YOUR-USERNAME-HERE</code>.
+This test site is good to use for the first time you are uploading as
+you’ll invariably want to make some small changes once you’ve seen how
+the landing page renders.</p>
+<p>Congratulations, you now have a package published in the python
+package index. For more details and some alternatives to the method
+given above you are referred to the <a href="https://packaging.python.org/en/latest/tutorials/packaging-projects/" class="external-link">PyPA
+tutorial</a>.</p>
+<!--
 Place links that you need to refer to multiple times across pages here. Delete
 any links that you are not going to use.
- --></p>
+ -->
 </div>
 </section></section>
 </div>
@@ -4803,8 +4929,8 @@ any links that you are not going to use.
   "url": "https://PaulHancock.github.io/Lesson-Testing/instructor/aio.html",
   "identifier": "https://PaulHancock.github.io/Lesson-Testing/instructor/aio.html",
   "dateCreated": "2026-02-23",
-  "dateModified": "2026-02-26",
-  "datePublished": "2026-02-26"
+  "dateModified": "2026-02-27",
+  "datePublished": "2026-02-27"
 }
 
   </script><script>
