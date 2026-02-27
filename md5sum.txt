@@ -13,6 +13,6 @@
 "episodes/SharingCode.md" "95b1d94472dd43fda68de55a864407fb" "site/built/SharingCode.md" "2026-02-27"
 "episodes/Recap.md" "d41d8cd98f00b204e9800998ecf8427e" "site/built/Recap.md" "2026-02-24"
 "instructors/instructor-notes.md" "36e859b28ab235f35d739218291e22f4" "site/built/instructor-notes.md" "2026-02-23"
-"learners/reference.md" "5a99764705f693143e6d26f3d66ef787" "site/built/reference.md" "2026-02-24"
+"learners/reference.md" "b54c29aa0c10ac06e9ab3642b61fd0bf" "site/built/reference.md" "2026-02-27"
 "learners/setup.md" "d3bf004b583484c44c3ceaa0ff7b0b21" "site/built/setup.md" "2026-02-23"
 "profiles/learner-profiles.md" "972b5edf3fa58d22ae6926f9adc917ed" "site/built/learner-profiles.md" "2026-02-23"
