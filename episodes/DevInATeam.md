@@ -276,7 +276,7 @@ The `CONTRIBUTING.md` file can become quite long if all of the above are include
 
 ## Creating a GitHub repository
 
-At the moment we have a bunch of code, documentation, and associated files. We wish to make these available to others in the easiest way possible. We could just zip them all up and email to collaborators. However this means that collaborators no longer benefit from any future development that you do, and even worse, will start asking questions about code that may have diverged from the version you are working on. A solution to this problem is to keep all your code under [version control](https://swcarpentry.github.io/git-novice/), and to make use of one of the many free, online repositories to host a copy of the code. For this lesson we’ll focus on [GitHub](http://github.com/), but [gitlab](http://gitlab.com/) and [bitbucket](https://bitbucket.org/product) are also good alternatives.
+At the moment we have a bunch of code, documentation, and associated files. We wish to make these available to others in the easiest way possible. We could just zip them all up and email to collaborators. However this means that collaborators no longer benefit from any future development that you do, and even worse, will start asking questions about code that may have diverged from the version you are working on. A solution to this problem is to keep all your code under [version control](https://swcarpentry.github.io/git-novice/), and to make use of one of the many free, online repositories to host a copy of the code. For this lesson we’ll focus on [GitHub][github], but [gitlab][gitlab] and [bitbucket][bitbucket] are also good alternatives.
 
 #### Create an account on Github
 
@@ -316,7 +316,7 @@ git push -u origin main
 
 After you have done the `git push` you’ll have added all your local changes to the remote repository and you can view the new state of the project on Github. Note how your `README.md` file gets rendered into a nice splash page.
 
-When you push to `origin main` you’ll have to authenticate with Github, see [here](https://docs.github.com/en/authentication/connecting-to-github-with-ssh) for instructions on how to set that up for ssh.
+When you push to `origin main` you’ll have to authenticate with Github, see the [github documentation](https://docs.github.com/en/authentication/connecting-to-github-with-ssh) for instructions on how to set that up for ssh.
 
 If you set your repository to be public then anyone on the internet can see and download your code, they can make a fork (copy) of it to work on themselves, and can even send feature requests or bug reports via the issue tracker. We will get into those features later, but for now all you need to do is let your collaborators know that your code is available on Github, send them the link, and then they can download/clone it as needed. An added bonus is that as you make changes to your code, and then `add/commit/push` these changes, your collaborators can then pull those changes and get the updates without having to bug you about it.
 
@@ -336,7 +336,8 @@ Github issues has become a full featured work planning and project management sy
 
 To begin, let’s navigate to the github repository for our project of choice. On the front page you should see a set of tabs. By default you’ll be seeing the `<> code` tab, but we want to select the `⊙ Issues` tab.
 
-![Repo no issues](episodes/fig/team/repo-tabs-issues.png)
+![Repo with no issues](episodes/fig/team/repo-tabs-issues.png)
+
 Initially this will be blank for your project because there are no issues (yay).
 
 ### Creating an issue
