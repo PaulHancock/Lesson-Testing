@@ -258,7 +258,7 @@
       </button>
     </div><!--/div.accordion-header-->
 
-    <div id="flush-collapsecurrent" class="accordion-collapse collapse show" aria-labelledby="flush-headingcurrent" data-bs-parent="#accordionFlushcurrent">
+    <div id="flush-collapsecurrent" class="accordion-collapse collapse show" data-bs-parent="#accordionFlushcurrent">
       <div class="accordion-body">
         <ul><li><a href="#using-github-to-run-your-tests">Using GitHub to run your tests</a></li>
 <li><a href="#using-github-to-compile-your-documentation">Using GitHub to compile your documentation</a></li>
@@ -426,40 +426,40 @@ as follows:</p>
 <div class="codewrapper sourceCode" id="cb1">
 <h3 class="code-label">YML<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
 </h3>
-<pre class="sourceCode yml" tabindex="0"><code class="sourceCode yaml"><span id="cb1-1"><a href="#cb1-1" tabindex="-1"></a><span class="fu">name</span><span class="kw">:</span><span class="at"> Python Package using Conda</span></span>
-<span id="cb1-2"><a href="#cb1-2" tabindex="-1"></a></span>
-<span id="cb1-3"><a href="#cb1-3" tabindex="-1"></a><span class="fu">on</span><span class="kw">:</span><span class="at"> </span><span class="kw">[</span><span class="at">push</span><span class="kw">]</span></span>
-<span id="cb1-4"><a href="#cb1-4" tabindex="-1"></a></span>
-<span id="cb1-5"><a href="#cb1-5" tabindex="-1"></a><span class="fu">jobs</span><span class="kw">:</span></span>
-<span id="cb1-6"><a href="#cb1-6" tabindex="-1"></a><span class="at">  </span><span class="fu">build-linux</span><span class="kw">:</span></span>
-<span id="cb1-7"><a href="#cb1-7" tabindex="-1"></a><span class="at">    </span><span class="fu">runs-on</span><span class="kw">:</span><span class="at"> ubuntu-latest</span></span>
-<span id="cb1-8"><a href="#cb1-8" tabindex="-1"></a><span class="at">    </span><span class="fu">strategy</span><span class="kw">:</span></span>
-<span id="cb1-9"><a href="#cb1-9" tabindex="-1"></a><span class="at">      </span><span class="fu">max-parallel</span><span class="kw">:</span><span class="at"> </span><span class="dv">5</span></span>
-<span id="cb1-10"><a href="#cb1-10" tabindex="-1"></a></span>
-<span id="cb1-11"><a href="#cb1-11" tabindex="-1"></a><span class="at">    </span><span class="fu">steps</span><span class="kw">:</span></span>
-<span id="cb1-12"><a href="#cb1-12" tabindex="-1"></a><span class="at">    </span><span class="kw">-</span><span class="at"> </span><span class="fu">uses</span><span class="kw">:</span><span class="at"> actions/checkout@v2</span></span>
-<span id="cb1-13"><a href="#cb1-13" tabindex="-1"></a><span class="at">    </span><span class="kw">-</span><span class="at"> </span><span class="fu">name</span><span class="kw">:</span><span class="at"> Set up Python 3.10</span></span>
-<span id="cb1-14"><a href="#cb1-14" tabindex="-1"></a><span class="at">      </span><span class="fu">uses</span><span class="kw">:</span><span class="at"> actions/setup-python@v2</span></span>
-<span id="cb1-15"><a href="#cb1-15" tabindex="-1"></a><span class="at">      </span><span class="fu">with</span><span class="kw">:</span></span>
-<span id="cb1-16"><a href="#cb1-16" tabindex="-1"></a><span class="at">        </span><span class="fu">python-version</span><span class="kw">:</span><span class="at"> </span><span class="fl">3.10</span></span>
-<span id="cb1-17"><a href="#cb1-17" tabindex="-1"></a><span class="at">    </span><span class="kw">-</span><span class="at"> </span><span class="fu">name</span><span class="kw">:</span><span class="at"> Add conda to system path</span></span>
-<span id="cb1-18"><a href="#cb1-18" tabindex="-1"></a><span class="fu">      run</span><span class="kw">: </span><span class="ch">|</span></span>
-<span id="cb1-19"><a href="#cb1-19" tabindex="-1"></a>        # $CONDA is an environment variable pointing to the root of the miniconda directory</span>
-<span id="cb1-20"><a href="#cb1-20" tabindex="-1"></a>        echo $CONDA/bin &gt;&gt; $GITHUB_PATH</span>
-<span id="cb1-21"><a href="#cb1-21" tabindex="-1"></a><span class="at">    </span><span class="kw">-</span><span class="at"> </span><span class="fu">name</span><span class="kw">:</span><span class="at"> Install dependencies</span></span>
-<span id="cb1-22"><a href="#cb1-22" tabindex="-1"></a><span class="fu">      run</span><span class="kw">: </span><span class="ch">|</span></span>
-<span id="cb1-23"><a href="#cb1-23" tabindex="-1"></a>        conda env update --file environment.yml --name base</span>
-<span id="cb1-24"><a href="#cb1-24" tabindex="-1"></a><span class="at">    </span><span class="kw">-</span><span class="at"> </span><span class="fu">name</span><span class="kw">:</span><span class="at"> Lint with flake8</span></span>
-<span id="cb1-25"><a href="#cb1-25" tabindex="-1"></a><span class="fu">      run</span><span class="kw">: </span><span class="ch">|</span></span>
-<span id="cb1-26"><a href="#cb1-26" tabindex="-1"></a>        conda install flake8</span>
-<span id="cb1-27"><a href="#cb1-27" tabindex="-1"></a>        # stop the build if there are Python syntax errors or undefined names</span>
-<span id="cb1-28"><a href="#cb1-28" tabindex="-1"></a>        flake8 . --count --select=E9,F63,F7,F82 --show-source --statistics</span>
-<span id="cb1-29"><a href="#cb1-29" tabindex="-1"></a>        # exit-zero treats all errors as warnings. The GitHub editor is 127 chars wide</span>
-<span id="cb1-30"><a href="#cb1-30" tabindex="-1"></a>        flake8 . --count --exit-zero --max-complexity=10 --max-line-length=127 --statistics</span>
-<span id="cb1-31"><a href="#cb1-31" tabindex="-1"></a><span class="at">    </span><span class="kw">-</span><span class="at"> </span><span class="fu">name</span><span class="kw">:</span><span class="at"> Test with pytest</span></span>
-<span id="cb1-32"><a href="#cb1-32" tabindex="-1"></a><span class="fu">      run</span><span class="kw">: </span><span class="ch">|</span></span>
-<span id="cb1-33"><a href="#cb1-33" tabindex="-1"></a>        conda install pytest</span>
-<span id="cb1-34"><a href="#cb1-34" tabindex="-1"></a>        pytest</span></code></pre>
+<pre class="sourceCode yml" tabindex="0"><code class="sourceCode yaml"><span id="cb1-1"><a href="#cb1-1" tabindex="-1" aria-label="code-block-1-1"></a><span class="fu">name</span><span class="kw">:</span><span class="at"> Python Package using Conda</span></span>
+<span id="cb1-2"><a href="#cb1-2" tabindex="-1" aria-label="code-block-1-2"></a></span>
+<span id="cb1-3"><a href="#cb1-3" tabindex="-1" aria-label="code-block-1-3"></a><span class="fu">on</span><span class="kw">:</span><span class="at"> </span><span class="kw">[</span><span class="at">push</span><span class="kw">]</span></span>
+<span id="cb1-4"><a href="#cb1-4" tabindex="-1" aria-label="code-block-1-4"></a></span>
+<span id="cb1-5"><a href="#cb1-5" tabindex="-1" aria-label="code-block-1-5"></a><span class="fu">jobs</span><span class="kw">:</span></span>
+<span id="cb1-6"><a href="#cb1-6" tabindex="-1" aria-label="code-block-1-6"></a><span class="at">  </span><span class="fu">build-linux</span><span class="kw">:</span></span>
+<span id="cb1-7"><a href="#cb1-7" tabindex="-1" aria-label="code-block-1-7"></a><span class="at">    </span><span class="fu">runs-on</span><span class="kw">:</span><span class="at"> ubuntu-latest</span></span>
+<span id="cb1-8"><a href="#cb1-8" tabindex="-1" aria-label="code-block-1-8"></a><span class="at">    </span><span class="fu">strategy</span><span class="kw">:</span></span>
+<span id="cb1-9"><a href="#cb1-9" tabindex="-1" aria-label="code-block-1-9"></a><span class="at">      </span><span class="fu">max-parallel</span><span class="kw">:</span><span class="at"> </span><span class="dv">5</span></span>
+<span id="cb1-10"><a href="#cb1-10" tabindex="-1" aria-label="code-block-1-10"></a></span>
+<span id="cb1-11"><a href="#cb1-11" tabindex="-1" aria-label="code-block-1-11"></a><span class="at">    </span><span class="fu">steps</span><span class="kw">:</span></span>
+<span id="cb1-12"><a href="#cb1-12" tabindex="-1" aria-label="code-block-1-12"></a><span class="at">    </span><span class="kw">-</span><span class="at"> </span><span class="fu">uses</span><span class="kw">:</span><span class="at"> actions/checkout@v2</span></span>
+<span id="cb1-13"><a href="#cb1-13" tabindex="-1" aria-label="code-block-1-13"></a><span class="at">    </span><span class="kw">-</span><span class="at"> </span><span class="fu">name</span><span class="kw">:</span><span class="at"> Set up Python 3.10</span></span>
+<span id="cb1-14"><a href="#cb1-14" tabindex="-1" aria-label="code-block-1-14"></a><span class="at">      </span><span class="fu">uses</span><span class="kw">:</span><span class="at"> actions/setup-python@v2</span></span>
+<span id="cb1-15"><a href="#cb1-15" tabindex="-1" aria-label="code-block-1-15"></a><span class="at">      </span><span class="fu">with</span><span class="kw">:</span></span>
+<span id="cb1-16"><a href="#cb1-16" tabindex="-1" aria-label="code-block-1-16"></a><span class="at">        </span><span class="fu">python-version</span><span class="kw">:</span><span class="at"> </span><span class="fl">3.10</span></span>
+<span id="cb1-17"><a href="#cb1-17" tabindex="-1" aria-label="code-block-1-17"></a><span class="at">    </span><span class="kw">-</span><span class="at"> </span><span class="fu">name</span><span class="kw">:</span><span class="at"> Add conda to system path</span></span>
+<span id="cb1-18"><a href="#cb1-18" tabindex="-1" aria-label="code-block-1-18"></a><span class="fu">      run</span><span class="kw">: </span><span class="ch">|</span></span>
+<span id="cb1-19"><a href="#cb1-19" tabindex="-1" aria-label="code-block-1-19"></a>        # $CONDA is an environment variable pointing to the root of the miniconda directory</span>
+<span id="cb1-20"><a href="#cb1-20" tabindex="-1" aria-label="code-block-1-20"></a>        echo $CONDA/bin &gt;&gt; $GITHUB_PATH</span>
+<span id="cb1-21"><a href="#cb1-21" tabindex="-1" aria-label="code-block-1-21"></a><span class="at">    </span><span class="kw">-</span><span class="at"> </span><span class="fu">name</span><span class="kw">:</span><span class="at"> Install dependencies</span></span>
+<span id="cb1-22"><a href="#cb1-22" tabindex="-1" aria-label="code-block-1-22"></a><span class="fu">      run</span><span class="kw">: </span><span class="ch">|</span></span>
+<span id="cb1-23"><a href="#cb1-23" tabindex="-1" aria-label="code-block-1-23"></a>        conda env update --file environment.yml --name base</span>
+<span id="cb1-24"><a href="#cb1-24" tabindex="-1" aria-label="code-block-1-24"></a><span class="at">    </span><span class="kw">-</span><span class="at"> </span><span class="fu">name</span><span class="kw">:</span><span class="at"> Lint with flake8</span></span>
+<span id="cb1-25"><a href="#cb1-25" tabindex="-1" aria-label="code-block-1-25"></a><span class="fu">      run</span><span class="kw">: </span><span class="ch">|</span></span>
+<span id="cb1-26"><a href="#cb1-26" tabindex="-1" aria-label="code-block-1-26"></a>        conda install flake8</span>
+<span id="cb1-27"><a href="#cb1-27" tabindex="-1" aria-label="code-block-1-27"></a>        # stop the build if there are Python syntax errors or undefined names</span>
+<span id="cb1-28"><a href="#cb1-28" tabindex="-1" aria-label="code-block-1-28"></a>        flake8 . --count --select=E9,F63,F7,F82 --show-source --statistics</span>
+<span id="cb1-29"><a href="#cb1-29" tabindex="-1" aria-label="code-block-1-29"></a>        # exit-zero treats all errors as warnings. The GitHub editor is 127 chars wide</span>
+<span id="cb1-30"><a href="#cb1-30" tabindex="-1" aria-label="code-block-1-30"></a>        flake8 . --count --exit-zero --max-complexity=10 --max-line-length=127 --statistics</span>
+<span id="cb1-31"><a href="#cb1-31" tabindex="-1" aria-label="code-block-1-31"></a><span class="at">    </span><span class="kw">-</span><span class="at"> </span><span class="fu">name</span><span class="kw">:</span><span class="at"> Test with pytest</span></span>
+<span id="cb1-32"><a href="#cb1-32" tabindex="-1" aria-label="code-block-1-32"></a><span class="fu">      run</span><span class="kw">: </span><span class="ch">|</span></span>
+<span id="cb1-33"><a href="#cb1-33" tabindex="-1" aria-label="code-block-1-33"></a>        conda install pytest</span>
+<span id="cb1-34"><a href="#cb1-34" tabindex="-1" aria-label="code-block-1-34"></a>        pytest</span></code></pre>
 </div>
 <p>The first two lines give the <code>name</code> of the action which is
 just for your own reference, and an <code>on</code> directive. The
@@ -481,36 +481,36 @@ updating the script to be as follows:</p>
 <div class="codewrapper sourceCode" id="cb2">
 <h3 class="code-label">YML<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
 </h3>
-<pre class="sourceCode yml" tabindex="0"><code class="sourceCode yaml"><span id="cb2-1"><a href="#cb2-1" tabindex="-1"></a><span class="fu">name</span><span class="kw">:</span><span class="at"> Build and Test Python package using pip</span></span>
-<span id="cb2-2"><a href="#cb2-2" tabindex="-1"></a></span>
-<span id="cb2-3"><a href="#cb2-3" tabindex="-1"></a><span class="fu">on</span><span class="kw">:</span><span class="at"> </span><span class="kw">[</span><span class="at">push</span><span class="kw">]</span></span>
-<span id="cb2-4"><a href="#cb2-4" tabindex="-1"></a></span>
-<span id="cb2-5"><a href="#cb2-5" tabindex="-1"></a><span class="fu">jobs</span><span class="kw">:</span></span>
-<span id="cb2-6"><a href="#cb2-6" tabindex="-1"></a><span class="at">  </span><span class="fu">build-linux</span><span class="kw">:</span></span>
-<span id="cb2-7"><a href="#cb2-7" tabindex="-1"></a><span class="at">    </span><span class="fu">runs-on</span><span class="kw">:</span><span class="at"> ubuntu-latest</span></span>
-<span id="cb2-8"><a href="#cb2-8" tabindex="-1"></a><span class="at">    </span><span class="fu">strategy</span><span class="kw">:</span></span>
-<span id="cb2-9"><a href="#cb2-9" tabindex="-1"></a><span class="at">      </span><span class="fu">max-parallel</span><span class="kw">:</span><span class="at"> </span><span class="dv">5</span></span>
-<span id="cb2-10"><a href="#cb2-10" tabindex="-1"></a></span>
-<span id="cb2-11"><a href="#cb2-11" tabindex="-1"></a><span class="at">    </span><span class="fu">steps</span><span class="kw">:</span></span>
-<span id="cb2-12"><a href="#cb2-12" tabindex="-1"></a><span class="at">    </span><span class="kw">-</span><span class="at"> </span><span class="fu">uses</span><span class="kw">:</span><span class="at"> actions/checkout@v2</span></span>
-<span id="cb2-13"><a href="#cb2-13" tabindex="-1"></a><span class="at">    </span><span class="kw">-</span><span class="at"> </span><span class="fu">name</span><span class="kw">:</span><span class="at"> Set up Python "3.6"</span></span>
-<span id="cb2-14"><a href="#cb2-14" tabindex="-1"></a><span class="at">      </span><span class="fu">uses</span><span class="kw">:</span><span class="at"> actions/setup-python@v2</span></span>
-<span id="cb2-15"><a href="#cb2-15" tabindex="-1"></a><span class="at">      </span><span class="fu">with</span><span class="kw">:</span></span>
-<span id="cb2-16"><a href="#cb2-16" tabindex="-1"></a><span class="at">        </span><span class="fu">python-version</span><span class="kw">:</span><span class="at"> </span><span class="st">"3.6"</span></span>
-<span id="cb2-17"><a href="#cb2-17" tabindex="-1"></a><span class="at">    </span><span class="kw">-</span><span class="at"> </span><span class="fu">name</span><span class="kw">:</span><span class="at"> Install dependencies</span></span>
-<span id="cb2-18"><a href="#cb2-18" tabindex="-1"></a><span class="fu">      run</span><span class="kw">: </span><span class="ch">|</span></span>
-<span id="cb2-19"><a href="#cb2-19" tabindex="-1"></a>        # upgrade pip</span>
-<span id="cb2-20"><a href="#cb2-20" tabindex="-1"></a>        python -m pip install --upgrade pip</span>
-<span id="cb2-21"><a href="#cb2-21" tabindex="-1"></a>        # install the testing requirements</span>
-<span id="cb2-22"><a href="#cb2-22" tabindex="-1"></a>        python -m pip install pytest pytest-cov</span>
-<span id="cb2-23"><a href="#cb2-23" tabindex="-1"></a>        # install the dependencies for this</span>
-<span id="cb2-24"><a href="#cb2-24" tabindex="-1"></a>        pip install -r requirements.txt</span>
-<span id="cb2-25"><a href="#cb2-25" tabindex="-1"></a><span class="at">    </span><span class="kw">-</span><span class="at"> </span><span class="fu">name</span><span class="kw">:</span><span class="at"> Install module</span></span>
-<span id="cb2-26"><a href="#cb2-26" tabindex="-1"></a><span class="fu">      run</span><span class="kw">: </span><span class="ch">|</span></span>
-<span id="cb2-27"><a href="#cb2-27" tabindex="-1"></a>        python -m pip install -e .</span>
-<span id="cb2-28"><a href="#cb2-28" tabindex="-1"></a><span class="at">    </span><span class="kw">-</span><span class="at"> </span><span class="fu">name</span><span class="kw">:</span><span class="at"> Test with pytest</span></span>
-<span id="cb2-29"><a href="#cb2-29" tabindex="-1"></a><span class="fu">      run</span><span class="kw">: </span><span class="ch">|</span></span>
-<span id="cb2-30"><a href="#cb2-30" tabindex="-1"></a>        pytest --cov=skysim --cov-report=term</span></code></pre>
+<pre class="sourceCode yml" tabindex="0"><code class="sourceCode yaml"><span id="cb2-1"><a href="#cb2-1" tabindex="-1" aria-label="code-block-2-1"></a><span class="fu">name</span><span class="kw">:</span><span class="at"> Build and Test Python package using pip</span></span>
+<span id="cb2-2"><a href="#cb2-2" tabindex="-1" aria-label="code-block-2-2"></a></span>
+<span id="cb2-3"><a href="#cb2-3" tabindex="-1" aria-label="code-block-2-3"></a><span class="fu">on</span><span class="kw">:</span><span class="at"> </span><span class="kw">[</span><span class="at">push</span><span class="kw">]</span></span>
+<span id="cb2-4"><a href="#cb2-4" tabindex="-1" aria-label="code-block-2-4"></a></span>
+<span id="cb2-5"><a href="#cb2-5" tabindex="-1" aria-label="code-block-2-5"></a><span class="fu">jobs</span><span class="kw">:</span></span>
+<span id="cb2-6"><a href="#cb2-6" tabindex="-1" aria-label="code-block-2-6"></a><span class="at">  </span><span class="fu">build-linux</span><span class="kw">:</span></span>
+<span id="cb2-7"><a href="#cb2-7" tabindex="-1" aria-label="code-block-2-7"></a><span class="at">    </span><span class="fu">runs-on</span><span class="kw">:</span><span class="at"> ubuntu-latest</span></span>
+<span id="cb2-8"><a href="#cb2-8" tabindex="-1" aria-label="code-block-2-8"></a><span class="at">    </span><span class="fu">strategy</span><span class="kw">:</span></span>
+<span id="cb2-9"><a href="#cb2-9" tabindex="-1" aria-label="code-block-2-9"></a><span class="at">      </span><span class="fu">max-parallel</span><span class="kw">:</span><span class="at"> </span><span class="dv">5</span></span>
+<span id="cb2-10"><a href="#cb2-10" tabindex="-1" aria-label="code-block-2-10"></a></span>
+<span id="cb2-11"><a href="#cb2-11" tabindex="-1" aria-label="code-block-2-11"></a><span class="at">    </span><span class="fu">steps</span><span class="kw">:</span></span>
+<span id="cb2-12"><a href="#cb2-12" tabindex="-1" aria-label="code-block-2-12"></a><span class="at">    </span><span class="kw">-</span><span class="at"> </span><span class="fu">uses</span><span class="kw">:</span><span class="at"> actions/checkout@v2</span></span>
+<span id="cb2-13"><a href="#cb2-13" tabindex="-1" aria-label="code-block-2-13"></a><span class="at">    </span><span class="kw">-</span><span class="at"> </span><span class="fu">name</span><span class="kw">:</span><span class="at"> Set up Python "3.6"</span></span>
+<span id="cb2-14"><a href="#cb2-14" tabindex="-1" aria-label="code-block-2-14"></a><span class="at">      </span><span class="fu">uses</span><span class="kw">:</span><span class="at"> actions/setup-python@v2</span></span>
+<span id="cb2-15"><a href="#cb2-15" tabindex="-1" aria-label="code-block-2-15"></a><span class="at">      </span><span class="fu">with</span><span class="kw">:</span></span>
+<span id="cb2-16"><a href="#cb2-16" tabindex="-1" aria-label="code-block-2-16"></a><span class="at">        </span><span class="fu">python-version</span><span class="kw">:</span><span class="at"> </span><span class="st">"3.6"</span></span>
+<span id="cb2-17"><a href="#cb2-17" tabindex="-1" aria-label="code-block-2-17"></a><span class="at">    </span><span class="kw">-</span><span class="at"> </span><span class="fu">name</span><span class="kw">:</span><span class="at"> Install dependencies</span></span>
+<span id="cb2-18"><a href="#cb2-18" tabindex="-1" aria-label="code-block-2-18"></a><span class="fu">      run</span><span class="kw">: </span><span class="ch">|</span></span>
+<span id="cb2-19"><a href="#cb2-19" tabindex="-1" aria-label="code-block-2-19"></a>        # upgrade pip</span>
+<span id="cb2-20"><a href="#cb2-20" tabindex="-1" aria-label="code-block-2-20"></a>        python -m pip install --upgrade pip</span>
+<span id="cb2-21"><a href="#cb2-21" tabindex="-1" aria-label="code-block-2-21"></a>        # install the testing requirements</span>
+<span id="cb2-22"><a href="#cb2-22" tabindex="-1" aria-label="code-block-2-22"></a>        python -m pip install pytest pytest-cov</span>
+<span id="cb2-23"><a href="#cb2-23" tabindex="-1" aria-label="code-block-2-23"></a>        # install the dependencies for this</span>
+<span id="cb2-24"><a href="#cb2-24" tabindex="-1" aria-label="code-block-2-24"></a>        pip install -r requirements.txt</span>
+<span id="cb2-25"><a href="#cb2-25" tabindex="-1" aria-label="code-block-2-25"></a><span class="at">    </span><span class="kw">-</span><span class="at"> </span><span class="fu">name</span><span class="kw">:</span><span class="at"> Install module</span></span>
+<span id="cb2-26"><a href="#cb2-26" tabindex="-1" aria-label="code-block-2-26"></a><span class="fu">      run</span><span class="kw">: </span><span class="ch">|</span></span>
+<span id="cb2-27"><a href="#cb2-27" tabindex="-1" aria-label="code-block-2-27"></a>        python -m pip install -e .</span>
+<span id="cb2-28"><a href="#cb2-28" tabindex="-1" aria-label="code-block-2-28"></a><span class="at">    </span><span class="kw">-</span><span class="at"> </span><span class="fu">name</span><span class="kw">:</span><span class="at"> Test with pytest</span></span>
+<span id="cb2-29"><a href="#cb2-29" tabindex="-1" aria-label="code-block-2-29"></a><span class="fu">      run</span><span class="kw">: </span><span class="ch">|</span></span>
+<span id="cb2-30"><a href="#cb2-30" tabindex="-1" aria-label="code-block-2-30"></a>        pytest --cov=skysim --cov-report=term</span></code></pre>
 </div>
 <p>Since we are now not using conda we should also change the name of
 the script to be
@@ -575,42 +575,42 @@ workflow yourself -&gt;” link.</p>
 <div class="codewrapper sourceCode" id="cb3">
 <h3 class="code-label">YML<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
 </h3>
-<pre class="sourceCode yml" tabindex="0"><code class="sourceCode yaml"><span id="cb3-1"><a href="#cb3-1" tabindex="-1"></a><span class="co"># This is a basic workflow to help you get started with Actions</span></span>
-<span id="cb3-2"><a href="#cb3-2" tabindex="-1"></a></span>
-<span id="cb3-3"><a href="#cb3-3" tabindex="-1"></a><span class="fu">name</span><span class="kw">:</span><span class="at"> CI</span></span>
-<span id="cb3-4"><a href="#cb3-4" tabindex="-1"></a></span>
-<span id="cb3-5"><a href="#cb3-5" tabindex="-1"></a><span class="co"># Controls when the workflow will run</span></span>
-<span id="cb3-6"><a href="#cb3-6" tabindex="-1"></a><span class="fu">on</span><span class="kw">:</span></span>
-<span id="cb3-7"><a href="#cb3-7" tabindex="-1"></a><span class="co">  # Triggers the workflow on push or pull request events but only for the main branch</span></span>
-<span id="cb3-8"><a href="#cb3-8" tabindex="-1"></a><span class="at">  </span><span class="fu">push</span><span class="kw">:</span></span>
-<span id="cb3-9"><a href="#cb3-9" tabindex="-1"></a><span class="at">    </span><span class="fu">branches</span><span class="kw">:</span><span class="at"> </span><span class="kw">[</span><span class="at"> main </span><span class="kw">]</span></span>
-<span id="cb3-10"><a href="#cb3-10" tabindex="-1"></a><span class="at">  </span><span class="fu">pull_request</span><span class="kw">:</span></span>
-<span id="cb3-11"><a href="#cb3-11" tabindex="-1"></a><span class="at">    </span><span class="fu">branches</span><span class="kw">:</span><span class="at"> </span><span class="kw">[</span><span class="at"> main </span><span class="kw">]</span></span>
-<span id="cb3-12"><a href="#cb3-12" tabindex="-1"></a></span>
-<span id="cb3-13"><a href="#cb3-13" tabindex="-1"></a><span class="co">  # Allows you to run this workflow manually from the Actions tab</span></span>
-<span id="cb3-14"><a href="#cb3-14" tabindex="-1"></a><span class="at">  </span><span class="fu">workflow_dispatch</span><span class="kw">:</span></span>
-<span id="cb3-15"><a href="#cb3-15" tabindex="-1"></a></span>
-<span id="cb3-16"><a href="#cb3-16" tabindex="-1"></a><span class="co"># A workflow run is made up of one or more jobs that can run sequentially or in parallel</span></span>
-<span id="cb3-17"><a href="#cb3-17" tabindex="-1"></a><span class="fu">jobs</span><span class="kw">:</span></span>
-<span id="cb3-18"><a href="#cb3-18" tabindex="-1"></a><span class="co">  # This workflow contains a single job called "build"</span></span>
-<span id="cb3-19"><a href="#cb3-19" tabindex="-1"></a><span class="at">  </span><span class="fu">build</span><span class="kw">:</span></span>
-<span id="cb3-20"><a href="#cb3-20" tabindex="-1"></a><span class="co">    # The type of runner that the job will run on</span></span>
-<span id="cb3-21"><a href="#cb3-21" tabindex="-1"></a><span class="at">    </span><span class="fu">runs-on</span><span class="kw">:</span><span class="at"> ubuntu-latest</span></span>
-<span id="cb3-22"><a href="#cb3-22" tabindex="-1"></a></span>
-<span id="cb3-23"><a href="#cb3-23" tabindex="-1"></a><span class="co">    # Steps represent a sequence of tasks that will be executed as part of the job</span></span>
-<span id="cb3-24"><a href="#cb3-24" tabindex="-1"></a><span class="at">    </span><span class="fu">steps</span><span class="kw">:</span></span>
-<span id="cb3-25"><a href="#cb3-25" tabindex="-1"></a><span class="co">      # Checks-out your repository under $GITHUB_WORKSPACE, so your job can access it</span></span>
-<span id="cb3-26"><a href="#cb3-26" tabindex="-1"></a><span class="at">      </span><span class="kw">-</span><span class="at"> </span><span class="fu">uses</span><span class="kw">:</span><span class="at"> actions/checkout@v2</span></span>
-<span id="cb3-27"><a href="#cb3-27" tabindex="-1"></a></span>
-<span id="cb3-28"><a href="#cb3-28" tabindex="-1"></a><span class="co">      # Runs a single command using the runners shell</span></span>
-<span id="cb3-29"><a href="#cb3-29" tabindex="-1"></a><span class="at">      </span><span class="kw">-</span><span class="at"> </span><span class="fu">name</span><span class="kw">:</span><span class="at"> Run a one-line script</span></span>
-<span id="cb3-30"><a href="#cb3-30" tabindex="-1"></a><span class="at">        </span><span class="fu">run</span><span class="kw">:</span><span class="at"> echo Hello, world!</span></span>
-<span id="cb3-31"><a href="#cb3-31" tabindex="-1"></a></span>
-<span id="cb3-32"><a href="#cb3-32" tabindex="-1"></a><span class="co">      # Runs a set of commands using the runners shell</span></span>
-<span id="cb3-33"><a href="#cb3-33" tabindex="-1"></a><span class="at">      </span><span class="kw">-</span><span class="at"> </span><span class="fu">name</span><span class="kw">:</span><span class="at"> Run a multi-line script</span></span>
-<span id="cb3-34"><a href="#cb3-34" tabindex="-1"></a><span class="fu">        run</span><span class="kw">: </span><span class="ch">|</span></span>
-<span id="cb3-35"><a href="#cb3-35" tabindex="-1"></a>          echo Add other actions to build,</span>
-<span id="cb3-36"><a href="#cb3-36" tabindex="-1"></a>          echo test, and deploy your project.</span></code></pre>
+<pre class="sourceCode yml" tabindex="0"><code class="sourceCode yaml"><span id="cb3-1"><a href="#cb3-1" tabindex="-1" aria-label="code-block-3-1"></a><span class="co"># This is a basic workflow to help you get started with Actions</span></span>
+<span id="cb3-2"><a href="#cb3-2" tabindex="-1" aria-label="code-block-3-2"></a></span>
+<span id="cb3-3"><a href="#cb3-3" tabindex="-1" aria-label="code-block-3-3"></a><span class="fu">name</span><span class="kw">:</span><span class="at"> CI</span></span>
+<span id="cb3-4"><a href="#cb3-4" tabindex="-1" aria-label="code-block-3-4"></a></span>
+<span id="cb3-5"><a href="#cb3-5" tabindex="-1" aria-label="code-block-3-5"></a><span class="co"># Controls when the workflow will run</span></span>
+<span id="cb3-6"><a href="#cb3-6" tabindex="-1" aria-label="code-block-3-6"></a><span class="fu">on</span><span class="kw">:</span></span>
+<span id="cb3-7"><a href="#cb3-7" tabindex="-1" aria-label="code-block-3-7"></a><span class="co">  # Triggers the workflow on push or pull request events but only for the main branch</span></span>
+<span id="cb3-8"><a href="#cb3-8" tabindex="-1" aria-label="code-block-3-8"></a><span class="at">  </span><span class="fu">push</span><span class="kw">:</span></span>
+<span id="cb3-9"><a href="#cb3-9" tabindex="-1" aria-label="code-block-3-9"></a><span class="at">    </span><span class="fu">branches</span><span class="kw">:</span><span class="at"> </span><span class="kw">[</span><span class="at"> main </span><span class="kw">]</span></span>
+<span id="cb3-10"><a href="#cb3-10" tabindex="-1" aria-label="code-block-3-10"></a><span class="at">  </span><span class="fu">pull_request</span><span class="kw">:</span></span>
+<span id="cb3-11"><a href="#cb3-11" tabindex="-1" aria-label="code-block-3-11"></a><span class="at">    </span><span class="fu">branches</span><span class="kw">:</span><span class="at"> </span><span class="kw">[</span><span class="at"> main </span><span class="kw">]</span></span>
+<span id="cb3-12"><a href="#cb3-12" tabindex="-1" aria-label="code-block-3-12"></a></span>
+<span id="cb3-13"><a href="#cb3-13" tabindex="-1" aria-label="code-block-3-13"></a><span class="co">  # Allows you to run this workflow manually from the Actions tab</span></span>
+<span id="cb3-14"><a href="#cb3-14" tabindex="-1" aria-label="code-block-3-14"></a><span class="at">  </span><span class="fu">workflow_dispatch</span><span class="kw">:</span></span>
+<span id="cb3-15"><a href="#cb3-15" tabindex="-1" aria-label="code-block-3-15"></a></span>
+<span id="cb3-16"><a href="#cb3-16" tabindex="-1" aria-label="code-block-3-16"></a><span class="co"># A workflow run is made up of one or more jobs that can run sequentially or in parallel</span></span>
+<span id="cb3-17"><a href="#cb3-17" tabindex="-1" aria-label="code-block-3-17"></a><span class="fu">jobs</span><span class="kw">:</span></span>
+<span id="cb3-18"><a href="#cb3-18" tabindex="-1" aria-label="code-block-3-18"></a><span class="co">  # This workflow contains a single job called "build"</span></span>
+<span id="cb3-19"><a href="#cb3-19" tabindex="-1" aria-label="code-block-3-19"></a><span class="at">  </span><span class="fu">build</span><span class="kw">:</span></span>
+<span id="cb3-20"><a href="#cb3-20" tabindex="-1" aria-label="code-block-3-20"></a><span class="co">    # The type of runner that the job will run on</span></span>
+<span id="cb3-21"><a href="#cb3-21" tabindex="-1" aria-label="code-block-3-21"></a><span class="at">    </span><span class="fu">runs-on</span><span class="kw">:</span><span class="at"> ubuntu-latest</span></span>
+<span id="cb3-22"><a href="#cb3-22" tabindex="-1" aria-label="code-block-3-22"></a></span>
+<span id="cb3-23"><a href="#cb3-23" tabindex="-1" aria-label="code-block-3-23"></a><span class="co">    # Steps represent a sequence of tasks that will be executed as part of the job</span></span>
+<span id="cb3-24"><a href="#cb3-24" tabindex="-1" aria-label="code-block-3-24"></a><span class="at">    </span><span class="fu">steps</span><span class="kw">:</span></span>
+<span id="cb3-25"><a href="#cb3-25" tabindex="-1" aria-label="code-block-3-25"></a><span class="co">      # Checks-out your repository under $GITHUB_WORKSPACE, so your job can access it</span></span>
+<span id="cb3-26"><a href="#cb3-26" tabindex="-1" aria-label="code-block-3-26"></a><span class="at">      </span><span class="kw">-</span><span class="at"> </span><span class="fu">uses</span><span class="kw">:</span><span class="at"> actions/checkout@v2</span></span>
+<span id="cb3-27"><a href="#cb3-27" tabindex="-1" aria-label="code-block-3-27"></a></span>
+<span id="cb3-28"><a href="#cb3-28" tabindex="-1" aria-label="code-block-3-28"></a><span class="co">      # Runs a single command using the runners shell</span></span>
+<span id="cb3-29"><a href="#cb3-29" tabindex="-1" aria-label="code-block-3-29"></a><span class="at">      </span><span class="kw">-</span><span class="at"> </span><span class="fu">name</span><span class="kw">:</span><span class="at"> Run a one-line script</span></span>
+<span id="cb3-30"><a href="#cb3-30" tabindex="-1" aria-label="code-block-3-30"></a><span class="at">        </span><span class="fu">run</span><span class="kw">:</span><span class="at"> echo Hello, world!</span></span>
+<span id="cb3-31"><a href="#cb3-31" tabindex="-1" aria-label="code-block-3-31"></a></span>
+<span id="cb3-32"><a href="#cb3-32" tabindex="-1" aria-label="code-block-3-32"></a><span class="co">      # Runs a set of commands using the runners shell</span></span>
+<span id="cb3-33"><a href="#cb3-33" tabindex="-1" aria-label="code-block-3-33"></a><span class="at">      </span><span class="kw">-</span><span class="at"> </span><span class="fu">name</span><span class="kw">:</span><span class="at"> Run a multi-line script</span></span>
+<span id="cb3-34"><a href="#cb3-34" tabindex="-1" aria-label="code-block-3-34"></a><span class="fu">        run</span><span class="kw">: </span><span class="ch">|</span></span>
+<span id="cb3-35"><a href="#cb3-35" tabindex="-1" aria-label="code-block-3-35"></a>          echo Add other actions to build,</span>
+<span id="cb3-36"><a href="#cb3-36" tabindex="-1" aria-label="code-block-3-36"></a>          echo test, and deploy your project.</span></code></pre>
 </div>
 <p>First up we should change the filename to something other than
 <code>main.yml</code> and the name field to something other than
@@ -634,17 +634,17 @@ Which we can include in our workflow file.</p>
 <div class="codewrapper sourceCode" id="cb4">
 <h3 class="code-label">YML<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
 </h3>
-<pre class="sourceCode yml" tabindex="0"><code class="sourceCode yaml"><span id="cb4-1"><a href="#cb4-1" tabindex="-1"></a><span class="kw">-</span><span class="at"> </span><span class="fu">name</span><span class="kw">:</span><span class="at"> Sphinx Build</span></span>
-<span id="cb4-2"><a href="#cb4-2" tabindex="-1"></a><span class="co">  # You may pin to the exact commit or the version.</span></span>
-<span id="cb4-3"><a href="#cb4-3" tabindex="-1"></a><span class="co">  # uses: ammaraskar/sphinx-action@8b4f60114d7fd1faeba1a712269168508d4750d2</span></span>
-<span id="cb4-4"><a href="#cb4-4" tabindex="-1"></a><span class="at">  </span><span class="fu">uses</span><span class="kw">:</span><span class="at"> ammaraskar/sphinx-action@0.4</span></span>
-<span id="cb4-5"><a href="#cb4-5" tabindex="-1"></a><span class="at">  </span><span class="fu">with</span><span class="kw">:</span></span>
-<span id="cb4-6"><a href="#cb4-6" tabindex="-1"></a><span class="co">    # The folder containing your sphinx docs.</span></span>
-<span id="cb4-7"><a href="#cb4-7" tabindex="-1"></a><span class="at">    </span><span class="fu">docs-folder</span><span class="kw">:</span><span class="co"> # default is docs/</span></span>
-<span id="cb4-8"><a href="#cb4-8" tabindex="-1"></a><span class="co">    # The command used to build your documentation.</span></span>
-<span id="cb4-9"><a href="#cb4-9" tabindex="-1"></a><span class="at">    </span><span class="fu">build-command</span><span class="kw">:</span><span class="co"> # optional, default is make html</span></span>
-<span id="cb4-10"><a href="#cb4-10" tabindex="-1"></a><span class="co">    # Run before the build command, you can use this to install system level dependencies, for example with "apt-get update -y &amp;&amp; apt-get install -y perl"</span></span>
-<span id="cb4-11"><a href="#cb4-11" tabindex="-1"></a><span class="at">    </span><span class="fu">pre-build-command</span><span class="kw">:</span><span class="co"> # optional</span></span></code></pre>
+<pre class="sourceCode yml" tabindex="0"><code class="sourceCode yaml"><span id="cb4-1"><a href="#cb4-1" tabindex="-1" aria-label="code-block-4-1"></a><span class="kw">-</span><span class="at"> </span><span class="fu">name</span><span class="kw">:</span><span class="at"> Sphinx Build</span></span>
+<span id="cb4-2"><a href="#cb4-2" tabindex="-1" aria-label="code-block-4-2"></a><span class="co">  # You may pin to the exact commit or the version.</span></span>
+<span id="cb4-3"><a href="#cb4-3" tabindex="-1" aria-label="code-block-4-3"></a><span class="co">  # uses: ammaraskar/sphinx-action@8b4f60114d7fd1faeba1a712269168508d4750d2</span></span>
+<span id="cb4-4"><a href="#cb4-4" tabindex="-1" aria-label="code-block-4-4"></a><span class="at">  </span><span class="fu">uses</span><span class="kw">:</span><span class="at"> ammaraskar/sphinx-action@0.4</span></span>
+<span id="cb4-5"><a href="#cb4-5" tabindex="-1" aria-label="code-block-4-5"></a><span class="at">  </span><span class="fu">with</span><span class="kw">:</span></span>
+<span id="cb4-6"><a href="#cb4-6" tabindex="-1" aria-label="code-block-4-6"></a><span class="co">    # The folder containing your sphinx docs.</span></span>
+<span id="cb4-7"><a href="#cb4-7" tabindex="-1" aria-label="code-block-4-7"></a><span class="at">    </span><span class="fu">docs-folder</span><span class="kw">:</span><span class="co"> # default is docs/</span></span>
+<span id="cb4-8"><a href="#cb4-8" tabindex="-1" aria-label="code-block-4-8"></a><span class="co">    # The command used to build your documentation.</span></span>
+<span id="cb4-9"><a href="#cb4-9" tabindex="-1" aria-label="code-block-4-9"></a><span class="at">    </span><span class="fu">build-command</span><span class="kw">:</span><span class="co"> # optional, default is make html</span></span>
+<span id="cb4-10"><a href="#cb4-10" tabindex="-1" aria-label="code-block-4-10"></a><span class="co">    # Run before the build command, you can use this to install system level dependencies, for example with "apt-get update -y &amp;&amp; apt-get install -y perl"</span></span>
+<span id="cb4-11"><a href="#cb4-11" tabindex="-1" aria-label="code-block-4-11"></a><span class="at">    </span><span class="fu">pre-build-command</span><span class="kw">:</span><span class="co"> # optional</span></span></code></pre>
 </div>
 <p>To use the above template we make a new step called “Sphinx Build”
 and copy the template into that step. As we do this we need to fill in
@@ -655,19 +655,19 @@ this:</p>
 <div class="codewrapper sourceCode" id="cb5">
 <h3 class="code-label">YML<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
 </h3>
-<pre class="sourceCode yml" tabindex="0"><code class="sourceCode yaml"><span id="cb5-1"><a href="#cb5-1" tabindex="-1"></a><span class="co">    # Steps represent a sequence of tasks that will be executed as part of the job</span></span>
-<span id="cb5-2"><a href="#cb5-2" tabindex="-1"></a><span class="at">    </span><span class="fu">steps</span><span class="kw">:</span></span>
-<span id="cb5-3"><a href="#cb5-3" tabindex="-1"></a><span class="co">      # Checks-out your repository under $GITHUB_WORKSPACE, so your job can access it</span></span>
-<span id="cb5-4"><a href="#cb5-4" tabindex="-1"></a><span class="at">      </span><span class="kw">-</span><span class="at"> </span><span class="fu">uses</span><span class="kw">:</span><span class="at"> actions/checkout@v2</span></span>
-<span id="cb5-5"><a href="#cb5-5" tabindex="-1"></a></span>
-<span id="cb5-6"><a href="#cb5-6" tabindex="-1"></a><span class="at">      </span><span class="kw">-</span><span class="at"> </span><span class="fu">name</span><span class="kw">:</span><span class="at"> Sphinx Build</span></span>
-<span id="cb5-7"><a href="#cb5-7" tabindex="-1"></a><span class="co">        # You may pin to the exact commit or the version.</span></span>
-<span id="cb5-8"><a href="#cb5-8" tabindex="-1"></a><span class="at">        </span><span class="fu">uses</span><span class="kw">:</span><span class="at"> ammaraskar/sphinx-action@0.4</span></span>
-<span id="cb5-9"><a href="#cb5-9" tabindex="-1"></a><span class="at">        </span><span class="fu">with</span><span class="kw">:</span></span>
-<span id="cb5-10"><a href="#cb5-10" tabindex="-1"></a><span class="co">          # The folder containing your sphinx docs.</span></span>
-<span id="cb5-11"><a href="#cb5-11" tabindex="-1"></a><span class="at">          </span><span class="fu">docs-folder</span><span class="kw">:</span><span class="at"> docs/</span></span>
-<span id="cb5-12"><a href="#cb5-12" tabindex="-1"></a><span class="co">          # The command used to build your documentation.</span></span>
-<span id="cb5-13"><a href="#cb5-13" tabindex="-1"></a><span class="at">          </span><span class="fu">build-command</span><span class="kw">:</span><span class="at"> make html</span></span></code></pre>
+<pre class="sourceCode yml" tabindex="0"><code class="sourceCode yaml"><span id="cb5-1"><a href="#cb5-1" tabindex="-1" aria-label="code-block-5-1"></a><span class="co">    # Steps represent a sequence of tasks that will be executed as part of the job</span></span>
+<span id="cb5-2"><a href="#cb5-2" tabindex="-1" aria-label="code-block-5-2"></a><span class="at">    </span><span class="fu">steps</span><span class="kw">:</span></span>
+<span id="cb5-3"><a href="#cb5-3" tabindex="-1" aria-label="code-block-5-3"></a><span class="co">      # Checks-out your repository under $GITHUB_WORKSPACE, so your job can access it</span></span>
+<span id="cb5-4"><a href="#cb5-4" tabindex="-1" aria-label="code-block-5-4"></a><span class="at">      </span><span class="kw">-</span><span class="at"> </span><span class="fu">uses</span><span class="kw">:</span><span class="at"> actions/checkout@v2</span></span>
+<span id="cb5-5"><a href="#cb5-5" tabindex="-1" aria-label="code-block-5-5"></a></span>
+<span id="cb5-6"><a href="#cb5-6" tabindex="-1" aria-label="code-block-5-6"></a><span class="at">      </span><span class="kw">-</span><span class="at"> </span><span class="fu">name</span><span class="kw">:</span><span class="at"> Sphinx Build</span></span>
+<span id="cb5-7"><a href="#cb5-7" tabindex="-1" aria-label="code-block-5-7"></a><span class="co">        # You may pin to the exact commit or the version.</span></span>
+<span id="cb5-8"><a href="#cb5-8" tabindex="-1" aria-label="code-block-5-8"></a><span class="at">        </span><span class="fu">uses</span><span class="kw">:</span><span class="at"> ammaraskar/sphinx-action@0.4</span></span>
+<span id="cb5-9"><a href="#cb5-9" tabindex="-1" aria-label="code-block-5-9"></a><span class="at">        </span><span class="fu">with</span><span class="kw">:</span></span>
+<span id="cb5-10"><a href="#cb5-10" tabindex="-1" aria-label="code-block-5-10"></a><span class="co">          # The folder containing your sphinx docs.</span></span>
+<span id="cb5-11"><a href="#cb5-11" tabindex="-1" aria-label="code-block-5-11"></a><span class="at">          </span><span class="fu">docs-folder</span><span class="kw">:</span><span class="at"> docs/</span></span>
+<span id="cb5-12"><a href="#cb5-12" tabindex="-1" aria-label="code-block-5-12"></a><span class="co">          # The command used to build your documentation.</span></span>
+<span id="cb5-13"><a href="#cb5-13" tabindex="-1" aria-label="code-block-5-13"></a><span class="at">          </span><span class="fu">build-command</span><span class="kw">:</span><span class="at"> make html</span></span></code></pre>
 </div>
 <p>If we commit this file it will trigger all our <code>on:push</code>
 workflows to trigger – both the build/test workflow that we created
@@ -691,11 +691,11 @@ this using another pre-made recipe which is as follows:</p>
 <div class="codewrapper sourceCode" id="cb6">
 <h3 class="code-label">YML<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
 </h3>
-<pre class="sourceCode yml" tabindex="0"><code class="sourceCode yaml"><span id="cb6-1"><a href="#cb6-1" tabindex="-1"></a><span class="at">  </span><span class="kw">-</span><span class="at"> </span><span class="fu">name</span><span class="kw">:</span><span class="at"> </span><span class="st">'Upload Artifact'</span></span>
-<span id="cb6-2"><a href="#cb6-2" tabindex="-1"></a><span class="at">    </span><span class="fu">uses</span><span class="kw">:</span><span class="at"> actions/upload-artifact@v2</span></span>
-<span id="cb6-3"><a href="#cb6-3" tabindex="-1"></a><span class="at">    </span><span class="fu">with</span><span class="kw">:</span></span>
-<span id="cb6-4"><a href="#cb6-4" tabindex="-1"></a><span class="at">      </span><span class="fu">name</span><span class="kw">:</span><span class="at"> my-artifact</span></span>
-<span id="cb6-5"><a href="#cb6-5" tabindex="-1"></a><span class="at">      </span><span class="fu">path</span><span class="kw">:</span><span class="at"> my_file.txt</span></span></code></pre>
+<pre class="sourceCode yml" tabindex="0"><code class="sourceCode yaml"><span id="cb6-1"><a href="#cb6-1" tabindex="-1" aria-label="code-block-6-1"></a><span class="at">  </span><span class="kw">-</span><span class="at"> </span><span class="fu">name</span><span class="kw">:</span><span class="at"> </span><span class="st">'Upload Artifact'</span></span>
+<span id="cb6-2"><a href="#cb6-2" tabindex="-1" aria-label="code-block-6-2"></a><span class="at">    </span><span class="fu">uses</span><span class="kw">:</span><span class="at"> actions/upload-artifact@v2</span></span>
+<span id="cb6-3"><a href="#cb6-3" tabindex="-1" aria-label="code-block-6-3"></a><span class="at">    </span><span class="fu">with</span><span class="kw">:</span></span>
+<span id="cb6-4"><a href="#cb6-4" tabindex="-1" aria-label="code-block-6-4"></a><span class="at">      </span><span class="fu">name</span><span class="kw">:</span><span class="at"> my-artifact</span></span>
+<span id="cb6-5"><a href="#cb6-5" tabindex="-1" aria-label="code-block-6-5"></a><span class="at">      </span><span class="fu">path</span><span class="kw">:</span><span class="at"> my_file.txt</span></span></code></pre>
 </div>
 <p>For us we want the artifact to be a directory docs/build/ and we’ll
 give it a name of documentation-html.</p>
@@ -703,47 +703,47 @@ give it a name of documentation-html.</p>
 <div class="codewrapper sourceCode" id="cb7">
 <h3 class="code-label">YML<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
 </h3>
-<pre class="sourceCode yml" tabindex="0"><code class="sourceCode yaml"><span id="cb7-1"><a href="#cb7-1" tabindex="-1"></a><span class="co"># This is a basic workflow to help you get started with Actions</span></span>
-<span id="cb7-2"><a href="#cb7-2" tabindex="-1"></a></span>
-<span id="cb7-3"><a href="#cb7-3" tabindex="-1"></a><span class="fu">name</span><span class="kw">:</span><span class="at"> Build Documentation with Sphinx</span></span>
-<span id="cb7-4"><a href="#cb7-4" tabindex="-1"></a></span>
-<span id="cb7-5"><a href="#cb7-5" tabindex="-1"></a><span class="co"># Controls when the workflow will run</span></span>
-<span id="cb7-6"><a href="#cb7-6" tabindex="-1"></a><span class="fu">on</span><span class="kw">:</span></span>
-<span id="cb7-7"><a href="#cb7-7" tabindex="-1"></a><span class="co">  # Triggers the workflow on push or pull request events but only for the main branch</span></span>
-<span id="cb7-8"><a href="#cb7-8" tabindex="-1"></a><span class="at">  </span><span class="fu">push</span><span class="kw">:</span></span>
-<span id="cb7-9"><a href="#cb7-9" tabindex="-1"></a><span class="at">    </span><span class="fu">branches</span><span class="kw">:</span><span class="at"> </span><span class="kw">[</span><span class="at"> main </span><span class="kw">]</span></span>
-<span id="cb7-10"><a href="#cb7-10" tabindex="-1"></a><span class="at">  </span><span class="fu">pull_request</span><span class="kw">:</span></span>
-<span id="cb7-11"><a href="#cb7-11" tabindex="-1"></a><span class="at">    </span><span class="fu">branches</span><span class="kw">:</span><span class="at"> </span><span class="kw">[</span><span class="at"> main </span><span class="kw">]</span></span>
-<span id="cb7-12"><a href="#cb7-12" tabindex="-1"></a></span>
-<span id="cb7-13"><a href="#cb7-13" tabindex="-1"></a><span class="co">  # Allows you to run this workflow manually from the Actions tab</span></span>
-<span id="cb7-14"><a href="#cb7-14" tabindex="-1"></a><span class="at">  </span><span class="fu">workflow_dispatch</span><span class="kw">:</span></span>
-<span id="cb7-15"><a href="#cb7-15" tabindex="-1"></a></span>
-<span id="cb7-16"><a href="#cb7-16" tabindex="-1"></a><span class="co"># A workflow run is made up of one or more jobs that can run sequentially or in parallel</span></span>
-<span id="cb7-17"><a href="#cb7-17" tabindex="-1"></a><span class="fu">jobs</span><span class="kw">:</span></span>
-<span id="cb7-18"><a href="#cb7-18" tabindex="-1"></a><span class="co">  # This workflow contains a single job called "build"</span></span>
-<span id="cb7-19"><a href="#cb7-19" tabindex="-1"></a><span class="at">  </span><span class="fu">build-docs</span><span class="kw">:</span></span>
-<span id="cb7-20"><a href="#cb7-20" tabindex="-1"></a><span class="co">    # The type of runner that the job will run on</span></span>
-<span id="cb7-21"><a href="#cb7-21" tabindex="-1"></a><span class="at">    </span><span class="fu">runs-on</span><span class="kw">:</span><span class="at"> ubuntu-latest</span></span>
-<span id="cb7-22"><a href="#cb7-22" tabindex="-1"></a></span>
-<span id="cb7-23"><a href="#cb7-23" tabindex="-1"></a><span class="co">    # Steps represent a sequence of tasks that will be executed as part of the job</span></span>
-<span id="cb7-24"><a href="#cb7-24" tabindex="-1"></a><span class="at">    </span><span class="fu">steps</span><span class="kw">:</span></span>
-<span id="cb7-25"><a href="#cb7-25" tabindex="-1"></a><span class="co">      # Checks-out your repository under $GITHUB_WORKSPACE, so your job can access it</span></span>
-<span id="cb7-26"><a href="#cb7-26" tabindex="-1"></a><span class="at">      </span><span class="kw">-</span><span class="at"> </span><span class="fu">uses</span><span class="kw">:</span><span class="at"> actions/checkout@v2</span></span>
-<span id="cb7-27"><a href="#cb7-27" tabindex="-1"></a></span>
-<span id="cb7-28"><a href="#cb7-28" tabindex="-1"></a><span class="at">      </span><span class="kw">-</span><span class="at"> </span><span class="fu">name</span><span class="kw">:</span><span class="at"> Sphinx Build</span></span>
-<span id="cb7-29"><a href="#cb7-29" tabindex="-1"></a><span class="co">        # You may pin to the exact commit or the version.</span></span>
-<span id="cb7-30"><a href="#cb7-30" tabindex="-1"></a><span class="at">        </span><span class="fu">uses</span><span class="kw">:</span><span class="at"> ammaraskar/sphinx-action@0.4</span></span>
-<span id="cb7-31"><a href="#cb7-31" tabindex="-1"></a><span class="at">        </span><span class="fu">with</span><span class="kw">:</span></span>
-<span id="cb7-32"><a href="#cb7-32" tabindex="-1"></a><span class="co">          # The folder containing your sphinx docs.</span></span>
-<span id="cb7-33"><a href="#cb7-33" tabindex="-1"></a><span class="at">          </span><span class="fu">docs-folder</span><span class="kw">:</span><span class="at"> docs/</span></span>
-<span id="cb7-34"><a href="#cb7-34" tabindex="-1"></a><span class="co">          # The command used to build your documentation.</span></span>
-<span id="cb7-35"><a href="#cb7-35" tabindex="-1"></a><span class="at">          </span><span class="fu">build-command</span><span class="kw">:</span><span class="at"> make html</span></span>
-<span id="cb7-36"><a href="#cb7-36" tabindex="-1"></a></span>
-<span id="cb7-37"><a href="#cb7-37" tabindex="-1"></a><span class="at">      </span><span class="kw">-</span><span class="at"> </span><span class="fu">name</span><span class="kw">:</span><span class="at"> Archive documentation</span></span>
-<span id="cb7-38"><a href="#cb7-38" tabindex="-1"></a><span class="at">        </span><span class="fu">uses</span><span class="kw">:</span><span class="at"> actions/upload-artifact@v2</span></span>
-<span id="cb7-39"><a href="#cb7-39" tabindex="-1"></a><span class="at">        </span><span class="fu">with</span><span class="kw">:</span></span>
-<span id="cb7-40"><a href="#cb7-40" tabindex="-1"></a><span class="at">          </span><span class="fu">name</span><span class="kw">:</span><span class="at"> documentation-html</span></span>
-<span id="cb7-41"><a href="#cb7-41" tabindex="-1"></a><span class="at">          </span><span class="fu">path</span><span class="kw">:</span><span class="at"> docs/build/</span></span></code></pre>
+<pre class="sourceCode yml" tabindex="0"><code class="sourceCode yaml"><span id="cb7-1"><a href="#cb7-1" tabindex="-1" aria-label="code-block-7-1"></a><span class="co"># This is a basic workflow to help you get started with Actions</span></span>
+<span id="cb7-2"><a href="#cb7-2" tabindex="-1" aria-label="code-block-7-2"></a></span>
+<span id="cb7-3"><a href="#cb7-3" tabindex="-1" aria-label="code-block-7-3"></a><span class="fu">name</span><span class="kw">:</span><span class="at"> Build Documentation with Sphinx</span></span>
+<span id="cb7-4"><a href="#cb7-4" tabindex="-1" aria-label="code-block-7-4"></a></span>
+<span id="cb7-5"><a href="#cb7-5" tabindex="-1" aria-label="code-block-7-5"></a><span class="co"># Controls when the workflow will run</span></span>
+<span id="cb7-6"><a href="#cb7-6" tabindex="-1" aria-label="code-block-7-6"></a><span class="fu">on</span><span class="kw">:</span></span>
+<span id="cb7-7"><a href="#cb7-7" tabindex="-1" aria-label="code-block-7-7"></a><span class="co">  # Triggers the workflow on push or pull request events but only for the main branch</span></span>
+<span id="cb7-8"><a href="#cb7-8" tabindex="-1" aria-label="code-block-7-8"></a><span class="at">  </span><span class="fu">push</span><span class="kw">:</span></span>
+<span id="cb7-9"><a href="#cb7-9" tabindex="-1" aria-label="code-block-7-9"></a><span class="at">    </span><span class="fu">branches</span><span class="kw">:</span><span class="at"> </span><span class="kw">[</span><span class="at"> main </span><span class="kw">]</span></span>
+<span id="cb7-10"><a href="#cb7-10" tabindex="-1" aria-label="code-block-7-10"></a><span class="at">  </span><span class="fu">pull_request</span><span class="kw">:</span></span>
+<span id="cb7-11"><a href="#cb7-11" tabindex="-1" aria-label="code-block-7-11"></a><span class="at">    </span><span class="fu">branches</span><span class="kw">:</span><span class="at"> </span><span class="kw">[</span><span class="at"> main </span><span class="kw">]</span></span>
+<span id="cb7-12"><a href="#cb7-12" tabindex="-1" aria-label="code-block-7-12"></a></span>
+<span id="cb7-13"><a href="#cb7-13" tabindex="-1" aria-label="code-block-7-13"></a><span class="co">  # Allows you to run this workflow manually from the Actions tab</span></span>
+<span id="cb7-14"><a href="#cb7-14" tabindex="-1" aria-label="code-block-7-14"></a><span class="at">  </span><span class="fu">workflow_dispatch</span><span class="kw">:</span></span>
+<span id="cb7-15"><a href="#cb7-15" tabindex="-1" aria-label="code-block-7-15"></a></span>
+<span id="cb7-16"><a href="#cb7-16" tabindex="-1" aria-label="code-block-7-16"></a><span class="co"># A workflow run is made up of one or more jobs that can run sequentially or in parallel</span></span>
+<span id="cb7-17"><a href="#cb7-17" tabindex="-1" aria-label="code-block-7-17"></a><span class="fu">jobs</span><span class="kw">:</span></span>
+<span id="cb7-18"><a href="#cb7-18" tabindex="-1" aria-label="code-block-7-18"></a><span class="co">  # This workflow contains a single job called "build"</span></span>
+<span id="cb7-19"><a href="#cb7-19" tabindex="-1" aria-label="code-block-7-19"></a><span class="at">  </span><span class="fu">build-docs</span><span class="kw">:</span></span>
+<span id="cb7-20"><a href="#cb7-20" tabindex="-1" aria-label="code-block-7-20"></a><span class="co">    # The type of runner that the job will run on</span></span>
+<span id="cb7-21"><a href="#cb7-21" tabindex="-1" aria-label="code-block-7-21"></a><span class="at">    </span><span class="fu">runs-on</span><span class="kw">:</span><span class="at"> ubuntu-latest</span></span>
+<span id="cb7-22"><a href="#cb7-22" tabindex="-1" aria-label="code-block-7-22"></a></span>
+<span id="cb7-23"><a href="#cb7-23" tabindex="-1" aria-label="code-block-7-23"></a><span class="co">    # Steps represent a sequence of tasks that will be executed as part of the job</span></span>
+<span id="cb7-24"><a href="#cb7-24" tabindex="-1" aria-label="code-block-7-24"></a><span class="at">    </span><span class="fu">steps</span><span class="kw">:</span></span>
+<span id="cb7-25"><a href="#cb7-25" tabindex="-1" aria-label="code-block-7-25"></a><span class="co">      # Checks-out your repository under $GITHUB_WORKSPACE, so your job can access it</span></span>
+<span id="cb7-26"><a href="#cb7-26" tabindex="-1" aria-label="code-block-7-26"></a><span class="at">      </span><span class="kw">-</span><span class="at"> </span><span class="fu">uses</span><span class="kw">:</span><span class="at"> actions/checkout@v2</span></span>
+<span id="cb7-27"><a href="#cb7-27" tabindex="-1" aria-label="code-block-7-27"></a></span>
+<span id="cb7-28"><a href="#cb7-28" tabindex="-1" aria-label="code-block-7-28"></a><span class="at">      </span><span class="kw">-</span><span class="at"> </span><span class="fu">name</span><span class="kw">:</span><span class="at"> Sphinx Build</span></span>
+<span id="cb7-29"><a href="#cb7-29" tabindex="-1" aria-label="code-block-7-29"></a><span class="co">        # You may pin to the exact commit or the version.</span></span>
+<span id="cb7-30"><a href="#cb7-30" tabindex="-1" aria-label="code-block-7-30"></a><span class="at">        </span><span class="fu">uses</span><span class="kw">:</span><span class="at"> ammaraskar/sphinx-action@0.4</span></span>
+<span id="cb7-31"><a href="#cb7-31" tabindex="-1" aria-label="code-block-7-31"></a><span class="at">        </span><span class="fu">with</span><span class="kw">:</span></span>
+<span id="cb7-32"><a href="#cb7-32" tabindex="-1" aria-label="code-block-7-32"></a><span class="co">          # The folder containing your sphinx docs.</span></span>
+<span id="cb7-33"><a href="#cb7-33" tabindex="-1" aria-label="code-block-7-33"></a><span class="at">          </span><span class="fu">docs-folder</span><span class="kw">:</span><span class="at"> docs/</span></span>
+<span id="cb7-34"><a href="#cb7-34" tabindex="-1" aria-label="code-block-7-34"></a><span class="co">          # The command used to build your documentation.</span></span>
+<span id="cb7-35"><a href="#cb7-35" tabindex="-1" aria-label="code-block-7-35"></a><span class="at">          </span><span class="fu">build-command</span><span class="kw">:</span><span class="at"> make html</span></span>
+<span id="cb7-36"><a href="#cb7-36" tabindex="-1" aria-label="code-block-7-36"></a></span>
+<span id="cb7-37"><a href="#cb7-37" tabindex="-1" aria-label="code-block-7-37"></a><span class="at">      </span><span class="kw">-</span><span class="at"> </span><span class="fu">name</span><span class="kw">:</span><span class="at"> Archive documentation</span></span>
+<span id="cb7-38"><a href="#cb7-38" tabindex="-1" aria-label="code-block-7-38"></a><span class="at">        </span><span class="fu">uses</span><span class="kw">:</span><span class="at"> actions/upload-artifact@v2</span></span>
+<span id="cb7-39"><a href="#cb7-39" tabindex="-1" aria-label="code-block-7-39"></a><span class="at">        </span><span class="fu">with</span><span class="kw">:</span></span>
+<span id="cb7-40"><a href="#cb7-40" tabindex="-1" aria-label="code-block-7-40"></a><span class="at">          </span><span class="fu">name</span><span class="kw">:</span><span class="at"> documentation-html</span></span>
+<span id="cb7-41"><a href="#cb7-41" tabindex="-1" aria-label="code-block-7-41"></a><span class="at">          </span><span class="fu">path</span><span class="kw">:</span><span class="at"> docs/build/</span></span></code></pre>
 </div>
 <p>If we save and wait for the triggered workflow to complete we should
 see that the artifacts field is now 1, and that there is a new section
@@ -847,7 +847,7 @@ any links that you are not going to use.
         <p>Materials licensed under <a href="LICENSE.html">CC-BY 4.0</a> by the authors</p>
 
         <p>Template licensed under <a href="https://creativecommons.org/licenses/by-sa/4.0/" class="external-link">CC-BY 4.0</a> by <a href="https://carpentries.org/" class="external-link">The Carpentries</a></p>
-        <p>Built with <a href="https://github.com/carpentries/sandpaper/tree/" class="external-link">sandpaper (0.20.0)</a>, <a href="https://github.com/carpentries/pegboard/tree/" class="external-link">pegboard (0.7.9)</a>, and <a href="https://github.com/adacs-australia/varnish/tree/3d0f995f5beafe80d7b61fc49da22ab66f29241c" class="external-link">varnish (1.0.9)</a></p>
+        <p>Built with <a href="https://github.com/carpentries/sandpaper/tree/" class="external-link">sandpaper (0.20.1)</a>, <a href="https://github.com/carpentries/pegboard/tree/" class="external-link">pegboard (0.7.9)</a>, and <a href="https://github.com/adacs-australia/varnish/tree/3d0f995f5beafe80d7b61fc49da22ab66f29241c" class="external-link">varnish (1.0.9)</a></p>
 		</div>
 		</footer></div> <!-- / div.container -->
 	<div id="to-top">
@@ -870,7 +870,7 @@ any links that you are not going to use.
   "identifier": "https://PaulHancock.github.io/Lesson-Testing/AutomationAndCI.html",
   "dateCreated": "2026-02-23",
   "dateModified": "2026-02-26",
-  "datePublished": "2026-04-14"
+  "datePublished": "2026-04-21"
 }
 
   </script><script>

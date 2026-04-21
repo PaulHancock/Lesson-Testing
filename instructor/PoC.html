@@ -222,7 +222,7 @@
       </button>
     </div><!--/div.accordion-header-->
 
-    <div id="flush-collapsecurrent" class="accordion-collapse collapse show" aria-labelledby="flush-headingcurrent" data-bs-parent="#accordionFlushcurrent">
+    <div id="flush-collapsecurrent" class="accordion-collapse collapse show" data-bs-parent="#accordionFlushcurrent">
       <div class="accordion-body">
         <ul><li><a href="#beginning-a-new-software-project">Beginning a new software project</a></li>
 <li><a href="#example-project-an-astronomy-catalogue-simulator">Example project: an astronomy catalogue simulator</a></li>
@@ -515,36 +515,36 @@ example that proves that the work can be done.</p>
 <div class="codewrapper sourceCode" id="cb2">
 <h3 class="code-label">PYTHON<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
 </h3>
-<pre class="sourceCode python" tabindex="0"><code class="sourceCode python"><span id="cb2-1"><a href="#cb2-1" tabindex="-1"></a></span>
-<span id="cb2-2"><a href="#cb2-2" tabindex="-1"></a><span class="co">#! /usr/bin/env python</span></span>
-<span id="cb2-3"><a href="#cb2-3" tabindex="-1"></a><span class="co"># Demonstrate that we can simulate a catalogue of stars on the sky</span></span>
-<span id="cb2-4"><a href="#cb2-4" tabindex="-1"></a></span>
-<span id="cb2-5"><a href="#cb2-5" tabindex="-1"></a><span class="co"># Determine Andromeda location in ra/dec degrees</span></span>
-<span id="cb2-6"><a href="#cb2-6" tabindex="-1"></a><span class="im">import</span> numpy <span class="im">as</span> np</span>
-<span id="cb2-7"><a href="#cb2-7" tabindex="-1"></a><span class="im">import</span> math</span>
-<span id="cb2-8"><a href="#cb2-8" tabindex="-1"></a><span class="co"># from wikipedia</span></span>
-<span id="cb2-9"><a href="#cb2-9" tabindex="-1"></a>ra <span class="op">=</span> <span class="st">'00:42:44.3'</span></span>
-<span id="cb2-10"><a href="#cb2-10" tabindex="-1"></a>dec <span class="op">=</span> <span class="st">'41:16:09'</span></span>
-<span id="cb2-11"><a href="#cb2-11" tabindex="-1"></a></span>
-<span id="cb2-12"><a href="#cb2-12" tabindex="-1"></a>d, m, s <span class="op">=</span> dec.split(<span class="st">':'</span>)</span>
-<span id="cb2-13"><a href="#cb2-13" tabindex="-1"></a>dec <span class="op">=</span> <span class="bu">int</span>(d)<span class="op">+</span><span class="bu">int</span>(m)<span class="op">/</span><span class="dv">60</span><span class="op">+</span><span class="bu">float</span>(s)<span class="op">/</span><span class="dv">3600</span></span>
-<span id="cb2-14"><a href="#cb2-14" tabindex="-1"></a></span>
-<span id="cb2-15"><a href="#cb2-15" tabindex="-1"></a>h, m, s <span class="op">=</span> ra.split(<span class="st">':'</span>)</span>
-<span id="cb2-16"><a href="#cb2-16" tabindex="-1"></a>ra <span class="op">=</span> <span class="dv">15</span><span class="op">*</span>(<span class="bu">int</span>(h)<span class="op">+</span><span class="bu">int</span>(m)<span class="op">/</span><span class="dv">60</span><span class="op">+</span><span class="bu">float</span>(s)<span class="op">/</span><span class="dv">3600</span>)</span>
-<span id="cb2-17"><a href="#cb2-17" tabindex="-1"></a>ra <span class="op">=</span> ra<span class="op">/</span>math.cos(dec<span class="op">*</span>math.pi<span class="op">/</span><span class="dv">180</span>)</span>
-<span id="cb2-18"><a href="#cb2-18" tabindex="-1"></a></span>
-<span id="cb2-19"><a href="#cb2-19" tabindex="-1"></a><span class="co"># make 1000 stars within 1 degree of Andromeda</span></span>
-<span id="cb2-20"><a href="#cb2-20" tabindex="-1"></a>ra_offsets <span class="op">=</span> np.random.uniform(<span class="op">-</span><span class="dv">1</span>, <span class="dv">1</span>, size<span class="op">=</span><span class="dv">1000</span>)</span>
-<span id="cb2-21"><a href="#cb2-21" tabindex="-1"></a>dec_offsets <span class="op">=</span> np.random.uniform(<span class="op">-</span><span class="dv">1</span>, <span class="dv">1</span>, size<span class="op">=</span><span class="dv">1000</span>)</span>
-<span id="cb2-22"><a href="#cb2-22" tabindex="-1"></a></span>
-<span id="cb2-23"><a href="#cb2-23" tabindex="-1"></a>ras <span class="op">=</span> ra <span class="op">+</span> ra_offsets</span>
-<span id="cb2-24"><a href="#cb2-24" tabindex="-1"></a>decs <span class="op">=</span> dec <span class="op">+</span> dec_offsets</span>
-<span id="cb2-25"><a href="#cb2-25" tabindex="-1"></a></span>
-<span id="cb2-26"><a href="#cb2-26" tabindex="-1"></a><span class="co"># now write these to a csv file for use by my other program</span></span>
-<span id="cb2-27"><a href="#cb2-27" tabindex="-1"></a><span class="cf">with</span> <span class="bu">open</span>(<span class="st">'catalog.csv'</span>, <span class="st">'w'</span>) <span class="im">as</span> f:</span>
-<span id="cb2-28"><a href="#cb2-28" tabindex="-1"></a>    <span class="bu">print</span>(<span class="st">"id,ra,dec"</span>, <span class="bu">file</span><span class="op">=</span>f)</span>
-<span id="cb2-29"><a href="#cb2-29" tabindex="-1"></a>    <span class="cf">for</span> i <span class="kw">in</span> <span class="bu">range</span>(<span class="dv">1000</span>):</span>
-<span id="cb2-30"><a href="#cb2-30" tabindex="-1"></a>        <span class="bu">print</span>(<span class="st">"</span><span class="sc">{0}</span><span class="st">, </span><span class="sc">{1:7.4f}</span><span class="st">, </span><span class="sc">{2:7.4f}</span><span class="st">"</span>.<span class="bu">format</span>(i, ras[i], decs[i]), <span class="bu">file</span><span class="op">=</span>f)</span></code></pre>
+<pre class="sourceCode python" tabindex="0"><code class="sourceCode python"><span id="cb2-1"><a href="#cb2-1" tabindex="-1" aria-label="code-block-2-1"></a></span>
+<span id="cb2-2"><a href="#cb2-2" tabindex="-1" aria-label="code-block-2-2"></a><span class="co">#! /usr/bin/env python</span></span>
+<span id="cb2-3"><a href="#cb2-3" tabindex="-1" aria-label="code-block-2-3"></a><span class="co"># Demonstrate that we can simulate a catalogue of stars on the sky</span></span>
+<span id="cb2-4"><a href="#cb2-4" tabindex="-1" aria-label="code-block-2-4"></a></span>
+<span id="cb2-5"><a href="#cb2-5" tabindex="-1" aria-label="code-block-2-5"></a><span class="co"># Determine Andromeda location in ra/dec degrees</span></span>
+<span id="cb2-6"><a href="#cb2-6" tabindex="-1" aria-label="code-block-2-6"></a><span class="im">import</span> numpy <span class="im">as</span> np</span>
+<span id="cb2-7"><a href="#cb2-7" tabindex="-1" aria-label="code-block-2-7"></a><span class="im">import</span> math</span>
+<span id="cb2-8"><a href="#cb2-8" tabindex="-1" aria-label="code-block-2-8"></a><span class="co"># from wikipedia</span></span>
+<span id="cb2-9"><a href="#cb2-9" tabindex="-1" aria-label="code-block-2-9"></a>ra <span class="op">=</span> <span class="st">'00:42:44.3'</span></span>
+<span id="cb2-10"><a href="#cb2-10" tabindex="-1" aria-label="code-block-2-10"></a>dec <span class="op">=</span> <span class="st">'41:16:09'</span></span>
+<span id="cb2-11"><a href="#cb2-11" tabindex="-1" aria-label="code-block-2-11"></a></span>
+<span id="cb2-12"><a href="#cb2-12" tabindex="-1" aria-label="code-block-2-12"></a>d, m, s <span class="op">=</span> dec.split(<span class="st">':'</span>)</span>
+<span id="cb2-13"><a href="#cb2-13" tabindex="-1" aria-label="code-block-2-13"></a>dec <span class="op">=</span> <span class="bu">int</span>(d)<span class="op">+</span><span class="bu">int</span>(m)<span class="op">/</span><span class="dv">60</span><span class="op">+</span><span class="bu">float</span>(s)<span class="op">/</span><span class="dv">3600</span></span>
+<span id="cb2-14"><a href="#cb2-14" tabindex="-1" aria-label="code-block-2-14"></a></span>
+<span id="cb2-15"><a href="#cb2-15" tabindex="-1" aria-label="code-block-2-15"></a>h, m, s <span class="op">=</span> ra.split(<span class="st">':'</span>)</span>
+<span id="cb2-16"><a href="#cb2-16" tabindex="-1" aria-label="code-block-2-16"></a>ra <span class="op">=</span> <span class="dv">15</span><span class="op">*</span>(<span class="bu">int</span>(h)<span class="op">+</span><span class="bu">int</span>(m)<span class="op">/</span><span class="dv">60</span><span class="op">+</span><span class="bu">float</span>(s)<span class="op">/</span><span class="dv">3600</span>)</span>
+<span id="cb2-17"><a href="#cb2-17" tabindex="-1" aria-label="code-block-2-17"></a>ra <span class="op">=</span> ra<span class="op">/</span>math.cos(dec<span class="op">*</span>math.pi<span class="op">/</span><span class="dv">180</span>)</span>
+<span id="cb2-18"><a href="#cb2-18" tabindex="-1" aria-label="code-block-2-18"></a></span>
+<span id="cb2-19"><a href="#cb2-19" tabindex="-1" aria-label="code-block-2-19"></a><span class="co"># make 1000 stars within 1 degree of Andromeda</span></span>
+<span id="cb2-20"><a href="#cb2-20" tabindex="-1" aria-label="code-block-2-20"></a>ra_offsets <span class="op">=</span> np.random.uniform(<span class="op">-</span><span class="dv">1</span>, <span class="dv">1</span>, size<span class="op">=</span><span class="dv">1000</span>)</span>
+<span id="cb2-21"><a href="#cb2-21" tabindex="-1" aria-label="code-block-2-21"></a>dec_offsets <span class="op">=</span> np.random.uniform(<span class="op">-</span><span class="dv">1</span>, <span class="dv">1</span>, size<span class="op">=</span><span class="dv">1000</span>)</span>
+<span id="cb2-22"><a href="#cb2-22" tabindex="-1" aria-label="code-block-2-22"></a></span>
+<span id="cb2-23"><a href="#cb2-23" tabindex="-1" aria-label="code-block-2-23"></a>ras <span class="op">=</span> ra <span class="op">+</span> ra_offsets</span>
+<span id="cb2-24"><a href="#cb2-24" tabindex="-1" aria-label="code-block-2-24"></a>decs <span class="op">=</span> dec <span class="op">+</span> dec_offsets</span>
+<span id="cb2-25"><a href="#cb2-25" tabindex="-1" aria-label="code-block-2-25"></a></span>
+<span id="cb2-26"><a href="#cb2-26" tabindex="-1" aria-label="code-block-2-26"></a><span class="co"># now write these to a csv file for use by my other program</span></span>
+<span id="cb2-27"><a href="#cb2-27" tabindex="-1" aria-label="code-block-2-27"></a><span class="cf">with</span> <span class="bu">open</span>(<span class="st">'catalog.csv'</span>, <span class="st">'w'</span>) <span class="im">as</span> f:</span>
+<span id="cb2-28"><a href="#cb2-28" tabindex="-1" aria-label="code-block-2-28"></a>    <span class="bu">print</span>(<span class="st">"id,ra,dec"</span>, <span class="bu">file</span><span class="op">=</span>f)</span>
+<span id="cb2-29"><a href="#cb2-29" tabindex="-1" aria-label="code-block-2-29"></a>    <span class="cf">for</span> i <span class="kw">in</span> <span class="bu">range</span>(<span class="dv">1000</span>):</span>
+<span id="cb2-30"><a href="#cb2-30" tabindex="-1" aria-label="code-block-2-30"></a>        <span class="bu">print</span>(<span class="st">"</span><span class="sc">{0}</span><span class="st">, </span><span class="sc">{1:7.4f}</span><span class="st">, </span><span class="sc">{2:7.4f}</span><span class="st">"</span>.<span class="bu">format</span>(i, ras[i], decs[i]), <span class="bu">file</span><span class="op">=</span>f)</span></code></pre>
 </div>
 <p>The above code was saved as <code>sim.py</code>. When run from the
 command line it produces a file (<code>catalog.csv</code>) with a
@@ -569,19 +569,19 @@ global variables at the top of our file like this:</p>
 <div class="codewrapper sourceCode" id="cb3">
 <h3 class="code-label">PYTHON<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
 </h3>
-<pre class="sourceCode python" tabindex="0"><code class="sourceCode python"><span id="cb3-1"><a href="#cb3-1" tabindex="-1"></a><span class="co">#! /usr/bin/env python</span></span>
-<span id="cb3-2"><a href="#cb3-2" tabindex="-1"></a><span class="co"># Demonstrate that we can simulate a catalogue of stars on the sky</span></span>
-<span id="cb3-3"><a href="#cb3-3" tabindex="-1"></a></span>
-<span id="cb3-4"><a href="#cb3-4" tabindex="-1"></a><span class="co"># Determine Andromeda location in ra/dec degrees</span></span>
-<span id="cb3-5"><a href="#cb3-5" tabindex="-1"></a><span class="im">import</span> numpy <span class="im">as</span> np</span>
-<span id="cb3-6"><a href="#cb3-6" tabindex="-1"></a><span class="im">import</span> math</span>
-<span id="cb3-7"><a href="#cb3-7" tabindex="-1"></a></span>
-<span id="cb3-8"><a href="#cb3-8" tabindex="-1"></a><span class="co"># configuration using global variables</span></span>
-<span id="cb3-9"><a href="#cb3-9" tabindex="-1"></a>nsources <span class="op">=</span> <span class="dv">1000</span></span>
-<span id="cb3-10"><a href="#cb3-10" tabindex="-1"></a><span class="co"># from wikipedia</span></span>
-<span id="cb3-11"><a href="#cb3-11" tabindex="-1"></a>ref_ra <span class="op">=</span> <span class="st">'00:42:44.3'</span></span>
-<span id="cb3-12"><a href="#cb3-12" tabindex="-1"></a>ref_dec <span class="op">=</span> <span class="st">'41:16:09'</span></span>
-<span id="cb3-13"><a href="#cb3-13" tabindex="-1"></a>radius <span class="op">=</span> <span class="dv">1</span></span></code></pre>
+<pre class="sourceCode python" tabindex="0"><code class="sourceCode python"><span id="cb3-1"><a href="#cb3-1" tabindex="-1" aria-label="code-block-3-1"></a><span class="co">#! /usr/bin/env python</span></span>
+<span id="cb3-2"><a href="#cb3-2" tabindex="-1" aria-label="code-block-3-2"></a><span class="co"># Demonstrate that we can simulate a catalogue of stars on the sky</span></span>
+<span id="cb3-3"><a href="#cb3-3" tabindex="-1" aria-label="code-block-3-3"></a></span>
+<span id="cb3-4"><a href="#cb3-4" tabindex="-1" aria-label="code-block-3-4"></a><span class="co"># Determine Andromeda location in ra/dec degrees</span></span>
+<span id="cb3-5"><a href="#cb3-5" tabindex="-1" aria-label="code-block-3-5"></a><span class="im">import</span> numpy <span class="im">as</span> np</span>
+<span id="cb3-6"><a href="#cb3-6" tabindex="-1" aria-label="code-block-3-6"></a><span class="im">import</span> math</span>
+<span id="cb3-7"><a href="#cb3-7" tabindex="-1" aria-label="code-block-3-7"></a></span>
+<span id="cb3-8"><a href="#cb3-8" tabindex="-1" aria-label="code-block-3-8"></a><span class="co"># configuration using global variables</span></span>
+<span id="cb3-9"><a href="#cb3-9" tabindex="-1" aria-label="code-block-3-9"></a>nsources <span class="op">=</span> <span class="dv">1000</span></span>
+<span id="cb3-10"><a href="#cb3-10" tabindex="-1" aria-label="code-block-3-10"></a><span class="co"># from wikipedia</span></span>
+<span id="cb3-11"><a href="#cb3-11" tabindex="-1" aria-label="code-block-3-11"></a>ref_ra <span class="op">=</span> <span class="st">'00:42:44.3'</span></span>
+<span id="cb3-12"><a href="#cb3-12" tabindex="-1" aria-label="code-block-3-12"></a>ref_dec <span class="op">=</span> <span class="st">'41:16:09'</span></span>
+<span id="cb3-13"><a href="#cb3-13" tabindex="-1" aria-label="code-block-3-13"></a>radius <span class="op">=</span> <span class="dv">1</span></span></code></pre>
 </div>
 <p>From here we need to make a few changes to our code so that these
 variables are now used in place of the previously hard-coded values.</p>
@@ -596,44 +596,44 @@ document the intent of each function.</p>
 <div class="codewrapper sourceCode" id="cb4">
 <h3 class="code-label">PYTHON<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
 </h3>
-<pre class="sourceCode python" tabindex="0"><code class="sourceCode python"><span id="cb4-1"><a href="#cb4-1" tabindex="-1"></a><span class="kw">def</span> generate_positions():</span>
-<span id="cb4-2"><a href="#cb4-2" tabindex="-1"></a>    <span class="co">"""</span></span>
-<span id="cb4-3"><a href="#cb4-3" tabindex="-1"></a><span class="co">    Create `nsources` random locations within `radius` degrees of the reference `ref_ra`/`ref_dec`.</span></span>
-<span id="cb4-4"><a href="#cb4-4" tabindex="-1"></a></span>
-<span id="cb4-5"><a href="#cb4-5" tabindex="-1"></a><span class="co">    Returns</span></span>
-<span id="cb4-6"><a href="#cb4-6" tabindex="-1"></a><span class="co">    -------</span></span>
-<span id="cb4-7"><a href="#cb4-7" tabindex="-1"></a><span class="co">    ra, dec : numpy.array</span></span>
-<span id="cb4-8"><a href="#cb4-8" tabindex="-1"></a><span class="co">        Arrays of ra and dec coordinates in degrees.</span></span>
-<span id="cb4-9"><a href="#cb4-9" tabindex="-1"></a><span class="co">    """</span></span>
-<span id="cb4-10"><a href="#cb4-10" tabindex="-1"></a></span>
-<span id="cb4-11"><a href="#cb4-11" tabindex="-1"></a>    <span class="co"># convert DMS -&gt; degrees</span></span>
-<span id="cb4-12"><a href="#cb4-12" tabindex="-1"></a>    d, m, s <span class="op">=</span> ref_dec.split(<span class="st">':'</span>)</span>
-<span id="cb4-13"><a href="#cb4-13" tabindex="-1"></a>    dec <span class="op">=</span> <span class="bu">int</span>(d)<span class="op">+</span><span class="bu">int</span>(m)<span class="op">/</span><span class="dv">60</span><span class="op">+</span><span class="bu">float</span>(s)<span class="op">/</span><span class="dv">3600</span></span>
-<span id="cb4-14"><a href="#cb4-14" tabindex="-1"></a></span>
-<span id="cb4-15"><a href="#cb4-15" tabindex="-1"></a>    <span class="co"># convert HMS -&gt; degrees</span></span>
-<span id="cb4-16"><a href="#cb4-16" tabindex="-1"></a>    h, m, s <span class="op">=</span> ref_ra.split(<span class="st">':'</span>)</span>
-<span id="cb4-17"><a href="#cb4-17" tabindex="-1"></a>    ra <span class="op">=</span> <span class="dv">15</span><span class="op">*</span>(<span class="bu">int</span>(h)<span class="op">+</span><span class="bu">int</span>(m)<span class="op">/</span><span class="dv">60</span><span class="op">+</span><span class="bu">float</span>(s)<span class="op">/</span><span class="dv">3600</span>)</span>
-<span id="cb4-18"><a href="#cb4-18" tabindex="-1"></a>    ra <span class="op">=</span> ra<span class="op">/</span>math.cos(dec<span class="op">*</span>math.pi<span class="op">/</span><span class="dv">180</span>)  <span class="co"># don't forget projection effects</span></span>
-<span id="cb4-19"><a href="#cb4-19" tabindex="-1"></a></span>
-<span id="cb4-20"><a href="#cb4-20" tabindex="-1"></a>    ra_offsets <span class="op">=</span> np.random.uniform(<span class="op">-</span><span class="dv">1</span><span class="op">*</span>radius, radius, size<span class="op">=</span>nsources)</span>
-<span id="cb4-21"><a href="#cb4-21" tabindex="-1"></a>    dec_offsets <span class="op">=</span> np.random.uniform(<span class="op">-</span><span class="dv">1</span><span class="op">*</span>radius, radius, size<span class="op">=</span>nsources)</span>
-<span id="cb4-22"><a href="#cb4-22" tabindex="-1"></a></span>
-<span id="cb4-23"><a href="#cb4-23" tabindex="-1"></a>    ras <span class="op">=</span> ra <span class="op">+</span> ra_offsets</span>
-<span id="cb4-24"><a href="#cb4-24" tabindex="-1"></a>    decs <span class="op">=</span> dec <span class="op">+</span> dec_offsets</span>
-<span id="cb4-25"><a href="#cb4-25" tabindex="-1"></a>    <span class="cf">return</span> ras, decs</span>
-<span id="cb4-26"><a href="#cb4-26" tabindex="-1"></a></span>
-<span id="cb4-27"><a href="#cb4-27" tabindex="-1"></a></span>
-<span id="cb4-28"><a href="#cb4-28" tabindex="-1"></a><span class="kw">def</span> write_file(ras, decs):</span>
-<span id="cb4-29"><a href="#cb4-29" tabindex="-1"></a>    <span class="co">"""</span></span>
-<span id="cb4-30"><a href="#cb4-30" tabindex="-1"></a><span class="co">    Write the ra/dec catalog to a file, and include a header and IDs.</span></span>
-<span id="cb4-31"><a href="#cb4-31" tabindex="-1"></a><span class="co">    """</span></span>
-<span id="cb4-32"><a href="#cb4-32" tabindex="-1"></a>    <span class="cf">with</span> <span class="bu">open</span>(<span class="st">'catalog.csv'</span>, <span class="st">'w'</span>) <span class="im">as</span> f:</span>
-<span id="cb4-33"><a href="#cb4-33" tabindex="-1"></a>        <span class="co"># creat a header row</span></span>
-<span id="cb4-34"><a href="#cb4-34" tabindex="-1"></a>        <span class="bu">print</span>(<span class="st">"id,ra,dec"</span>, <span class="bu">file</span><span class="op">=</span>f)</span>
-<span id="cb4-35"><a href="#cb4-35" tabindex="-1"></a>        <span class="cf">for</span> i <span class="kw">in</span> <span class="bu">range</span>(nsources):</span>
-<span id="cb4-36"><a href="#cb4-36" tabindex="-1"></a>            <span class="co"># use a csv format</span></span>
-<span id="cb4-37"><a href="#cb4-37" tabindex="-1"></a>            <span class="bu">print</span>(<span class="st">"</span><span class="sc">{0}</span><span class="st">, </span><span class="sc">{1:7.4f}</span><span class="st">, </span><span class="sc">{2:7.4f}</span><span class="st">"</span>.<span class="bu">format</span>(i, ras[i], decs[i]), <span class="bu">file</span><span class="op">=</span>f)</span>
-<span id="cb4-38"><a href="#cb4-38" tabindex="-1"></a>    <span class="cf">return</span></span></code></pre>
+<pre class="sourceCode python" tabindex="0"><code class="sourceCode python"><span id="cb4-1"><a href="#cb4-1" tabindex="-1" aria-label="code-block-4-1"></a><span class="kw">def</span> generate_positions():</span>
+<span id="cb4-2"><a href="#cb4-2" tabindex="-1" aria-label="code-block-4-2"></a>    <span class="co">"""</span></span>
+<span id="cb4-3"><a href="#cb4-3" tabindex="-1" aria-label="code-block-4-3"></a><span class="co">    Create `nsources` random locations within `radius` degrees of the reference `ref_ra`/`ref_dec`.</span></span>
+<span id="cb4-4"><a href="#cb4-4" tabindex="-1" aria-label="code-block-4-4"></a></span>
+<span id="cb4-5"><a href="#cb4-5" tabindex="-1" aria-label="code-block-4-5"></a><span class="co">    Returns</span></span>
+<span id="cb4-6"><a href="#cb4-6" tabindex="-1" aria-label="code-block-4-6"></a><span class="co">    -------</span></span>
+<span id="cb4-7"><a href="#cb4-7" tabindex="-1" aria-label="code-block-4-7"></a><span class="co">    ra, dec : numpy.array</span></span>
+<span id="cb4-8"><a href="#cb4-8" tabindex="-1" aria-label="code-block-4-8"></a><span class="co">        Arrays of ra and dec coordinates in degrees.</span></span>
+<span id="cb4-9"><a href="#cb4-9" tabindex="-1" aria-label="code-block-4-9"></a><span class="co">    """</span></span>
+<span id="cb4-10"><a href="#cb4-10" tabindex="-1" aria-label="code-block-4-10"></a></span>
+<span id="cb4-11"><a href="#cb4-11" tabindex="-1" aria-label="code-block-4-11"></a>    <span class="co"># convert DMS -&gt; degrees</span></span>
+<span id="cb4-12"><a href="#cb4-12" tabindex="-1" aria-label="code-block-4-12"></a>    d, m, s <span class="op">=</span> ref_dec.split(<span class="st">':'</span>)</span>
+<span id="cb4-13"><a href="#cb4-13" tabindex="-1" aria-label="code-block-4-13"></a>    dec <span class="op">=</span> <span class="bu">int</span>(d)<span class="op">+</span><span class="bu">int</span>(m)<span class="op">/</span><span class="dv">60</span><span class="op">+</span><span class="bu">float</span>(s)<span class="op">/</span><span class="dv">3600</span></span>
+<span id="cb4-14"><a href="#cb4-14" tabindex="-1" aria-label="code-block-4-14"></a></span>
+<span id="cb4-15"><a href="#cb4-15" tabindex="-1" aria-label="code-block-4-15"></a>    <span class="co"># convert HMS -&gt; degrees</span></span>
+<span id="cb4-16"><a href="#cb4-16" tabindex="-1" aria-label="code-block-4-16"></a>    h, m, s <span class="op">=</span> ref_ra.split(<span class="st">':'</span>)</span>
+<span id="cb4-17"><a href="#cb4-17" tabindex="-1" aria-label="code-block-4-17"></a>    ra <span class="op">=</span> <span class="dv">15</span><span class="op">*</span>(<span class="bu">int</span>(h)<span class="op">+</span><span class="bu">int</span>(m)<span class="op">/</span><span class="dv">60</span><span class="op">+</span><span class="bu">float</span>(s)<span class="op">/</span><span class="dv">3600</span>)</span>
+<span id="cb4-18"><a href="#cb4-18" tabindex="-1" aria-label="code-block-4-18"></a>    ra <span class="op">=</span> ra<span class="op">/</span>math.cos(dec<span class="op">*</span>math.pi<span class="op">/</span><span class="dv">180</span>)  <span class="co"># don't forget projection effects</span></span>
+<span id="cb4-19"><a href="#cb4-19" tabindex="-1" aria-label="code-block-4-19"></a></span>
+<span id="cb4-20"><a href="#cb4-20" tabindex="-1" aria-label="code-block-4-20"></a>    ra_offsets <span class="op">=</span> np.random.uniform(<span class="op">-</span><span class="dv">1</span><span class="op">*</span>radius, radius, size<span class="op">=</span>nsources)</span>
+<span id="cb4-21"><a href="#cb4-21" tabindex="-1" aria-label="code-block-4-21"></a>    dec_offsets <span class="op">=</span> np.random.uniform(<span class="op">-</span><span class="dv">1</span><span class="op">*</span>radius, radius, size<span class="op">=</span>nsources)</span>
+<span id="cb4-22"><a href="#cb4-22" tabindex="-1" aria-label="code-block-4-22"></a></span>
+<span id="cb4-23"><a href="#cb4-23" tabindex="-1" aria-label="code-block-4-23"></a>    ras <span class="op">=</span> ra <span class="op">+</span> ra_offsets</span>
+<span id="cb4-24"><a href="#cb4-24" tabindex="-1" aria-label="code-block-4-24"></a>    decs <span class="op">=</span> dec <span class="op">+</span> dec_offsets</span>
+<span id="cb4-25"><a href="#cb4-25" tabindex="-1" aria-label="code-block-4-25"></a>    <span class="cf">return</span> ras, decs</span>
+<span id="cb4-26"><a href="#cb4-26" tabindex="-1" aria-label="code-block-4-26"></a></span>
+<span id="cb4-27"><a href="#cb4-27" tabindex="-1" aria-label="code-block-4-27"></a></span>
+<span id="cb4-28"><a href="#cb4-28" tabindex="-1" aria-label="code-block-4-28"></a><span class="kw">def</span> write_file(ras, decs):</span>
+<span id="cb4-29"><a href="#cb4-29" tabindex="-1" aria-label="code-block-4-29"></a>    <span class="co">"""</span></span>
+<span id="cb4-30"><a href="#cb4-30" tabindex="-1" aria-label="code-block-4-30"></a><span class="co">    Write the ra/dec catalog to a file, and include a header and IDs.</span></span>
+<span id="cb4-31"><a href="#cb4-31" tabindex="-1" aria-label="code-block-4-31"></a><span class="co">    """</span></span>
+<span id="cb4-32"><a href="#cb4-32" tabindex="-1" aria-label="code-block-4-32"></a>    <span class="cf">with</span> <span class="bu">open</span>(<span class="st">'catalog.csv'</span>, <span class="st">'w'</span>) <span class="im">as</span> f:</span>
+<span id="cb4-33"><a href="#cb4-33" tabindex="-1" aria-label="code-block-4-33"></a>        <span class="co"># creat a header row</span></span>
+<span id="cb4-34"><a href="#cb4-34" tabindex="-1" aria-label="code-block-4-34"></a>        <span class="bu">print</span>(<span class="st">"id,ra,dec"</span>, <span class="bu">file</span><span class="op">=</span>f)</span>
+<span id="cb4-35"><a href="#cb4-35" tabindex="-1" aria-label="code-block-4-35"></a>        <span class="cf">for</span> i <span class="kw">in</span> <span class="bu">range</span>(nsources):</span>
+<span id="cb4-36"><a href="#cb4-36" tabindex="-1" aria-label="code-block-4-36"></a>            <span class="co"># use a csv format</span></span>
+<span id="cb4-37"><a href="#cb4-37" tabindex="-1" aria-label="code-block-4-37"></a>            <span class="bu">print</span>(<span class="st">"</span><span class="sc">{0}</span><span class="st">, </span><span class="sc">{1:7.4f}</span><span class="st">, </span><span class="sc">{2:7.4f}</span><span class="st">"</span>.<span class="bu">format</span>(i, ras[i], decs[i]), <span class="bu">file</span><span class="op">=</span>f)</span>
+<span id="cb4-38"><a href="#cb4-38" tabindex="-1" aria-label="code-block-4-38"></a>    <span class="cf">return</span></span></code></pre>
 </div>
 <p>Note that the first function takes no parameters, while the second is
 designed to take two lists of positions as input. By breaking our code
@@ -650,9 +650,9 @@ we have used.</p>
 <div class="codewrapper sourceCode" id="cb5">
 <h3 class="code-label">PYTHON<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
 </h3>
-<pre class="sourceCode python" tabindex="0"><code class="sourceCode python"><span id="cb5-1"><a href="#cb5-1" tabindex="-1"></a><span class="co"># Do the work</span></span>
-<span id="cb5-2"><a href="#cb5-2" tabindex="-1"></a>ras, decs <span class="op">=</span> generate_positions()</span>
-<span id="cb5-3"><a href="#cb5-3" tabindex="-1"></a>write_file(ras, decs)</span></code></pre>
+<pre class="sourceCode python" tabindex="0"><code class="sourceCode python"><span id="cb5-1"><a href="#cb5-1" tabindex="-1" aria-label="code-block-5-1"></a><span class="co"># Do the work</span></span>
+<span id="cb5-2"><a href="#cb5-2" tabindex="-1" aria-label="code-block-5-2"></a>ras, decs <span class="op">=</span> generate_positions()</span>
+<span id="cb5-3"><a href="#cb5-3" tabindex="-1" aria-label="code-block-5-3"></a>write_file(ras, decs)</span></code></pre>
 </div>
 <p>As a developer the code is now separated into functional parts, so if
 something goes wrong or needs changing, we know where to look to make
@@ -684,32 +684,32 @@ of parameters should be passed and what they are for.</p>
 <div class="codewrapper sourceCode" id="cb6">
 <h3 class="code-label">PYTHON<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
 </h3>
-<pre class="sourceCode python" tabindex="0"><code class="sourceCode python"><span id="cb6-1"><a href="#cb6-1" tabindex="-1"></a><span class="kw">def</span> generate_positions(ref_ra<span class="op">=</span><span class="st">'00:42:44.3'</span>,</span>
-<span id="cb6-2"><a href="#cb6-2" tabindex="-1"></a>                       ref_dec<span class="op">=</span><span class="st">'41:16:09'</span>,</span>
-<span id="cb6-3"><a href="#cb6-3" tabindex="-1"></a>                       radius<span class="op">=</span><span class="fl">1.</span>,</span>
-<span id="cb6-4"><a href="#cb6-4" tabindex="-1"></a>                       nsources<span class="op">=</span><span class="dv">1000</span>):</span>
-<span id="cb6-5"><a href="#cb6-5" tabindex="-1"></a>    <span class="co">"""</span></span>
-<span id="cb6-6"><a href="#cb6-6" tabindex="-1"></a><span class="co">    Create nsources random locations within radius of the reference position.</span></span>
-<span id="cb6-7"><a href="#cb6-7" tabindex="-1"></a></span>
-<span id="cb6-8"><a href="#cb6-8" tabindex="-1"></a><span class="co">    Parameters</span></span>
-<span id="cb6-9"><a href="#cb6-9" tabindex="-1"></a><span class="co">    ----------</span></span>
-<span id="cb6-10"><a href="#cb6-10" tabindex="-1"></a><span class="co">    ref_ra, ref_dec : str</span></span>
-<span id="cb6-11"><a href="#cb6-11" tabindex="-1"></a><span class="co">        Reference position in "HH:MM:SS.S"/"DD:MM:SS.S" format.</span></span>
-<span id="cb6-12"><a href="#cb6-12" tabindex="-1"></a><span class="co">        Default position is Andromeda galaxy.</span></span>
-<span id="cb6-13"><a href="#cb6-13" tabindex="-1"></a></span>
-<span id="cb6-14"><a href="#cb6-14" tabindex="-1"></a><span class="co">    radius : float</span></span>
-<span id="cb6-15"><a href="#cb6-15" tabindex="-1"></a><span class="co">        The radius within which to generate positions. Default = 1.</span></span>
-<span id="cb6-16"><a href="#cb6-16" tabindex="-1"></a></span>
-<span id="cb6-17"><a href="#cb6-17" tabindex="-1"></a><span class="co">    nsources : int</span></span>
-<span id="cb6-18"><a href="#cb6-18" tabindex="-1"></a><span class="co">        The number of positions to generate</span></span>
-<span id="cb6-19"><a href="#cb6-19" tabindex="-1"></a></span>
-<span id="cb6-20"><a href="#cb6-20" tabindex="-1"></a><span class="co">    Returns</span></span>
-<span id="cb6-21"><a href="#cb6-21" tabindex="-1"></a><span class="co">    -------</span></span>
-<span id="cb6-22"><a href="#cb6-22" tabindex="-1"></a><span class="co">    ra, dec : numpy.array</span></span>
-<span id="cb6-23"><a href="#cb6-23" tabindex="-1"></a><span class="co">        Arrays of ra and dec coordinates in degrees.</span></span>
-<span id="cb6-24"><a href="#cb6-24" tabindex="-1"></a><span class="co">    """</span></span>
-<span id="cb6-25"><a href="#cb6-25" tabindex="-1"></a>    ...</span>
-<span id="cb6-26"><a href="#cb6-26" tabindex="-1"></a>    <span class="cf">return</span></span></code></pre>
+<pre class="sourceCode python" tabindex="0"><code class="sourceCode python"><span id="cb6-1"><a href="#cb6-1" tabindex="-1" aria-label="code-block-6-1"></a><span class="kw">def</span> generate_positions(ref_ra<span class="op">=</span><span class="st">'00:42:44.3'</span>,</span>
+<span id="cb6-2"><a href="#cb6-2" tabindex="-1" aria-label="code-block-6-2"></a>                       ref_dec<span class="op">=</span><span class="st">'41:16:09'</span>,</span>
+<span id="cb6-3"><a href="#cb6-3" tabindex="-1" aria-label="code-block-6-3"></a>                       radius<span class="op">=</span><span class="fl">1.</span>,</span>
+<span id="cb6-4"><a href="#cb6-4" tabindex="-1" aria-label="code-block-6-4"></a>                       nsources<span class="op">=</span><span class="dv">1000</span>):</span>
+<span id="cb6-5"><a href="#cb6-5" tabindex="-1" aria-label="code-block-6-5"></a>    <span class="co">"""</span></span>
+<span id="cb6-6"><a href="#cb6-6" tabindex="-1" aria-label="code-block-6-6"></a><span class="co">    Create nsources random locations within radius of the reference position.</span></span>
+<span id="cb6-7"><a href="#cb6-7" tabindex="-1" aria-label="code-block-6-7"></a></span>
+<span id="cb6-8"><a href="#cb6-8" tabindex="-1" aria-label="code-block-6-8"></a><span class="co">    Parameters</span></span>
+<span id="cb6-9"><a href="#cb6-9" tabindex="-1" aria-label="code-block-6-9"></a><span class="co">    ----------</span></span>
+<span id="cb6-10"><a href="#cb6-10" tabindex="-1" aria-label="code-block-6-10"></a><span class="co">    ref_ra, ref_dec : str</span></span>
+<span id="cb6-11"><a href="#cb6-11" tabindex="-1" aria-label="code-block-6-11"></a><span class="co">        Reference position in "HH:MM:SS.S"/"DD:MM:SS.S" format.</span></span>
+<span id="cb6-12"><a href="#cb6-12" tabindex="-1" aria-label="code-block-6-12"></a><span class="co">        Default position is Andromeda galaxy.</span></span>
+<span id="cb6-13"><a href="#cb6-13" tabindex="-1" aria-label="code-block-6-13"></a></span>
+<span id="cb6-14"><a href="#cb6-14" tabindex="-1" aria-label="code-block-6-14"></a><span class="co">    radius : float</span></span>
+<span id="cb6-15"><a href="#cb6-15" tabindex="-1" aria-label="code-block-6-15"></a><span class="co">        The radius within which to generate positions. Default = 1.</span></span>
+<span id="cb6-16"><a href="#cb6-16" tabindex="-1" aria-label="code-block-6-16"></a></span>
+<span id="cb6-17"><a href="#cb6-17" tabindex="-1" aria-label="code-block-6-17"></a><span class="co">    nsources : int</span></span>
+<span id="cb6-18"><a href="#cb6-18" tabindex="-1" aria-label="code-block-6-18"></a><span class="co">        The number of positions to generate</span></span>
+<span id="cb6-19"><a href="#cb6-19" tabindex="-1" aria-label="code-block-6-19"></a></span>
+<span id="cb6-20"><a href="#cb6-20" tabindex="-1" aria-label="code-block-6-20"></a><span class="co">    Returns</span></span>
+<span id="cb6-21"><a href="#cb6-21" tabindex="-1" aria-label="code-block-6-21"></a><span class="co">    -------</span></span>
+<span id="cb6-22"><a href="#cb6-22" tabindex="-1" aria-label="code-block-6-22"></a><span class="co">    ra, dec : numpy.array</span></span>
+<span id="cb6-23"><a href="#cb6-23" tabindex="-1" aria-label="code-block-6-23"></a><span class="co">        Arrays of ra and dec coordinates in degrees.</span></span>
+<span id="cb6-24"><a href="#cb6-24" tabindex="-1" aria-label="code-block-6-24"></a><span class="co">    """</span></span>
+<span id="cb6-25"><a href="#cb6-25" tabindex="-1" aria-label="code-block-6-25"></a>    ...</span>
+<span id="cb6-26"><a href="#cb6-26" tabindex="-1" aria-label="code-block-6-26"></a>    <span class="cf">return</span></span></code></pre>
 </div>
 <p>For the <code>write_file</code> function, we already had two
 parameters that needed to be passed, but now we’ll add another which is
@@ -722,26 +722,26 @@ instead.</p>
 <div class="codewrapper sourceCode" id="cb7">
 <h3 class="code-label">PYTHON<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
 </h3>
-<pre class="sourceCode python" tabindex="0"><code class="sourceCode python"><span id="cb7-1"><a href="#cb7-1" tabindex="-1"></a><span class="kw">def</span> write_file(ras, decs,</span>
-<span id="cb7-2"><a href="#cb7-2" tabindex="-1"></a>               outfile<span class="op">=</span><span class="st">'catalog.csv'</span>):</span>
-<span id="cb7-3"><a href="#cb7-3" tabindex="-1"></a>    <span class="co">"""</span></span>
-<span id="cb7-4"><a href="#cb7-4" tabindex="-1"></a><span class="co">    Write the ra/dec catalog to a file, and include a header and IDs.</span></span>
-<span id="cb7-5"><a href="#cb7-5" tabindex="-1"></a></span>
-<span id="cb7-6"><a href="#cb7-6" tabindex="-1"></a><span class="co">    Parameters</span></span>
-<span id="cb7-7"><a href="#cb7-7" tabindex="-1"></a><span class="co">    ----------</span></span>
-<span id="cb7-8"><a href="#cb7-8" tabindex="-1"></a><span class="co">    ras, decs : list, numpy.array, or any iterable</span></span>
-<span id="cb7-9"><a href="#cb7-9" tabindex="-1"></a><span class="co">        Iterable of ra and dec coordinates. The length of these need to match.</span></span>
-<span id="cb7-10"><a href="#cb7-10" tabindex="-1"></a></span>
-<span id="cb7-11"><a href="#cb7-11" tabindex="-1"></a><span class="co">    outfile : str</span></span>
-<span id="cb7-12"><a href="#cb7-12" tabindex="-1"></a><span class="co">        Path/filename for the output file. (Overwite=True)</span></span>
-<span id="cb7-13"><a href="#cb7-13" tabindex="-1"></a><span class="co">    """</span></span>
-<span id="cb7-14"><a href="#cb7-14" tabindex="-1"></a>    <span class="cf">with</span> <span class="bu">open</span>(outfile, <span class="st">'w'</span>) <span class="im">as</span> f:</span>
-<span id="cb7-15"><a href="#cb7-15" tabindex="-1"></a>        <span class="co"># creat a header row</span></span>
-<span id="cb7-16"><a href="#cb7-16" tabindex="-1"></a>        <span class="bu">print</span>(<span class="st">"id,ra,dec"</span>, <span class="bu">file</span><span class="op">=</span>f)</span>
-<span id="cb7-17"><a href="#cb7-17" tabindex="-1"></a>        <span class="cf">for</span> i <span class="kw">in</span> <span class="bu">range</span>(<span class="bu">len</span>(ras)):</span>
-<span id="cb7-18"><a href="#cb7-18" tabindex="-1"></a>            <span class="co"># use a csv format</span></span>
-<span id="cb7-19"><a href="#cb7-19" tabindex="-1"></a>            <span class="bu">print</span>(<span class="st">"</span><span class="sc">{0}</span><span class="st">, </span><span class="sc">{1:7.4f}</span><span class="st">, </span><span class="sc">{2:7.4f}</span><span class="st">"</span>.<span class="bu">format</span>(i, ras[i], decs[i]), <span class="bu">file</span><span class="op">=</span>f)</span>
-<span id="cb7-20"><a href="#cb7-20" tabindex="-1"></a>    <span class="cf">return</span></span></code></pre>
+<pre class="sourceCode python" tabindex="0"><code class="sourceCode python"><span id="cb7-1"><a href="#cb7-1" tabindex="-1" aria-label="code-block-7-1"></a><span class="kw">def</span> write_file(ras, decs,</span>
+<span id="cb7-2"><a href="#cb7-2" tabindex="-1" aria-label="code-block-7-2"></a>               outfile<span class="op">=</span><span class="st">'catalog.csv'</span>):</span>
+<span id="cb7-3"><a href="#cb7-3" tabindex="-1" aria-label="code-block-7-3"></a>    <span class="co">"""</span></span>
+<span id="cb7-4"><a href="#cb7-4" tabindex="-1" aria-label="code-block-7-4"></a><span class="co">    Write the ra/dec catalog to a file, and include a header and IDs.</span></span>
+<span id="cb7-5"><a href="#cb7-5" tabindex="-1" aria-label="code-block-7-5"></a></span>
+<span id="cb7-6"><a href="#cb7-6" tabindex="-1" aria-label="code-block-7-6"></a><span class="co">    Parameters</span></span>
+<span id="cb7-7"><a href="#cb7-7" tabindex="-1" aria-label="code-block-7-7"></a><span class="co">    ----------</span></span>
+<span id="cb7-8"><a href="#cb7-8" tabindex="-1" aria-label="code-block-7-8"></a><span class="co">    ras, decs : list, numpy.array, or any iterable</span></span>
+<span id="cb7-9"><a href="#cb7-9" tabindex="-1" aria-label="code-block-7-9"></a><span class="co">        Iterable of ra and dec coordinates. The length of these need to match.</span></span>
+<span id="cb7-10"><a href="#cb7-10" tabindex="-1" aria-label="code-block-7-10"></a></span>
+<span id="cb7-11"><a href="#cb7-11" tabindex="-1" aria-label="code-block-7-11"></a><span class="co">    outfile : str</span></span>
+<span id="cb7-12"><a href="#cb7-12" tabindex="-1" aria-label="code-block-7-12"></a><span class="co">        Path/filename for the output file. (Overwite=True)</span></span>
+<span id="cb7-13"><a href="#cb7-13" tabindex="-1" aria-label="code-block-7-13"></a><span class="co">    """</span></span>
+<span id="cb7-14"><a href="#cb7-14" tabindex="-1" aria-label="code-block-7-14"></a>    <span class="cf">with</span> <span class="bu">open</span>(outfile, <span class="st">'w'</span>) <span class="im">as</span> f:</span>
+<span id="cb7-15"><a href="#cb7-15" tabindex="-1" aria-label="code-block-7-15"></a>        <span class="co"># creat a header row</span></span>
+<span id="cb7-16"><a href="#cb7-16" tabindex="-1" aria-label="code-block-7-16"></a>        <span class="bu">print</span>(<span class="st">"id,ra,dec"</span>, <span class="bu">file</span><span class="op">=</span>f)</span>
+<span id="cb7-17"><a href="#cb7-17" tabindex="-1" aria-label="code-block-7-17"></a>        <span class="cf">for</span> i <span class="kw">in</span> <span class="bu">range</span>(<span class="bu">len</span>(ras)):</span>
+<span id="cb7-18"><a href="#cb7-18" tabindex="-1" aria-label="code-block-7-18"></a>            <span class="co"># use a csv format</span></span>
+<span id="cb7-19"><a href="#cb7-19" tabindex="-1" aria-label="code-block-7-19"></a>            <span class="bu">print</span>(<span class="st">"</span><span class="sc">{0}</span><span class="st">, </span><span class="sc">{1:7.4f}</span><span class="st">, </span><span class="sc">{2:7.4f}</span><span class="st">"</span>.<span class="bu">format</span>(i, ras[i], decs[i]), <span class="bu">file</span><span class="op">=</span>f)</span>
+<span id="cb7-20"><a href="#cb7-20" tabindex="-1" aria-label="code-block-7-20"></a>    <span class="cf">return</span></span></code></pre>
 </div>
 <p>By moving the global variables into the parameters of the functions,
 and making use of the default values we don’t need to make any further
@@ -749,17 +749,17 @@ changes to our code. The following block is unchanged.</p>
 <div class="codewrapper sourceCode" id="cb8">
 <h3 class="code-label">PYTHON<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
 </h3>
-<pre class="sourceCode python" tabindex="0"><code class="sourceCode python"><span id="cb8-1"><a href="#cb8-1" tabindex="-1"></a><span class="co"># Do the work</span></span>
-<span id="cb8-2"><a href="#cb8-2" tabindex="-1"></a>ras, decs <span class="op">=</span> generate_positions()</span>
-<span id="cb8-3"><a href="#cb8-3" tabindex="-1"></a>write_file(ras, decs)</span></code></pre>
+<pre class="sourceCode python" tabindex="0"><code class="sourceCode python"><span id="cb8-1"><a href="#cb8-1" tabindex="-1" aria-label="code-block-8-1"></a><span class="co"># Do the work</span></span>
+<span id="cb8-2"><a href="#cb8-2" tabindex="-1" aria-label="code-block-8-2"></a>ras, decs <span class="op">=</span> generate_positions()</span>
+<span id="cb8-3"><a href="#cb8-3" tabindex="-1" aria-label="code-block-8-3"></a>write_file(ras, decs)</span></code></pre>
 </div>
 <p>One advantage to our changes is that we could now generate a
 different catalog by adjusting these last two lines like this:</p>
 <div class="codewrapper sourceCode" id="cb9">
 <h3 class="code-label">PYTHON<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
 </h3>
-<pre class="sourceCode python" tabindex="0"><code class="sourceCode python"><span id="cb9-1"><a href="#cb9-1" tabindex="-1"></a>ras, decs <span class="op">=</span> generate_positions(radius<span class="op">=</span><span class="fl">2.</span>)</span>
-<span id="cb9-2"><a href="#cb9-2" tabindex="-1"></a>write_file(ras,decs, outfile<span class="op">=</span><span class="st">'catalog_2deg.csv'</span>)</span></code></pre>
+<pre class="sourceCode python" tabindex="0"><code class="sourceCode python"><span id="cb9-1"><a href="#cb9-1" tabindex="-1" aria-label="code-block-9-1"></a>ras, decs <span class="op">=</span> generate_positions(radius<span class="op">=</span><span class="fl">2.</span>)</span>
+<span id="cb9-2"><a href="#cb9-2" tabindex="-1" aria-label="code-block-9-2"></a>write_file(ras,decs, outfile<span class="op">=</span><span class="st">'catalog_2deg.csv'</span>)</span></code></pre>
 </div>
 <p>We will leverage this ability in order to make a command line
 interface. The recommended way to do this is to use the
@@ -768,23 +768,23 @@ follows.</p>
 <div class="codewrapper sourceCode" id="cb10">
 <h3 class="code-label">PYTHON<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
 </h3>
-<pre class="sourceCode python" tabindex="0"><code class="sourceCode python"><span id="cb10-1"><a href="#cb10-1" tabindex="-1"></a><span class="cf">if</span> <span class="va">__name__</span> <span class="op">==</span> <span class="st">'__main__'</span>:</span>
-<span id="cb10-2"><a href="#cb10-2" tabindex="-1"></a>    <span class="co"># Set up the parser with all the options that you want</span></span>
-<span id="cb10-3"><a href="#cb10-3" tabindex="-1"></a>    parser <span class="op">=</span> argparse.ArgumentParser(prog<span class="op">=</span><span class="st">'sim'</span>)</span>
-<span id="cb10-4"><a href="#cb10-4" tabindex="-1"></a>    group1 <span class="op">=</span> parser.add_argument_group()</span>
-<span id="cb10-5"><a href="#cb10-5" tabindex="-1"></a>    group1.add_argument(<span class="st">'--ref_ra'</span>, dest<span class="op">=</span><span class="st">'ref_ra'</span>, <span class="bu">type</span><span class="op">=</span><span class="bu">str</span>, default<span class="op">=</span><span class="st">'00:42:44.3'</span>,</span>
-<span id="cb10-6"><a href="#cb10-6" tabindex="-1"></a>                        <span class="bu">help</span><span class="op">=</span><span class="st">'Central/reference RA position HH:MM:SS.S format'</span>)</span>
-<span id="cb10-7"><a href="#cb10-7" tabindex="-1"></a>    group1.add_argument(<span class="st">'--ref_dec'</span>, dest<span class="op">=</span><span class="st">'ref_dec'</span>, <span class="bu">type</span><span class="op">=</span><span class="bu">str</span>, default<span class="op">=</span><span class="st">'41:16:09'</span>,</span>
-<span id="cb10-8"><a href="#cb10-8" tabindex="-1"></a>                        <span class="bu">help</span><span class="op">=</span><span class="st">'Central/reference Dec position DD:MM:SS.S format'</span>)</span>
-<span id="cb10-9"><a href="#cb10-9" tabindex="-1"></a>    group1.add_argument(<span class="st">'--radius'</span>, dest<span class="op">=</span><span class="st">'radius'</span>, <span class="bu">type</span><span class="op">=</span><span class="bu">float</span>, default<span class="op">=</span><span class="fl">1.</span>,</span>
-<span id="cb10-10"><a href="#cb10-10" tabindex="-1"></a>                        <span class="bu">help</span><span class="op">=</span><span class="st">'radius within which the new positions are generated (deg)'</span>)</span>
-<span id="cb10-11"><a href="#cb10-11" tabindex="-1"></a>    group1.add_argument(<span class="st">'--n'</span>, dest<span class="op">=</span><span class="st">'nsources'</span>, <span class="bu">type</span><span class="op">=</span><span class="bu">int</span>, default<span class="op">=</span><span class="dv">1_000</span>,</span>
-<span id="cb10-12"><a href="#cb10-12" tabindex="-1"></a>                        <span class="bu">help</span><span class="op">=</span><span class="st">'Number of positions to generate'</span>)</span>
-<span id="cb10-13"><a href="#cb10-13" tabindex="-1"></a>    group1.add_argument(<span class="st">'--out'</span>, dest<span class="op">=</span><span class="st">'outfile'</span>, <span class="bu">type</span><span class="op">=</span><span class="bu">str</span>, default<span class="op">=</span><span class="st">'catalog.csv'</span>,</span>
-<span id="cb10-14"><a href="#cb10-14" tabindex="-1"></a>                        <span class="bu">help</span><span class="op">=</span><span class="st">'Filename for saving output (csv format)'</span>)</span>
-<span id="cb10-15"><a href="#cb10-15" tabindex="-1"></a></span>
-<span id="cb10-16"><a href="#cb10-16" tabindex="-1"></a>    <span class="co"># parse the command line input</span></span>
-<span id="cb10-17"><a href="#cb10-17" tabindex="-1"></a>    options <span class="op">=</span> parser.parse_args()</span></code></pre>
+<pre class="sourceCode python" tabindex="0"><code class="sourceCode python"><span id="cb10-1"><a href="#cb10-1" tabindex="-1" aria-label="code-block-10-1"></a><span class="cf">if</span> <span class="va">__name__</span> <span class="op">==</span> <span class="st">'__main__'</span>:</span>
+<span id="cb10-2"><a href="#cb10-2" tabindex="-1" aria-label="code-block-10-2"></a>    <span class="co"># Set up the parser with all the options that you want</span></span>
+<span id="cb10-3"><a href="#cb10-3" tabindex="-1" aria-label="code-block-10-3"></a>    parser <span class="op">=</span> argparse.ArgumentParser(prog<span class="op">=</span><span class="st">'sim'</span>)</span>
+<span id="cb10-4"><a href="#cb10-4" tabindex="-1" aria-label="code-block-10-4"></a>    group1 <span class="op">=</span> parser.add_argument_group()</span>
+<span id="cb10-5"><a href="#cb10-5" tabindex="-1" aria-label="code-block-10-5"></a>    group1.add_argument(<span class="st">'--ref_ra'</span>, dest<span class="op">=</span><span class="st">'ref_ra'</span>, <span class="bu">type</span><span class="op">=</span><span class="bu">str</span>, default<span class="op">=</span><span class="st">'00:42:44.3'</span>,</span>
+<span id="cb10-6"><a href="#cb10-6" tabindex="-1" aria-label="code-block-10-6"></a>                        <span class="bu">help</span><span class="op">=</span><span class="st">'Central/reference RA position HH:MM:SS.S format'</span>)</span>
+<span id="cb10-7"><a href="#cb10-7" tabindex="-1" aria-label="code-block-10-7"></a>    group1.add_argument(<span class="st">'--ref_dec'</span>, dest<span class="op">=</span><span class="st">'ref_dec'</span>, <span class="bu">type</span><span class="op">=</span><span class="bu">str</span>, default<span class="op">=</span><span class="st">'41:16:09'</span>,</span>
+<span id="cb10-8"><a href="#cb10-8" tabindex="-1" aria-label="code-block-10-8"></a>                        <span class="bu">help</span><span class="op">=</span><span class="st">'Central/reference Dec position DD:MM:SS.S format'</span>)</span>
+<span id="cb10-9"><a href="#cb10-9" tabindex="-1" aria-label="code-block-10-9"></a>    group1.add_argument(<span class="st">'--radius'</span>, dest<span class="op">=</span><span class="st">'radius'</span>, <span class="bu">type</span><span class="op">=</span><span class="bu">float</span>, default<span class="op">=</span><span class="fl">1.</span>,</span>
+<span id="cb10-10"><a href="#cb10-10" tabindex="-1" aria-label="code-block-10-10"></a>                        <span class="bu">help</span><span class="op">=</span><span class="st">'radius within which the new positions are generated (deg)'</span>)</span>
+<span id="cb10-11"><a href="#cb10-11" tabindex="-1" aria-label="code-block-10-11"></a>    group1.add_argument(<span class="st">'--n'</span>, dest<span class="op">=</span><span class="st">'nsources'</span>, <span class="bu">type</span><span class="op">=</span><span class="bu">int</span>, default<span class="op">=</span><span class="dv">1_000</span>,</span>
+<span id="cb10-12"><a href="#cb10-12" tabindex="-1" aria-label="code-block-10-12"></a>                        <span class="bu">help</span><span class="op">=</span><span class="st">'Number of positions to generate'</span>)</span>
+<span id="cb10-13"><a href="#cb10-13" tabindex="-1" aria-label="code-block-10-13"></a>    group1.add_argument(<span class="st">'--out'</span>, dest<span class="op">=</span><span class="st">'outfile'</span>, <span class="bu">type</span><span class="op">=</span><span class="bu">str</span>, default<span class="op">=</span><span class="st">'catalog.csv'</span>,</span>
+<span id="cb10-14"><a href="#cb10-14" tabindex="-1" aria-label="code-block-10-14"></a>                        <span class="bu">help</span><span class="op">=</span><span class="st">'Filename for saving output (csv format)'</span>)</span>
+<span id="cb10-15"><a href="#cb10-15" tabindex="-1" aria-label="code-block-10-15"></a></span>
+<span id="cb10-16"><a href="#cb10-16" tabindex="-1" aria-label="code-block-10-16"></a>    <span class="co"># parse the command line input</span></span>
+<span id="cb10-17"><a href="#cb10-17" tabindex="-1" aria-label="code-block-10-17"></a>    options <span class="op">=</span> parser.parse_args()</span></code></pre>
 </div>
 <p>Here we have created a single group of arguments called
 <code>group1</code>, and then we add five different arguments to that
@@ -821,14 +821,14 @@ type. The final part of our code now looks like this:</p>
 <div class="codewrapper sourceCode" id="cb12">
 <h3 class="code-label">PYTHON<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
 </h3>
-<pre class="sourceCode python" tabindex="0"><code class="sourceCode python"><span id="cb12-1"><a href="#cb12-1" tabindex="-1"></a>    <span class="co"># parse the command line input</span></span>
-<span id="cb12-2"><a href="#cb12-2" tabindex="-1"></a>    options <span class="op">=</span> parser.parse_args()</span>
-<span id="cb12-3"><a href="#cb12-3" tabindex="-1"></a></span>
-<span id="cb12-4"><a href="#cb12-4" tabindex="-1"></a>    ras, decs <span class="op">=</span> generate_positions(ref_ra<span class="op">=</span>options.ref_ra,</span>
-<span id="cb12-5"><a href="#cb12-5" tabindex="-1"></a>                                   ref_dec<span class="op">=</span>options.ref_dec,</span>
-<span id="cb12-6"><a href="#cb12-6" tabindex="-1"></a>                                   radius<span class="op">=</span>options.radius,</span>
-<span id="cb12-7"><a href="#cb12-7" tabindex="-1"></a>                                   nsources<span class="op">=</span>options.nsources)</span>
-<span id="cb12-8"><a href="#cb12-8" tabindex="-1"></a>    write_file(ras, decs, outfile<span class="op">=</span>options.outfile)</span></code></pre>
+<pre class="sourceCode python" tabindex="0"><code class="sourceCode python"><span id="cb12-1"><a href="#cb12-1" tabindex="-1" aria-label="code-block-12-1"></a>    <span class="co"># parse the command line input</span></span>
+<span id="cb12-2"><a href="#cb12-2" tabindex="-1" aria-label="code-block-12-2"></a>    options <span class="op">=</span> parser.parse_args()</span>
+<span id="cb12-3"><a href="#cb12-3" tabindex="-1" aria-label="code-block-12-3"></a></span>
+<span id="cb12-4"><a href="#cb12-4" tabindex="-1" aria-label="code-block-12-4"></a>    ras, decs <span class="op">=</span> generate_positions(ref_ra<span class="op">=</span>options.ref_ra,</span>
+<span id="cb12-5"><a href="#cb12-5" tabindex="-1" aria-label="code-block-12-5"></a>                                   ref_dec<span class="op">=</span>options.ref_dec,</span>
+<span id="cb12-6"><a href="#cb12-6" tabindex="-1" aria-label="code-block-12-6"></a>                                   radius<span class="op">=</span>options.radius,</span>
+<span id="cb12-7"><a href="#cb12-7" tabindex="-1" aria-label="code-block-12-7"></a>                                   nsources<span class="op">=</span>options.nsources)</span>
+<span id="cb12-8"><a href="#cb12-8" tabindex="-1" aria-label="code-block-12-8"></a>    write_file(ras, decs, outfile<span class="op">=</span>options.outfile)</span></code></pre>
 </div>
 <p>Since we specified default values for all of the inputs, we can run
 <code>python sim.py</code> and it will run with the default values.</p>
@@ -849,11 +849,11 @@ not immediately crash when we run it:</p>
 <div class="codewrapper sourceCode" id="cb13">
 <h3 class="code-label">BASH<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
 </h3>
-<pre class="sourceCode bash" tabindex="0"><code class="sourceCode bash"><span id="cb13-1"><a href="#cb13-1" tabindex="-1"></a><span class="co">#! /usr/bin/env bash</span></span>
-<span id="cb13-2"><a href="#cb13-2" tabindex="-1"></a></span>
-<span id="cb13-3"><a href="#cb13-3" tabindex="-1"></a><span class="bu">echo</span> <span class="st">"Testing sim.py"</span></span>
-<span id="cb13-4"><a href="#cb13-4" tabindex="-1"></a><span class="ex">python</span> sim.py <span class="kw">||</span> <span class="kw">{</span> <span class="bu">echo</span> <span class="st">"FAILED to run with default parameters"</span><span class="kw">;</span> <span class="bu">exit</span> 1 <span class="kw">;}</span></span>
-<span id="cb13-5"><a href="#cb13-5" tabindex="-1"></a><span class="ex">python</span> sim.py <span class="at">--help</span> <span class="kw">||</span> <span class="kw">{</span> <span class="bu">echo</span> <span class="st">"FAILED to print help"</span><span class="kw">;</span> <span class="bu">exit</span> 1 <span class="kw">;}</span></span></code></pre>
+<pre class="sourceCode bash" tabindex="0"><code class="sourceCode bash"><span id="cb13-1"><a href="#cb13-1" tabindex="-1" aria-label="code-block-13-1"></a><span class="co">#! /usr/bin/env bash</span></span>
+<span id="cb13-2"><a href="#cb13-2" tabindex="-1" aria-label="code-block-13-2"></a></span>
+<span id="cb13-3"><a href="#cb13-3" tabindex="-1" aria-label="code-block-13-3"></a><span class="bu">echo</span> <span class="st">"Testing sim.py"</span></span>
+<span id="cb13-4"><a href="#cb13-4" tabindex="-1" aria-label="code-block-13-4"></a><span class="ex">python</span> sim.py <span class="kw">||</span> <span class="kw">{</span> <span class="bu">echo</span> <span class="st">"FAILED to run with default parameters"</span><span class="kw">;</span> <span class="bu">exit</span> 1 <span class="kw">;}</span></span>
+<span id="cb13-5"><a href="#cb13-5" tabindex="-1" aria-label="code-block-13-5"></a><span class="ex">python</span> sim.py <span class="at">--help</span> <span class="kw">||</span> <span class="kw">{</span> <span class="bu">echo</span> <span class="st">"FAILED to print help"</span><span class="kw">;</span> <span class="bu">exit</span> 1 <span class="kw">;}</span></span></code></pre>
 </div>
 <p>The next test we do will ensure that when we pass a filename to the
 <code>--out</code> option, we will get a new file with that name. We use
@@ -862,14 +862,14 @@ that the file exists.</p>
 <div class="codewrapper sourceCode" id="cb14">
 <h3 class="code-label">BASH<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
 </h3>
-<pre class="sourceCode bash" tabindex="0"><code class="sourceCode bash"><span id="cb14-1"><a href="#cb14-1" tabindex="-1"></a><span class="ex">python</span> sim.py <span class="at">--out</span> test.csv</span>
-<span id="cb14-2"><a href="#cb14-2" tabindex="-1"></a><span class="cf">if</span> <span class="bu">[</span> <span class="ot">!</span> <span class="ot">-f</span> <span class="st">"test.csv"</span> <span class="bu">]</span><span class="kw">;</span> <span class="cf">then</span></span>
-<span id="cb14-3"><a href="#cb14-3" tabindex="-1"></a>    <span class="bu">echo</span> <span class="st">"FAILED to generate ouput test.csv"</span></span>
-<span id="cb14-4"><a href="#cb14-4" tabindex="-1"></a>    <span class="bu">exit</span> 1</span>
-<span id="cb14-5"><a href="#cb14-5" tabindex="-1"></a><span class="cf">fi</span></span>
-<span id="cb14-6"><a href="#cb14-6" tabindex="-1"></a></span>
-<span id="cb14-7"><a href="#cb14-7" tabindex="-1"></a><span class="bu">echo</span> <span class="st">"all tests PASSED"</span></span>
-<span id="cb14-8"><a href="#cb14-8" tabindex="-1"></a><span class="bu">exit</span> 0</span></code></pre>
+<pre class="sourceCode bash" tabindex="0"><code class="sourceCode bash"><span id="cb14-1"><a href="#cb14-1" tabindex="-1" aria-label="code-block-14-1"></a><span class="ex">python</span> sim.py <span class="at">--out</span> test.csv</span>
+<span id="cb14-2"><a href="#cb14-2" tabindex="-1" aria-label="code-block-14-2"></a><span class="cf">if</span> <span class="bu">[</span> <span class="ot">!</span> <span class="ot">-f</span> <span class="st">"test.csv"</span> <span class="bu">]</span><span class="kw">;</span> <span class="cf">then</span></span>
+<span id="cb14-3"><a href="#cb14-3" tabindex="-1" aria-label="code-block-14-3"></a>    <span class="bu">echo</span> <span class="st">"FAILED to generate ouput test.csv"</span></span>
+<span id="cb14-4"><a href="#cb14-4" tabindex="-1" aria-label="code-block-14-4"></a>    <span class="bu">exit</span> 1</span>
+<span id="cb14-5"><a href="#cb14-5" tabindex="-1" aria-label="code-block-14-5"></a><span class="cf">fi</span></span>
+<span id="cb14-6"><a href="#cb14-6" tabindex="-1" aria-label="code-block-14-6"></a></span>
+<span id="cb14-7"><a href="#cb14-7" tabindex="-1" aria-label="code-block-14-7"></a><span class="bu">echo</span> <span class="st">"all tests PASSED"</span></span>
+<span id="cb14-8"><a href="#cb14-8" tabindex="-1" aria-label="code-block-14-8"></a><span class="bu">exit</span> 0</span></code></pre>
 </div>
 <p>The last two lines above then make sure that when the tests all pass
 we get a positive message and return an <a href="https://www.gnu.org/software/bash/manual/html_node/Exit-Status.html" class="external-link">exit
@@ -940,7 +940,7 @@ any links that you are not going to use.
         <p>Materials licensed under <a href="LICENSE.html">CC-BY 4.0</a> by the authors</p>
 
         <p>Template licensed under <a href="https://creativecommons.org/licenses/by-sa/4.0/" class="external-link">CC-BY 4.0</a> by <a href="https://carpentries.org/" class="external-link">The Carpentries</a></p>
-        <p>Built with <a href="https://github.com/carpentries/sandpaper/tree/" class="external-link">sandpaper (0.20.0)</a>, <a href="https://github.com/carpentries/pegboard/tree/" class="external-link">pegboard (0.7.9)</a>, and <a href="https://github.com/adacs-australia/varnish/tree/3d0f995f5beafe80d7b61fc49da22ab66f29241c" class="external-link">varnish (1.0.9)</a></p>
+        <p>Built with <a href="https://github.com/carpentries/sandpaper/tree/" class="external-link">sandpaper (0.20.1)</a>, <a href="https://github.com/carpentries/pegboard/tree/" class="external-link">pegboard (0.7.9)</a>, and <a href="https://github.com/adacs-australia/varnish/tree/3d0f995f5beafe80d7b61fc49da22ab66f29241c" class="external-link">varnish (1.0.9)</a></p>
 		</div>
 		</footer></div> <!-- / div.container -->
 	<div id="to-top">
@@ -963,7 +963,7 @@ any links that you are not going to use.
   "identifier": "https://PaulHancock.github.io/Lesson-Testing/instructor/PoC.html",
   "dateCreated": "2026-02-23",
   "dateModified": "2026-02-24",
-  "datePublished": "2026-04-14"
+  "datePublished": "2026-04-21"
 }
 
   </script><script>

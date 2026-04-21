@@ -231,7 +231,7 @@
       </button>
     </div><!--/div.accordion-header-->
 
-    <div id="flush-collapsecurrent" class="accordion-collapse collapse show" aria-labelledby="flush-headingcurrent" data-bs-parent="#accordionFlushcurrent">
+    <div id="flush-collapsecurrent" class="accordion-collapse collapse show" data-bs-parent="#accordionFlushcurrent">
       <div class="accordion-body">
         <ul><li><a href="#benefits-and-pit-falls">Benefits and pit-falls</a></li>
 <li><a href="#communication-and-project-management">Communication and project management</a></li>
@@ -869,12 +869,12 @@ of master</a>).</p>
 <div class="codewrapper sourceCode" id="cb1">
 <h3 class="code-label">BASH<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
 </h3>
-<pre class="sourceCode bash" tabindex="0"><code class="sourceCode bash"><span id="cb1-1"><a href="#cb1-1" tabindex="-1"></a><span class="fu">git</span> init</span>
-<span id="cb1-2"><a href="#cb1-2" tabindex="-1"></a><span class="fu">git</span> add README.md</span>
-<span id="cb1-3"><a href="#cb1-3" tabindex="-1"></a><span class="fu">git</span> add requirements.txt encironment.yml</span>
-<span id="cb1-4"><a href="#cb1-4" tabindex="-1"></a><span class="fu">git</span> add sim_catalog skysim/<span class="pp">*</span>.py</span>
-<span id="cb1-5"><a href="#cb1-5" tabindex="-1"></a><span class="fu">git</span> commit <span class="at">-m</span> <span class="st">"first commit"</span></span>
-<span id="cb1-6"><a href="#cb1-6" tabindex="-1"></a><span class="fu">git</span> branch <span class="at">-M</span> main</span></code></pre>
+<pre class="sourceCode bash" tabindex="0"><code class="sourceCode bash"><span id="cb1-1"><a href="#cb1-1" tabindex="-1" aria-label="code-block-1-1"></a><span class="fu">git</span> init</span>
+<span id="cb1-2"><a href="#cb1-2" tabindex="-1" aria-label="code-block-1-2"></a><span class="fu">git</span> add README.md</span>
+<span id="cb1-3"><a href="#cb1-3" tabindex="-1" aria-label="code-block-1-3"></a><span class="fu">git</span> add requirements.txt encironment.yml</span>
+<span id="cb1-4"><a href="#cb1-4" tabindex="-1" aria-label="code-block-1-4"></a><span class="fu">git</span> add sim_catalog skysim/<span class="pp">*</span>.py</span>
+<span id="cb1-5"><a href="#cb1-5" tabindex="-1" aria-label="code-block-1-5"></a><span class="fu">git</span> commit <span class="at">-m</span> <span class="st">"first commit"</span></span>
+<span id="cb1-6"><a href="#cb1-6" tabindex="-1" aria-label="code-block-1-6"></a><span class="fu">git</span> branch <span class="at">-M</span> main</span></code></pre>
 </div>
 <p>The next step is to link your local repository with the one that you
 just created on Github. Replace <code>PaulHancock/sky_sim.git</code>
@@ -882,8 +882,8 @@ with your username and the name of the repo that you chose.</p>
 <div class="codewrapper sourceCode" id="cb2">
 <h3 class="code-label">BASH<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
 </h3>
-<pre class="sourceCode bash" tabindex="0"><code class="sourceCode bash"><span id="cb2-1"><a href="#cb2-1" tabindex="-1"></a><span class="fu">git</span> remote add origin git@github.com:PaulHancock/sky_sim.git</span>
-<span id="cb2-2"><a href="#cb2-2" tabindex="-1"></a><span class="fu">git</span> push <span class="at">-u</span> origin main</span></code></pre>
+<pre class="sourceCode bash" tabindex="0"><code class="sourceCode bash"><span id="cb2-1"><a href="#cb2-1" tabindex="-1" aria-label="code-block-2-1"></a><span class="fu">git</span> remote add origin git@github.com:PaulHancock/sky_sim.git</span>
+<span id="cb2-2"><a href="#cb2-2" tabindex="-1" aria-label="code-block-2-2"></a><span class="fu">git</span> push <span class="at">-u</span> origin main</span></code></pre>
 </div>
 <p>After you have done the <code>git push</code> you’ll have added all
 your local changes to the remote repository and you can view the new
@@ -1203,16 +1203,16 @@ following code:</p>
 <div class="codewrapper sourceCode" id="cb3">
 <h3 class="code-label">PYTHON<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
 </h3>
-<pre class="sourceCode python" tabindex="0"><code class="sourceCode python"><span id="cb3-1"><a href="#cb3-1" tabindex="-1"></a><span class="kw">def</span> generate_positions(ref_ra<span class="op">=</span><span class="st">'00:42:44.3'</span>,</span>
-<span id="cb3-2"><a href="#cb3-2" tabindex="-1"></a>                       ref_dec<span class="op">=</span><span class="st">'41:16:09'</span>,</span>
-<span id="cb3-3"><a href="#cb3-3" tabindex="-1"></a>                       radius<span class="op">=</span><span class="fl">1.</span>,</span>
-<span id="cb3-4"><a href="#cb3-4" tabindex="-1"></a>                       nsources<span class="op">=</span><span class="dv">1000</span>):</span>
-<span id="cb3-5"><a href="#cb3-5" tabindex="-1"></a>...</span>
-<span id="cb3-6"><a href="#cb3-6" tabindex="-1"></a>    <span class="co"># convert DMS -&gt; degrees</span></span>
-<span id="cb3-7"><a href="#cb3-7" tabindex="-1"></a>    d, m, s <span class="op">=</span> ref_dec.split(<span class="st">':'</span>)</span>
-<span id="cb3-8"><a href="#cb3-8" tabindex="-1"></a>    dec <span class="op">=</span> <span class="bu">int</span>(d)<span class="op">+</span><span class="bu">int</span>(m)<span class="op">/</span><span class="dv">60</span><span class="op">+</span><span class="bu">float</span>(s)<span class="op">/</span><span class="dv">3600</span></span>
-<span id="cb3-9"><a href="#cb3-9" tabindex="-1"></a>...</span>
-<span id="cb3-10"><a href="#cb3-10" tabindex="-1"></a>    <span class="cf">return</span> ras, decs</span></code></pre>
+<pre class="sourceCode python" tabindex="0"><code class="sourceCode python"><span id="cb3-1"><a href="#cb3-1" tabindex="-1" aria-label="code-block-3-1"></a><span class="kw">def</span> generate_positions(ref_ra<span class="op">=</span><span class="st">'00:42:44.3'</span>,</span>
+<span id="cb3-2"><a href="#cb3-2" tabindex="-1" aria-label="code-block-3-2"></a>                       ref_dec<span class="op">=</span><span class="st">'41:16:09'</span>,</span>
+<span id="cb3-3"><a href="#cb3-3" tabindex="-1" aria-label="code-block-3-3"></a>                       radius<span class="op">=</span><span class="fl">1.</span>,</span>
+<span id="cb3-4"><a href="#cb3-4" tabindex="-1" aria-label="code-block-3-4"></a>                       nsources<span class="op">=</span><span class="dv">1000</span>):</span>
+<span id="cb3-5"><a href="#cb3-5" tabindex="-1" aria-label="code-block-3-5"></a>...</span>
+<span id="cb3-6"><a href="#cb3-6" tabindex="-1" aria-label="code-block-3-6"></a>    <span class="co"># convert DMS -&gt; degrees</span></span>
+<span id="cb3-7"><a href="#cb3-7" tabindex="-1" aria-label="code-block-3-7"></a>    d, m, s <span class="op">=</span> ref_dec.split(<span class="st">':'</span>)</span>
+<span id="cb3-8"><a href="#cb3-8" tabindex="-1" aria-label="code-block-3-8"></a>    dec <span class="op">=</span> <span class="bu">int</span>(d)<span class="op">+</span><span class="bu">int</span>(m)<span class="op">/</span><span class="dv">60</span><span class="op">+</span><span class="bu">float</span>(s)<span class="op">/</span><span class="dv">3600</span></span>
+<span id="cb3-9"><a href="#cb3-9" tabindex="-1" aria-label="code-block-3-9"></a>...</span>
+<span id="cb3-10"><a href="#cb3-10" tabindex="-1" aria-label="code-block-3-10"></a>    <span class="cf">return</span> ras, decs</span></code></pre>
 </div>
 <p>The first thing that I do is to make a new test that will expose this
 bug.</p>
@@ -1233,12 +1233,12 @@ will be tested. In this case that will be the
 <div class="codewrapper sourceCode" id="cb4">
 <h3 class="code-label">PYTHON<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
 </h3>
-<pre class="sourceCode python" tabindex="0"><code class="sourceCode python"><span id="cb4-1"><a href="#cb4-1" tabindex="-1"></a><span class="co">#! /usr/bin/env python3</span></span>
-<span id="cb4-2"><a href="#cb4-2" tabindex="-1"></a><span class="co">"""</span></span>
-<span id="cb4-3"><a href="#cb4-3" tabindex="-1"></a><span class="co">Tests for the skysim.sim module</span></span>
-<span id="cb4-4"><a href="#cb4-4" tabindex="-1"></a><span class="co">"""</span></span>
-<span id="cb4-5"><a href="#cb4-5" tabindex="-1"></a><span class="im">import</span> numpy <span class="im">as</span> np</span>
-<span id="cb4-6"><a href="#cb4-6" tabindex="-1"></a><span class="im">from</span> skysim.sim <span class="im">import</span> generate_positions</span></code></pre>
+<pre class="sourceCode python" tabindex="0"><code class="sourceCode python"><span id="cb4-1"><a href="#cb4-1" tabindex="-1" aria-label="code-block-4-1"></a><span class="co">#! /usr/bin/env python3</span></span>
+<span id="cb4-2"><a href="#cb4-2" tabindex="-1" aria-label="code-block-4-2"></a><span class="co">"""</span></span>
+<span id="cb4-3"><a href="#cb4-3" tabindex="-1" aria-label="code-block-4-3"></a><span class="co">Tests for the skysim.sim module</span></span>
+<span id="cb4-4"><a href="#cb4-4" tabindex="-1" aria-label="code-block-4-4"></a><span class="co">"""</span></span>
+<span id="cb4-5"><a href="#cb4-5" tabindex="-1" aria-label="code-block-4-5"></a><span class="im">import</span> numpy <span class="im">as</span> np</span>
+<span id="cb4-6"><a href="#cb4-6" tabindex="-1" aria-label="code-block-4-6"></a><span class="im">from</span> skysim.sim <span class="im">import</span> generate_positions</span></code></pre>
 </div>
 <p>Each test that we write will be contained within a separate function
 whose name begins with <code>test_</code>, and which returns
@@ -1259,16 +1259,16 @@ broken.</p>
 <div class="codewrapper sourceCode" id="cb5">
 <h3 class="code-label">PYTHON<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
 </h3>
-<pre class="sourceCode python" tabindex="0"><code class="sourceCode python"><span id="cb5-1"><a href="#cb5-1" tabindex="-1"></a><span class="kw">def</span> test_negative_dec():</span>
-<span id="cb5-2"><a href="#cb5-2" tabindex="-1"></a>    <span class="co">"""</span></span>
-<span id="cb5-3"><a href="#cb5-3" tabindex="-1"></a><span class="co">    Test for the negative dec bug noted in issue #1</span></span>
-<span id="cb5-4"><a href="#cb5-4" tabindex="-1"></a><span class="co">    """</span></span>
-<span id="cb5-5"><a href="#cb5-5" tabindex="-1"></a>    _, decs <span class="op">=</span> generate_positions(ref_ra<span class="op">=</span><span class="st">'00:00:00'</span>,</span>
-<span id="cb5-6"><a href="#cb5-6" tabindex="-1"></a>                                 ref_dec<span class="op">=</span><span class="st">'-00:30:19'</span>,</span>
-<span id="cb5-7"><a href="#cb5-7" tabindex="-1"></a>                                 radius<span class="op">=</span><span class="fl">0.1</span>, nsources<span class="op">=</span><span class="dv">10</span>)</span>
-<span id="cb5-8"><a href="#cb5-8" tabindex="-1"></a>    <span class="cf">if</span> <span class="kw">not</span> np.<span class="bu">all</span>(decs <span class="op">&lt;</span> <span class="dv">0</span>):</span>
-<span id="cb5-9"><a href="#cb5-9" tabindex="-1"></a>        <span class="cf">raise</span> <span class="pp">AssertionError</span>(<span class="st">"Declinations should be &lt;0, but are &gt;0"</span>)</span>
-<span id="cb5-10"><a href="#cb5-10" tabindex="-1"></a>    <span class="cf">return</span></span></code></pre>
+<pre class="sourceCode python" tabindex="0"><code class="sourceCode python"><span id="cb5-1"><a href="#cb5-1" tabindex="-1" aria-label="code-block-5-1"></a><span class="kw">def</span> test_negative_dec():</span>
+<span id="cb5-2"><a href="#cb5-2" tabindex="-1" aria-label="code-block-5-2"></a>    <span class="co">"""</span></span>
+<span id="cb5-3"><a href="#cb5-3" tabindex="-1" aria-label="code-block-5-3"></a><span class="co">    Test for the negative dec bug noted in issue #1</span></span>
+<span id="cb5-4"><a href="#cb5-4" tabindex="-1" aria-label="code-block-5-4"></a><span class="co">    """</span></span>
+<span id="cb5-5"><a href="#cb5-5" tabindex="-1" aria-label="code-block-5-5"></a>    _, decs <span class="op">=</span> generate_positions(ref_ra<span class="op">=</span><span class="st">'00:00:00'</span>,</span>
+<span id="cb5-6"><a href="#cb5-6" tabindex="-1" aria-label="code-block-5-6"></a>                                 ref_dec<span class="op">=</span><span class="st">'-00:30:19'</span>,</span>
+<span id="cb5-7"><a href="#cb5-7" tabindex="-1" aria-label="code-block-5-7"></a>                                 radius<span class="op">=</span><span class="fl">0.1</span>, nsources<span class="op">=</span><span class="dv">10</span>)</span>
+<span id="cb5-8"><a href="#cb5-8" tabindex="-1" aria-label="code-block-5-8"></a>    <span class="cf">if</span> <span class="kw">not</span> np.<span class="bu">all</span>(decs <span class="op">&lt;</span> <span class="dv">0</span>):</span>
+<span id="cb5-9"><a href="#cb5-9" tabindex="-1" aria-label="code-block-5-9"></a>        <span class="cf">raise</span> <span class="pp">AssertionError</span>(<span class="st">"Declinations should be &lt;0, but are &gt;0"</span>)</span>
+<span id="cb5-10"><a href="#cb5-10" tabindex="-1" aria-label="code-block-5-10"></a>    <span class="cf">return</span></span></code></pre>
 </div>
 <p>In order to run the tests we can add the following snippet to the end
 of our script. The snippet essentially looks at all the global variables
@@ -1280,23 +1280,23 @@ reports success if no error was raised.</p>
 <div class="codewrapper sourceCode" id="cb6">
 <h3 class="code-label">PYTHON<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
 </h3>
-<pre class="sourceCode python" tabindex="0"><code class="sourceCode python"><span id="cb6-1"><a href="#cb6-1" tabindex="-1"></a><span class="cf">if</span> <span class="va">__name__</span> <span class="op">==</span> <span class="st">"__main__"</span>:</span>
-<span id="cb6-2"><a href="#cb6-2" tabindex="-1"></a>    <span class="co"># introspect and run all the functions starting with 'test'</span></span>
-<span id="cb6-3"><a href="#cb6-3" tabindex="-1"></a>    <span class="cf">for</span> f <span class="kw">in</span> <span class="bu">dir</span>():</span>
-<span id="cb6-4"><a href="#cb6-4" tabindex="-1"></a>        <span class="cf">if</span> f.startswith(<span class="st">'test'</span>):</span>
-<span id="cb6-5"><a href="#cb6-5" tabindex="-1"></a>            <span class="cf">try</span>:</span>
-<span id="cb6-6"><a href="#cb6-6" tabindex="-1"></a>                <span class="bu">globals</span>()[f]()</span>
-<span id="cb6-7"><a href="#cb6-7" tabindex="-1"></a>            <span class="cf">except</span> <span class="pp">AssertionError</span> <span class="im">as</span> e:</span>
-<span id="cb6-8"><a href="#cb6-8" tabindex="-1"></a>                <span class="bu">print</span>(<span class="st">"</span><span class="sc">{0}</span><span class="st"> FAILED with error: </span><span class="sc">{1}</span><span class="st">"</span>.<span class="bu">format</span>(f, e))</span>
-<span id="cb6-9"><a href="#cb6-9" tabindex="-1"></a>            <span class="cf">else</span>:</span>
-<span id="cb6-10"><a href="#cb6-10" tabindex="-1"></a>                <span class="bu">print</span>(<span class="st">"</span><span class="sc">{0}</span><span class="st"> PASSED"</span>.<span class="bu">format</span>(f))</span></code></pre>
+<pre class="sourceCode python" tabindex="0"><code class="sourceCode python"><span id="cb6-1"><a href="#cb6-1" tabindex="-1" aria-label="code-block-6-1"></a><span class="cf">if</span> <span class="va">__name__</span> <span class="op">==</span> <span class="st">"__main__"</span>:</span>
+<span id="cb6-2"><a href="#cb6-2" tabindex="-1" aria-label="code-block-6-2"></a>    <span class="co"># introspect and run all the functions starting with 'test'</span></span>
+<span id="cb6-3"><a href="#cb6-3" tabindex="-1" aria-label="code-block-6-3"></a>    <span class="cf">for</span> f <span class="kw">in</span> <span class="bu">dir</span>():</span>
+<span id="cb6-4"><a href="#cb6-4" tabindex="-1" aria-label="code-block-6-4"></a>        <span class="cf">if</span> f.startswith(<span class="st">'test'</span>):</span>
+<span id="cb6-5"><a href="#cb6-5" tabindex="-1" aria-label="code-block-6-5"></a>            <span class="cf">try</span>:</span>
+<span id="cb6-6"><a href="#cb6-6" tabindex="-1" aria-label="code-block-6-6"></a>                <span class="bu">globals</span>()[f]()</span>
+<span id="cb6-7"><a href="#cb6-7" tabindex="-1" aria-label="code-block-6-7"></a>            <span class="cf">except</span> <span class="pp">AssertionError</span> <span class="im">as</span> e:</span>
+<span id="cb6-8"><a href="#cb6-8" tabindex="-1" aria-label="code-block-6-8"></a>                <span class="bu">print</span>(<span class="st">"</span><span class="sc">{0}</span><span class="st"> FAILED with error: </span><span class="sc">{1}</span><span class="st">"</span>.<span class="bu">format</span>(f, e))</span>
+<span id="cb6-9"><a href="#cb6-9" tabindex="-1" aria-label="code-block-6-9"></a>            <span class="cf">else</span>:</span>
+<span id="cb6-10"><a href="#cb6-10" tabindex="-1" aria-label="code-block-6-10"></a>                <span class="bu">print</span>(<span class="st">"</span><span class="sc">{0}</span><span class="st"> PASSED"</span>.<span class="bu">format</span>(f))</span></code></pre>
 </div>
 <p>When we run our test code we get the following result:</p>
 <div class="codewrapper sourceCode" id="cb7">
 <h3 class="code-label">BASH<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
 </h3>
-<pre class="sourceCode bash" tabindex="0"><code class="sourceCode bash"><span id="cb7-1"><a href="#cb7-1" tabindex="-1"></a><span class="ex">$</span> python tests/test_sim.py </span>
-<span id="cb7-2"><a href="#cb7-2" tabindex="-1"></a><span class="ex">test_negative_dec</span> FAILED with error Declinations should be <span class="op">&lt;</span>0, but are <span class="op">&gt;</span>0</span></code></pre>
+<pre class="sourceCode bash" tabindex="0"><code class="sourceCode bash"><span id="cb7-1"><a href="#cb7-1" tabindex="-1" aria-label="code-block-7-1"></a><span class="ex">$</span> python tests/test_sim.py </span>
+<span id="cb7-2"><a href="#cb7-2" tabindex="-1" aria-label="code-block-7-2"></a><span class="ex">test_negative_dec</span> FAILED with error Declinations should be <span class="op">&lt;</span>0, but are <span class="op">&gt;</span>0</span></code></pre>
 </div>
 <p>This failure is not a bad thing, it means that we have successfully
 written a test function that will identify the bug. Now we can begin the
@@ -1310,20 +1310,20 @@ the declination as follows:</p>
 <div class="codewrapper sourceCode" id="cb8">
 <h3 class="code-label">PYTHON<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
 </h3>
-<pre class="sourceCode python" tabindex="0"><code class="sourceCode python"><span id="cb8-1"><a href="#cb8-1" tabindex="-1"></a>    <span class="co"># convert DMS -&gt; degrees</span></span>
-<span id="cb8-2"><a href="#cb8-2" tabindex="-1"></a>    d, m, s <span class="op">=</span> ref_dec.split(<span class="st">':'</span>)</span>
-<span id="cb8-3"><a href="#cb8-3" tabindex="-1"></a>    sign <span class="op">=</span> <span class="dv">1</span></span>
-<span id="cb8-4"><a href="#cb8-4" tabindex="-1"></a>    <span class="cf">if</span> d[<span class="dv">0</span>] <span class="op">==</span> <span class="st">'-'</span>:</span>
-<span id="cb8-5"><a href="#cb8-5" tabindex="-1"></a>        sign <span class="op">=</span> <span class="op">-</span><span class="dv">1</span></span>
-<span id="cb8-6"><a href="#cb8-6" tabindex="-1"></a>    dec <span class="op">=</span> sign<span class="op">*</span>(<span class="bu">abs</span>(<span class="bu">int</span>(d))<span class="op">+</span><span class="bu">int</span>(m)<span class="op">/</span><span class="dv">60</span><span class="op">+</span><span class="bu">float</span>(s)<span class="op">/</span><span class="dv">3600</span>)</span></code></pre>
+<pre class="sourceCode python" tabindex="0"><code class="sourceCode python"><span id="cb8-1"><a href="#cb8-1" tabindex="-1" aria-label="code-block-8-1"></a>    <span class="co"># convert DMS -&gt; degrees</span></span>
+<span id="cb8-2"><a href="#cb8-2" tabindex="-1" aria-label="code-block-8-2"></a>    d, m, s <span class="op">=</span> ref_dec.split(<span class="st">':'</span>)</span>
+<span id="cb8-3"><a href="#cb8-3" tabindex="-1" aria-label="code-block-8-3"></a>    sign <span class="op">=</span> <span class="dv">1</span></span>
+<span id="cb8-4"><a href="#cb8-4" tabindex="-1" aria-label="code-block-8-4"></a>    <span class="cf">if</span> d[<span class="dv">0</span>] <span class="op">==</span> <span class="st">'-'</span>:</span>
+<span id="cb8-5"><a href="#cb8-5" tabindex="-1" aria-label="code-block-8-5"></a>        sign <span class="op">=</span> <span class="op">-</span><span class="dv">1</span></span>
+<span id="cb8-6"><a href="#cb8-6" tabindex="-1" aria-label="code-block-8-6"></a>    dec <span class="op">=</span> sign<span class="op">*</span>(<span class="bu">abs</span>(<span class="bu">int</span>(d))<span class="op">+</span><span class="bu">int</span>(m)<span class="op">/</span><span class="dv">60</span><span class="op">+</span><span class="bu">float</span>(s)<span class="op">/</span><span class="dv">3600</span>)</span></code></pre>
 </div>
 <p>And I then re-run the code to make sure that the bug has been
 resolved, and then run my tests:</p>
 <div class="codewrapper sourceCode" id="cb9">
 <h3 class="code-label">BASH<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
 </h3>
-<pre class="sourceCode bash" tabindex="0"><code class="sourceCode bash"><span id="cb9-1"><a href="#cb9-1" tabindex="-1"></a><span class="ex">$</span> python tests/test_sim.py </span>
-<span id="cb9-2"><a href="#cb9-2" tabindex="-1"></a><span class="ex">test_negative_dec</span> PASSED</span></code></pre>
+<pre class="sourceCode bash" tabindex="0"><code class="sourceCode bash"><span id="cb9-1"><a href="#cb9-1" tabindex="-1" aria-label="code-block-9-1"></a><span class="ex">$</span> python tests/test_sim.py </span>
+<span id="cb9-2"><a href="#cb9-2" tabindex="-1" aria-label="code-block-9-2"></a><span class="ex">test_negative_dec</span> PASSED</span></code></pre>
 </div>
 <p>As I develop more and more tests the list of functions run will grow.
 Once the new bug has been solved I will re-run <strong>all</strong> my
@@ -1336,9 +1336,9 @@ place.</p>
 <div class="codewrapper sourceCode" id="cb10">
 <h3 class="code-label">BASH<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
 </h3>
-<pre class="sourceCode bash" tabindex="0"><code class="sourceCode bash"><span id="cb10-1"><a href="#cb10-1" tabindex="-1"></a><span class="fu">git</span> add tests/test_sim.py</span>
-<span id="cb10-2"><a href="#cb10-2" tabindex="-1"></a><span class="fu">git</span> commit <span class="at">-m</span> <span class="st">'expose bug from issue#1'</span></span>
-<span id="cb10-3"><a href="#cb10-3" tabindex="-1"></a><span class="fu">git</span> commit <span class="at">-m</span> <span class="st">'resolve #1'</span> skysim/sim.py</span></code></pre>
+<pre class="sourceCode bash" tabindex="0"><code class="sourceCode bash"><span id="cb10-1"><a href="#cb10-1" tabindex="-1" aria-label="code-block-10-1"></a><span class="fu">git</span> add tests/test_sim.py</span>
+<span id="cb10-2"><a href="#cb10-2" tabindex="-1" aria-label="code-block-10-2"></a><span class="fu">git</span> commit <span class="at">-m</span> <span class="st">'expose bug from issue#1'</span></span>
+<span id="cb10-3"><a href="#cb10-3" tabindex="-1" aria-label="code-block-10-3"></a><span class="fu">git</span> commit <span class="at">-m</span> <span class="st">'resolve #1'</span> skysim/sim.py</span></code></pre>
 </div>
 <p>Note that I have used <code>#1</code> to refer to the issue from
 within my commit message. When viewed on Github these commit messages
@@ -1348,7 +1348,7 @@ issue I should be able to see the reverse link.</p>
 <div class="codewrapper sourceCode" id="cb11">
 <h3 class="code-label">BASH<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
 </h3>
-<pre class="sourceCode bash" tabindex="0"><code class="sourceCode bash"><span id="cb11-1"><a href="#cb11-1" tabindex="-1"></a><span class="fu">git</span> push <span class="at">--set-upstream</span> origin Paulhancock/Issue#1</span></code></pre>
+<pre class="sourceCode bash" tabindex="0"><code class="sourceCode bash"><span id="cb11-1"><a href="#cb11-1" tabindex="-1" aria-label="code-block-11-1"></a><span class="fu">git</span> push <span class="at">--set-upstream</span> origin Paulhancock/Issue#1</span></code></pre>
 </div>
 <p>If we look on the original issue page, we can see the link to the
 commit.</p>
@@ -1514,7 +1514,7 @@ any links that you are not going to use.
         <p>Materials licensed under <a href="LICENSE.html">CC-BY 4.0</a> by the authors</p>
 
         <p>Template licensed under <a href="https://creativecommons.org/licenses/by-sa/4.0/" class="external-link">CC-BY 4.0</a> by <a href="https://carpentries.org/" class="external-link">The Carpentries</a></p>
-        <p>Built with <a href="https://github.com/carpentries/sandpaper/tree/" class="external-link">sandpaper (0.20.0)</a>, <a href="https://github.com/carpentries/pegboard/tree/" class="external-link">pegboard (0.7.9)</a>, and <a href="https://github.com/adacs-australia/varnish/tree/3d0f995f5beafe80d7b61fc49da22ab66f29241c" class="external-link">varnish (1.0.9)</a></p>
+        <p>Built with <a href="https://github.com/carpentries/sandpaper/tree/" class="external-link">sandpaper (0.20.1)</a>, <a href="https://github.com/carpentries/pegboard/tree/" class="external-link">pegboard (0.7.9)</a>, and <a href="https://github.com/adacs-australia/varnish/tree/3d0f995f5beafe80d7b61fc49da22ab66f29241c" class="external-link">varnish (1.0.9)</a></p>
 		</div>
 		</footer></div> <!-- / div.container -->
 	<div id="to-top">
@@ -1537,7 +1537,7 @@ any links that you are not going to use.
   "identifier": "https://PaulHancock.github.io/Lesson-Testing/DevInATeam.html",
   "dateCreated": "2026-02-23",
   "dateModified": "2026-02-27",
-  "datePublished": "2026-04-14"
+  "datePublished": "2026-04-21"
 }
 
   </script><script>

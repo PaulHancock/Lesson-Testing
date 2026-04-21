@@ -240,7 +240,7 @@
       </button>
     </div><!--/div.accordion-header-->
 
-    <div id="flush-collapsecurrent" class="accordion-collapse collapse show" aria-labelledby="flush-headingcurrent" data-bs-parent="#accordionFlushcurrent">
+    <div id="flush-collapsecurrent" class="accordion-collapse collapse show" data-bs-parent="#accordionFlushcurrent">
       <div class="accordion-body">
         <ul><li><a href="#separating-the-ui-from-the-functionality">Separating the UI from the functionality</a></li>
 <li><a href="#setting-up-a-python-environment">Setting up a python environment</a></li>
@@ -404,18 +404,18 @@ empty file called <code>__init__.py</code>. Let’s do that now:</p>
 <div class="codewrapper sourceCode" id="cb1">
 <h3 class="code-label">BASH<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
 </h3>
-<pre class="sourceCode bash" tabindex="0"><code class="sourceCode bash"><span id="cb1-1"><a href="#cb1-1" tabindex="-1"></a><span class="ex">$</span> mkdir skysim</span>
-<span id="cb1-2"><a href="#cb1-2" tabindex="-1"></a><span class="ex">$</span> touch skysim/__init__.py</span></code></pre>
+<pre class="sourceCode bash" tabindex="0"><code class="sourceCode bash"><span id="cb1-1"><a href="#cb1-1" tabindex="-1" aria-label="code-block-1-1"></a><span class="ex">$</span> mkdir skysim</span>
+<span id="cb1-2"><a href="#cb1-2" tabindex="-1" aria-label="code-block-1-2"></a><span class="ex">$</span> touch skysim/__init__.py</span></code></pre>
 </div>
 <p>To access the module we simply use <code>import skysim</code>.</p>
 <div class="codewrapper sourceCode" id="cb2">
 <h3 class="code-label">BASH<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
 </h3>
-<pre class="sourceCode bash" tabindex="0"><code class="sourceCode bash"><span id="cb2-1"><a href="#cb2-1" tabindex="-1"></a><span class="ex">$</span> python</span>
-<span id="cb2-2"><a href="#cb2-2" tabindex="-1"></a><span class="op">&gt;&gt;&gt;</span> import <span class="ex">skysim</span></span>
-<span id="cb2-3"><a href="#cb2-3" tabindex="-1"></a><span class="op">&gt;&gt;&gt;</span> dir<span class="kw">(</span><span class="ex">skysim</span><span class="kw">)</span></span>
-<span id="cb2-4"><a href="#cb2-4" tabindex="-1"></a><span class="ex">[</span><span class="st">'__builtins__'</span><span class="ex">,</span> <span class="st">'__cached__'</span>, <span class="st">'__doc__'</span>, <span class="st">'__file__'</span>, <span class="st">'__loader__'</span>, <span class="st">'__name__'</span>, <span class="st">'__package__'</span>, <span class="st">'__path__'</span>, <span class="st">'__spec__'</span>]</span>
-<span id="cb2-5"><a href="#cb2-5" tabindex="-1"></a><span class="op">&gt;&gt;&gt;</span> </span></code></pre>
+<pre class="sourceCode bash" tabindex="0"><code class="sourceCode bash"><span id="cb2-1"><a href="#cb2-1" tabindex="-1" aria-label="code-block-2-1"></a><span class="ex">$</span> python</span>
+<span id="cb2-2"><a href="#cb2-2" tabindex="-1" aria-label="code-block-2-2"></a><span class="op">&gt;&gt;&gt;</span> import <span class="ex">skysim</span></span>
+<span id="cb2-3"><a href="#cb2-3" tabindex="-1" aria-label="code-block-2-3"></a><span class="op">&gt;&gt;&gt;</span> dir<span class="kw">(</span><span class="ex">skysim</span><span class="kw">)</span></span>
+<span id="cb2-4"><a href="#cb2-4" tabindex="-1" aria-label="code-block-2-4"></a><span class="ex">[</span><span class="st">'__builtins__'</span><span class="ex">,</span> <span class="st">'__cached__'</span>, <span class="st">'__doc__'</span>, <span class="st">'__file__'</span>, <span class="st">'__loader__'</span>, <span class="st">'__name__'</span>, <span class="st">'__package__'</span>, <span class="st">'__path__'</span>, <span class="st">'__spec__'</span>]</span>
+<span id="cb2-5"><a href="#cb2-5" tabindex="-1" aria-label="code-block-2-5"></a><span class="op">&gt;&gt;&gt;</span> </span></code></pre>
 </div>
 <p>We can see that the <code>skysim</code> module already has some
 attributes defined, and they all start with a double underscore (
@@ -435,11 +435,11 @@ example:</p>
 <div class="codewrapper sourceCode" id="cb3">
 <h3 class="code-label">BASH<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
 </h3>
-<pre class="sourceCode bash" tabindex="0"><code class="sourceCode bash"><span id="cb3-1"><a href="#cb3-1" tabindex="-1"></a><span class="ex">$</span> python</span>
-<span id="cb3-2"><a href="#cb3-2" tabindex="-1"></a><span class="op">&gt;&gt;&gt;</span> from <span class="ex">skysim</span> import sim</span>
-<span id="cb3-3"><a href="#cb3-3" tabindex="-1"></a><span class="op">&gt;&gt;&gt;</span> dir<span class="kw">(</span><span class="ex">sim</span><span class="kw">)</span></span>
-<span id="cb3-4"><a href="#cb3-4" tabindex="-1"></a><span class="ex">[</span><span class="st">'__builtins__'</span><span class="ex">,</span> <span class="st">'__cached__'</span>, <span class="st">'__doc__'</span>, <span class="st">'__file__'</span>, <span class="st">'__loader__'</span>, <span class="st">'__name__'</span>, <span class="st">'__package__'</span>, <span class="st">'__spec__'</span>, <span class="st">'argparse'</span>, <span class="st">'generate_positions'</span>, <span class="st">'math'</span>, <span class="st">'np'</span>, <span class="st">'write_file'</span>]</span>
-<span id="cb3-5"><a href="#cb3-5" tabindex="-1"></a><span class="op">&gt;&gt;&gt;</span> </span></code></pre>
+<pre class="sourceCode bash" tabindex="0"><code class="sourceCode bash"><span id="cb3-1"><a href="#cb3-1" tabindex="-1" aria-label="code-block-3-1"></a><span class="ex">$</span> python</span>
+<span id="cb3-2"><a href="#cb3-2" tabindex="-1" aria-label="code-block-3-2"></a><span class="op">&gt;&gt;&gt;</span> from <span class="ex">skysim</span> import sim</span>
+<span id="cb3-3"><a href="#cb3-3" tabindex="-1" aria-label="code-block-3-3"></a><span class="op">&gt;&gt;&gt;</span> dir<span class="kw">(</span><span class="ex">sim</span><span class="kw">)</span></span>
+<span id="cb3-4"><a href="#cb3-4" tabindex="-1" aria-label="code-block-3-4"></a><span class="ex">[</span><span class="st">'__builtins__'</span><span class="ex">,</span> <span class="st">'__cached__'</span>, <span class="st">'__doc__'</span>, <span class="st">'__file__'</span>, <span class="st">'__loader__'</span>, <span class="st">'__name__'</span>, <span class="st">'__package__'</span>, <span class="st">'__spec__'</span>, <span class="st">'argparse'</span>, <span class="st">'generate_positions'</span>, <span class="st">'math'</span>, <span class="st">'np'</span>, <span class="st">'write_file'</span>]</span>
+<span id="cb3-5"><a href="#cb3-5" tabindex="-1" aria-label="code-block-3-5"></a><span class="op">&gt;&gt;&gt;</span> </span></code></pre>
 </div>
 <p>Above we can see the two functions that we defined, as well as the
 modules that we imported (<code>argparse</code>, <code>math</code>, and
@@ -468,34 +468,34 @@ from our newly created module.</p>
 <div class="codewrapper sourceCode" id="cb4">
 <h3 class="code-label">PYTHON<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
 </h3>
-<pre class="sourceCode python" tabindex="0"><code class="sourceCode python"><span id="cb4-1"><a href="#cb4-1" tabindex="-1"></a><span class="co">#! /usr/bin/env python</span></span>
-<span id="cb4-2"><a href="#cb4-2" tabindex="-1"></a></span>
-<span id="cb4-3"><a href="#cb4-3" tabindex="-1"></a><span class="im">import</span> argparse</span>
-<span id="cb4-4"><a href="#cb4-4" tabindex="-1"></a><span class="im">from</span> skysim.sim <span class="im">import</span> generate_positions, write_file</span>
-<span id="cb4-5"><a href="#cb4-5" tabindex="-1"></a></span>
-<span id="cb4-6"><a href="#cb4-6" tabindex="-1"></a><span class="cf">if</span> <span class="va">__name__</span> <span class="op">==</span> <span class="st">'__main__'</span>:</span>
-<span id="cb4-7"><a href="#cb4-7" tabindex="-1"></a>    <span class="co"># Set up the parser with all the options that you want</span></span>
-<span id="cb4-8"><a href="#cb4-8" tabindex="-1"></a>    parser <span class="op">=</span> argparse.ArgumentParser(prog<span class="op">=</span><span class="st">'sim'</span>)</span>
-<span id="cb4-9"><a href="#cb4-9" tabindex="-1"></a>    group1 <span class="op">=</span> parser.add_argument_group()</span>
-<span id="cb4-10"><a href="#cb4-10" tabindex="-1"></a>    group1.add_argument(<span class="st">'--ref_ra'</span>, dest<span class="op">=</span><span class="st">'ref_ra'</span>, <span class="bu">type</span><span class="op">=</span><span class="bu">str</span>, default<span class="op">=</span><span class="st">'00:42:44.3'</span>,</span>
-<span id="cb4-11"><a href="#cb4-11" tabindex="-1"></a>                        <span class="bu">help</span><span class="op">=</span><span class="st">'Central/reference RA position HH:MM:SS.S format'</span>)</span>
-<span id="cb4-12"><a href="#cb4-12" tabindex="-1"></a>    group1.add_argument(<span class="st">'--ref_dec'</span>, dest<span class="op">=</span><span class="st">'ref_dec'</span>, <span class="bu">type</span><span class="op">=</span><span class="bu">str</span>, default<span class="op">=</span><span class="st">'41:16:09'</span>,</span>
-<span id="cb4-13"><a href="#cb4-13" tabindex="-1"></a>                        <span class="bu">help</span><span class="op">=</span><span class="st">'Central/reference Dec position DD:MM:SS.S format'</span>)</span>
-<span id="cb4-14"><a href="#cb4-14" tabindex="-1"></a>    group1.add_argument(<span class="st">'--radius'</span>, dest<span class="op">=</span><span class="st">'radius'</span>, <span class="bu">type</span><span class="op">=</span><span class="bu">float</span>, default<span class="op">=</span><span class="fl">1.</span>,</span>
-<span id="cb4-15"><a href="#cb4-15" tabindex="-1"></a>                        <span class="bu">help</span><span class="op">=</span><span class="st">'radius within which the new positions are generated (deg)'</span>)</span>
-<span id="cb4-16"><a href="#cb4-16" tabindex="-1"></a>    group1.add_argument(<span class="st">'--n'</span>, dest<span class="op">=</span><span class="st">'nsources'</span>, <span class="bu">type</span><span class="op">=</span><span class="bu">int</span>, default<span class="op">=</span><span class="dv">1_000</span>,</span>
-<span id="cb4-17"><a href="#cb4-17" tabindex="-1"></a>                        <span class="bu">help</span><span class="op">=</span><span class="st">'Number of positions to generate'</span>)</span>
-<span id="cb4-18"><a href="#cb4-18" tabindex="-1"></a>    group1.add_argument(<span class="st">'--out'</span>, dest<span class="op">=</span><span class="st">'outfile'</span>, <span class="bu">type</span><span class="op">=</span><span class="bu">str</span>, default<span class="op">=</span><span class="st">'catalog.csv'</span>,</span>
-<span id="cb4-19"><a href="#cb4-19" tabindex="-1"></a>                        <span class="bu">help</span><span class="op">=</span><span class="st">'Filename for saving output (csv format)'</span>)</span>
-<span id="cb4-20"><a href="#cb4-20" tabindex="-1"></a></span>
-<span id="cb4-21"><a href="#cb4-21" tabindex="-1"></a>    <span class="co"># parse the command line input</span></span>
-<span id="cb4-22"><a href="#cb4-22" tabindex="-1"></a>    options <span class="op">=</span> parser.parse_args()</span>
-<span id="cb4-23"><a href="#cb4-23" tabindex="-1"></a></span>
-<span id="cb4-24"><a href="#cb4-24" tabindex="-1"></a>    ras, decs <span class="op">=</span> generate_positions(ref_ra<span class="op">=</span>options.ref_ra,</span>
-<span id="cb4-25"><a href="#cb4-25" tabindex="-1"></a>                                   ref_dec<span class="op">=</span>options.ref_dec,</span>
-<span id="cb4-26"><a href="#cb4-26" tabindex="-1"></a>                                   radius<span class="op">=</span>options.radius,</span>
-<span id="cb4-27"><a href="#cb4-27" tabindex="-1"></a>                                   nsources<span class="op">=</span>options.nsources)</span>
-<span id="cb4-28"><a href="#cb4-28" tabindex="-1"></a>    write_file(ras, decs, outfile<span class="op">=</span>options.outfile)</span></code></pre>
+<pre class="sourceCode python" tabindex="0"><code class="sourceCode python"><span id="cb4-1"><a href="#cb4-1" tabindex="-1" aria-label="code-block-4-1"></a><span class="co">#! /usr/bin/env python</span></span>
+<span id="cb4-2"><a href="#cb4-2" tabindex="-1" aria-label="code-block-4-2"></a></span>
+<span id="cb4-3"><a href="#cb4-3" tabindex="-1" aria-label="code-block-4-3"></a><span class="im">import</span> argparse</span>
+<span id="cb4-4"><a href="#cb4-4" tabindex="-1" aria-label="code-block-4-4"></a><span class="im">from</span> skysim.sim <span class="im">import</span> generate_positions, write_file</span>
+<span id="cb4-5"><a href="#cb4-5" tabindex="-1" aria-label="code-block-4-5"></a></span>
+<span id="cb4-6"><a href="#cb4-6" tabindex="-1" aria-label="code-block-4-6"></a><span class="cf">if</span> <span class="va">__name__</span> <span class="op">==</span> <span class="st">'__main__'</span>:</span>
+<span id="cb4-7"><a href="#cb4-7" tabindex="-1" aria-label="code-block-4-7"></a>    <span class="co"># Set up the parser with all the options that you want</span></span>
+<span id="cb4-8"><a href="#cb4-8" tabindex="-1" aria-label="code-block-4-8"></a>    parser <span class="op">=</span> argparse.ArgumentParser(prog<span class="op">=</span><span class="st">'sim'</span>)</span>
+<span id="cb4-9"><a href="#cb4-9" tabindex="-1" aria-label="code-block-4-9"></a>    group1 <span class="op">=</span> parser.add_argument_group()</span>
+<span id="cb4-10"><a href="#cb4-10" tabindex="-1" aria-label="code-block-4-10"></a>    group1.add_argument(<span class="st">'--ref_ra'</span>, dest<span class="op">=</span><span class="st">'ref_ra'</span>, <span class="bu">type</span><span class="op">=</span><span class="bu">str</span>, default<span class="op">=</span><span class="st">'00:42:44.3'</span>,</span>
+<span id="cb4-11"><a href="#cb4-11" tabindex="-1" aria-label="code-block-4-11"></a>                        <span class="bu">help</span><span class="op">=</span><span class="st">'Central/reference RA position HH:MM:SS.S format'</span>)</span>
+<span id="cb4-12"><a href="#cb4-12" tabindex="-1" aria-label="code-block-4-12"></a>    group1.add_argument(<span class="st">'--ref_dec'</span>, dest<span class="op">=</span><span class="st">'ref_dec'</span>, <span class="bu">type</span><span class="op">=</span><span class="bu">str</span>, default<span class="op">=</span><span class="st">'41:16:09'</span>,</span>
+<span id="cb4-13"><a href="#cb4-13" tabindex="-1" aria-label="code-block-4-13"></a>                        <span class="bu">help</span><span class="op">=</span><span class="st">'Central/reference Dec position DD:MM:SS.S format'</span>)</span>
+<span id="cb4-14"><a href="#cb4-14" tabindex="-1" aria-label="code-block-4-14"></a>    group1.add_argument(<span class="st">'--radius'</span>, dest<span class="op">=</span><span class="st">'radius'</span>, <span class="bu">type</span><span class="op">=</span><span class="bu">float</span>, default<span class="op">=</span><span class="fl">1.</span>,</span>
+<span id="cb4-15"><a href="#cb4-15" tabindex="-1" aria-label="code-block-4-15"></a>                        <span class="bu">help</span><span class="op">=</span><span class="st">'radius within which the new positions are generated (deg)'</span>)</span>
+<span id="cb4-16"><a href="#cb4-16" tabindex="-1" aria-label="code-block-4-16"></a>    group1.add_argument(<span class="st">'--n'</span>, dest<span class="op">=</span><span class="st">'nsources'</span>, <span class="bu">type</span><span class="op">=</span><span class="bu">int</span>, default<span class="op">=</span><span class="dv">1_000</span>,</span>
+<span id="cb4-17"><a href="#cb4-17" tabindex="-1" aria-label="code-block-4-17"></a>                        <span class="bu">help</span><span class="op">=</span><span class="st">'Number of positions to generate'</span>)</span>
+<span id="cb4-18"><a href="#cb4-18" tabindex="-1" aria-label="code-block-4-18"></a>    group1.add_argument(<span class="st">'--out'</span>, dest<span class="op">=</span><span class="st">'outfile'</span>, <span class="bu">type</span><span class="op">=</span><span class="bu">str</span>, default<span class="op">=</span><span class="st">'catalog.csv'</span>,</span>
+<span id="cb4-19"><a href="#cb4-19" tabindex="-1" aria-label="code-block-4-19"></a>                        <span class="bu">help</span><span class="op">=</span><span class="st">'Filename for saving output (csv format)'</span>)</span>
+<span id="cb4-20"><a href="#cb4-20" tabindex="-1" aria-label="code-block-4-20"></a></span>
+<span id="cb4-21"><a href="#cb4-21" tabindex="-1" aria-label="code-block-4-21"></a>    <span class="co"># parse the command line input</span></span>
+<span id="cb4-22"><a href="#cb4-22" tabindex="-1" aria-label="code-block-4-22"></a>    options <span class="op">=</span> parser.parse_args()</span>
+<span id="cb4-23"><a href="#cb4-23" tabindex="-1" aria-label="code-block-4-23"></a></span>
+<span id="cb4-24"><a href="#cb4-24" tabindex="-1" aria-label="code-block-4-24"></a>    ras, decs <span class="op">=</span> generate_positions(ref_ra<span class="op">=</span>options.ref_ra,</span>
+<span id="cb4-25"><a href="#cb4-25" tabindex="-1" aria-label="code-block-4-25"></a>                                   ref_dec<span class="op">=</span>options.ref_dec,</span>
+<span id="cb4-26"><a href="#cb4-26" tabindex="-1" aria-label="code-block-4-26"></a>                                   radius<span class="op">=</span>options.radius,</span>
+<span id="cb4-27"><a href="#cb4-27" tabindex="-1" aria-label="code-block-4-27"></a>                                   nsources<span class="op">=</span>options.nsources)</span>
+<span id="cb4-28"><a href="#cb4-28" tabindex="-1" aria-label="code-block-4-28"></a>    write_file(ras, decs, outfile<span class="op">=</span>options.outfile)</span></code></pre>
 </div>
 <p>Note that we have a <a href="https://en.wikipedia.org/wiki/Shebang_(Unix)" class="external-link">shebang</a> line
 (#!) to indicate that we want to use the python interpreter. This means
@@ -590,7 +590,7 @@ create a new virtual environment simply via:</p>
 <div class="codewrapper sourceCode" id="cb5">
 <h3 class="code-label">BASH<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
 </h3>
-<pre class="sourceCode bash" tabindex="0"><code class="sourceCode bash"><span id="cb5-1"><a href="#cb5-1" tabindex="-1"></a><span class="ex">python3</span> <span class="at">-m</span> venv [--prompt PROMPT] ENV_DIR </span></code></pre>
+<pre class="sourceCode bash" tabindex="0"><code class="sourceCode bash"><span id="cb5-1"><a href="#cb5-1" tabindex="-1" aria-label="code-block-5-1"></a><span class="ex">python3</span> <span class="at">-m</span> venv [--prompt PROMPT] ENV_DIR </span></code></pre>
 </div>
 <p>where PROMPT is the name of the virtual environment, and ENV_DIR is
 the location in which all the files for this environment will be stored.
@@ -600,7 +600,7 @@ via:</p>
 <div class="codewrapper sourceCode" id="cb6">
 <h3 class="code-label">BASH<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
 </h3>
-<pre class="sourceCode bash" tabindex="0"><code class="sourceCode bash"><span id="cb6-1"><a href="#cb6-1" tabindex="-1"></a><span class="bu">source</span> ENV_DIR/bin/activate</span></code></pre>
+<pre class="sourceCode bash" tabindex="0"><code class="sourceCode bash"><span id="cb6-1"><a href="#cb6-1" tabindex="-1" aria-label="code-block-6-1"></a><span class="bu">source</span> ENV_DIR/bin/activate</span></code></pre>
 </div>
 <p>I find it nice to have a descriptive ENV_DIR such as
 <code>.env-jupyter</code> or <code>.env-py3-myproject</code> (where the
@@ -613,7 +613,7 @@ link them:</p>
 <div class="codewrapper sourceCode" id="cb7">
 <h3 class="code-label">BASH<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
 </h3>
-<pre class="sourceCode bash" tabindex="0"><code class="sourceCode bash"><span id="cb7-1"><a href="#cb7-1" tabindex="-1"></a><span class="bu">alias</span> jpy=<span class="st">'source ~/.env-jupyter/bin/activate'</span></span></code></pre>
+<pre class="sourceCode bash" tabindex="0"><code class="sourceCode bash"><span id="cb7-1"><a href="#cb7-1" tabindex="-1" aria-label="code-block-7-1"></a><span class="bu">alias</span> jpy=<span class="st">'source ~/.env-jupyter/bin/activate'</span></span></code></pre>
 </div>
 <p>Creating a new virtual environment is easy, and if you get it wrong,
 you can just delete the ENV_DIR. The other nice thing is that if you are
@@ -643,7 +643,7 @@ following:</p>
 <div class="codewrapper sourceCode" id="cb8">
 <h3 class="code-label">BASH<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
 </h3>
-<pre class="sourceCode bash" tabindex="0"><code class="sourceCode bash"><span id="cb8-1"><a href="#cb8-1" tabindex="-1"></a><span class="ex">numpy</span><span class="op">&gt;</span>=1.19</span></code></pre>
+<pre class="sourceCode bash" tabindex="0"><code class="sourceCode bash"><span id="cb8-1"><a href="#cb8-1" tabindex="-1" aria-label="code-block-8-1"></a><span class="ex">numpy</span><span class="op">&gt;</span>=1.19</span></code></pre>
 </div>
 <p>where the <code>&gt;=1.19</code> indicates that version 1.19 or
 greater will be fine. See the <a href="https://pip.pypa.io/en/stable/reference/requirements-file-format/#example" class="external-link">pip
@@ -665,7 +665,7 @@ file you run pip:</p>
 <div class="codewrapper sourceCode" id="cb9">
 <h3 class="code-label">BASH<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
 </h3>
-<pre class="sourceCode bash" tabindex="0"><code class="sourceCode bash"><span id="cb9-1"><a href="#cb9-1" tabindex="-1"></a><span class="ex">pip</span> install <span class="at">-r</span> requirements.txt</span></code></pre>
+<pre class="sourceCode bash" tabindex="0"><code class="sourceCode bash"><span id="cb9-1"><a href="#cb9-1" tabindex="-1" aria-label="code-block-9-1"></a><span class="ex">pip</span> install <span class="at">-r</span> requirements.txt</span></code></pre>
 </div>
 <p>You now have a way of preserving and sharing your python environment
 with others. It is good practice to keep a <code>requirements.txt</code>
@@ -680,8 +680,8 @@ like:</p>
 <div class="codewrapper sourceCode" id="cb10">
 <h3 class="code-label">BASH<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
 </h3>
-<pre class="sourceCode bash" tabindex="0"><code class="sourceCode bash"><span id="cb10-1"><a href="#cb10-1" tabindex="-1"></a><span class="ex">dependencies:</span></span>
-<span id="cb10-2"><a href="#cb10-2" tabindex="-1"></a>  <span class="ex">-</span> numpy<span class="op">&gt;</span>=1.19</span></code></pre>
+<pre class="sourceCode bash" tabindex="0"><code class="sourceCode bash"><span id="cb10-1"><a href="#cb10-1" tabindex="-1" aria-label="code-block-10-1"></a><span class="ex">dependencies:</span></span>
+<span id="cb10-2"><a href="#cb10-2" tabindex="-1" aria-label="code-block-10-2"></a>  <span class="ex">-</span> numpy<span class="op">&gt;</span>=1.19</span></code></pre>
 </div>
 <p>Anaconda is able to reproduce not just the python modules, but the
 entire virtual environment including the versions of python and anaconda
@@ -694,13 +694,13 @@ files:</p>
 <div class="codewrapper sourceCode" id="cb11">
 <h3 class="code-label">BASH<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
 </h3>
-<pre class="sourceCode bash" tabindex="0"><code class="sourceCode bash"><span id="cb11-1"><a href="#cb11-1" tabindex="-1"></a><span class="ex">name:</span> my-env</span>
-<span id="cb11-2"><a href="#cb11-2" tabindex="-1"></a><span class="ex">dependencies:</span></span>
-<span id="cb11-3"><a href="#cb11-3" tabindex="-1"></a>  <span class="ex">-</span> python<span class="op">&gt;</span>=3.8</span>
-<span id="cb11-4"><a href="#cb11-4" tabindex="-1"></a>  <span class="ex">-</span> anaconda</span>
-<span id="cb11-5"><a href="#cb11-5" tabindex="-1"></a>  <span class="ex">-</span> pip</span>
-<span id="cb11-6"><a href="#cb11-6" tabindex="-1"></a>  <span class="ex">-</span> pip:</span>
-<span id="cb11-7"><a href="#cb11-7" tabindex="-1"></a>    <span class="ex">-</span> <span class="at">-r</span> requirements.txt</span></code></pre>
+<pre class="sourceCode bash" tabindex="0"><code class="sourceCode bash"><span id="cb11-1"><a href="#cb11-1" tabindex="-1" aria-label="code-block-11-1"></a><span class="ex">name:</span> my-env</span>
+<span id="cb11-2"><a href="#cb11-2" tabindex="-1" aria-label="code-block-11-2"></a><span class="ex">dependencies:</span></span>
+<span id="cb11-3"><a href="#cb11-3" tabindex="-1" aria-label="code-block-11-3"></a>  <span class="ex">-</span> python<span class="op">&gt;</span>=3.8</span>
+<span id="cb11-4"><a href="#cb11-4" tabindex="-1" aria-label="code-block-11-4"></a>  <span class="ex">-</span> anaconda</span>
+<span id="cb11-5"><a href="#cb11-5" tabindex="-1" aria-label="code-block-11-5"></a>  <span class="ex">-</span> pip</span>
+<span id="cb11-6"><a href="#cb11-6" tabindex="-1" aria-label="code-block-11-6"></a>  <span class="ex">-</span> pip:</span>
+<span id="cb11-7"><a href="#cb11-7" tabindex="-1" aria-label="code-block-11-7"></a>    <span class="ex">-</span> <span class="at">-r</span> requirements.txt</span></code></pre>
 </div>
 <p>Conda understands pip formatted requirements, but pip doesn’t
 understand conda environment files, so there is no inverse version of
@@ -794,30 +794,30 @@ formatting.</p>
 <div class="codewrapper sourceCode" id="cb12">
 <h3 class="code-label">PYTHON<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
 </h3>
-<pre class="sourceCode python" tabindex="0"><code class="sourceCode python"><span id="cb12-1"><a href="#cb12-1" tabindex="-1"></a><span class="co"># /usr/bin/env python</span></span>
-<span id="cb12-2"><a href="#cb12-2" tabindex="-1"></a></span>
-<span id="cb12-3"><a href="#cb12-3" tabindex="-1"></a>__author__ <span class="op">=</span> [<span class="st">'Dev One'</span>, <span class="st">'Contrib Two'</span>]</span>
-<span id="cb12-4"><a href="#cb12-4" tabindex="-1"></a>__version__ <span class="op">=</span> <span class="st">'0.9'</span></span>
-<span id="cb12-5"><a href="#cb12-5" tabindex="-1"></a>__date__ <span class="op">=</span> <span class="st">'2021-12-02'</span></span>
-<span id="cb12-6"><a href="#cb12-6" tabindex="-1"></a>__citation__ <span class="op">=</span> <span class="st">"""</span></span>
-<span id="cb12-7"><a href="#cb12-7" tabindex="-1"></a><span class="st">% If this work is used to support a publication please</span></span>
-<span id="cb12-8"><a href="#cb12-8" tabindex="-1"></a><span class="sc">% c</span><span class="st">ite the following publication:</span></span>
-<span id="cb12-9"><a href="#cb12-9" tabindex="-1"></a><span class="st">% Description of This code</span></span>
-<span id="cb12-10"><a href="#cb12-10" tabindex="-1"></a><span class="st">@ARTICLE{ExcellentCode_2022,</span></span>
-<span id="cb12-11"><a href="#cb12-11" tabindex="-1"></a><span class="st">   author = </span><span class="sc">{{</span><span class="st">One}, D. and </span><span class="sc">{Two}</span><span class="st">, C. and </span><span class="sc">{People}</span><span class="st">, O},</span></span>
-<span id="cb12-12"><a href="#cb12-12" tabindex="-1"></a><span class="st">    title = "{Awesome sauce code for astronomy projects}",</span></span>
-<span id="cb12-13"><a href="#cb12-13" tabindex="-1"></a><span class="st">  journal = </span><span class="sc">{Nature}</span><span class="st">,</span></span>
-<span id="cb12-14"><a href="#cb12-14" tabindex="-1"></a><span class="st"> keywords = {techniques: image processing, catalogues, surveys},</span></span>
-<span id="cb12-15"><a href="#cb12-15" tabindex="-1"></a><span class="st">     year = 2021,</span></span>
-<span id="cb12-16"><a href="#cb12-16" tabindex="-1"></a><span class="st">    month = may,</span></span>
-<span id="cb12-17"><a href="#cb12-17" tabindex="-1"></a><span class="st">   volume = 1337,</span></span>
-<span id="cb12-18"><a href="#cb12-18" tabindex="-1"></a><span class="st">    pages = {11-15},</span></span>
-<span id="cb12-19"><a href="#cb12-19" tabindex="-1"></a><span class="st">      doi = {some.doi/link.in.here}</span></span>
-<span id="cb12-20"><a href="#cb12-20" tabindex="-1"></a><span class="st">}</span></span>
-<span id="cb12-21"><a href="#cb12-21" tabindex="-1"></a></span>
-<span id="cb12-22"><a href="#cb12-22" tabindex="-1"></a><span class="st">% It is also appropriate to link to the following repository:</span></span>
-<span id="cb12-23"><a href="#cb12-23" tabindex="-1"></a><span class="st">https://github.com/devone/AwesomeSauce</span></span>
-<span id="cb12-24"><a href="#cb12-24" tabindex="-1"></a><span class="st">"""</span></span></code></pre>
+<pre class="sourceCode python" tabindex="0"><code class="sourceCode python"><span id="cb12-1"><a href="#cb12-1" tabindex="-1" aria-label="code-block-12-1"></a><span class="co"># /usr/bin/env python</span></span>
+<span id="cb12-2"><a href="#cb12-2" tabindex="-1" aria-label="code-block-12-2"></a></span>
+<span id="cb12-3"><a href="#cb12-3" tabindex="-1" aria-label="code-block-12-3"></a>__author__ <span class="op">=</span> [<span class="st">'Dev One'</span>, <span class="st">'Contrib Two'</span>]</span>
+<span id="cb12-4"><a href="#cb12-4" tabindex="-1" aria-label="code-block-12-4"></a>__version__ <span class="op">=</span> <span class="st">'0.9'</span></span>
+<span id="cb12-5"><a href="#cb12-5" tabindex="-1" aria-label="code-block-12-5"></a>__date__ <span class="op">=</span> <span class="st">'2021-12-02'</span></span>
+<span id="cb12-6"><a href="#cb12-6" tabindex="-1" aria-label="code-block-12-6"></a>__citation__ <span class="op">=</span> <span class="st">"""</span></span>
+<span id="cb12-7"><a href="#cb12-7" tabindex="-1" aria-label="code-block-12-7"></a><span class="st">% If this work is used to support a publication please</span></span>
+<span id="cb12-8"><a href="#cb12-8" tabindex="-1" aria-label="code-block-12-8"></a><span class="sc">% c</span><span class="st">ite the following publication:</span></span>
+<span id="cb12-9"><a href="#cb12-9" tabindex="-1" aria-label="code-block-12-9"></a><span class="st">% Description of This code</span></span>
+<span id="cb12-10"><a href="#cb12-10" tabindex="-1" aria-label="code-block-12-10"></a><span class="st">@ARTICLE{ExcellentCode_2022,</span></span>
+<span id="cb12-11"><a href="#cb12-11" tabindex="-1" aria-label="code-block-12-11"></a><span class="st">   author = </span><span class="sc">{{</span><span class="st">One}, D. and </span><span class="sc">{Two}</span><span class="st">, C. and </span><span class="sc">{People}</span><span class="st">, O},</span></span>
+<span id="cb12-12"><a href="#cb12-12" tabindex="-1" aria-label="code-block-12-12"></a><span class="st">    title = "{Awesome sauce code for astronomy projects}",</span></span>
+<span id="cb12-13"><a href="#cb12-13" tabindex="-1" aria-label="code-block-12-13"></a><span class="st">  journal = </span><span class="sc">{Nature}</span><span class="st">,</span></span>
+<span id="cb12-14"><a href="#cb12-14" tabindex="-1" aria-label="code-block-12-14"></a><span class="st"> keywords = {techniques: image processing, catalogues, surveys},</span></span>
+<span id="cb12-15"><a href="#cb12-15" tabindex="-1" aria-label="code-block-12-15"></a><span class="st">     year = 2021,</span></span>
+<span id="cb12-16"><a href="#cb12-16" tabindex="-1" aria-label="code-block-12-16"></a><span class="st">    month = may,</span></span>
+<span id="cb12-17"><a href="#cb12-17" tabindex="-1" aria-label="code-block-12-17"></a><span class="st">   volume = 1337,</span></span>
+<span id="cb12-18"><a href="#cb12-18" tabindex="-1" aria-label="code-block-12-18"></a><span class="st">    pages = {11-15},</span></span>
+<span id="cb12-19"><a href="#cb12-19" tabindex="-1" aria-label="code-block-12-19"></a><span class="st">      doi = {some.doi/link.in.here}</span></span>
+<span id="cb12-20"><a href="#cb12-20" tabindex="-1" aria-label="code-block-12-20"></a><span class="st">}</span></span>
+<span id="cb12-21"><a href="#cb12-21" tabindex="-1" aria-label="code-block-12-21"></a></span>
+<span id="cb12-22"><a href="#cb12-22" tabindex="-1" aria-label="code-block-12-22"></a><span class="st">% It is also appropriate to link to the following repository:</span></span>
+<span id="cb12-23"><a href="#cb12-23" tabindex="-1" aria-label="code-block-12-23"></a><span class="st">https://github.com/devone/AwesomeSauce</span></span>
+<span id="cb12-24"><a href="#cb12-24" tabindex="-1" aria-label="code-block-12-24"></a><span class="st">"""</span></span></code></pre>
 </div>
 <div id="group-activity-metadata" class="callout discussion">
 <div class="callout-square">
@@ -941,39 +941,39 @@ github issues)</li>
 <div class="codewrapper sourceCode" id="cb13">
 <h3 class="code-label">BASH<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
 </h3>
-<pre class="sourceCode bash" tabindex="0"><code class="sourceCode bash"><span id="cb13-1"><a href="#cb13-1" tabindex="-1"></a><span class="co"># SkySim</span></span>
-<span id="cb13-2"><a href="#cb13-2" tabindex="-1"></a><span class="ex">This</span> project was built in order to simulate source <span class="er">(</span><span class="ex">star/galaxy/other</span><span class="kw">)</span> <span class="ex">positions</span> over an area of sky.</span>
-<span id="cb13-3"><a href="#cb13-3" tabindex="-1"></a></span>
-<span id="cb13-4"><a href="#cb13-4" tabindex="-1"></a><span class="co">## Installing</span></span>
-<span id="cb13-5"><a href="#cb13-5" tabindex="-1"></a><span class="ex">This</span> project relies only on python built-ins and the numpy library.</span>
-<span id="cb13-6"><a href="#cb13-6" tabindex="-1"></a><span class="ex">Use</span> <span class="kw">`</span><span class="ex">pip</span> install <span class="at">-r</span> requirements.txt<span class="kw">`</span> if you don<span class="st">'t yet meet these requirements.</span></span>
-<span id="cb13-7"><a href="#cb13-7" tabindex="-1"></a></span>
-<span id="cb13-8"><a href="#cb13-8" tabindex="-1"></a><span class="st">## Usage</span></span>
-<span id="cb13-9"><a href="#cb13-9" tabindex="-1"></a><span class="st">The main entry point for this project is `sim_catalog`:</span></span>
-<span id="cb13-10"><a href="#cb13-10" tabindex="-1"></a></span>
-<span id="cb13-11"><a href="#cb13-11" tabindex="-1"></a><span class="st">./sim_catalog --help</span></span>
-<span id="cb13-12"><a href="#cb13-12" tabindex="-1"></a><span class="st">usage: sim [-h] [--ref_ra REF_RA] [--ref_dec REF_DEC] [--radius RADIUS] [--n NSOURCES] [--out OUTFILE]</span></span>
-<span id="cb13-13"><a href="#cb13-13" tabindex="-1"></a></span>
-<span id="cb13-14"><a href="#cb13-14" tabindex="-1"></a><span class="st">optional arguments:</span></span>
-<span id="cb13-15"><a href="#cb13-15" tabindex="-1"></a><span class="st">  -h, --help         show this help message and exit</span></span>
-<span id="cb13-16"><a href="#cb13-16" tabindex="-1"></a></span>
-<span id="cb13-17"><a href="#cb13-17" tabindex="-1"></a><span class="st">  --ref_ra REF_RA    Central/reference RA position HH:MM:SS.S format</span></span>
-<span id="cb13-18"><a href="#cb13-18" tabindex="-1"></a><span class="st">  --ref_dec REF_DEC  Central/reference Dec position DD:MM:SS.S format</span></span>
-<span id="cb13-19"><a href="#cb13-19" tabindex="-1"></a><span class="st">  --radius RADIUS    radius within which the new positions are generated (deg)</span></span>
-<span id="cb13-20"><a href="#cb13-20" tabindex="-1"></a><span class="st">  --n NSOURCES       Number of positions to generate</span></span>
-<span id="cb13-21"><a href="#cb13-21" tabindex="-1"></a><span class="st">  --out OUTFILE      Filename for saving output (csv format)</span></span>
-<span id="cb13-22"><a href="#cb13-22" tabindex="-1"></a></span>
-<span id="cb13-23"><a href="#cb13-23" tabindex="-1"></a></span>
-<span id="cb13-24"><a href="#cb13-24" tabindex="-1"></a><span class="st">## Documentation</span></span>
-<span id="cb13-25"><a href="#cb13-25" tabindex="-1"></a><span class="st">Documentation is currently just this file, and associated python docstrings.</span></span>
-<span id="cb13-26"><a href="#cb13-26" tabindex="-1"></a></span>
-<span id="cb13-27"><a href="#cb13-27" tabindex="-1"></a><span class="st">## Author / Contribution</span></span>
-<span id="cb13-28"><a href="#cb13-28" tabindex="-1"></a><span class="st">This project is developed by Dev One.</span></span>
-<span id="cb13-29"><a href="#cb13-29" tabindex="-1"></a><span class="st">If you want to contribute to this project please create a fork and issue pull requests for new features or bug fixes.</span></span>
-<span id="cb13-30"><a href="#cb13-30" tabindex="-1"></a></span>
-<span id="cb13-31"><a href="#cb13-31" tabindex="-1"></a><span class="st">## Credit</span></span>
-<span id="cb13-32"><a href="#cb13-32" tabindex="-1"></a><span class="st">If you find this project to be useful in your academic work please cite the following paper:</span></span>
-<span id="cb13-33"><a href="#cb13-33" tabindex="-1"></a><span class="st">&gt; [One, D. et al. Nature, 2021](https://nature.com)</span></span></code></pre>
+<pre class="sourceCode bash" tabindex="0"><code class="sourceCode bash"><span id="cb13-1"><a href="#cb13-1" tabindex="-1" aria-label="code-block-13-1"></a><span class="co"># SkySim</span></span>
+<span id="cb13-2"><a href="#cb13-2" tabindex="-1" aria-label="code-block-13-2"></a><span class="ex">This</span> project was built in order to simulate source <span class="er">(</span><span class="ex">star/galaxy/other</span><span class="kw">)</span> <span class="ex">positions</span> over an area of sky.</span>
+<span id="cb13-3"><a href="#cb13-3" tabindex="-1" aria-label="code-block-13-3"></a></span>
+<span id="cb13-4"><a href="#cb13-4" tabindex="-1" aria-label="code-block-13-4"></a><span class="co">## Installing</span></span>
+<span id="cb13-5"><a href="#cb13-5" tabindex="-1" aria-label="code-block-13-5"></a><span class="ex">This</span> project relies only on python built-ins and the numpy library.</span>
+<span id="cb13-6"><a href="#cb13-6" tabindex="-1" aria-label="code-block-13-6"></a><span class="ex">Use</span> <span class="kw">`</span><span class="ex">pip</span> install <span class="at">-r</span> requirements.txt<span class="kw">`</span> if you don<span class="st">'t yet meet these requirements.</span></span>
+<span id="cb13-7"><a href="#cb13-7" tabindex="-1" aria-label="code-block-13-7"></a></span>
+<span id="cb13-8"><a href="#cb13-8" tabindex="-1" aria-label="code-block-13-8"></a><span class="st">## Usage</span></span>
+<span id="cb13-9"><a href="#cb13-9" tabindex="-1" aria-label="code-block-13-9"></a><span class="st">The main entry point for this project is `sim_catalog`:</span></span>
+<span id="cb13-10"><a href="#cb13-10" tabindex="-1" aria-label="code-block-13-10"></a></span>
+<span id="cb13-11"><a href="#cb13-11" tabindex="-1" aria-label="code-block-13-11"></a><span class="st">./sim_catalog --help</span></span>
+<span id="cb13-12"><a href="#cb13-12" tabindex="-1" aria-label="code-block-13-12"></a><span class="st">usage: sim [-h] [--ref_ra REF_RA] [--ref_dec REF_DEC] [--radius RADIUS] [--n NSOURCES] [--out OUTFILE]</span></span>
+<span id="cb13-13"><a href="#cb13-13" tabindex="-1" aria-label="code-block-13-13"></a></span>
+<span id="cb13-14"><a href="#cb13-14" tabindex="-1" aria-label="code-block-13-14"></a><span class="st">optional arguments:</span></span>
+<span id="cb13-15"><a href="#cb13-15" tabindex="-1" aria-label="code-block-13-15"></a><span class="st">  -h, --help         show this help message and exit</span></span>
+<span id="cb13-16"><a href="#cb13-16" tabindex="-1" aria-label="code-block-13-16"></a></span>
+<span id="cb13-17"><a href="#cb13-17" tabindex="-1" aria-label="code-block-13-17"></a><span class="st">  --ref_ra REF_RA    Central/reference RA position HH:MM:SS.S format</span></span>
+<span id="cb13-18"><a href="#cb13-18" tabindex="-1" aria-label="code-block-13-18"></a><span class="st">  --ref_dec REF_DEC  Central/reference Dec position DD:MM:SS.S format</span></span>
+<span id="cb13-19"><a href="#cb13-19" tabindex="-1" aria-label="code-block-13-19"></a><span class="st">  --radius RADIUS    radius within which the new positions are generated (deg)</span></span>
+<span id="cb13-20"><a href="#cb13-20" tabindex="-1" aria-label="code-block-13-20"></a><span class="st">  --n NSOURCES       Number of positions to generate</span></span>
+<span id="cb13-21"><a href="#cb13-21" tabindex="-1" aria-label="code-block-13-21"></a><span class="st">  --out OUTFILE      Filename for saving output (csv format)</span></span>
+<span id="cb13-22"><a href="#cb13-22" tabindex="-1" aria-label="code-block-13-22"></a></span>
+<span id="cb13-23"><a href="#cb13-23" tabindex="-1" aria-label="code-block-13-23"></a></span>
+<span id="cb13-24"><a href="#cb13-24" tabindex="-1" aria-label="code-block-13-24"></a><span class="st">## Documentation</span></span>
+<span id="cb13-25"><a href="#cb13-25" tabindex="-1" aria-label="code-block-13-25"></a><span class="st">Documentation is currently just this file, and associated python docstrings.</span></span>
+<span id="cb13-26"><a href="#cb13-26" tabindex="-1" aria-label="code-block-13-26"></a></span>
+<span id="cb13-27"><a href="#cb13-27" tabindex="-1" aria-label="code-block-13-27"></a><span class="st">## Author / Contribution</span></span>
+<span id="cb13-28"><a href="#cb13-28" tabindex="-1" aria-label="code-block-13-28"></a><span class="st">This project is developed by Dev One.</span></span>
+<span id="cb13-29"><a href="#cb13-29" tabindex="-1" aria-label="code-block-13-29"></a><span class="st">If you want to contribute to this project please create a fork and issue pull requests for new features or bug fixes.</span></span>
+<span id="cb13-30"><a href="#cb13-30" tabindex="-1" aria-label="code-block-13-30"></a></span>
+<span id="cb13-31"><a href="#cb13-31" tabindex="-1" aria-label="code-block-13-31"></a><span class="st">## Credit</span></span>
+<span id="cb13-32"><a href="#cb13-32" tabindex="-1" aria-label="code-block-13-32"></a><span class="st">If you find this project to be useful in your academic work please cite the following paper:</span></span>
+<span id="cb13-33"><a href="#cb13-33" tabindex="-1" aria-label="code-block-13-33"></a><span class="st">&gt; [One, D. et al. Nature, 2021](https://nature.com)</span></span></code></pre>
 </div>
 <p>The above <code>README.md</code> file will render on <a href="https://github.com/ADACS-Australia/MAP21B-Training-BPindor/tree/cycle2" class="external-link">github</a>
 as below.</p>
@@ -1078,7 +1078,7 @@ any links that you are not going to use.
         <p>Materials licensed under <a href="LICENSE.html">CC-BY 4.0</a> by the authors</p>
 
         <p>Template licensed under <a href="https://creativecommons.org/licenses/by-sa/4.0/" class="external-link">CC-BY 4.0</a> by <a href="https://carpentries.org/" class="external-link">The Carpentries</a></p>
-        <p>Built with <a href="https://github.com/carpentries/sandpaper/tree/" class="external-link">sandpaper (0.20.0)</a>, <a href="https://github.com/carpentries/pegboard/tree/" class="external-link">pegboard (0.7.9)</a>, and <a href="https://github.com/adacs-australia/varnish/tree/3d0f995f5beafe80d7b61fc49da22ab66f29241c" class="external-link">varnish (1.0.9)</a></p>
+        <p>Built with <a href="https://github.com/carpentries/sandpaper/tree/" class="external-link">sandpaper (0.20.1)</a>, <a href="https://github.com/carpentries/pegboard/tree/" class="external-link">pegboard (0.7.9)</a>, and <a href="https://github.com/adacs-australia/varnish/tree/3d0f995f5beafe80d7b61fc49da22ab66f29241c" class="external-link">varnish (1.0.9)</a></p>
 		</div>
 		</footer></div> <!-- / div.container -->
 	<div id="to-top">
@@ -1101,7 +1101,7 @@ any links that you are not going to use.
   "identifier": "https://PaulHancock.github.io/Lesson-Testing/ReusableCode.html",
   "dateCreated": "2026-02-23",
   "dateModified": "2026-02-25",
-  "datePublished": "2026-04-14"
+  "datePublished": "2026-04-21"
 }
 
   </script><script>

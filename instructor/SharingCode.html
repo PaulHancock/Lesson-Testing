@@ -267,7 +267,7 @@
       </button>
     </div><!--/div.accordion-header-->
 
-    <div id="flush-collapsecurrent" class="accordion-collapse collapse show" aria-labelledby="flush-headingcurrent" data-bs-parent="#accordionFlushcurrent">
+    <div id="flush-collapsecurrent" class="accordion-collapse collapse show" data-bs-parent="#accordionFlushcurrent">
       <div class="accordion-body">
         <ul><li><a href="#publishing-code">‘Publishing’ code</a></li>
 <li><a href="#obtaining-a-doi-from-zenodo.org">Obtaining a doi from Zenodo.org</a></li>
@@ -588,27 +588,27 @@ to use a template so we’ll provide one here to get started.</p>
 <div class="codewrapper sourceCode" id="cb1">
 <h3 class="code-label">PYTHON<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
 </h3>
-<pre class="sourceCode python" tabindex="0"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" tabindex="-1"></a><span class="im">import</span> setuptools</span>
-<span id="cb1-2"><a href="#cb1-2" tabindex="-1"></a><span class="im">import</span> skysim</span>
-<span id="cb1-3"><a href="#cb1-3" tabindex="-1"></a></span>
-<span id="cb1-4"><a href="#cb1-4" tabindex="-1"></a><span class="cf">with</span> <span class="bu">open</span>(<span class="st">"README.md"</span>, <span class="st">"r"</span>, encoding<span class="op">=</span><span class="st">"utf-8"</span>) <span class="im">as</span> fh:</span>
-<span id="cb1-5"><a href="#cb1-5" tabindex="-1"></a>    long_description <span class="op">=</span> fh.read()</span>
-<span id="cb1-6"><a href="#cb1-6" tabindex="-1"></a></span>
-<span id="cb1-7"><a href="#cb1-7" tabindex="-1"></a><span class="cf">with</span> <span class="bu">open</span>(<span class="st">'requirements.txt'</span>, <span class="st">'r'</span>) <span class="im">as</span> fh:</span>
-<span id="cb1-8"><a href="#cb1-8" tabindex="-1"></a>    reqs <span class="op">=</span> [line <span class="cf">for</span> line <span class="kw">in</span> fh.readlines() <span class="cf">if</span> <span class="kw">not</span> line.startswith(<span class="st">'#'</span>)]</span>
-<span id="cb1-9"><a href="#cb1-9" tabindex="-1"></a></span>
-<span id="cb1-10"><a href="#cb1-10" tabindex="-1"></a>setuptools.setup(</span>
-<span id="cb1-11"><a href="#cb1-11" tabindex="-1"></a>    name<span class="op">=</span><span class="st">"SkySim"</span>,</span>
-<span id="cb1-12"><a href="#cb1-12" tabindex="-1"></a>    version<span class="op">=</span>skysim.__version__,</span>
-<span id="cb1-13"><a href="#cb1-13" tabindex="-1"></a>    author<span class="op">=</span>skysim.__author__,</span>
-<span id="cb1-14"><a href="#cb1-14" tabindex="-1"></a>    author_email<span class="op">=</span><span class="st">"author@example.com"</span>,</span>
-<span id="cb1-15"><a href="#cb1-15" tabindex="-1"></a>    description<span class="op">=</span><span class="st">"Simulate sky locations"</span>,</span>
-<span id="cb1-16"><a href="#cb1-16" tabindex="-1"></a>    long_description<span class="op">=</span>long_description,</span>
-<span id="cb1-17"><a href="#cb1-17" tabindex="-1"></a>    long_description_content_type<span class="op">=</span><span class="st">"text/markdown"</span>,</span>
-<span id="cb1-18"><a href="#cb1-18" tabindex="-1"></a>    url<span class="op">=</span><span class="st">"https://github.com/DevOne/sky_sim"</span>,</span>
-<span id="cb1-19"><a href="#cb1-19" tabindex="-1"></a>    scripts<span class="op">=</span>[<span class="st">'scripts/sim_catalog'</span>],</span>
-<span id="cb1-20"><a href="#cb1-20" tabindex="-1"></a>    python_requires<span class="op">=</span><span class="st">"&gt;=3.6"</span>,</span>
-<span id="cb1-21"><a href="#cb1-21" tabindex="-1"></a>)</span></code></pre>
+<pre class="sourceCode python" tabindex="0"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" tabindex="-1" aria-label="code-block-1-1"></a><span class="im">import</span> setuptools</span>
+<span id="cb1-2"><a href="#cb1-2" tabindex="-1" aria-label="code-block-1-2"></a><span class="im">import</span> skysim</span>
+<span id="cb1-3"><a href="#cb1-3" tabindex="-1" aria-label="code-block-1-3"></a></span>
+<span id="cb1-4"><a href="#cb1-4" tabindex="-1" aria-label="code-block-1-4"></a><span class="cf">with</span> <span class="bu">open</span>(<span class="st">"README.md"</span>, <span class="st">"r"</span>, encoding<span class="op">=</span><span class="st">"utf-8"</span>) <span class="im">as</span> fh:</span>
+<span id="cb1-5"><a href="#cb1-5" tabindex="-1" aria-label="code-block-1-5"></a>    long_description <span class="op">=</span> fh.read()</span>
+<span id="cb1-6"><a href="#cb1-6" tabindex="-1" aria-label="code-block-1-6"></a></span>
+<span id="cb1-7"><a href="#cb1-7" tabindex="-1" aria-label="code-block-1-7"></a><span class="cf">with</span> <span class="bu">open</span>(<span class="st">'requirements.txt'</span>, <span class="st">'r'</span>) <span class="im">as</span> fh:</span>
+<span id="cb1-8"><a href="#cb1-8" tabindex="-1" aria-label="code-block-1-8"></a>    reqs <span class="op">=</span> [line <span class="cf">for</span> line <span class="kw">in</span> fh.readlines() <span class="cf">if</span> <span class="kw">not</span> line.startswith(<span class="st">'#'</span>)]</span>
+<span id="cb1-9"><a href="#cb1-9" tabindex="-1" aria-label="code-block-1-9"></a></span>
+<span id="cb1-10"><a href="#cb1-10" tabindex="-1" aria-label="code-block-1-10"></a>setuptools.setup(</span>
+<span id="cb1-11"><a href="#cb1-11" tabindex="-1" aria-label="code-block-1-11"></a>    name<span class="op">=</span><span class="st">"SkySim"</span>,</span>
+<span id="cb1-12"><a href="#cb1-12" tabindex="-1" aria-label="code-block-1-12"></a>    version<span class="op">=</span>skysim.__version__,</span>
+<span id="cb1-13"><a href="#cb1-13" tabindex="-1" aria-label="code-block-1-13"></a>    author<span class="op">=</span>skysim.__author__,</span>
+<span id="cb1-14"><a href="#cb1-14" tabindex="-1" aria-label="code-block-1-14"></a>    author_email<span class="op">=</span><span class="st">"author@example.com"</span>,</span>
+<span id="cb1-15"><a href="#cb1-15" tabindex="-1" aria-label="code-block-1-15"></a>    description<span class="op">=</span><span class="st">"Simulate sky locations"</span>,</span>
+<span id="cb1-16"><a href="#cb1-16" tabindex="-1" aria-label="code-block-1-16"></a>    long_description<span class="op">=</span>long_description,</span>
+<span id="cb1-17"><a href="#cb1-17" tabindex="-1" aria-label="code-block-1-17"></a>    long_description_content_type<span class="op">=</span><span class="st">"text/markdown"</span>,</span>
+<span id="cb1-18"><a href="#cb1-18" tabindex="-1" aria-label="code-block-1-18"></a>    url<span class="op">=</span><span class="st">"https://github.com/DevOne/sky_sim"</span>,</span>
+<span id="cb1-19"><a href="#cb1-19" tabindex="-1" aria-label="code-block-1-19"></a>    scripts<span class="op">=</span>[<span class="st">'scripts/sim_catalog'</span>],</span>
+<span id="cb1-20"><a href="#cb1-20" tabindex="-1" aria-label="code-block-1-20"></a>    python_requires<span class="op">=</span><span class="st">"&gt;=3.6"</span>,</span>
+<span id="cb1-21"><a href="#cb1-21" tabindex="-1" aria-label="code-block-1-21"></a>)</span></code></pre>
 </div>
 <p>Note the following:</p>
 <ul><li>we import the <code>skysim</code> module so that we can read the
@@ -633,8 +633,8 @@ following:</p>
 <div class="codewrapper sourceCode" id="cb2">
 <h3 class="code-label">BASH<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
 </h3>
-<pre class="sourceCode bash" tabindex="0"><code class="sourceCode bash"><span id="cb2-1"><a href="#cb2-1" tabindex="-1"></a><span class="fu">git</span> clone git@github.com:<span class="op">&lt;</span>gituser<span class="op">&gt;</span>/<span class="op">&lt;</span>projectname<span class="op">&gt;</span>.git</span>
-<span id="cb2-2"><a href="#cb2-2" tabindex="-1"></a><span class="ex">pip</span> install .</span></code></pre>
+<pre class="sourceCode bash" tabindex="0"><code class="sourceCode bash"><span id="cb2-1"><a href="#cb2-1" tabindex="-1" aria-label="code-block-2-1"></a><span class="fu">git</span> clone git@github.com:<span class="op">&lt;</span>gituser<span class="op">&gt;</span>/<span class="op">&lt;</span>projectname<span class="op">&gt;</span>.git</span>
+<span id="cb2-2"><a href="#cb2-2" tabindex="-1" aria-label="code-block-2-2"></a><span class="ex">pip</span> install .</span></code></pre>
 </div>
 <p>or just download a <code>.zip</code> file from github, unzip it, and
 then run <code>pip install .</code> in the same directory.</p>
@@ -648,7 +648,7 @@ module defined in this directory. Pip will search for a
 <div class="codewrapper sourceCode" id="cb3">
 <h3 class="code-label">BASH<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
 </h3>
-<pre class="sourceCode bash" tabindex="0"><code class="sourceCode bash"><span id="cb3-1"><a href="#cb3-1" tabindex="-1"></a><span class="ex">pip</span> uninstall SkySim</span></code></pre>
+<pre class="sourceCode bash" tabindex="0"><code class="sourceCode bash"><span id="cb3-1"><a href="#cb3-1" tabindex="-1" aria-label="code-block-3-1"></a><span class="ex">pip</span> uninstall SkySim</span></code></pre>
 </div>
 </div>
 <div class="section level3">
@@ -666,7 +666,7 @@ for pip:</p>
 <div class="codewrapper sourceCode" id="cb4">
 <h3 class="code-label">BASH<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
 </h3>
-<pre class="sourceCode bash" tabindex="0"><code class="sourceCode bash"><span id="cb4-1"><a href="#cb4-1" tabindex="-1"></a><span class="ex">pip</span> install <span class="at">-e</span> .</span></code></pre>
+<pre class="sourceCode bash" tabindex="0"><code class="sourceCode bash"><span id="cb4-1"><a href="#cb4-1" tabindex="-1" aria-label="code-block-4-1"></a><span class="ex">pip</span> install <span class="at">-e</span> .</span></code></pre>
 </div>
 </div>
 <div class="section level3">
@@ -778,7 +778,7 @@ can be installed using
 <div class="codewrapper sourceCode" id="cb5">
 <h3 class="code-label">BASH<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
 </h3>
-<pre class="sourceCode bash" tabindex="0"><code class="sourceCode bash"><span id="cb5-1"><a href="#cb5-1" tabindex="-1"></a><span class="ex">python3</span> <span class="at">-m</span> twine upload dist/<span class="pp">*</span></span></code></pre>
+<pre class="sourceCode bash" tabindex="0"><code class="sourceCode bash"><span id="cb5-1"><a href="#cb5-1" tabindex="-1" aria-label="code-block-5-1"></a><span class="ex">python3</span> <span class="at">-m</span> twine upload dist/<span class="pp">*</span></span></code></pre>
 </div>
 <p>When prompted for a username you should use <code>__token__</code>
 and for your password you should use
@@ -843,7 +843,7 @@ any links that you are not going to use.
         <p>Materials licensed under <a href="LICENSE.html">CC-BY 4.0</a> by the authors</p>
 
         <p>Template licensed under <a href="https://creativecommons.org/licenses/by-sa/4.0/" class="external-link">CC-BY 4.0</a> by <a href="https://carpentries.org/" class="external-link">The Carpentries</a></p>
-        <p>Built with <a href="https://github.com/carpentries/sandpaper/tree/" class="external-link">sandpaper (0.20.0)</a>, <a href="https://github.com/carpentries/pegboard/tree/" class="external-link">pegboard (0.7.9)</a>, and <a href="https://github.com/adacs-australia/varnish/tree/3d0f995f5beafe80d7b61fc49da22ab66f29241c" class="external-link">varnish (1.0.9)</a></p>
+        <p>Built with <a href="https://github.com/carpentries/sandpaper/tree/" class="external-link">sandpaper (0.20.1)</a>, <a href="https://github.com/carpentries/pegboard/tree/" class="external-link">pegboard (0.7.9)</a>, and <a href="https://github.com/adacs-australia/varnish/tree/3d0f995f5beafe80d7b61fc49da22ab66f29241c" class="external-link">varnish (1.0.9)</a></p>
 		</div>
 		</footer></div> <!-- / div.container -->
 	<div id="to-top">
@@ -866,7 +866,7 @@ any links that you are not going to use.
   "identifier": "https://PaulHancock.github.io/Lesson-Testing/instructor/SharingCode.html",
   "dateCreated": "2026-02-23",
   "dateModified": "2026-02-27",
-  "datePublished": "2026-04-14"
+  "datePublished": "2026-04-21"
 }
 
   </script><script>
